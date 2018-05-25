@@ -7,6 +7,12 @@ module.exports = {
       use: [{
         loader: 'html-loader',
       }],
+    }, {
+      exclude: /node_modules/,
+      test: /\.js$/,
+      use: [{
+        loader: 'babel-loader',
+      }]
     }],
   },
   plugins: [
