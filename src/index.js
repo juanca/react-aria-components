@@ -1,1 +1,4 @@
-document.querySelector('body').appendChild(document.createTextNode('Hello world!'));
+import React from 'react';
+import { render } from 'react-dom';
+
+render(<div>Hello world!</div>, document.getElementById('example-0'));
