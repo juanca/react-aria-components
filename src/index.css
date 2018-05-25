@@ -2,3 +2,24 @@
   border: 1px dotted black;
   background-color: #fed;
 }
+
+.hc0 {
+  composes: c0 from './grid.css';
+  left: 0;
+}
+
+.hc1 {
+  composes: c1 from './grid.css';
+}
+
+.hc2 {
+  composes: c2 from './grid.css';
+}
+
+.hc3 {
+  composes: c3 from './grid.css';
+}
+
+.hc4 {
+  composes: c4 from './grid.css';
+}

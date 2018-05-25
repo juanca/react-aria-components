@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Cell from './cell.js';
@@ -8,11 +9,11 @@ export default function TreeGrid(props) {
   return (
     <div className={styles.container}>
       <div className={styles['header-row']}>
-        <Cell className={styles.hc0}>HEAD0</Cell>
-        <Cell className={styles.hc1}>HEAD1</Cell>
-        <Cell className={styles.hc2}>HEAD2</Cell>
-        <Cell className={styles.hc3}>HEAD3</Cell>
-        <Cell className={styles.hc4}>HEAD4</Cell>
+        {props.columns.map(column =>
+          <Cell className={column.labelClassName} key={column.id}>
+            {column.component}
+          </Cell>
+        )}
       </div>
       <div>
         <Grid />
@@ -24,4 +25,16 @@ export default function TreeGrid(props) {
       </div>
     </div>
   );
+};
+
+TreeGrid.defaultProps = {
+  columns: [],
+};
+
+TreeGrid.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    component: PropTypes.node.isRequired,
+    dataKey: PropTypes.string,
+    id: PropTypes.string.isRequired,
+  })),
 };

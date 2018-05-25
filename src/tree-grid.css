@@ -11,24 +11,3 @@
   top: 0;
   z-index: 1;
 }
-
-.hc0 {
-  composes: c0 from './grid.css';
-  left: 0;
-}
-
-.hc1 {
-  composes: c0 from './grid.css';
-}
-
-.hc2 {
-  composes: c0 from './grid.css';
-}
-
-.hc3 {
-  composes: c0 from './grid.css';
-}
-
-.hc4 {
-  composes: c0 from './grid.css';
-}
