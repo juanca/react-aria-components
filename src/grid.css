@@ -3,36 +3,29 @@
   flex-direction: row;
 }
 
-.cell {
-  border-bottom: 1px solid black;
-  flex-shrink: 0;
-  height: 50px;
-  width: 200px;
-}
-
 .c0 {
-  composes: cell;
+  composes: container from './cell.css';
   background-color: #333;
   left: 0;
   position: sticky;
 }
 
 .c1 {
-  composes: cell;
+  composes: container from './cell.css';
   background-color: #bbb;
 }
 
 .c2 {
-  composes: cell;
+  composes: container from './cell.css';
   background-color: #ccc;
 }
 
 .c3 {
-  composes: cell;
+  composes: container from './cell.css';
   background-color: #ddd;
 }
 
 .c4 {
-  composes: cell;
+  composes: container from './cell.css';
   background-color: #eee;
 }
