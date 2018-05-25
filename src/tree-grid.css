@@ -1,0 +1,57 @@
+.container {
+  border: 1px solid black;
+  height: 200px;
+  overflow: auto;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-row {
+  composes: row;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.cell {
+  border-bottom: 1px solid black;
+  flex-shrink: 0;
+  height: 50px;
+  width: 200px;
+}
+
+.c0 {
+  composes: cell;
+  background-color: #333;
+  left: 0;
+  position: sticky;
+}
+
+.hc0 {
+  composes: c0;
+  left: 0;
+}
+
+.c1 {
+  composes: cell;
+  background-color: #bbb;
+}
+
+.c2 {
+  composes: cell;
+  background-color: #ccc;
+}
+
+.c3 {
+  composes: cell;
+  background-color: #ddd;
+}
+
+.c4 {
+  composes: cell;
+  background-color: #eee;
+}
