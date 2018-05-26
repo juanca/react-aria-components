@@ -14,7 +14,7 @@ export default function TreeGrid(props) {
             className={column.labelClassName || column.className}
             key={column.id}
           >
-            {column.component}
+            {column.labelNode}
           </Cell>
         )}
       </div>
@@ -37,9 +37,9 @@ TreeGrid.defaultProps = {
 TreeGrid.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
     className: PropTypes.string.isRequired,
-    component: PropTypes.node.isRequired,
     dataKey: PropTypes.string,
     id: PropTypes.string.isRequired,
     labelClassName: PropTypes.string,
+    labelNode: PropTypes.node,
   })),
 };
