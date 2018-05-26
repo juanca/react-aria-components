@@ -19,12 +19,21 @@ export default function TreeGrid(props) {
         )}
       </div>
       <div>
-        <Grid />
-        <Grid />
-        <Grid />
-        <Grid />
-        <Grid />
-        <Grid />
+        {props.data.map(datum =>
+          <Grid
+            key={datum.id}
+          >
+            {props.columns.map(column =>
+              <Cell
+                className={column.className}
+                key={column.id}
+              >
+                {column.renderNode(datum)}
+              </Cell>
+            )}
+          </Grid>
+        )}
+
       </div>
     </div>
   );
@@ -32,14 +41,18 @@ export default function TreeGrid(props) {
 
 TreeGrid.defaultProps = {
   columns: [],
+  data: [],
 };
 
 TreeGrid.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
     className: PropTypes.string.isRequired,
-    dataKey: PropTypes.string,
     id: PropTypes.string.isRequired,
+    renderNode: PropTypes.func.isRequired,
     labelClassName: PropTypes.string,
     labelNode: PropTypes.node,
+  })),
+  data: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
   })),
 };
