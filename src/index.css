@@ -31,6 +31,6 @@
 }
 
 .hc0 {
-  composes: c0 from './grid.css';
+  composes: c0;
   left: 0;
 }
