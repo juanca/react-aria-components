@@ -8,7 +8,7 @@ import styles from './tree-grid.css'
 export default function TreeGrid(props) {
   return (
     <div className={styles.container}>
-      <div className={styles['header-row']}>
+      <Grid className={styles['header-row']}>
         {props.columns.map(column =>
           <Cell
             className={column.labelClassName || column.className}
@@ -17,7 +17,7 @@ export default function TreeGrid(props) {
             {column.labelNode}
           </Cell>
         )}
-      </div>
+      </Grid>
       <div>
         {props.data.map(datum =>
           <Grid
