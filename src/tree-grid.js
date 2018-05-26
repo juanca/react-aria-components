@@ -10,7 +10,10 @@ export default function TreeGrid(props) {
     <div className={styles.container}>
       <div className={styles['header-row']}>
         {props.columns.map(column =>
-          <Cell className={column.labelClassName} key={column.id}>
+          <Cell
+            className={column.labelClassName || column.className}
+            key={column.id}
+          >
             {column.component}
           </Cell>
         )}
@@ -33,8 +36,10 @@ TreeGrid.defaultProps = {
 
 TreeGrid.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape({
+    className: PropTypes.string.isRequired,
     component: PropTypes.node.isRequired,
     dataKey: PropTypes.string,
     id: PropTypes.string.isRequired,
+    labelClassName: PropTypes.string,
   })),
 };

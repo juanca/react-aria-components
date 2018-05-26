@@ -3,23 +3,34 @@
   background-color: #fed;
 }
 
+.c0 {
+  composes: container from './cell.css';
+  background-color: #333;
+  left: 0;
+  position: sticky;
+}
+
+.c1 {
+  composes: container from './cell.css';
+  background-color: #bbb;
+}
+
+.c2 {
+  composes: container from './cell.css';
+  background-color: #ccc;
+}
+
+.c3 {
+  composes: container from './cell.css';
+  background-color: #ddd;
+}
+
+.c4 {
+  composes: container from './cell.css';
+  background-color: #eee;
+}
+
 .hc0 {
   composes: c0 from './grid.css';
   left: 0;
-}
-
-.hc1 {
-  composes: c1 from './grid.css';
-}
-
-.hc2 {
-  composes: c2 from './grid.css';
-}
-
-.hc3 {
-  composes: c3 from './grid.css';
-}
-
-.hc4 {
-  composes: c4 from './grid.css';
 }
