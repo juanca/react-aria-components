@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode development",
+    "start": "webpack-serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juan Carlos Medina",
