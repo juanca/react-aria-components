@@ -8,7 +8,7 @@ const numberOfColumns = 20;
 const numberOfRows = 20;
 
 const columns = new Array(numberOfColumns).fill(0).map((_, index) => ({
-  className: styles[`c${index % 5}`],
+  className: index === 0 ? styles.c0 : styles[`c${(index % 4) + 1}`],
   id: `c${index}`,
   labelNode: `HEAD #${index % 5}`,
   labelClassName: index === 0 ? styles.hc0 : undefined,
