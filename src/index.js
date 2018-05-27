@@ -5,7 +5,7 @@ import TreeGrid from './tree-grid.js';
 import styles from './index.css';
 
 const numberOfColumns = 20;
-const numberOfRows = 20;
+const numberOfRows = 200;
 
 const columns = new Array(numberOfColumns).fill(0).map((_, index) => ({
   className: index === 0 ? styles.c0 : styles[`c${(index % 4) + 1}`],
