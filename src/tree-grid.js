@@ -35,6 +35,16 @@ export default function TreeGrid(props) {
         )}
 
       </div>
+      <Grid className={styles['footer-row']}>
+        {props.columns.map(column =>
+          <Cell
+            className={column.footerClassName || column.className}
+            key={column.id}
+          >
+            {column.footerNode}
+          </Cell>
+        )}
+      </Grid>
     </div>
   );
 };
