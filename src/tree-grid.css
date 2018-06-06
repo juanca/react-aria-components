@@ -3,7 +3,7 @@
   position: relative;
 }
 
-.header-row {
+.labels-grid {
   composes: container from './grid.css';
   position: sticky;
   top: 0;

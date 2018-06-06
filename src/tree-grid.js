@@ -8,7 +8,7 @@ import styles from './tree-grid.css'
 export default function TreeGrid(props) {
   return (
     <div className={styles.container}>
-      <Grid className={styles['header-row']}>
+      <Grid className={styles['labels-grid']}>
         {props.columns.map(column =>
           <Cell
             className={column.labelClassName || column.className}
