@@ -3,21 +3,13 @@ import React from 'react';
 
 import Cell from './cell.js';
 import Grid from './grid.js';
+import LabelsGrid from './labels-grid.js';
 import styles from './tree-grid.css'
 
 export default function TreeGrid(props) {
   return (
     <div className={styles.container}>
-      <Grid className={styles['labels-grid']}>
-        {props.columns.map(column =>
-          <Cell
-            className={column.labelClassName || column.className}
-            key={column.id}
-          >
-            {column.labelNode}
-          </Cell>
-        )}
-      </Grid>
+      <LabelsGrid columns={props.columns} />
       <div>
         {props.data.map(datum =>
           <Grid
