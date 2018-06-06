@@ -2,11 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Cell from './cell.js';
+import eventHandlersFactory from './utils/event-handlers-factory.js';
 import styles from './grid.css';
 
 export default function Grid(props) {
   return (
-    <div className={props.className}>
+    <div
+      className={props.className}
+      draggable
+      {...eventHandlersFactory('Grid', ['Click', 'Drag'])}
+    >
       {props.children}
     </div>
   );
