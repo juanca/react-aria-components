@@ -3,6 +3,7 @@ import React from 'react';
 
 import Cell from './cell.js';
 import Grid from './grid.js';
+import FootingsGrid from './footings-grid.js';
 import HeadingsGrid from './headings-grid.js';
 import styles from './tree-grid.css'
 
@@ -27,16 +28,7 @@ export default function TreeGrid(props) {
         )}
 
       </div>
-      <Grid className={styles['footer-row']}>
-        {props.columns.map(column =>
-          <Cell
-            className={column.footerClassName || column.className}
-            key={column.id}
-          >
-            {column.footerNode}
-          </Cell>
-        )}
-      </Grid>
+      <FootingsGrid columns={props.columns} />
     </div>
   );
 };

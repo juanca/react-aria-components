@@ -1,0 +1,5 @@
+.container {
+  composes: container from './grid.css';
+  position: sticky;
+  bottom: 0;
+}
