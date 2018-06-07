@@ -23,11 +23,13 @@ const data = new Array(numberOfRows).fill(0).map((_, rIndex) =>
   }), { id: rIndex })
 );
 
-render((
-  <React.Fragment>
-    <div className={styles.container}>
-      Hello world!
-    </div>
-    <TreeGrid columns={columns} data={data} />
-  </React.Fragment>
-), document.getElementById('example-0'));
+setTimeout(_ => {
+  render((
+    <React.Fragment>
+      <div className={styles.container}>
+        Hello world!
+      </div>
+      <TreeGrid columns={columns} data={data} />
+    </React.Fragment>
+  ), document.getElementById('example-0'));
+}, 100);
