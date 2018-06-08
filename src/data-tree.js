@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Cell from './cell.js';
 import Grid from './grid.js';
 import PropTypeColumns from './prop-types/columns.js';
+import PropTypeDatum from './prop-types/datum.js';
 import styles from './data-tree.css'
 
 const subtreeLength = 2;
@@ -49,7 +49,5 @@ DataTree.defaultProps = {
 
 DataTree.propTypes = {
   columns: PropTypeColumns,
-  datum: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  }),
+  datum: PropTypeDatum,
 };

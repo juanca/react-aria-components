@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import DataTree from './data-tree.js';
 import FootingsGrid from './footings-grid.js';
 import HeadingsGrid from './headings-grid.js';
 import PropTypeColumns from './prop-types/columns.js';
+import PropTypeData from './prop-types/data.js';
 import styles from './tree-grid.css'
 
 export default function TreeGrid(props) {
@@ -31,7 +31,5 @@ TreeGrid.defaultProps = {
 
 TreeGrid.propTypes = {
   columns: PropTypeColumns,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  })),
+  data: PropTypeData,
 };
