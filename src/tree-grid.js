@@ -11,22 +11,20 @@ export default function TreeGrid(props) {
   return (
     <div className={styles.container}>
       <HeadingsGrid columns={props.columns} />
-      <div>
-        {props.data.map(datum =>
-          <Grid
-            key={datum.id}
-          >
-            {props.columns.map(column =>
-              <Cell
-                className={column.className}
-                key={column.id}
-              >
-                {column.renderNode(datum)}
-              </Cell>
-            )}
-          </Grid>
-        )}
-      </div>
+      {props.data.map(datum =>
+        <Grid
+          key={datum.id}
+        >
+          {props.columns.map(column =>
+            <Cell
+              className={column.className}
+              key={column.id}
+            >
+              {column.renderNode(datum)}
+            </Cell>
+          )}
+        </Grid>
+      )}
       <FootingsGrid columns={props.columns} />
     </div>
   );
