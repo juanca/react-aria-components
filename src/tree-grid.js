@@ -26,7 +26,6 @@ export default function TreeGrid(props) {
             )}
           </Grid>
         )}
-
       </div>
       <FootingsGrid columns={props.columns} />
     </div>
