@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Cell from './cell.js';
-import Grid from './grid.js';
+import DataTree from './data-tree.js';
 import FootingsGrid from './footings-grid.js';
 import HeadingsGrid from './headings-grid.js';
 import styles from './tree-grid.css'
@@ -12,18 +11,12 @@ export default function TreeGrid(props) {
     <div className={styles.container}>
       <HeadingsGrid columns={props.columns} />
       {props.data.map(datum =>
-        <Grid
+        <DataTree
+          columns={props.columns}
+          datum={datum}
+          id={datum.id}
           key={datum.id}
-        >
-          {props.columns.map(column =>
-            <Cell
-              className={column.className}
-              key={column.id}
-            >
-              {column.renderNode(datum)}
-            </Cell>
-          )}
-        </Grid>
+        />
       )}
       <FootingsGrid columns={props.columns} />
     </div>
