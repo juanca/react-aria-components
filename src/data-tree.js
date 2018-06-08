@@ -5,20 +5,39 @@ import Cell from './cell.js';
 import Grid from './grid.js';
 import styles from './data-tree.css'
 
+const subtreeLength = 2;
+const subtreeChildren = new Array(subtreeLength).fill(0).map((_, index) => index);
+
 export default function DataTree(props) {
   return (
-    <Grid
-      key={props.id}
-    >
-      {props.columns.map(column =>
-        <Cell
-          className={column.className}
-          key={column.id}
+    <div>
+      <Grid
+        key={props.id}
+      >
+        {props.columns.map(column =>
+          <Cell
+            className={column.className}
+            key={column.id}
+          >
+            {column.renderNode(props.datum)}
+          </Cell>
+        )}
+      </Grid>
+      {subtreeChildren.map(subtreeId =>
+        <Grid
+          key={`${props.id}-${subtreeId}`}
         >
-          {column.renderNode(props.datum)}
-        </Cell>
+          {props.columns.map(column =>
+            <Cell
+              className={column.className}
+              key={column.id}
+            >
+              {`${column.renderNode(props.datum)}-${subtreeId}`}
+            </Cell>
+          )}
+        </Grid>
       )}
-    </Grid>
+    </div>
   );
 };
 
