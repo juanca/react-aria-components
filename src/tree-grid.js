@@ -4,6 +4,7 @@ import React from 'react';
 import DataTree from './data-tree.js';
 import FootingsGrid from './footings-grid.js';
 import HeadingsGrid from './headings-grid.js';
+import PropTypeColumns from './prop-types/columns.js';
 import styles from './tree-grid.css'
 
 export default function TreeGrid(props) {
@@ -29,13 +30,7 @@ TreeGrid.defaultProps = {
 };
 
 TreeGrid.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.shape({
-    className: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    renderNode: PropTypes.func.isRequired,
-    labelClassName: PropTypes.string,
-    labelNode: PropTypes.node,
-  })),
+  columns: PropTypeColumns,
   data: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
   })),

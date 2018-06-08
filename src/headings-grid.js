@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Cell from './cell.js';
 import Grid from './grid.js';
+import PropTypeColumns from './prop-types/columns.js';
 import styles from './headings-grid.css'
 
 export default function HeadingsGrid(props) {
@@ -25,11 +25,5 @@ HeadingsGrid.defaultProps = {
 };
 
 HeadingsGrid.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.shape({
-    className: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    renderNode: PropTypes.func.isRequired,
-    headingClassName: PropTypes.string,
-    headingNode: PropTypes.node,
-  })),
+  columns: PropTypeColumns,
 };

@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
 import Cell from './cell.js';
 import Grid from './grid.js';
+import PropTypeColumns from './prop-types/columns.js';
 import styles from './footings-grid.css'
 
 export default function FootingsGrid(props) {
@@ -25,11 +25,5 @@ FootingsGrid.defaultProps = {
 };
 
 FootingsGrid.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.shape({
-    className: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    renderNode: PropTypes.func.isRequired,
-    footingsClassName: PropTypes.string,
-    footingNode: PropTypes.node,
-  })),
+  columns: PropTypeColumns,
 };
