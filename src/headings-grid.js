@@ -12,6 +12,7 @@ export default function HeadingsGrid(props) {
         <Cell
           className={column.headingClassName || column.className}
           key={column.id}
+          role="columnheader"
         >
           {column.headingNode}
         </Cell>
