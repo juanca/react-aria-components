@@ -11,7 +11,7 @@ const subtreeChildren = new Array(subtreeLength).fill(0).map((_, index) => index
 
 export default function DataTree(props) {
   return (
-    <div>
+    <React.Fragment>
       <Grid
         key={props.id}
       >
@@ -38,7 +38,7 @@ export default function DataTree(props) {
           )}
         </Grid>
       )}
-    </div>
+    </React.Fragment>
   );
 };
 
