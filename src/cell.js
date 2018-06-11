@@ -8,6 +8,7 @@ export default function Cell(props) {
   return (
     <div
       className={props.className}
+      role="gridcell"
       {...eventHandlersFactory('Cell', ['Click'])}
     >
       {props.children}
