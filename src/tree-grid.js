@@ -9,7 +9,10 @@ import styles from './tree-grid.css'
 
 export default function TreeGrid(props) {
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      role="grid"
+    >
       <HeadingsGrid columns={props.columns} />
       {props.data.map(datum =>
         <DataTree

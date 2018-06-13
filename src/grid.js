@@ -10,6 +10,7 @@ export default function Grid(props) {
     <div
       className={props.className}
       draggable
+      role="row"
       {...eventHandlersFactory('Grid', ['Click', 'Drag'])}
     >
       {props.children}

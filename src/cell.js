@@ -8,6 +8,7 @@ export default function Cell(props) {
   return (
     <div
       className={props.className}
+      role={props.role}
       {...eventHandlersFactory('Cell', ['Click'])}
     >
       {props.children}
@@ -17,9 +18,11 @@ export default function Cell(props) {
 
 Cell.defaultProps = {
   className: styles.container,
+  role: 'gridcell'
 };
 
 Cell.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
