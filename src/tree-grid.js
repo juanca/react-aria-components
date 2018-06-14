@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ColumnFooter from './column-header.js';
 import ColumnHeader from './column-header.js';
 import Row from './row.js';
 import GridCell from './grid-cell.js';
