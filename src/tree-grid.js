@@ -1,9 +1,9 @@
 import React from 'react';
 
+import ColumnHeader from './column-header.js';
 import Row from './row.js';
 import FootingsGrid from './footings-grid.js';
 import GridCell from './grid-cell.js';
-import HeadingsGrid from './headings-grid.js';
 import PropTypeColumns from './prop-types/columns.js';
 import PropTypeData from './prop-types/data.js';
 import styles from './tree-grid.css'
@@ -14,7 +14,19 @@ export default function TreeGrid(props) {
       className={styles.container}
       role="grid"
     >
-      <HeadingsGrid columns={props.columns} />
+      <Row
+        className={styles['row-headers-container']}
+        key="row-headers"
+      >
+        {props.columns.map(column =>
+          <ColumnHeader
+            className={column.headerClassName || column.className}
+            key={column.id}
+          >
+            {column.headerNode}
+          </ColumnHeader>
+        )}
+      </Row>
       {props.data.map(datum =>
         <Row
           key={datum.id}

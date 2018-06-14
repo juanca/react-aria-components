@@ -2,3 +2,10 @@
   border: 1px solid black;
   position: relative;
 }
+
+.row-headers-container {
+  composes: container from './grid.css';
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
