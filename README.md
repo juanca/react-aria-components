@@ -1,4 +1,4 @@
-# React TreeGrid
+# React ARIA Components
 
 Disclaimer: this is in an alpha stage.
 
@@ -15,10 +15,16 @@ Otherwise, please inspect the console output.
 
 ## High-level design
 
-Accessibility is the design principle for this component.
-The design references the WAI-ARIA Authoring Practices on [Grid](https://www.w3.org/TR/wai-aria-practices-1.1/#grid) and [TreeView](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView).
+The components available through this module are inspired from the [WAI-ARIA Authoring Practices].
+Each component is driven by three principles:
 
-For 2-dimensional data, a grid layout is desired:
+1. A component is accessible.
+1. A component can be used in composition.
+1. A component has minimal footprint.
+
+### Grid
+
+For 2-dimensional data, a [Grid] layout is desired:
 
 - A `Grid`
   - Many `Row`s
@@ -28,11 +34,5 @@ For 2-dimensional data, a grid layout is desired:
   - Many `RowGroup`s
     - Many `Row`s
 
-For 2-dimensional data, a tree grid layout is desired:
-
-- TODO: Get this working
-
-## Undecided technical questions:
-
-- Should `renderNode` be a function (i.e. render prop) or a React Pure Function (i.e. an element)?
-  - What are the pros and cons of each?
+[WAI-ARIA Authoring Practices]: https://www.w3.org/TR/wai-aria-practices-1.1
+[Grid]: https://www.w3.org/TR/wai-aria-practices-1.1/#grid
