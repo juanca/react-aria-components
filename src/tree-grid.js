@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DataTree from './data-tree.js';
+import Row from './row.js';
 import FootingsGrid from './footings-grid.js';
 import HeadingsGrid from './headings-grid.js';
 import PropTypeColumns from './prop-types/columns.js';
@@ -15,7 +15,7 @@ export default function TreeGrid(props) {
     >
       <HeadingsGrid columns={props.columns} />
       {props.data.map(datum =>
-        <DataTree
+        <Row
           columns={props.columns}
           datum={datum}
           id={datum.id}

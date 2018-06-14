@@ -4,12 +4,12 @@ import GridCell from './grid-cell.js';
 import Grid from './grid.js';
 import PropTypeColumns from './prop-types/columns.js';
 import PropTypeDatum from './prop-types/datum.js';
-import styles from './data-tree.css'
+import styles from './row.css'
 
 const subtreeLength = 2;
 const subtreeChildren = new Array(subtreeLength).fill(0).map((_, index) => index);
 
-export default function DataTree(props) {
+export default function Row(props) {
   return (
     <React.Fragment>
       <Grid
@@ -28,12 +28,12 @@ export default function DataTree(props) {
   );
 };
 
-DataTree.defaultProps = {
+Row.defaultProps = {
   columns: [],
   datum: {},
 };
 
-DataTree.propTypes = {
+Row.propTypes = {
   columns: PropTypeColumns,
   datum: PropTypeDatum,
 };
