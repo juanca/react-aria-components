@@ -24,8 +24,11 @@ const data = new Array(numberOfRows).fill(0).map((_, rIndex) =>
 setTimeout(_ => {
   render((
     <React.Fragment>
-      <div className={styles.container}>
-        Hello world!
+      <div className={styles.banner}>
+        <p>List of WAI-ARIA components implemented in React:</p>
+        <ol>
+          <li>Grid</li>
+        </ol>
       </div>
       <div className={styles['grid-container']}>
         <Grid columns={columns} data={data} />
