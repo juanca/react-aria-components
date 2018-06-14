@@ -34,5 +34,5 @@ setTimeout(_ => {
         <Grid columns={columns} data={data} />
       </div>
     </React.Fragment>
-  ), document.getElementById('example-0'));
+  ), document.getElementById('page'));
 }, 100);
