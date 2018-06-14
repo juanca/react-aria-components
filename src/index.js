@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import TreeGrid from './tree-grid.js';
+import Grid from './grid.js';
 import styles from './index.css';
 
 const numberOfColumns = 20;
@@ -27,7 +27,7 @@ setTimeout(_ => {
       <div className={styles.container}>
         Hello world!
       </div>
-      <TreeGrid columns={columns} data={data} />
+      <Grid columns={columns} data={data} />
     </React.Fragment>
   ), document.getElementById('example-0'));
 }, 100);

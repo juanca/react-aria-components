@@ -5,7 +5,7 @@ import Row from './row.js';
 import GridCell from './grid-cell.js';
 import PropTypeColumns from './prop-types/columns.js';
 import PropTypeData from './prop-types/data.js';
-import styles from './tree-grid.css'
+import styles from './grid.css'
 
 export default function TreeGrid(props) {
   return (
