@@ -10,8 +10,6 @@ const numberOfRows = 200;
 const columns = new Array(numberOfColumns).fill(0).map((_, index) => ({
   className: index === 0 ? styles.c0 : styles[`c${(index % 4) + 1}`],
   id: `c${index}`,
-  footingNode: `FOOT #${index % 5}`,
-  footingClassName: index === 0 ? styles.hc0 : undefined,
   headerNode: `HEAD #${index % 5}`,
   headerClassName: index === 0 ? styles.hc0 : undefined,
   renderNode: (datum => datum[`b${index}`]),

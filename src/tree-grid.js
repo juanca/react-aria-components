@@ -1,8 +1,8 @@
 import React from 'react';
 
+import ColumnFooter from './column-header.js';
 import ColumnHeader from './column-header.js';
 import Row from './row.js';
-import FootingsGrid from './footings-grid.js';
 import GridCell from './grid-cell.js';
 import PropTypeColumns from './prop-types/columns.js';
 import PropTypeData from './prop-types/data.js';
@@ -41,7 +41,6 @@ export default function TreeGrid(props) {
           )}
         </Row>
       )}
-      <FootingsGrid columns={props.columns} />
     </div>
   );
 };
