@@ -1,6 +1,6 @@
 {
-  "name": "@juanca/react-tree-grid",
-  "version": "0.0.1",
+  "name": "react-aria-components",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
