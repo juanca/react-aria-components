@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Grid from './grid.js';
+import Grid from '../grid.js';
 import styles from './index.css';
 
 const numberOfColumns = 20;

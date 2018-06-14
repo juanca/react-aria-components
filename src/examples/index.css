@@ -9,29 +9,29 @@
 }
 
 .c0 {
-  composes: container from './grid-cell.css';
+  composes: container from '../grid-cell.css';
   background-color: #333;
   left: 0;
   position: sticky;
 }
 
 .c1 {
-  composes: container from './grid-cell.css';
+  composes: container from '../grid-cell.css';
   background-color: #bbb;
 }
 
 .c2 {
-  composes: container from './grid-cell.css';
+  composes: container from '../grid-cell.css';
   background-color: #ccc;
 }
 
 .c3 {
-  composes: container from './grid-cell.css';
+  composes: container from '../grid-cell.css';
   background-color: #ddd;
 }
 
 .c4 {
-  composes: container from './grid-cell.css';
+  composes: container from '../grid-cell.css';
   background-color: #eee;
 }
 
