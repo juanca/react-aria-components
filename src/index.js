@@ -27,7 +27,9 @@ setTimeout(_ => {
       <div className={styles.container}>
         Hello world!
       </div>
-      <Grid columns={columns} data={data} />
+      <div className={styles['grid-container']}>
+        <Grid columns={columns} data={data} />
+      </div>
     </React.Fragment>
   ), document.getElementById('example-0'));
 }, 100);

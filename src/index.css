@@ -3,6 +3,11 @@
   background-color: #fed;
 }
 
+.grid-container {
+  height: 500px;
+  overflow: auto;
+}
+
 .c0 {
   composes: container from './grid-cell.css';
   background-color: #333;
