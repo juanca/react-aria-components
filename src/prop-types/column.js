@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
 export default PropTypes.shape({
-  className: PropTypes.string.isRequired,
+  columnCell: PropTypes.func.isRequired,
+  columnClassName: PropTypes.string.isRequired,
+  columnHeaderCell: PropTypes.node,
+  columnHeaderClassName: PropTypes.string,
   id: PropTypes.string.isRequired,
-  renderNode: PropTypes.func.isRequired,
-  labelClassName: PropTypes.string,
-  labelNode: PropTypes.node,
 });

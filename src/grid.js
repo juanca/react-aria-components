@@ -19,10 +19,10 @@ export default function Grid(props) {
       >
         {props.columns.map(column =>
           <ColumnHeader
-            className={column.headerClassName || column.className}
+            className={column.columnHeaderClassName || column.columnClassName}
             key={column.id}
           >
-            {column.headerNode}
+            {column.columnHeaderCell}
           </ColumnHeader>
         )}
       </Row>
@@ -32,10 +32,10 @@ export default function Grid(props) {
         >
           {props.columns.map(column =>
             <GridCell
-              className={column.className}
+              className={column.columnClassName}
               key={column.id}
             >
-              {column.renderNode(datum)}
+              {column.columnCell(datum)}
             </GridCell>
           )}
         </Row>
