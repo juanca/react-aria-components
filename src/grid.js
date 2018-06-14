@@ -5,9 +5,9 @@ import Row from './row.js';
 import GridCell from './grid-cell.js';
 import PropTypeColumns from './prop-types/columns.js';
 import PropTypeData from './prop-types/data.js';
-import styles from './tree-grid.css'
+import styles from './grid.css'
 
-export default function TreeGrid(props) {
+export default function Grid(props) {
   return (
     <div
       className={styles.container}
@@ -44,12 +44,12 @@ export default function TreeGrid(props) {
   );
 };
 
-TreeGrid.defaultProps = {
+Grid.defaultProps = {
   columns: [],
   data: [],
 };
 
-TreeGrid.propTypes = {
+Grid.propTypes = {
   columns: PropTypeColumns,
   data: PropTypeData,
 };
