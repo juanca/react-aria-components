@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import GridCell from './grid-cell.js';
+import styles from './column-header.css';
 
 export default function ColumnHeader(props) {
   return (
@@ -15,7 +16,7 @@ export default function ColumnHeader(props) {
 };
 
 ColumnHeader.defaultProps = {
-  className: undefined,
+  className: styles.container,
 };
 
 ColumnHeader.propTypes = {

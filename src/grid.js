@@ -20,7 +20,7 @@ export default function Grid(props) {
       >
         {props.columns.map(column =>
           <ColumnHeader
-            className={column.columnHeaderClassName || column.columnClassName}
+            className={column.columnHeaderClassName}
             key={column.id}
           >
             {column.columnHeaderCell}

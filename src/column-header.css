@@ -1,0 +1,4 @@
+.container {
+  composes: container from './grid-cell.css';
+  border-top: 1px solid black;
+}
