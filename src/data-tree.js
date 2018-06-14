@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Cell from './cell.js';
+import GridCell from './grid-cell.js';
 import Grid from './grid.js';
 import PropTypeColumns from './prop-types/columns.js';
 import PropTypeDatum from './prop-types/datum.js';
@@ -16,12 +16,12 @@ export default function DataTree(props) {
         key={props.id}
       >
         {props.columns.map(column =>
-          <Cell
+          <GridCell
             className={column.className}
             key={column.id}
           >
             {column.renderNode(props.datum)}
-          </Cell>
+          </GridCell>
         )}
       </Grid>
       {subtreeChildren.map(subtreeId =>
@@ -29,12 +29,12 @@ export default function DataTree(props) {
           key={`${props.id}-${subtreeId}`}
         >
           {props.columns.map(column =>
-            <Cell
+            <GridCell
               className={column.className}
               key={column.id}
             >
               {`${column.renderNode(props.datum)}-${subtreeId}`}
-            </Cell>
+            </GridCell>
           )}
         </Grid>
       )}

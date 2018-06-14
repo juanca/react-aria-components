@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import eventHandlersFactory from './utils/event-handlers-factory.js';
-import styles from './cell.css';
+import styles from './grid-cell.css';
 
-export default function Cell(props) {
+export default function GridCell(props) {
   return (
     <div
       className={props.className}
@@ -16,12 +16,12 @@ export default function Cell(props) {
   );
 };
 
-Cell.defaultProps = {
+GridCell.defaultProps = {
   className: styles.container,
   role: 'gridcell'
 };
 
-Cell.propTypes = {
+GridCell.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),

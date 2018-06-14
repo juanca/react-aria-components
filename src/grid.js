@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Cell from './cell.js';
 import eventHandlersFactory from './utils/event-handlers-factory.js';
 import styles from './grid.css';
 
