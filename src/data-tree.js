@@ -24,20 +24,6 @@ export default function DataTree(props) {
           </GridCell>
         )}
       </Grid>
-      {subtreeChildren.map(subtreeId =>
-        <Grid
-          key={`${props.id}-${subtreeId}`}
-        >
-          {props.columns.map(column =>
-            <GridCell
-              className={column.className}
-              key={column.id}
-            >
-              {`${column.renderNode(props.datum)}-${subtreeId}`}
-            </GridCell>
-          )}
-        </Grid>
-      )}
     </React.Fragment>
   );
 };
