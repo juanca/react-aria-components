@@ -2,6 +2,7 @@ import React from 'react';
 
 import Row from './row.js';
 import FootingsGrid from './footings-grid.js';
+import GridCell from './grid-cell.js';
 import HeadingsGrid from './headings-grid.js';
 import PropTypeColumns from './prop-types/columns.js';
 import PropTypeData from './prop-types/data.js';
@@ -16,11 +17,17 @@ export default function TreeGrid(props) {
       <HeadingsGrid columns={props.columns} />
       {props.data.map(datum =>
         <Row
-          columns={props.columns}
-          datum={datum}
-          id={datum.id}
           key={datum.id}
-        />
+        >
+          {props.columns.map(column =>
+            <GridCell
+              className={column.className}
+              key={column.id}
+            >
+              {column.renderNode(datum)}
+            </GridCell>
+          )}
+        </Row>
       )}
       <FootingsGrid columns={props.columns} />
     </div>

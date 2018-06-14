@@ -1,32 +1,27 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import GridCell from './grid-cell.js';
-import Grid from './grid.js';
-import PropTypeColumns from './prop-types/columns.js';
-import PropTypeDatum from './prop-types/datum.js';
+import eventHandlersFactory from './utils/event-handlers-factory.js';
 import styles from './row.css'
 
 export default function Row(props) {
   return (
-    <Grid>
-      {props.columns.map(column =>
-        <GridCell
-          className={column.className}
-          key={column.id}
-        >
-          {column.renderNode(props.datum)}
-        </GridCell>
-      )}
-    </Grid>
+    <div
+      className={props.className}
+      draggable
+      role="row"
+      {...eventHandlersFactory('Grid', ['Click', 'Drag'])}
+    >
+      {props.children}
+    </div>
   );
 };
 
 Row.defaultProps = {
-  columns: [],
-  datum: {},
+  className: styles.container,
 };
 
 Row.propTypes = {
-  columns: PropTypeColumns,
-  datum: PropTypeDatum,
+  className: PropTypes.string,
+  children: PropTypes.node,
 };
