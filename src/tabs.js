@@ -7,7 +7,7 @@ import TabPanels from './tab-panels';
 export default class Tabs extends React.Component {
   constructor() {
     super();
-    this.accessibleId = uniqueId('rac-tabs-')
+    this.accessibleId = uniqueId();
   }
 
   render() {
