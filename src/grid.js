@@ -1,12 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import ColumnHeader from './column-header.js';
-import Row from './row.js';
-import RowHeaders from './row-headers.js';
-import GridCell from './grid-cell.js';
-import PropTypeColumns from './prop-types/columns.js';
-import PropTypeData from './prop-types/data.js';
 import styles from './grid.css'
 
 export default function Grid(props) {
@@ -15,42 +9,16 @@ export default function Grid(props) {
       className={props.className}
       role="grid"
     >
-      <RowHeaders key="row-headers">
-        {props.columns.map(column =>
-          <ColumnHeader
-            className={column.columnHeaderClassName}
-            key={column.id}
-          >
-            {column.columnHeaderCell}
-          </ColumnHeader>
-        )}
-      </RowHeaders>
-      {props.data.map(datum =>
-        <Row
-          key={datum.id}
-        >
-          {props.columns.map(column =>
-            <GridCell
-              className={column.columnClassName}
-              key={column.id}
-            >
-              {column.columnCell(datum)}
-            </GridCell>
-          )}
-        </Row>
-      )}
+      {props.children}
     </div>
   );
 };
 
 Grid.defaultProps = {
   className: styles.container,
-  columns: [],
-  data: [],
 };
 
 Grid.propTypes = {
   className: PropTypes.string,
-  columns: PropTypeColumns,
-  data: PropTypeData,
+  children: PropTypes.node,
 };
