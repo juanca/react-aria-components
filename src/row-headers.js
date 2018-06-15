@@ -12,11 +12,11 @@ export default function RowHeaders(props) {
   );
 };
 
-Row.defaultProps = {
+RowHeaders.defaultProps = {
   className: styles.container,
 };
 
-Row.propTypes = {
+RowHeaders.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
 };
