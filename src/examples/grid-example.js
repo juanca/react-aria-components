@@ -15,7 +15,7 @@ function get(key) {
 }
 
 const metaColumns = [
-  { faker: ['name', 'findName'], attrs: { columnClassName: styles['frozen-column'], columnHeaderCell: 'Name' } },
+  { faker: ['name', 'findName'], attrs: { columnClassName: styles['frozen-column'], columnHeaderCell: 'Name', columnHeaderClassName: styles['frozen-header'] } },
   { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
   { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
   { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },

@@ -4,6 +4,12 @@
   position: sticky;
 }
 
+.frozen-header {
+  composes: frozen-column;
+  composes: container from '../column-header.css';
+  top: 0;
+}
+
 .grid-container {
   height: 500px;
   overflow: auto;
