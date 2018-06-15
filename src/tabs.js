@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import uniqueId from 'lodash.uniqueid';
+import uniqueId from './utils/unique-id';
 import TabList from './tab-list';
 import TabPanels from './tab-panels';
 
