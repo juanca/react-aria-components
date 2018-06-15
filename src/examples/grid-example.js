@@ -58,7 +58,7 @@ export default function GridExample() {
   return (
     <div className={styles['grid-container']}>
       <Grid>
-        <RowHeaders key="row-headers">
+        <RowHeaders className={styles['row-headers']} key="row-headers">
           {columns.map(column =>
             <ColumnHeader className={column.columnHeaderClassName} key={column.id}>
               {column.columnHeaderCell}
