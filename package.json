@@ -3,6 +3,10 @@
   "version": "0.0.2",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juanca/react-aria-components"
+  },
   "scripts": {
     "start": "webpack-serve",
     "test": "echo \"Error: no test specified\" && exit 1"
