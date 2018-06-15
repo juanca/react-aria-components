@@ -1,5 +1,6 @@
 .frozen-column {
   composes: container from '../grid-cell.css';
+  background-color: white;
   left: 0;
   position: sticky;
 }
