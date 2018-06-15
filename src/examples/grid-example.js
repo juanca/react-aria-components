@@ -10,34 +10,25 @@ function get(key) {
   }
 }
 
-const columns = [
-  { id: '1', columnCell: get('findName'), columnClassName: styles['frozen-column'], columnHeaderCell: 'Name', columnHeaderClassName: undefined },
-  { id: '2', columnCell: get('jobTitle'), columnClassName: undefined, columnHeaderCell: 'Job Title', columnHeaderClassName: undefined },
-  { id: '3', columnCell: get('jobDescriptor'), columnClassName: undefined, columnHeaderCell: 'Job Description', columnHeaderClassName: undefined },
+const metaColumns = [
+  { faker: ['name', 'findName'], attrs: { columnClassName: styles['frozen-column'], columnHeaderCell: 'Name' } },
+  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
+  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
 ];
 
-const data = [
-  { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 2, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 3, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 4, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 5, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 6, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 7, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 8, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 9, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 10, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 11, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 12, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 13, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 14, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 15, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 16, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 17, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 18, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 19, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-  { id: 20, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() },
-]
+const columns = metaColumns.map((meta, index) => Object.assign({
+  id: index,
+  columnCell: get(meta.faker.slice(-1)[0]),
+}, meta.attrs));
+
+// e.g. { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() }
+const data = new Array(20).fill(0).map((_, index) =>
+  metaColumns.map(meta => ({
+    [meta.faker.slice(-1)[0]]: meta.faker.reduce((obj, key) => obj[key], faker)()
+  }))
+  .concat({ id: index })
+  .reduce((merge, obj) => Object.assign(merge, obj))
+);
 
 export default function GridExample() {
   return (
