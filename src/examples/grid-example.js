@@ -57,26 +57,18 @@ const data = new Array(20).fill(0).map((_, index) =>
 export default function GridExample() {
   return (
     <div className={styles['grid-container']}>
-      <Grid columns={columns} data={data}>
+      <Grid>
         <RowHeaders key="row-headers">
           {columns.map(column =>
-            <ColumnHeader
-              className={column.columnHeaderClassName}
-              key={column.id}
-            >
+            <ColumnHeader className={column.columnHeaderClassName} key={column.id}>
               {column.columnHeaderCell}
             </ColumnHeader>
           )}
         </RowHeaders>
         {data.map(datum =>
-          <Row
-            key={datum.id}
-          >
+          <Row key={datum.id}>
             {columns.map(column =>
-              <GridCell
-                className={column.columnClassName}
-                key={column.id}
-              >
+              <GridCell className={column.columnClassName} key={column.id}>
                 {column.columnCell(datum)}
               </GridCell>
             )}
