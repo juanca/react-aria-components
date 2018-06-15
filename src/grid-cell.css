@@ -3,6 +3,7 @@
   border-right: 1px solid black;
   flex-shrink: 0;
   height: 50px;
+  overflow: auto; /* This might break DOM-based dropdowns */
   width: 200px;
 }
 
