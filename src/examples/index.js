@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import GridExample from './grid-example.js';
+import TabsExample from './tabs-example.js';
 import styles from './index.css';
 
 setTimeout(_ => {
@@ -14,6 +15,7 @@ setTimeout(_ => {
         </ol>
       </div>
       <GridExample />
+      <TabsExample />
     </React.Fragment>
   ), document.getElementById('page'));
 }, 100);
