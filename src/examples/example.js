@@ -4,7 +4,11 @@ import React from 'react';
 export default function Example(props) {
   return (
     <section>
-      <h1>{props.title}</h1>
+      <header>
+        <h2>
+          {props.title}
+        </h2>
+      </header>
       {props.children}
       <hr />
     </section>
