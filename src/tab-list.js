@@ -28,8 +28,8 @@ export default class TabList extends React.Component {
   }
 
   handleKeyPress(event) {
-    const handler = this.handlers[event.key] || (() => {});
-    handler();
+    const handler = this.handlers[event.key];
+    if (handler) { handler(); }
   }
 
   previous() {
