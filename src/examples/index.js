@@ -8,7 +8,7 @@ import TabsExample from './tabs-example.js';
 setTimeout(_ => {
   render((
     <React.Fragment>
-      <Example>
+      <Example title="Table of Contents">
         <p>List of WAI-ARIA components implemented in React:</p>
         <ol>
           <li>Grid</li>

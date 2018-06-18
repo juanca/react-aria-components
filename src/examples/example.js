@@ -3,13 +3,15 @@ import React from 'react';
 
 export default function Example(props) {
   return (
-    <React.Fragment>
+    <section>
+      <h1>{props.title}</h1>
       {props.children}
       <hr />
-    </React.Fragment>
+    </section>
   );
 };
 
 Example.propTypes = {
   children: PropTypes.node,
+  title: PropTypes.node.isRequired,
 };
