@@ -5,11 +5,13 @@ export default class TabList extends React.Component {
   constructor(props) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.tabRefs = new Array(React.Children.count(props.children)).fill(0).map(_ => React.createRef());
     this.handlers = {
+      ArrowDown: this.next.bind(this),
       ArrowLeft: this.previous.bind(this),
       ArrowRight: this.next.bind(this),
+      ArrowUp: this.previous.bind(this),
     };
-    this.tabRefs = new Array(React.Children.count(props.children)).fill(0).map(_ => React.createRef());
   }
 
   wrapIndex(index) {
