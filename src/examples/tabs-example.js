@@ -19,10 +19,12 @@ export default class TabsExample extends React.Component {
           <TabList>
             <Tab>Tacos</Tab>
             <Tab>Burritos</Tab>
+            <Tab>Churros</Tab>
           </TabList>
           <TabPanels>
             <div>Delicious!</div>
             <div>Just big tacos</div>
+            <div>Mmmmmmmmmmm...</div>
           </TabPanels>
         </Tabs>
       </Example>
