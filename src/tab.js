@@ -6,9 +6,9 @@ export default function Tab({
   active,
   activeClassName,
   children,
-  focus,
   inactiveClassName,
   onActivate,
+  tabRef,
 }) {
   return (
     <li
@@ -16,7 +16,7 @@ export default function Tab({
       className={active ? activeClassName : inactiveClassName}
       id={accessibleId}
       onClick={onActivate}
-      ref={el => focus && el && el.focus()}
+      ref={tabRef}
       role="tab"
       tabIndex={active ? 0 : undefined}
     >
@@ -30,16 +30,16 @@ Tab.propTypes = {
   active: PropTypes.bool,
   activeClassName: PropTypes.string,
   children: PropTypes.node,
-  focus: PropTypes.bool,
   inactiveClassName: PropTypes.string,
   onActivate: PropTypes.func,
+  tabRef: PropTypes.object,
 };
 
 Tab.defaultProps = {
   accessibleId: undefined,
   active: false,
   activeClassName: undefined,
-  focus: false,
   inactiveClassName: undefined,
   onActivate: undefined,
+  tabRef: undefined,
 };
