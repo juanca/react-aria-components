@@ -9,11 +9,13 @@ setTimeout(_ => {
   render((
     <React.Fragment>
       <Example title="Table of Contents">
-        <p>List of WAI-ARIA components implemented in React:</p>
-        <ol>
-          <li>Grid</li>
-          <li>Tabs</li>
-        </ol>
+        <nav>
+          <p>List of WAI-ARIA components implemented in React:</p>
+          <ol>
+            <li>Grid</li>
+            <li>Tabs</li>
+          </ol>
+        </nav>
       </Example>
       <GridExample />
       <TabsExample />
