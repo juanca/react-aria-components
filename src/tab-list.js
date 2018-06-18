@@ -6,11 +6,19 @@ export default class TabList extends React.Component {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.tabRefs = new Array(React.Children.count(props.children)).fill(0).map(_ => React.createRef());
-    this.handlers = {
-      ArrowDown: this.next.bind(this),
+    this.handlers = this.getHandlers(props.vertical);
+  }
+
+  getHandlers(vertical) {
+    if (vertical) {
+      return {
+        ArrowDown: this.next.bind(this),
+        ArrowUp: this.previous.bind(this),
+      };
+    }
+    return {
       ArrowLeft: this.previous.bind(this),
       ArrowRight: this.next.bind(this),
-      ArrowUp: this.previous.bind(this),
     };
   }
 
@@ -67,6 +75,7 @@ TabList.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   onActivateTab: PropTypes.func,
+  vertical: PropTypes.bool,
 };
 
 TabList.defaultProps = {
@@ -75,4 +84,5 @@ TabList.defaultProps = {
   children: null,
   className: undefined,
   onActivateTab: () => {},
+  vertical: false,
 };
