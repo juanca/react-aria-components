@@ -8,6 +8,9 @@ import TabsExample from './tabs-example.js';
 setTimeout(_ => {
   render((
     <React.Fragment>
+      <header>
+        <h1>React ARIA Components</h1>
+      </header>
       <Example title="Table of Contents">
         <nav>
           <p>List of WAI-ARIA components implemented in React:</p>
@@ -22,7 +25,6 @@ setTimeout(_ => {
         <TabsExample />
       </main>
       <footer>
-        <p>React ARIA Components</p>
         <address>
           <a href="https://github.com/juanca/react-aria-components">Github repository</a>
           <br />
