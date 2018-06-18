@@ -1,19 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import Example from './example.js';
 import GridExample from './grid-example.js';
 import TabsExample from './tabs-example.js';
-import styles from './index.css';
 
 setTimeout(_ => {
   render((
     <React.Fragment>
-      <div className={styles.banner}>
+      <Example>
         <p>List of WAI-ARIA components implemented in React:</p>
         <ol>
           <li>Grid</li>
         </ol>
-      </div>
+      </Example>
       <GridExample />
       <TabsExample />
     </React.Fragment>

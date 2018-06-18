@@ -2,6 +2,7 @@ import faker from 'faker';
 import React from 'react';
 
 import ColumnHeader from '../column-header.js';
+import Example from './example.js';
 import Grid from '../grid.js';
 import GridCell from '../grid-cell.js';
 import Row from '../row.js';
@@ -56,8 +57,8 @@ const data = new Array(20).fill(0).map((_, index) =>
 
 export default function GridExample() {
   return (
-    <div className={styles['grid-container']}>
-      <Grid>
+    <Example>
+      <Grid className={styles['grid-container']}>
         <RowHeaders className={styles['row-headers']} key="row-headers">
           {columns.map(column =>
             <ColumnHeader className={column.columnHeaderClassName} key={column.id}>
@@ -75,6 +76,6 @@ export default function GridExample() {
           </Row>
         )}
       </Grid>
-    </div>
+    </Example>
   );
 }
