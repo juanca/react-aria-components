@@ -17,8 +17,10 @@ setTimeout(_ => {
           </ol>
         </nav>
       </Example>
-      <GridExample />
-      <TabsExample />
+      <main>
+        <GridExample />
+        <TabsExample />
+      </main>
       <footer>
         <p>React ARIA Components</p>
         <address>
