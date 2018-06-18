@@ -12,6 +12,7 @@ setTimeout(_ => {
         <p>List of WAI-ARIA components implemented in React:</p>
         <ol>
           <li>Grid</li>
+          <li>Tabs</li>
         </ol>
       </Example>
       <GridExample />
