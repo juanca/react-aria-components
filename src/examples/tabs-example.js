@@ -6,7 +6,7 @@ import TabList from '../tab-list.js';
 import Tab from '../tab.js';
 import TabPanels from '../tab-panels.js';
 
-export default class extends React.Component {
+export default class TabsExample extends React.Component {
   constructor() {
     super();
     this.state = { activeIndex: 0 };
