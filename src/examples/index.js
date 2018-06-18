@@ -16,6 +16,12 @@ setTimeout(_ => {
       </Example>
       <GridExample />
       <TabsExample />
+      <footer>
+        <p>React ARIA Components</p>
+        <a href="https://github.com/juanca/react-aria-components">Github repository</a>
+        <br />
+        <a href="https://npmjs.com/package/react-aria-components">NPM package</a>
+      </footer>
     </React.Fragment>
   ), document.getElementById('page'));
 }, 100);
