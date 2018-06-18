@@ -12,6 +12,7 @@
 }
 
 .grid-container {
+  composes: container from '../grid.css';
   height: 500px;
   overflow: auto;
 }

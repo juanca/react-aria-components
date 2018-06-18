@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Example from './example.js';
 import Tabs from '../tabs.js';
 import TabList from '../tab-list.js';
 import Tab from '../tab.js';
@@ -12,16 +14,18 @@ export default class extends React.Component {
 
   render() {
     return (
-      <Tabs activeIndex={this.state.activeIndex} onActivateTab={index => this.setState({ activeIndex: index })}>
-        <TabList>
-          <Tab>Tacos</Tab>
-          <Tab>Burritos</Tab>
-        </TabList>
-        <TabPanels>
-          <div>Delicious!</div>
-          <div>Just big tacos</div>
-        </TabPanels>
-      </Tabs>
+      <Example title="Tabs">
+        <Tabs activeIndex={this.state.activeIndex} onActivateTab={index => this.setState({ activeIndex: index })}>
+          <TabList>
+            <Tab>Tacos</Tab>
+            <Tab>Burritos</Tab>
+          </TabList>
+          <TabPanels>
+            <div>Delicious!</div>
+            <div>Just big tacos</div>
+          </TabPanels>
+        </Tabs>
+      </Example>
     );
   }
 }
