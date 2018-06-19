@@ -1,6 +1,7 @@
 .container {
   background-color: lightgrey;
   border: 1px solid darkgrey;
+  cursor: pointer;
   padding: 0 3px;
 }
 
