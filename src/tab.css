@@ -1,0 +1,9 @@
+.container {
+  background-color: lightgrey;
+  border: 1px solid darkgrey;
+  padding: 0 3px;
+}
+
+.container[aria-selected=true] {
+  background-color: white;
+}

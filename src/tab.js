@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styles from './tab.css';
 
 export default function Tab({
   accessibleId,
   active,
-  activeClassName,
   children,
-  inactiveClassName,
+  className,
   onActivate,
   tabRef,
 }) {
   return (
     <li
       aria-selected={active}
-      className={active ? activeClassName : inactiveClassName}
+      className={className}
       id={accessibleId}
       onClick={onActivate}
       ref={tabRef}
@@ -28,9 +28,8 @@ export default function Tab({
 Tab.propTypes = {
   accessibleId: PropTypes.string,
   active: PropTypes.bool,
-  activeClassName: PropTypes.string,
   children: PropTypes.node,
-  inactiveClassName: PropTypes.string,
+  className: PropTypes.string,
   onActivate: PropTypes.func,
   tabRef: PropTypes.object,
 };
@@ -38,8 +37,7 @@ Tab.propTypes = {
 Tab.defaultProps = {
   accessibleId: undefined,
   active: false,
-  activeClassName: undefined,
-  inactiveClassName: undefined,
+  className: styles.container,
   onActivate: undefined,
   tabRef: undefined,
 };

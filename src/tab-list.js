@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styles from './tab-list.css';
 
 export default class TabList extends React.Component {
   constructor(props) {
@@ -82,7 +83,7 @@ TabList.defaultProps = {
   accessibleId: undefined,
   activeIndex: 0,
   children: null,
-  className: undefined,
+  className: styles.container,
   onActivateTab: () => {},
   vertical: false,
 };
