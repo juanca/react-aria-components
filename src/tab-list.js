@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Tab from './tab.js';
 import styles from './tab-list.css';
 
 export default class TabList extends React.Component {
@@ -55,6 +56,10 @@ export default class TabList extends React.Component {
     return (
       <ul className={className} onKeyUp={this.handleKeyPress} role="tablist">
         {React.Children.map(children, (child, index) => {
+          if (child.type !== Tab) {
+            throw new Error('Direct children of a <TabList> must be a <Tab>');
+          }
+
           const active = index === activeIndex;
           const tabRef = this.tabRefs[index];
 
