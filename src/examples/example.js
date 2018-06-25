@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Example(props) {
   return (
-    <section>
+    <section id={props.id}>
       <header>
         <h2>
           {props.title}
@@ -17,5 +17,6 @@ export default function Example(props) {
 
 Example.propTypes = {
   children: PropTypes.node,
+  id: PropTypes.string.isRequired,
   title: PropTypes.node.isRequired,
 };

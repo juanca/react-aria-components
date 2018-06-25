@@ -5,7 +5,7 @@ import Slider from '../slider.js';
 
 export default function SliderExample() {
   return (
-    <Example title="Slider">
+    <Example id="slider" title="Slider">
       <Slider>
         Slider example
       </Slider>
