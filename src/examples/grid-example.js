@@ -57,7 +57,7 @@ const data = new Array(20).fill(0).map((_, index) =>
 
 export default function GridExample() {
   return (
-    <Example title="Grid">
+    <Example id="grid" title="Grid">
       <Grid className={styles['grid-container']}>
         <RowHeaders className={styles['row-headers']} key="row-headers">
           {columns.map(column =>

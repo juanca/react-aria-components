@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 
 import Example from './example.js';
 import GridExample from './grid-example.js';
+import SliderExample from './slider-example.js';
 import TabsExample from './tabs-example.js';
 
 setTimeout(_ => {
@@ -15,13 +16,15 @@ setTimeout(_ => {
         <nav>
           <p>List of WAI-ARIA components implemented in React:</p>
           <ol>
-            <li>Grid</li>
-            <li>Tabs</li>
+            <li><a href="#grid">Grid</a></li>
+            <li><a href="#slider">Slider</a></li>
+            <li><a href="#tabs">Tabs</a></li>
           </ol>
         </nav>
       </Example>
       <main>
         <GridExample />
+        <SliderExample />
         <TabsExample />
       </main>
       <footer>
