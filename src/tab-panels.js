@@ -3,7 +3,11 @@ import React from 'react';
 
 export default function TabPanels({ accessibleId, activeIndex, children, className }) {
   return (
-    <div aria-labelledby={accessibleId} role="tabpanel" className={className}>
+    <div
+      aria-labelledby={accessibleId}
+      role="tabpanel"
+      className={className}
+    >
       {React.Children.toArray(children)[activeIndex]}
     </div>
   );
