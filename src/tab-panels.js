@@ -7,6 +7,7 @@ export default function TabPanels({ accessibleId, activeIndex, children, classNa
       aria-labelledby={accessibleId}
       role="tabpanel"
       className={className}
+      tabIndex={hasFocusableContent ? undefined : 0}
     >
       {React.Children.toArray(children)[activeIndex]}
     </div>
@@ -18,10 +19,12 @@ TabPanels.propTypes = {
   activeIndex: PropTypes.number,
   children: PropTypes.node,
   className: PropTypes.string,
+  hasFocusableContent: PropTypes.bool,
 };
 
 TabPanels.defaultProps = {
   accessibleId: undefined,
   activeIndex: 0,
   className: null,
+  hasFocusableContent: false,
 };
