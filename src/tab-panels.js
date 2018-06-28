@@ -25,12 +25,11 @@ TabPanels.propTypes = {
   activeIndex: PropTypes.number,
   children: PropTypes.node,
   className: PropTypes.string,
-  hasFocusableContent: PropTypes.bool,
+  hasFocusableContent: PropTypes.bool.isRequired,
 };
 
 TabPanels.defaultProps = {
   accessibleId: undefined,
   activeIndex: 0,
   className: null,
-  hasFocusableContent: false,
 };
