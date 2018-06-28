@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function TabPanels({ accessibleId, activeIndex, children, className }) {
+export default function TabPanels({
+  accessibleId,
+  activeIndex,
+  children,
+  className,
+  hasFocusableContent,
+}) {
   return (
     <div
       aria-labelledby={accessibleId}
