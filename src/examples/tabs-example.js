@@ -21,7 +21,7 @@ export default class TabsExample extends React.Component {
             <Tab>Burritos</Tab>
             <Tab>Churros</Tab>
           </TabList>
-          <TabPanels>
+          <TabPanels hasFocusableContent={false}>
             <div>Delicious!</div>
             <div>Just big tacos</div>
             <div>Mmmmmmmmmmm...</div>
