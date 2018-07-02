@@ -19,6 +19,7 @@ export default function GridCell(props) {
               className={props.className}
               role={props.role}
               {...eventHandlersFactory('Cell', ['Click'])}
+              tabIndex={focusedRow === props.idY && focusedColumn === props.idX ? 0 : -1}
             >
               {props.children}
             </div>
@@ -37,5 +38,7 @@ GridCell.defaultProps = {
 GridCell.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  idX: PropTypes.number.isRequired,
+  idY: PropTypes.number.isRequired,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };

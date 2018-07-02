@@ -200,7 +200,12 @@ export default function GridExample() {
       <Grid className={styles['grid-container']} axis={createGridAxis()}>
         <RowHeaders className={styles['row-headers']} key="row-headers">
           {columns.map(column =>
-            <ColumnHeader className={column.columnHeaderClassName} key={column.id}>
+            <ColumnHeader
+              className={column.columnHeaderClassName}
+              key={column.id}
+              idX={column.id}
+              idY={0}
+            >
               {column.columnHeaderCell}
             </ColumnHeader>
           )}
@@ -208,7 +213,12 @@ export default function GridExample() {
         {data.map(datum =>
           <Row key={datum.id}>
             {columns.map(column =>
-              <GridCell className={column.columnClassName} key={column.id}>
+              <GridCell
+                className={column.columnClassName}
+                key={column.id}
+                idX={column.id}
+                idY={datum.id}
+              >
                 {column.columnCell(datum)}
               </GridCell>
             )}
