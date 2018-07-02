@@ -64,6 +64,10 @@ Grid.defaultProps = {
 };
 
 Grid.propTypes = {
+  axis: PropTypes.shape({
+    columns: PropTypes.array,
+    rows: PropTypes.array,
+  }).isRequired,
   className: PropTypes.string,
   children: PropTypes.node,
 };
