@@ -20,6 +20,7 @@ export default function GridCell(props) {
               role={props.role}
               {...eventHandlersFactory('Cell', ['Click'])}
               tabIndex={focusedRow === props.idY && focusedColumn === props.idX ? 0 : -1}
+              ref={node => focusedRow === props.idY && focusedColumn === props.idX && node && node.focus()}
             >
               {props.children}
             </div>
