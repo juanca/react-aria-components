@@ -8,8 +8,8 @@ export default function ColumnHeader(props) {
   return (
     <GridCell
       className={props.className}
-      idX={props.id}
-      idY={props.rowId}
+      idX={props.idX}
+      idY={props.idY}
       role="columnheader"
     >
       {props.children}
