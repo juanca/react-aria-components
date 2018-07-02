@@ -8,33 +8,63 @@ import {
 import styles from './grid.css'
 
 export default class Grid extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
-      row: 0,
-      column: 0,
+      row: props.axis.rows[0],
+      rowIndex: 0,
+      column: props.axis.columns[0],
+      columnIndex: 0,
     };
 
-    this.onKeyUp = this.onKeyUp.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  onKeyUp(event) {
+  onKeyDown(event) {
     switch(event.key) {
       case 'ArrowDown': {
-        this.setState({ row: this.state.row + 1 });
+        const nextIndex = Math.min(this.state.rowIndex + 1, this.props.axis.rows.length - 1);
+
+        event.preventDefault();
+        this.setState({
+          row: this.props.axis.rows[nextIndex],
+          rowIndex: nextIndex,
+        });
+
         return true;
       }
       case 'ArrowLeft': {
-        this.setState({ column: this.state.column - 1 });
+        const nextIndex = Math.max(this.state.columnIndex - 1, 0);
+
+        event.preventDefault();
+        this.setState({
+          column: this.props.axis.columns[nextIndex],
+          columnIndex: nextIndex,
+        });
+
         return true;
       }
       case 'ArrowRight': {
-        this.setState({ column: this.state.column + 1 });
+        const nextIndex = Math.min(this.state.columnIndex + 1, this.props.axis.columns.length - 1);
+
+        event.preventDefault();
+        this.setState({
+          column: this.props.axis.columns[nextIndex],
+          columnIndex: nextIndex,
+        });
+
         return true;
       }
       case 'ArrowUp': {
-        this.setState({ row: this.state.row - 1 });
+        const nextIndex = Math.max(this.state.rowIndex - 1, 0);
+
+        event.preventDefault();
+        this.setState({
+          row: this.props.axis.rows[nextIndex],
+          rowIndex: nextIndex,
+        });
+
         return true;
       }
       default:
@@ -49,7 +79,7 @@ export default class Grid extends React.Component {
           <div
             className={this.props.className}
             role="grid"
-            onKeyUp={this.onKeyUp}
+            onKeyDown={this.onKeyDown}
           >
             {this.props.children}
           </div>
