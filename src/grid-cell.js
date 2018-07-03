@@ -9,26 +9,28 @@ import {
 import eventHandlersFactory from './utils/event-handlers-factory.js';
 import styles from './grid-cell.css';
 
-export default function GridCell(props) {
-  return (
-    <FocusedRow.Consumer>
-      {focusedRow =>
-        <FocusedColumn.Consumer>
-          {focusedColumn =>
-            <div
-              className={props.className}
-              role={props.role}
-              {...eventHandlersFactory('Cell', ['Click'])}
-              tabIndex={focusedRow === props.idY && focusedColumn === props.idX ? 0 : -1}
-              ref={node => focusedRow === props.idY && focusedColumn === props.idX && node && node.focus()}
-            >
-              {props.children}
-            </div>
-          }
-        </FocusedColumn.Consumer>
-      }
-    </FocusedRow.Consumer>
-  );
+export default class GridCell extends React.Component {
+  render() {
+    return (
+      <FocusedRow.Consumer>
+        {focusedRow =>
+          <FocusedColumn.Consumer>
+            {focusedColumn =>
+              <div
+                className={this.props.className}
+                role={this.props.role}
+                {...eventHandlersFactory('Cell', ['Click'])}
+                tabIndex={focusedRow === this.props.idY && focusedColumn === this.props.idX ? 0 : -1}
+                ref={node => focusedRow === this.props.idY && focusedColumn === this.props.idX && node && node.focus()}
+              >
+                {this.props.children}
+              </div>
+            }
+          </FocusedColumn.Consumer>
+        }
+      </FocusedRow.Consumer>
+    );
+  }
 };
 
 GridCell.defaultProps = {
