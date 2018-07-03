@@ -3,7 +3,6 @@ import React from 'react';
 
 import GridContext from './grid-context.js';
 
-import eventHandlersFactory from './utils/event-handlers-factory.js';
 import styles from './grid-cell.css';
 
 export default class GridCell extends React.Component {
@@ -14,7 +13,6 @@ export default class GridCell extends React.Component {
           <div
             className={this.props.className}
             role={this.props.role}
-            {...eventHandlersFactory('Cell', ['Click'])}
             tabIndex={-1}
             ref={gridRefs[this.props.idY][this.props.idX]}
           >
