@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {
-  FocusedColumn,
-  FocusedRow,
-} from './grid-context.js';
+import GridContext from './grid-context.js';
 
 import eventHandlersFactory from './utils/event-handlers-factory.js';
 import styles from './grid-cell.css';
@@ -12,23 +9,19 @@ import styles from './grid-cell.css';
 export default class GridCell extends React.Component {
   render() {
     return (
-      <FocusedRow.Consumer>
-        {focusedRow =>
-          <FocusedColumn.Consumer>
-            {focusedColumn =>
-              <div
-                className={this.props.className}
-                role={this.props.role}
-                {...eventHandlersFactory('Cell', ['Click'])}
-                tabIndex={focusedRow === this.props.idY && focusedColumn === this.props.idX ? 0 : -1}
-                ref={node => focusedRow === this.props.idY && focusedColumn === this.props.idX && node && node.focus()}
-              >
-                {this.props.children}
-              </div>
-            }
-          </FocusedColumn.Consumer>
+      <GridContext.Consumer>
+        {gridRefs =>
+          <div
+            className={this.props.className}
+            role={this.props.role}
+            {...eventHandlersFactory('Cell', ['Click'])}
+            tabIndex={-1}
+            ref={gridRefs[this.props.idY][this.props.idX]}
+          >
+            {this.props.children}
+          </div>
         }
-      </FocusedRow.Consumer>
+      </GridContext.Consumer>
     );
   }
 };

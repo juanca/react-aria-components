@@ -187,17 +187,14 @@ const data = new Array(20).fill(0).map((_, index) =>
   .reduce((merge, obj) => Object.assign(merge, obj))
 );
 
-function createGridAxis() {
-  return {
-    rows: [0].concat(data.map(datum => datum.id)),
-    columns: columns.map(column => column.id),
-  };
+function createGridRefs() {
+  return [0].concat(data).map(row => columns.map(column => React.createRef()));
 }
 
 export default function GridExample() {
   return (
     <Example title="Grid">
-      <Grid className={styles['grid-container']} axes={createGridAxis()}>
+      <Grid className={styles['grid-container']} gridRefs={createGridRefs()}>
         <RowHeaders className={styles['row-headers']} key="row-headers">
           {columns.map(column =>
             <ColumnHeader
