@@ -197,7 +197,7 @@ function createGridAxis() {
 export default function GridExample() {
   return (
     <Example title="Grid">
-      <Grid className={styles['grid-container']} axis={createGridAxis()}>
+      <Grid className={styles['grid-container']} axes={createGridAxis()}>
         <RowHeaders className={styles['row-headers']} key="row-headers">
           {columns.map(column =>
             <ColumnHeader

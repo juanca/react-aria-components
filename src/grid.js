@@ -12,9 +12,9 @@ export default class Grid extends React.Component {
     super();
 
     this.state = {
-      row: props.axis.rows[0],
+      row: props.axes.rows[0],
       rowIndex: 0,
-      column: props.axis.columns[0],
+      column: props.axes.columns[0],
       columnIndex: 0,
     };
 
@@ -24,11 +24,11 @@ export default class Grid extends React.Component {
   onKeyDown(event) {
     switch(event.key) {
       case 'ArrowDown': {
-        const nextIndex = Math.min(this.state.rowIndex + 1, this.props.axis.rows.length - 1);
+        const nextIndex = Math.min(this.state.rowIndex + 1, this.props.axes.rows.length - 1);
 
         event.preventDefault();
         this.setState({
-          row: this.props.axis.rows[nextIndex],
+          row: this.props.axes.rows[nextIndex],
           rowIndex: nextIndex,
         });
 
@@ -39,18 +39,18 @@ export default class Grid extends React.Component {
 
         event.preventDefault();
         this.setState({
-          column: this.props.axis.columns[nextIndex],
+          column: this.props.axes.columns[nextIndex],
           columnIndex: nextIndex,
         });
 
         return true;
       }
       case 'ArrowRight': {
-        const nextIndex = Math.min(this.state.columnIndex + 1, this.props.axis.columns.length - 1);
+        const nextIndex = Math.min(this.state.columnIndex + 1, this.props.axes.columns.length - 1);
 
         event.preventDefault();
         this.setState({
-          column: this.props.axis.columns[nextIndex],
+          column: this.props.axes.columns[nextIndex],
           columnIndex: nextIndex,
         });
 
@@ -61,7 +61,7 @@ export default class Grid extends React.Component {
 
         event.preventDefault();
         this.setState({
-          row: this.props.axis.rows[nextIndex],
+          row: this.props.axes.rows[nextIndex],
           rowIndex: nextIndex,
         });
 
@@ -94,7 +94,7 @@ Grid.defaultProps = {
 };
 
 Grid.propTypes = {
-  axis: PropTypes.shape({
+  axes: PropTypes.shape({
     columns: PropTypes.array,
     rows: PropTypes.array,
   }).isRequired,
