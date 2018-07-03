@@ -12,9 +12,9 @@ export default class GridCell extends React.Component {
         {gridRefs =>
           <div
             className={this.props.className}
+            ref={gridRefs[this.props.idY][this.props.idX]}
             role={this.props.role}
             tabIndex={-1}
-            ref={gridRefs[this.props.idY][this.props.idX]}
           >
             {this.props.children}
           </div>
