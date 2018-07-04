@@ -2,28 +2,27 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './tab.css';
 
-export default function Tab({
+const Tab = React.forwardRef(({
   accessibleId,
   active,
   children,
   className,
   onActivate,
-  tabRef,
-}) {
+}, ref) => {
   return (
     <li
       aria-selected={active}
       className={className}
       id={accessibleId}
       onClick={onActivate}
-      ref={tabRef}
+      ref={ref}
       role="tab"
       tabIndex={active ? 0 : undefined}
     >
       {children}
     </li>
   );
-}
+});
 
 Tab.propTypes = {
   accessibleId: PropTypes.string,
@@ -31,7 +30,6 @@ Tab.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   onActivate: PropTypes.func,
-  tabRef: PropTypes.object,
 };
 
 Tab.defaultProps = {
@@ -39,5 +37,6 @@ Tab.defaultProps = {
   active: false,
   className: styles.container,
   onActivate: undefined,
-  tabRef: undefined,
 };
+
+export default Tab;
