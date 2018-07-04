@@ -5,23 +5,59 @@ import GridContext from './grid-context.js';
 
 import styles from './grid-cell.css';
 
-export default class GridCell extends React.Component {
+class GridCell extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onBlur = this.onBlur.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+
+    this.state = {
+      tabIndex: -1,
+    };
+  }
+
+  onBlur() {
+    this.setState({ tabIndex: -1 });
+  }
+
+  onClick() {
+    this.props.gridCellRef.current.focus();
+  }
+
+  onFocus() {
+    this.setState({ tabIndex: 0 });
+  }
+
   render() {
     return (
-      <GridContext.Consumer>
-        {gridRefs =>
-          <div
-            className={this.props.className}
-            ref={gridRefs[this.props.idY][this.props.idX]}
-            role={this.props.role}
-            tabIndex={-1}
-          >
-            {this.props.children}
-          </div>
-        }
-      </GridContext.Consumer>
+      <div
+        className={this.props.className}
+        onBlur={this.onBlur}
+        onClick={this.onClick}
+        onFocus={this.onFocus}
+        ref={this.props.gridCellRef}
+        role={this.props.role}
+        tabIndex={this.state.tabIndex}
+      >
+        {this.props.children}
+      </div>
     );
   }
+};
+
+export default function FocusableGridCell(props) {
+  const {
+    idX,
+    idY,
+  } = props;
+
+  return (
+    <GridContext.Consumer>
+      {gridRefs => <GridCell {...props} gridCellRef={gridRefs[idY][idX]} />}
+    </GridContext.Consumer>
+  );
 };
 
 GridCell.defaultProps = {
