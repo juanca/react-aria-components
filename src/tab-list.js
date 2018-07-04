@@ -61,13 +61,13 @@ export default class TabList extends React.Component {
           }
 
           const active = index === activeIndex;
-          const tabRef = this.tabRefs[index];
+          const ref = this.tabRefs[index];
 
           return React.cloneElement(child, {
             accessibleId: active ? accessibleId : undefined,
             active,
-            tabRef,
             onActivate: () => this.props.onActivateTab(index),
+            ref,
           });
         })}
       </ul>
