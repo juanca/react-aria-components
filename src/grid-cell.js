@@ -18,8 +18,10 @@ class GridCell extends React.Component {
     };
   }
 
-  onBlur() {
-    this.setState({ tabIndex: -1 });
+  onBlur(event) {
+    const focusWithinGrid = this.props.gridCellRefs.some(rows => rows.some(cellRef => cellRef.current === event.relatedTarget));
+
+    if (focusWithinGrid) this.setState({ tabIndex: -1 });
   }
 
   onClick() {
@@ -55,7 +57,7 @@ export default function FocusableGridCell(props) {
 
   return (
     <GridContext.Consumer>
-      {gridRefs => <GridCell {...props} gridCellRef={gridRefs[idY][idX]} />}
+      {gridRefs => <GridCell {...props} gridCellRefs={gridRefs} gridCellRef={gridRefs[idY][idX]} />}
     </GridContext.Consumer>
   );
 };
