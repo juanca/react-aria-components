@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import eventHandlersFactory from './utils/event-handlers-factory.js';
+import eventHandlersFactory from '../utils/event-handlers-factory.js';
 import styles from './grid-cell.css';
 
 export default function GridCell(props) {
