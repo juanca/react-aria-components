@@ -3,6 +3,7 @@
     ["env", {
       "targets": {
         "browsers": [
+          "IE 11",
           "last 5 Chrome versions",
           "last 5 Firefox versions",
           "last 5 Safari versions",
