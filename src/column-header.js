@@ -8,6 +8,8 @@ export default function ColumnHeader(props) {
   return (
     <GridCell
       className={props.className}
+      idX={props.idX}
+      idY={props.idY}
       role="columnheader"
     >
       {props.children}
@@ -22,4 +24,6 @@ ColumnHeader.defaultProps = {
 ColumnHeader.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  idX: PropTypes.number.isRequired,
+  idY: PropTypes.number.isRequired,
 };
