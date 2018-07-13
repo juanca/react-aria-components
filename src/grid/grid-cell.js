@@ -25,7 +25,7 @@ class GridCell extends React.Component {
   }
 
   onClick() {
-    this.props.gridCellRef.current.focus();
+    this.props.onClick();
   }
 
   onFocus() {
@@ -64,6 +64,7 @@ export default function FocusableGridCell(props) {
 
 GridCell.defaultProps = {
   className: styles.container,
+  onClick: () => {},
   role: 'gridcell'
 };
 
