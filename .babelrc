@@ -3,12 +3,14 @@
     ["env", {
       "targets": {
         "browsers": [
-          "last 1 Chrome versions",
-          "last 1 Firefox versions",
-          "last 1 Safari versions",
-          "last 1 Edge versions"
+          "IE 11",
+          "last 5 Chrome versions",
+          "last 5 Firefox versions",
+          "last 5 Safari versions",
+          "last 5 Edge versions"
         ]
-      }
+      },
+      "useBuiltins": true
     }],
     "react"
   ]
