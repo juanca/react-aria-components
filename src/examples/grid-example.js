@@ -1,12 +1,15 @@
 import faker from 'faker';
 import React from 'react';
 
-import ColumnHeader from '../column-header.js';
+import {
+  ColumnHeader,
+  Grid,
+  GridCell,
+  Row,
+  RowHeaders,
+} from '../grid';
+
 import Example from './example.js';
-import Grid from '../grid.js';
-import GridCell from '../grid-cell.js';
-import Row from '../row.js';
-import RowHeaders from '../row-headers.js';
 import styles from './grid-example.css';
 
 function get(key) {
