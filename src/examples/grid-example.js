@@ -1,4 +1,4 @@
-import faker from 'faker';
+import faker from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react';
 
 import {
