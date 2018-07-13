@@ -13,11 +13,25 @@ export default class Grid extends React.Component {
       columnIndex: 0,
     };
 
+    this.onClick = this.onClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   componentDidUpdate() {
     this.props.gridRefs[this.state.rowIndex][this.state.columnIndex].current.focus();
+  }
+
+  onClick(event) {
+    let newColumnIndex;
+    const newRowIndex = this.props.gridRefs.findIndex(rows => {
+      newColumnIndex = rows.findIndex(cellRef => cellRef.current === event.target);
+      return newColumnIndex > -1;
+    });
+
+    this.setState({
+      columnIndex: newColumnIndex,
+      rowIndex: newRowIndex,
+    });
   }
 
   onKeyDown(event) {
@@ -73,6 +87,7 @@ export default class Grid extends React.Component {
         <div
           className={this.props.className}
           role="grid"
+          onClick={this.onClick}
           onKeyDown={this.onKeyDown}
         >
           {this.props.children}
