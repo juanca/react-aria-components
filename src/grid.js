@@ -102,7 +102,6 @@ Grid.defaultProps = {
 };
 
 Grid.propTypes = {
-  // refs: PropTypes.shape().isRequired,
   className: PropTypes.string,
   children: PropTypes.node,
 };
