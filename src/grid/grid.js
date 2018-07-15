@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import GridContext from './grid-context.js';
-import styles from './grid.css'
+import RefType from '../prop-types/ref.js';
+import styles from './grid.css';
 
 export default class Grid extends React.Component {
   constructor(props) {
-    super();
+    super(props);
 
     this.state = {
       rowIndex: 0,
@@ -23,7 +24,7 @@ export default class Grid extends React.Component {
 
   onClick(event) {
     let newColumnIndex;
-    const newRowIndex = this.props.gridRefs.findIndex(rows => {
+    const newRowIndex = this.props.gridRefs.findIndex((rows) => {
       newColumnIndex = rows.findIndex(cellRef => cellRef.current === event.target);
       return newColumnIndex > -1;
     });
@@ -35,44 +36,36 @@ export default class Grid extends React.Component {
   }
 
   onKeyDown(event) {
-    switch(event.key) {
+    switch (event.key) {
       case 'ArrowDown': {
-        const nextIndex = Math.min(this.state.rowIndex + 1, this.props.gridRefs.length - 1);
-
         event.preventDefault();
-        this.setState({
-          rowIndex: nextIndex,
-        });
+        this.setState(state => ({
+          rowIndex: Math.min(state.rowIndex + 1, this.props.gridRefs.length - 1),
+        }));
 
         return true;
       }
       case 'ArrowLeft': {
-        const nextIndex = Math.max(this.state.columnIndex - 1, 0);
-
         event.preventDefault();
-        this.setState({
-          columnIndex: nextIndex,
-        });
+        this.setState(state => ({
+          columnIndex: Math.max(state.columnIndex - 1, 0),
+        }));
 
         return true;
       }
       case 'ArrowRight': {
-        const nextIndex = Math.min(this.state.columnIndex + 1, this.props.gridRefs[0].length - 1);
-
         event.preventDefault();
-        this.setState({
-          columnIndex: nextIndex,
-        });
+        this.setState(state => ({
+          columnIndex: Math.min(state.columnIndex + 1, this.props.gridRefs[0].length - 1),
+        }));
 
         return true;
       }
       case 'ArrowUp': {
-        const nextIndex = Math.max(this.state.rowIndex - 1, 0);
-
         event.preventDefault();
-        this.setState({
-          rowIndex: nextIndex,
-        });
+        this.setState(state => ({
+          rowIndex: Math.max(state.rowIndex - 1, 0),
+        }));
 
         return true;
       }
@@ -84,7 +77,7 @@ export default class Grid extends React.Component {
   render() {
     return (
       <GridContext.Provider value={this.props.gridRefs}>
-        <div
+        <div // eslint-disable-line jsx-a11y/interactive-supports-focus
           className={this.props.className}
           role="grid"
           onClick={this.onClick}
@@ -103,5 +96,6 @@ Grid.defaultProps = {
 
 Grid.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
+  gridRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
 };

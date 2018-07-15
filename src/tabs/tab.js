@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import RefType from '../prop-types/ref.js';
 import styles from './tab.css';
 
 export default function Tab({
@@ -16,6 +17,7 @@ export default function Tab({
       className={className}
       id={accessibleId}
       onClick={onActivate}
+      onKeyDown={() => {}}
       ref={tabRef}
       role="tab"
       tabIndex={active ? 0 : undefined}
@@ -28,10 +30,10 @@ export default function Tab({
 Tab.propTypes = {
   accessibleId: PropTypes.string,
   active: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   onActivate: PropTypes.func,
-  tabRef: PropTypes.object,
+  tabRef: RefType,
 };
 
 Tab.defaultProps = {

@@ -1,6 +1,6 @@
 let counter = 0;
 
 export default function uniqueId() {
-  counter++;
+  counter += 1;
   return `$rac$${counter}`;
 }

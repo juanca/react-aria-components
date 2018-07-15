@@ -1,4 +1,4 @@
-import faker from 'faker';
+import faker from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react';
 
 import {
@@ -15,7 +15,7 @@ import styles from './grid-example.css';
 function get(key) {
   return function columnCell(datum) {
     return datum[key];
-  }
+  };
 }
 
 const metaColumns = [
@@ -181,17 +181,19 @@ const columns = metaColumns.map((meta, index) => Object.assign({
   columnCell: get(meta.faker.slice(-1)[0]),
 }, meta.attrs));
 
-// e.g. { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() }
-const data = new Array(20).fill(0).map((_, index) =>
+// e.g. { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle() }
+const data = new Array(20).fill(0).map((_, index) => (
   metaColumns.map(meta => ({
-    [meta.faker.slice(-1)[0]]: meta.faker.reduce((obj, key) => obj[key], faker)()
-  }))
-  .concat({ id: index + 1 })
-  .reduce((merge, obj) => Object.assign(merge, obj))
-);
+    [meta.faker.slice(-1)[0]]: meta.faker.reduce((obj, key) => obj[key], faker)(),
+  })).concat({
+    id: index + 1,
+  }).reduce((merge, obj) => (
+    Object.assign(merge, obj)
+  ))
+));
 
 function createGridRefs() {
-  return [0].concat(data).map(row => columns.map(column => React.createRef()));
+  return [0].concat(data).map(() => columns.map(() => React.createRef()));
 }
 
 export default function GridExample() {
@@ -199,7 +201,7 @@ export default function GridExample() {
     <Example title="Grid">
       <Grid className={styles['grid-container']} gridRefs={createGridRefs()}>
         <RowHeaders className={styles['row-headers']} key="row-headers">
-          {columns.map(column =>
+          {columns.map(column => (
             <ColumnHeader
               className={column.columnHeaderClassName}
               key={column.id}
@@ -208,11 +210,11 @@ export default function GridExample() {
             >
               {column.columnHeaderCell}
             </ColumnHeader>
-          )}
+          ))}
         </RowHeaders>
-        {data.map(datum =>
+        {data.map(datum => (
           <Row key={datum.id}>
-            {columns.map(column =>
+            {columns.map(column => (
               <GridCell
                 className={column.columnClassName}
                 key={column.id}
@@ -221,9 +223,9 @@ export default function GridExample() {
               >
                 {column.columnCell(datum)}
               </GridCell>
-            )}
+            ))}
           </Row>
-        )}
+        ))}
       </Grid>
     </Example>
   );

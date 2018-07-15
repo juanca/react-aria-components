@@ -1,0 +1,9 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "import/extensions": "off",
+    "prefer-destructuring": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-filename-extension": "off",
+  }
+}

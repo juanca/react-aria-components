@@ -9,6 +9,7 @@ Disclaimer: this is in an alpha stage.
 | IE11, Edge | last 5 versions | last 5 versions | last 5 versions |
 
 The exported modules are expected to be transpiled with Babel and PostCSS autoprefixer.
+In addition, `babel-polyfill` should be used in consumer applications.
 
 ## Getting started
 
