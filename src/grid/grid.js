@@ -37,42 +37,34 @@ export default class Grid extends React.Component {
   onKeyDown(event) {
     switch (event.key) {
       case 'ArrowDown': {
-        const nextIndex = Math.min(this.state.rowIndex + 1, this.props.gridRefs.length - 1);
-
         event.preventDefault();
-        this.setState({
-          rowIndex: nextIndex,
-        });
+        this.setState(state => ({
+          rowIndex: Math.min(state.rowIndex + 1, this.props.gridRefs.length - 1),
+        }));
 
         return true;
       }
       case 'ArrowLeft': {
-        const nextIndex = Math.max(this.state.columnIndex - 1, 0);
-
         event.preventDefault();
-        this.setState({
-          columnIndex: nextIndex,
-        });
+        this.setState(state => ({
+          columnIndex: Math.max(state.columnIndex - 1, 0),
+        }));
 
         return true;
       }
       case 'ArrowRight': {
-        const nextIndex = Math.min(this.state.columnIndex + 1, this.props.gridRefs[0].length - 1);
-
         event.preventDefault();
-        this.setState({
-          columnIndex: nextIndex,
-        });
+        this.setState(state => ({
+          columnIndex: Math.min(state.columnIndex + 1, this.props.gridRefs[0].length - 1),
+        }));
 
         return true;
       }
       case 'ArrowUp': {
-        const nextIndex = Math.max(this.state.rowIndex - 1, 0);
-
         event.preventDefault();
-        this.setState({
-          rowIndex: nextIndex,
-        });
+        this.setState(state => ({
+          rowIndex: Math.max(state.rowIndex - 1, 0),
+        }));
 
         return true;
       }
