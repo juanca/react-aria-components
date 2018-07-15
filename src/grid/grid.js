@@ -35,7 +35,7 @@ export default class Grid extends React.Component {
   }
 
   onKeyDown(event) {
-    switch(event.key) {
+    switch (event.key) {
       case 'ArrowDown': {
         const nextIndex = Math.min(this.state.rowIndex + 1, this.props.gridRefs.length - 1);
 
