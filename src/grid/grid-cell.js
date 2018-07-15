@@ -66,7 +66,7 @@ export default function FocusableGridCell(props) {
 
 GridCell.defaultProps = {
   className: styles.container,
-  role: 'gridcell'
+  role: 'gridcell',
 };
 
 GridCell.propTypes = {
