@@ -182,13 +182,13 @@ const columns = metaColumns.map((meta, index) => Object.assign({
 }, meta.attrs));
 
 // e.g. { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle() }
-const data = new Array(20).fill(0).map((_, index) =>
+const data = new Array(20).fill(0).map((_, index) => (
   metaColumns.map(meta => ({
     [meta.faker.slice(-1)[0]]: meta.faker.reduce((obj, key) => obj[key], faker)()
   }))
   .concat({ id: index + 1 })
   .reduce((merge, obj) => Object.assign(merge, obj))
-);
+));
 
 function createGridRefs() {
   return [0].concat(data).map(() => columns.map(() => React.createRef()));
@@ -199,7 +199,7 @@ export default function GridExample() {
     <Example title="Grid">
       <Grid className={styles['grid-container']} gridRefs={createGridRefs()}>
         <RowHeaders className={styles['row-headers']} key="row-headers">
-          {columns.map(column =>
+          {columns.map(column => (
             <ColumnHeader
               className={column.columnHeaderClassName}
               key={column.id}
@@ -208,11 +208,11 @@ export default function GridExample() {
             >
               {column.columnHeaderCell}
             </ColumnHeader>
-          )}
+          ))}
         </RowHeaders>
-        {data.map(datum =>
+        {data.map(datum => (
           <Row key={datum.id}>
-            {columns.map(column =>
+            {columns.map(column => (
               <GridCell
                 className={column.columnClassName}
                 key={column.id}
@@ -221,9 +221,9 @@ export default function GridExample() {
               >
                 {column.columnCell(datum)}
               </GridCell>
-            )}
+            ))}
           </Row>
-        )}
+        ))}
       </Grid>
     </Example>
   );
