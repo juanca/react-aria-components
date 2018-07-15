@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "webpack-serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lerna": "lerna"
   },
   "author": "Juan Carlos Medina",
   "license": "MIT",
@@ -27,6 +28,7 @@
     "faker": "^4.1.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "lerna": "^2.11.0",
     "mini-css-extract-plugin": "^0.4.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
