@@ -76,7 +76,7 @@ export default class Grid extends React.Component {
   render() {
     return (
       <GridContext.Provider value={this.props.gridRefs}>
-        <div
+        <div // eslint-disable-line jsx-a11y/interactive-supports-focus
           className={this.props.className}
           role="grid"
           onClick={this.onClick}
