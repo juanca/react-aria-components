@@ -83,4 +83,4 @@ FocusableGridCell.propTypes = {
   gridCellRefs: PropTypes.object.isRequired,
   idX: PropTypes.number.isRequired,
   idY: PropTypes.number.isRequired,
-}
+};
