@@ -191,7 +191,7 @@ const data = new Array(20).fill(0).map((_, index) =>
 );
 
 function createGridRefs() {
-  return [0].concat(data).map(row => columns.map(column => React.createRef()));
+  return [0].concat(data).map(() => columns.map(() => React.createRef()));
 }
 
 export default function GridExample() {

@@ -6,7 +6,7 @@ import styles from './grid.css';
 
 export default class Grid extends React.Component {
   constructor(props) {
-    super();
+    super(props);
 
     this.state = {
       rowIndex: 0,

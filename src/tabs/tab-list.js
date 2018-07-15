@@ -7,7 +7,7 @@ export default class TabList extends React.Component {
   constructor(props) {
     super(props);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.tabRefs = new Array(React.Children.count(props.children)).fill(0).map(_ => React.createRef());
+    this.tabRefs = new Array(React.Children.count(props.children)).fill(0).map(() => React.createRef());
     this.handlers = this.getHandlers(props.vertical);
   }
 
@@ -67,7 +67,7 @@ export default class TabList extends React.Component {
             accessibleId: active ? accessibleId : undefined,
             active,
             tabRef,
-            onActivate: () => this.props.onActivateTab(index),
+            onActivate: () => onActivateTab(index),
           });
         })}
       </ul>

@@ -6,7 +6,7 @@ import Example from './example.js';
 import GridExample from './grid-example.js';
 import TabsExample from './tabs-example.js';
 
-setTimeout(_ => {
+setTimeout(() => {
   render((
     <React.Fragment>
       <header>
