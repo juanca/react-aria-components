@@ -39,10 +39,5 @@
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.4",
     "webpack-serve": "^1.0.2"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.6.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
   }
 }

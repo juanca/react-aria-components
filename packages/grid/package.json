@@ -7,5 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "@react-aria-components/core": "^0.0.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0"
   }
 }

@@ -4,5 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "author": "Juan Carlos Medina",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "prop-types": "^15.6.1"
+  }
 }
