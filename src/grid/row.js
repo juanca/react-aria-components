@@ -9,7 +9,7 @@ export default function Row(props) {
       {props.children}
     </div>
   );
-};
+}
 
 Row.defaultProps = {
   className: styles.container,

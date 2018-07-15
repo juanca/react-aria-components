@@ -13,7 +13,7 @@ export default function Example(props) {
       <hr />
     </section>
   );
-};
+}
 
 Example.propTypes = {
   children: PropTypes.node,

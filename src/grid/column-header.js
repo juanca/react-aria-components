@@ -15,7 +15,7 @@ export default function ColumnHeader(props) {
       {props.children}
     </GridCell>
   );
-};
+}
 
 ColumnHeader.defaultProps = {
   className: styles.container,

@@ -10,7 +10,7 @@ export default function RowHeaders(props) {
       {props.children}
     </Row>
   );
-};
+}
 
 RowHeaders.defaultProps = {
   className: styles.container,

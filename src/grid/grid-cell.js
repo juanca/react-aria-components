@@ -47,7 +47,7 @@ class GridCell extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default function FocusableGridCell(props) {
   const {
@@ -60,7 +60,7 @@ export default function FocusableGridCell(props) {
       {gridRefs => <GridCell {...props} gridCellRefs={gridRefs} gridCellRef={gridRefs[idY][idX]} />}
     </GridContext.Consumer>
   );
-};
+}
 
 GridCell.defaultProps = {
   className: styles.container,
