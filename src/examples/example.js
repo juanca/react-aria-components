@@ -16,6 +16,6 @@ export default function Example(props) {
 }
 
 Example.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   title: PropTypes.node.isRequired,
 };

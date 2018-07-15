@@ -28,7 +28,7 @@ export default function Tab({
 Tab.propTypes = {
   accessibleId: PropTypes.string,
   active: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   onActivate: PropTypes.func,
   tabRef: PropTypes.object,

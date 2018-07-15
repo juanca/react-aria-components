@@ -23,7 +23,7 @@ export default function TabPanels({
 TabPanels.propTypes = {
   accessibleId: PropTypes.string,
   activeIndex: PropTypes.number,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   hasFocusableContent: PropTypes.bool.isRequired,
 };

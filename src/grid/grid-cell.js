@@ -69,7 +69,7 @@ GridCell.defaultProps = {
 
 GridCell.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   idX: PropTypes.number.isRequired,
   idY: PropTypes.number.isRequired,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),

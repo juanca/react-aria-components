@@ -18,5 +18,5 @@ RowHeaders.defaultProps = {
 
 RowHeaders.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
