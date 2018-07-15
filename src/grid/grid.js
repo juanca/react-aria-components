@@ -104,4 +104,5 @@ Grid.defaultProps = {
 Grid.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  gridRefs: PropTypes.object.isRequired,
 };

@@ -72,7 +72,14 @@ GridCell.defaultProps = {
 GridCell.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  idX: PropTypes.number.isRequired,
-  idY: PropTypes.number.isRequired,
+  gridCellRef: PropTypes.object.isRequired,
+  gridCellRefs: PropTypes.object.isRequired,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
+
+FocusableGridCell.propTypes = {
+  gridCellRef: PropTypes.object.isRequired,
+  gridCellRefs: PropTypes.object.isRequired,
+  idX: PropTypes.number.isRequired,
+  idY: PropTypes.number.isRequired,
+}
