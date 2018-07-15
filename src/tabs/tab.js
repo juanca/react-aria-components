@@ -16,6 +16,7 @@ export default function Tab({
       className={className}
       id={accessibleId}
       onClick={onActivate}
+      onKeyDown={() => {}}
       ref={tabRef}
       role="tab"
       tabIndex={active ? 0 : undefined}

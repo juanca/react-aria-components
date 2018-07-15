@@ -41,6 +41,7 @@ class GridCell extends React.Component {
         onBlur={this.onBlur}
         onClick={this.onClick}
         onFocus={this.onFocus}
+        onKeyDown={() => {}}
         ref={this.props.gridCellRef}
         role={this.props.role}
         tabIndex={this.state.tabIndex}
