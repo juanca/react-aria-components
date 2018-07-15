@@ -23,7 +23,7 @@ export default class Grid extends React.Component {
 
   onClick(event) {
     let newColumnIndex;
-    const newRowIndex = this.props.gridRefs.findIndex(rows => {
+    const newRowIndex = this.props.gridRefs.findIndex((rows) => {
       newColumnIndex = rows.findIndex(cellRef => cellRef.current === event.target);
       return newColumnIndex > -1;
     });
