@@ -80,8 +80,6 @@ GridCell.propTypes = {
 };
 
 FocusableGridCell.propTypes = {
-  gridCellRef: RefType.isRequired,
-  gridCellRefs: PropTypes.arrayOf(RefType).isRequired,
   idX: PropTypes.number.isRequired,
   idY: PropTypes.number.isRequired,
 };
