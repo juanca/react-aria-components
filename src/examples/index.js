@@ -10,14 +10,22 @@ setTimeout(_ => {
   render((
     <React.Fragment>
       <header>
-        <h1>React ARIA Components</h1>
+        <h1>
+          React ARIA Components
+        </h1>
       </header>
       <Example title="Table of Contents">
         <nav>
-          <p>List of WAI-ARIA components implemented in React:</p>
+          <p>
+            List of WAI-ARIA components implemented in React:
+          </p>
           <ol>
-            <li>Grid</li>
-            <li>Tabs</li>
+            <li>
+              Grid
+            </li>
+            <li>
+              Tabs
+            </li>
           </ol>
         </nav>
       </Example>
@@ -27,9 +35,13 @@ setTimeout(_ => {
       </main>
       <footer>
         <address>
-          <a href="https://github.com/juanca/react-aria-components">Github repository</a>
+          <a href="https://github.com/juanca/react-aria-components">
+            Github repository
+          </a>
           <br />
-          <a href="https://npmjs.com/package/react-aria-components">NPM package</a>
+          <a href="https://npmjs.com/package/react-aria-components">
+            NPM package
+          </a>
         </address>
       </footer>
     </React.Fragment>

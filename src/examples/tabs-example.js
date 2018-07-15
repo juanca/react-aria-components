@@ -14,14 +14,26 @@ export default class TabsExample extends React.Component {
       <Example title="Tabs">
         <Tabs activeIndex={this.state.activeIndex} onActivateTab={index => this.setState({ activeIndex: index })}>
           <TabList>
-            <Tab>Tacos</Tab>
-            <Tab>Burritos</Tab>
-            <Tab>Churros</Tab>
+            <Tab>
+              Tacos
+            </Tab>
+            <Tab>
+              Burritos
+            </Tab>
+            <Tab>
+              Churros
+            </Tab>
           </TabList>
           <TabPanels hasFocusableContent={false}>
-            <div>Delicious!</div>
-            <div>Just big tacos</div>
-            <div>Mmmmmmmmmmm...</div>
+            <div>
+              Delicious!
+            </div>
+            <div>
+              Just big tacos
+            </div>
+            <div>
+              Mmmmmmmmmmm...
+            </div>
           </TabPanels>
         </Tabs>
       </Example>
