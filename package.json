@@ -1,8 +1,5 @@
 {
-  "name": "react-aria-components",
-  "version": "0.0.3",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/juanca/react-aria-components"
