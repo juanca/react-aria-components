@@ -11,7 +11,12 @@ export default class Tabs extends React.Component {
   }
 
   render() {
-    const { activeIndex, children, className, onActivateTab } = this.props;
+    const {
+      activeIndex,
+      children,
+      className,
+      onActivateTab,
+    } = this.props;
     const accessibleId = this.accessibleId;
 
     return (

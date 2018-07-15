@@ -54,7 +54,13 @@ export default class TabList extends React.Component {
   }
 
   render() {
-    const { accessibleId, activeIndex, children, className, onActivateTab } = this.props;
+    const {
+      accessibleId,
+      activeIndex,
+      children,
+      className,
+      onActivateTab,
+    } = this.props;
 
     return (
       <ul className={className} onKeyUp={this.handleKeyPress} role="tablist">
