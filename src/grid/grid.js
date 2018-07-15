@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import GridContext from './grid-context.js';
+import RefType from '../prop-types/ref.js';
 import styles from './grid.css';
 
 export default class Grid extends React.Component {
@@ -96,5 +97,5 @@ Grid.defaultProps = {
 Grid.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  gridRefs: PropTypes.object.isRequired,
+  gridRefs: PropTypes.arrayOf(RefType).isRequired,
 };

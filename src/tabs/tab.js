@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import RefType from '../prop-types/ref.js';
 import styles from './tab.css';
 
 export default function Tab({
@@ -32,7 +33,7 @@ Tab.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   onActivate: PropTypes.func,
-  tabRef: PropTypes.object,
+  tabRef: RefType,
 };
 
 Tab.defaultProps = {

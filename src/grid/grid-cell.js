@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import GridContext from './grid-context.js';
+import RefType from '../prop-types/ref.js';
 
 import styles from './grid-cell.css';
 
@@ -73,14 +74,14 @@ GridCell.defaultProps = {
 GridCell.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  gridCellRef: PropTypes.object.isRequired,
-  gridCellRefs: PropTypes.object.isRequired,
+  gridCellRef: RefType.isRequired,
+  gridCellRefs: PropTypes.arrayOf(RefType).isRequired,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
 
 FocusableGridCell.propTypes = {
-  gridCellRef: PropTypes.object.isRequired,
-  gridCellRefs: PropTypes.object.isRequired,
+  gridCellRef: RefType.isRequired,
+  gridCellRefs: PropTypes.arrayOf(RefType).isRequired,
   idX: PropTypes.number.isRequired,
   idY: PropTypes.number.isRequired,
 };
