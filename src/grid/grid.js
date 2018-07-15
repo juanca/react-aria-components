@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import GridContext from './grid-context.js';
-import styles from './grid.css'
+import styles from './grid.css';
 
 export default class Grid extends React.Component {
   constructor(props) {

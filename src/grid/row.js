@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from './row.css'
+import styles from './row.css';
 
 export default function Row(props) {
   return (

@@ -15,7 +15,7 @@ import styles from './grid-example.css';
 function get(key) {
   return function columnCell(datum) {
     return datum[key];
-  }
+  };
 }
 
 const metaColumns = [
