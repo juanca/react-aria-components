@@ -7,7 +7,7 @@ import {
   GridCell,
   Row,
   RowHeaders,
-} from '../grid';
+} from '../../packages/grid/src';
 
 import Example from './example.js';
 import styles from './grid-example.css';
