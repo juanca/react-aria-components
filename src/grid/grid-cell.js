@@ -19,7 +19,9 @@ class GridCell extends React.Component {
   }
 
   onBlur(event) {
-    const focusWithinGrid = this.props.gridCellRefs.some(rows => rows.some(cellRef => cellRef.current === event.relatedTarget));
+    const focusWithinGrid = this.props.gridCellRefs.some(rows =>
+      rows.some(cellRef => cellRef.current === event.relatedTarget)
+    );
 
     if (focusWithinGrid) this.setState({ tabIndex: -1 });
   }

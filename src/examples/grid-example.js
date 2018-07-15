@@ -181,7 +181,7 @@ const columns = metaColumns.map((meta, index) => Object.assign({
   columnCell: get(meta.faker.slice(-1)[0]),
 }, meta.attrs));
 
-// e.g. { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle(), jobDescriptor: faker.name.jobDescriptor() }
+// e.g. { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle() }
 const data = new Array(20).fill(0).map((_, index) =>
   metaColumns.map(meta => ({
     [meta.faker.slice(-1)[0]]: meta.faker.reduce((obj, key) => obj[key], faker)()

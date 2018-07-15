@@ -6,8 +6,11 @@ import styles from './tab-list.css';
 export default class TabList extends React.Component {
   constructor(props) {
     super(props);
+
+    const childrenCount = React.Children.count(props.children);
+
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.tabRefs = new Array(React.Children.count(props.children)).fill(0).map(() => React.createRef());
+    this.tabRefs = new Array(childrenCount).fill(0).map(() => React.createRef());
     this.handlers = this.getHandlers(props.vertical);
   }
 

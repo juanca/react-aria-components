@@ -12,7 +12,10 @@ export default class TabsExample extends React.Component {
   render() {
     return (
       <Example title="Tabs">
-        <Tabs activeIndex={this.state.activeIndex} onActivateTab={index => this.setState({ activeIndex: index })}>
+        <Tabs
+          activeIndex={this.state.activeIndex}
+          onActivateTab={index => this.setState({ activeIndex: index })}
+        >
           <TabList>
             <Tab>
               Tacos
