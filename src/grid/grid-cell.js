@@ -75,7 +75,7 @@ GridCell.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   gridCellRef: RefType.isRequired,
-  gridCellRefs: PropTypes.arrayOf(RefType).isRequired,
+  gridCellRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
 
