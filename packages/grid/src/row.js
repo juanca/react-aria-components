@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from './row.css'
+import styles from './row.css';
 
 export default function Row(props) {
   return (
@@ -9,7 +9,7 @@ export default function Row(props) {
       {props.children}
     </div>
   );
-};
+}
 
 Row.defaultProps = {
   className: styles.container,
@@ -17,5 +17,5 @@ Row.defaultProps = {
 
 Row.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };

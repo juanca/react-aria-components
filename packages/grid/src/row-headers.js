@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Row from './row.js';
-import styles from './row-headers.css'
+import styles from './row-headers.css';
 
 export default function RowHeaders(props) {
   return (
@@ -10,7 +10,7 @@ export default function RowHeaders(props) {
       {props.children}
     </Row>
   );
-};
+}
 
 RowHeaders.defaultProps = {
   className: styles.container,
@@ -18,5 +18,5 @@ RowHeaders.defaultProps = {
 
 RowHeaders.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
