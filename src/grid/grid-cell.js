@@ -36,7 +36,7 @@ class GridCell extends React.Component {
 
   render() {
     return (
-      <div
+      <div // eslint-disable-line jsx-a11y/no-static-element-interactions
         className={this.props.className}
         onBlur={this.onBlur}
         onClick={this.onClick}
