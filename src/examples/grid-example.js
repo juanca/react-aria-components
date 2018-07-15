@@ -185,9 +185,11 @@ const columns = metaColumns.map((meta, index) => Object.assign({
 const data = new Array(20).fill(0).map((_, index) => (
   metaColumns.map(meta => ({
     [meta.faker.slice(-1)[0]]: meta.faker.reduce((obj, key) => obj[key], faker)()
-  }))
-  .concat({ id: index + 1 })
-  .reduce((merge, obj) => Object.assign(merge, obj))
+  })).concat({
+    id: index + 1
+  }).reduce((merge, obj) => (
+    Object.assign(merge, obj)
+  ))
 ));
 
 function createGridRefs() {
