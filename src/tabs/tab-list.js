@@ -14,6 +14,12 @@ export default class TabList extends React.Component {
     this.handlers = this.getHandlers(props.vertical);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.activeIndex !== this.props.activeIndex) {
+      this.tabRefs[this.props.activeIndex].current.focus();
+    }
+  }
+
   getHandlers(vertical) {
     if (vertical) {
       return {
@@ -45,12 +51,6 @@ export default class TabList extends React.Component {
   next() {
     const newIndex = this.wrapIndex(this.props.activeIndex + 1);
     this.props.onActivateTab(newIndex);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.activeIndex !== this.props.activeIndex) {
-      this.tabRefs[this.props.activeIndex].current.focus();
-    }
   }
 
   render() {
