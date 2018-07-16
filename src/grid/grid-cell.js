@@ -68,6 +68,7 @@ export default function FocusableGridCell(props) {
 
 GridCell.defaultProps = {
   className: styles.container,
+  onClick: () => {},
   role: 'gridcell',
 };
 
@@ -76,6 +77,7 @@ GridCell.propTypes = {
   children: PropTypes.node.isRequired,
   gridCellRef: RefType.isRequired,
   gridCellRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
+  onClick: PropTypes.func,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
 
