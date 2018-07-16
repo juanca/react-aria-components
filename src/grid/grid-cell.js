@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import GridContext from './grid-context.js';
+import RefType from '../prop-types/ref.js';
 
 import styles from './grid-cell.css';
 
@@ -19,7 +20,9 @@ class GridCell extends React.Component {
   }
 
   onBlur(event) {
-    const focusWithinGrid = this.props.gridCellRefs.some(rows => rows.some(cellRef => cellRef.current === event.relatedTarget));
+    const focusWithinGrid = this.props.gridCellRefs.some(rows => (
+      rows.some(cellRef => cellRef.current === event.relatedTarget)
+    ));
 
     if (focusWithinGrid) this.setState({ tabIndex: -1 });
   }
@@ -34,11 +37,12 @@ class GridCell extends React.Component {
 
   render() {
     return (
-      <div
+      <div // eslint-disable-line jsx-a11y/no-static-element-interactions
         className={this.props.className}
         onBlur={this.onBlur}
         onClick={this.onClick}
         onFocus={this.onFocus}
+        onKeyDown={() => {}}
         ref={this.props.gridCellRef}
         role={this.props.role}
         tabIndex={this.state.tabIndex}
@@ -47,7 +51,7 @@ class GridCell extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default function FocusableGridCell(props) {
   const {
@@ -60,18 +64,22 @@ export default function FocusableGridCell(props) {
       {gridRefs => <GridCell {...props} gridCellRefs={gridRefs} gridCellRef={gridRefs[idY][idX]} />}
     </GridContext.Consumer>
   );
-};
+}
 
 GridCell.defaultProps = {
   className: styles.container,
-  onClick: () => {},
-  role: 'gridcell'
+  role: 'gridcell',
 };
 
 GridCell.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
+  gridCellRef: RefType.isRequired,
+  gridCellRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
+  role: PropTypes.oneOf(['columnheader', 'gridcell']),
+};
+
+FocusableGridCell.propTypes = {
   idX: PropTypes.number.isRequired,
   idY: PropTypes.number.isRequired,
-  role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
