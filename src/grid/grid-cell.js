@@ -87,19 +87,6 @@ class GridCell extends React.Component {
   }
 }
 
-export default function FocusableGridCell(props) {
-  const {
-    idX,
-    idY,
-  } = props;
-
-  return (
-    <GridContext.Consumer>
-      {gridRefs => <GridCell {...props} gridCellRefs={gridRefs} gridCellRef={gridRefs[idY][idX]} />}
-    </GridContext.Consumer>
-  );
-}
-
 GridCell.defaultProps = {
   className: styles.container,
   role: 'gridcell',
@@ -112,6 +99,19 @@ GridCell.propTypes = {
   gridCellRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
+
+export default function FocusableGridCell(props) {
+  const {
+    idX,
+    idY,
+  } = props;
+
+  return (
+    <GridContext.Consumer>
+      {gridRefs => <GridCell {...props} gridCellRefs={gridRefs} gridCellRef={gridRefs[idY][idX]} />}
+    </GridContext.Consumer>
+  );
+}
 
 FocusableGridCell.propTypes = {
   idX: PropTypes.number.isRequired,
