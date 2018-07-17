@@ -208,7 +208,7 @@ export default function GridExample() {
               idX={column.id}
               idY={0}
             >
-              {column.columnHeaderCell}
+              {() => column.columnHeaderCell}
             </ColumnHeader>
           ))}
         </RowHeaders>
@@ -221,7 +221,10 @@ export default function GridExample() {
                 idX={column.id}
                 idY={datum.id}
               >
-                {column.columnCell(datum)}
+                {active => active
+                  ? `${column.columnCell(datum)}*`
+                  : column.columnCell(datum)
+                }
               </GridCell>
             ))}
           </Row>

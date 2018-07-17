@@ -23,7 +23,7 @@ ColumnHeader.defaultProps = {
 
 ColumnHeader.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
   idX: PropTypes.number.isRequired,
   idY: PropTypes.number.isRequired,
 };

@@ -13,26 +13,58 @@ class GridCell extends React.Component {
     this.onBlur = this.onBlur.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onFocus = this.onFocus.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
 
     this.state = {
+      interactive: false,
       tabIndex: -1,
     };
   }
 
+  componentDidUpdate(props, state) {
+    if (state.interactive && !this.state.interactive) {
+      this.props.gridCellRef.current.focus();
+    }
+  }
+
   onBlur(event) {
+    const focusWithinCell = this.props.gridCellRef.current === event.relatedTarget
+      || this.props.gridCellRef.current.contains(event.relatedTarget);
+    if (focusWithinCell) return;
+
     const focusWithinGrid = this.props.gridCellRefs.some(rows => (
       rows.some(cellRef => cellRef.current === event.relatedTarget) // `relatedTarget` is not supported in IE 11 :( https://github.com/facebook/react/issues/3751
     ));
-
     if (focusWithinGrid) this.setState({ tabIndex: -1 });
+
+    this.setState({ interactive: false });
   }
 
   onClick() {
-    this.props.onClick();
+    this.setState({ interactive: true });
   }
 
   onFocus() {
     this.setState({ tabIndex: 0 });
+  }
+
+  onKeyDown(event) {
+    switch (event.key) {
+      case 'Enter': {
+        this.setState(state => ({ interactive: !state.interactive }));
+        break;
+      }
+      case 'Escape': {
+        this.setState({ interactive: false });
+        break;
+      }
+      default: {
+        // Do not use keyboard navigation while interactive
+        if (this.state.interactive) {
+          event.stopPropagation();
+        }
+      }
+    }
   }
 
   render() {
@@ -42,12 +74,12 @@ class GridCell extends React.Component {
         onBlur={this.onBlur}
         onClick={this.onClick}
         onFocus={this.onFocus}
-        onKeyDown={() => {}}
+        onKeyDown={this.onKeyDown}
         ref={this.props.gridCellRef}
         role={this.props.role}
         tabIndex={this.state.tabIndex}
       >
-        {this.props.children}
+        {this.props.children(this.state.interactive)}
       </div>
     );
   }
@@ -68,16 +100,14 @@ export default function FocusableGridCell(props) {
 
 GridCell.defaultProps = {
   className: styles.container,
-  onClick: () => {},
   role: 'gridcell',
 };
 
 GridCell.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
   gridCellRef: RefType.isRequired,
   gridCellRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
-  onClick: PropTypes.func,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
 
