@@ -4,7 +4,7 @@ import React from 'react';
 import {
   ColumnHeader,
   Grid,
-  GridCell,
+  InteractiveGridCell,
   Row,
   RowHeaders,
 } from '../grid';
@@ -209,14 +209,14 @@ export default function GridExample() {
               idX={column.id}
               idY={0}
             >
-              {() => column.columnHeaderCell}
+              {column.columnHeaderCell}
             </ColumnHeader>
           ))}
         </RowHeaders>
         {data.map(datum => (
           <Row key={datum.id}>
             {columns.map(column => (
-              <GridCell
+              <InteractiveGridCell
                 className={column.columnClassName}
                 key={column.id}
                 idX={column.id}
@@ -228,7 +228,7 @@ export default function GridExample() {
                     defaultValue={column.columnCell(datum)}
                   />
                 )}
-              </GridCell>
+              </InteractiveGridCell>
             ))}
           </Row>
         ))}

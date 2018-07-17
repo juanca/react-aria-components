@@ -15,18 +15,9 @@ class GridCell extends React.Component {
     this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
 
-    // This state might have to be hoisted to allow a wrapping cell to force interative state
-    // e.g. active input cell should go into interactive mode on a-zA-Z key press.
     this.state = {
-      interactive: false,
       tabIndex: -1,
     };
-  }
-
-  componentDidUpdate(props, state) {
-    if (state.interactive && !this.state.interactive) {
-      this.props.gridCellRef.current.focus();
-    }
   }
 
   onBlur(event) {
@@ -39,34 +30,20 @@ class GridCell extends React.Component {
     ));
     if (focusWithinGrid) this.setState({ tabIndex: -1 });
 
-    this.setState({ interactive: false });
+    this.props.onBlur(event);
   }
 
-  onClick() {
-    this.setState({ interactive: true });
+  onClick(event) {
+    this.props.onClick(event);
   }
 
-  onFocus() {
+  onFocus(event) {
     this.setState({ tabIndex: 0 });
+    this.props.onFocus(event);
   }
 
   onKeyDown(event) {
-    switch (event.key) {
-      case 'Enter': {
-        this.setState(state => ({ interactive: !state.interactive }));
-        break;
-      }
-      case 'Escape': {
-        this.setState({ interactive: false });
-        break;
-      }
-      default: {
-        // Do not use keyboard navigation while interactive
-        if (this.state.interactive) {
-          event.stopPropagation();
-        }
-      }
-    }
+    this.props.onKeyDown(event);
   }
 
   render() {
@@ -81,7 +58,7 @@ class GridCell extends React.Component {
         role={this.props.role}
         tabIndex={this.state.tabIndex}
       >
-        {this.props.children(this.state.interactive)}
+        {this.props.children}
       </div>
     );
   }
@@ -89,14 +66,22 @@ class GridCell extends React.Component {
 
 GridCell.defaultProps = {
   className: styles.container,
+  onBlur: () => {},
+  onClick: () => {},
+  onFocus: () => {},
+  onKeyDown: () => {},
   role: 'gridcell',
 };
 
 GridCell.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
   gridCellRef: RefType.isRequired,
   gridCellRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
+  onBlur: PropTypes.func,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onKeyDown: PropTypes.func,
   role: PropTypes.oneOf(['columnheader', 'gridcell']),
 };
 
