@@ -15,6 +15,8 @@ class GridCell extends React.Component {
     this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
 
+    // This state might have to be hoisted to allow a wrapping cell to force interative state
+    // e.g. active input cell should go into interactive mode on a-zA-Z key press.
     this.state = {
       interactive: false,
       tabIndex: -1,
