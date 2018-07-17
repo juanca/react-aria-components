@@ -9,6 +9,7 @@ import {
   RowHeaders,
 } from '../grid';
 
+import InputCell from './grid-cells/input.js';
 import Example from './example.js';
 import styles from './grid-example.css';
 
@@ -221,10 +222,12 @@ export default function GridExample() {
                 idX={column.id}
                 idY={datum.id}
               >
-                {active => active
-                  ? `${column.columnCell(datum)}*`
-                  : column.columnCell(datum)
-                }
+                {active => (
+                  <InputCell
+                    active={active}
+                    defaultValue={column.columnCell(datum)}
+                  />
+                )}
               </GridCell>
             ))}
           </Row>
