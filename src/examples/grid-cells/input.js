@@ -14,7 +14,7 @@ export default class InputGridCell extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.active) {
+    if (this.props.interactive) {
       this.inputRef.current.focus();
     }
   }
@@ -24,7 +24,7 @@ export default class InputGridCell extends React.Component {
   }
 
   render() {
-    return this.props.active
+    return this.props.interactive
       ? (
         <input
           defaultValue={this.state.value}
@@ -39,6 +39,6 @@ export default class InputGridCell extends React.Component {
 InputGridCell.defaultProps = {};
 
 InputGridCell.propTypes = {
-  active: PropTypes.bool.isRequired,
+  interactive: PropTypes.bool.isRequired,
   defaultValue: PropTypes.string.isRequired,
 };

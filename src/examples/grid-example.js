@@ -222,9 +222,9 @@ export default function GridExample() {
                 idX={column.id}
                 idY={datum.id}
               >
-                {active => (
+                {interactive => (
                   <InputCell
-                    active={active}
+                    interactive={interactive}
                     defaultValue={column.columnCell(datum)}
                   />
                 )}
