@@ -1,44 +1,40 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ActiveIdContext from './active-id-context';
-import OpenIdsContext from './open-ids-context';
+import ActiveIdContext from './active-id-context.js';
+import OpenIdsContext from './open-ids-context.js';
+import combineConsumers from '../utils/combine-consumers.js';
 
 export default function TreeItem({
   children,
   id,
   title,
 }) {
+  const Consumer = combineConsumers(ActiveIdContext.Consumer, OpenIdsContext.Consumer);
+
   return (
-    <ActiveIdContext.Consumer>
-      {(activeId) => {
+    <Consumer>
+      {(activeId, openIds) => {
         const active = activeId === id;
+        const open = openIds.includes(id);
 
         return (
-          <OpenIdsContext.Consumer>
-            {(openIds) => {
-              const open = openIds.includes(id);
-
-              return (
-                <li
-                  aria-expanded={children ? open : undefined}
-                  role="treeitem"
-                  tabIndex={active ? '0' : undefined}
-                >
-                  <span>
-                    {title}
-                  </span>
-                  {children && (
-                    <ul role="group">
-                      {children}
-                    </ul>
-                  )}
-                </li>
-              );
-            }}
-          </OpenIdsContext.Consumer>
+          <li
+            aria-expanded={children ? open : undefined}
+            role="treeitem"
+            tabIndex={active ? '0' : undefined}
+          >
+            <span>
+              {title}
+            </span>
+            {children && (
+              <ul role="group">
+                {children}
+              </ul>
+            )}
+          </li>
         );
       }}
-    </ActiveIdContext.Consumer>
+    </Consumer>
   );
 }
 
