@@ -1,10 +1,12 @@
 /* eslint-disable */
 import PropTypes from 'prop-types';
 import React from 'react';
+import ActiveIdContext from './active-id-context';
 
 export default class Tree extends React.Component {
   render() {
     const {
+      activeId,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
       children
@@ -16,7 +18,9 @@ export default class Tree extends React.Component {
         aria-labelledby={ariaLabelledBy}
         role="tree"
       >
-        {children}
+        <ActiveIdContext.Provider value={activeId}>
+          {children}
+        </ActiveIdContext.Provider>
       </ul>
     );
   }
