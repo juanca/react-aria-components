@@ -23,14 +23,7 @@ export default class Tree extends React.Component {
 }
 
 Tree.propTypes = {
-  'aria-label': function(props, propName, componentName) {
-    const hasLabel = props['aria-label'];
-    const hasLabelledBy = props['aria-labelledby'];
-    const hasBoth = hasLabel && hasLabelledBy;
-    const hasNeither = !(hasLabel || hasLabelledBy);
-
-    if (hasBoth || hasNeither) {
-      return new Error(`One, but not both, of "aria-label" and "aria-labelledby" must be present as a prop on ${componentName}`);
-    }
-  },
+  'aria-label': PropTypes.string,
+  'aria-labelledby': PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
