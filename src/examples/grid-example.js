@@ -9,7 +9,7 @@ import {
   RowHeaders,
 } from '../grid';
 
-import InputCell from './grid-cells/input.js';
+import InputGridCell from './grid-cells/input-grid-cell.js';
 import Example from './example.js';
 import styles from './grid-example.css';
 
@@ -223,7 +223,7 @@ export default function GridExample() {
                 idY={datum.id}
               >
                 {interactive => (
-                  <InputCell
+                  <InputGridCell
                     interactive={interactive}
                     defaultValue={column.columnCell(datum)}
                   />
