@@ -5,7 +5,7 @@ import { Tree, TreeItem } from '../tree';
 export default class TreeExample extends React.Component {
   constructor() {
     super();
-    this.state = { activeId: '0' };
+    this.state = { activeId: '0', openIds: [] };
   }
 
   render() {
@@ -18,6 +18,7 @@ export default class TreeExample extends React.Component {
           activeId={this.state.activeId}
           aria-labelledby="tree-stuff"
           onTreeItemActivate={id => this.setState({ activeId: id })}
+          openIds={this.state.openIds}
         >
           <TreeItem id="0" title="Fruits">
             <TreeItem id="0-0" title="Oranges" />
