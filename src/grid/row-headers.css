@@ -1,0 +1,6 @@
+.container {
+  composes: container from './row.css';
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

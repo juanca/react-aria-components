@@ -1,0 +1,52 @@
+{
+  "name": "react-aria-components",
+  "version": "0.0.3",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juanca/react-aria-components"
+  },
+  "scripts": {
+    "deploy": "ghpages -d dist/",
+    "predeploy": "webpack --mode production",
+    "start": "webpack-serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Carlos Medina",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.9.4 || ^8.11.1",
+    "npm": "^6.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "faker": "^4.1.0",
+    "ghpages": "0.0.10",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4",
+    "webpack-serve": "^1.0.2"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  }
+}
