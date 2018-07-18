@@ -7,6 +7,7 @@ import { render } from 'react-dom';
 import Example from './example.js';
 import GridExample from './grid-example.js';
 import TabsExample from './tabs-example.js';
+import TreeExample from './tree-example.js';
 
 setTimeout(() => {
   render((
@@ -34,6 +35,7 @@ setTimeout(() => {
       <main>
         <GridExample />
         <TabsExample />
+        <TreeExample />
       </main>
       <footer>
         <address>
