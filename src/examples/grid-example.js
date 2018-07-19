@@ -4,12 +4,11 @@ import React from 'react';
 import {
   ColumnHeader,
   Grid,
-  InteractiveGridCell,
   Row,
   RowHeaders,
 } from '../grid';
 
-import InputGridCell from './grid-cells/input-grid-cell.js';
+import FancyInputGridCell from './grid-cells/fancy-input-grid-cell.js';
 import Example from './example.js';
 import styles from './grid-example.css';
 
@@ -216,19 +215,13 @@ export default function GridExample() {
         {data.map(datum => (
           <Row key={datum.id}>
             {columns.map(column => (
-              <InteractiveGridCell
+              <FancyInputGridCell
                 className={column.columnClassName}
+                defaultValue={column.columnCell(datum)}
                 key={column.id}
                 idX={column.id}
                 idY={datum.id}
-              >
-                {interactive => (
-                  <InputGridCell
-                    interactive={interactive}
-                    defaultValue={column.columnCell(datum)}
-                  />
-                )}
-              </InteractiveGridCell>
+              />
             ))}
           </Row>
         ))}
