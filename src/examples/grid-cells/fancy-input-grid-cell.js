@@ -57,7 +57,26 @@ class FancyInputGridCell extends React.Component {
   onKeyDown(event) {
     switch (event.key) {
       case 'Enter': {
-        this.setState(state => ({ interactive: !state.interactive }));
+        if (this.state.interactive) {
+          const nextCell = event.shiftKey ? this.props.minusY : this.props.plusY;
+
+          if (nextCell === this.props.gridCellRef) {
+            this.setState({
+              interactive: false,
+            });
+          } else {
+            this.setState({
+              interactive: false,
+              wasTabbed: true,
+            });
+            nextCell.current.focus();
+          }
+        } else {
+          this.setState({
+            interactive: true,
+          });
+        }
+
         break;
       }
       case 'Escape': {
@@ -143,8 +162,16 @@ function getMinusX(refs, x, y) {
   return refs[y][Math.max(x - 1, 0)];
 }
 
+function getMinusY(refs, x, y) {
+  return refs[Math.max(y - 1, 0)][x];
+}
+
 function getPlusX(refs, x, y) {
   return refs[y][Math.min(x + 1, refs[0].length - 1)];
+}
+
+function getPlusY(refs, x, y) {
+  return refs[Math.min(y + 1, refs.length - 1)][x];
 }
 
 export default function FocusableFancyInputGridCell(props) {
@@ -160,7 +187,9 @@ export default function FocusableFancyInputGridCell(props) {
           {...props}
           gridCellRef={gridRefs[idY][idX]}
           minusX={getMinusX(gridRefs, idX, idY)}
+          minusY={getMinusY(gridRefs, idX, idY)}
           plusX={getPlusX(gridRefs, idX, idY)}
+          plusY={getPlusY(gridRefs, idX, idY)}
         />
       )}
     </GridContext.Consumer>
