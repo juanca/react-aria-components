@@ -13,6 +13,7 @@ class FancyInputGridCell extends React.Component {
     this.state = {
       interactive: false,
       value: props.defaultValue,
+      wasTabbed: false,
     };
 
     this.onBlur = this.onBlur.bind(this);
@@ -26,8 +27,14 @@ class FancyInputGridCell extends React.Component {
       this.inputRef.current.focus();
     }
 
-    if (state.interactive && !this.state.interactive) {
+    if (state.interactive && !this.state.interactive && !this.state.wasTabbed) {
       this.props.gridCellRef.current.focus();
+    }
+
+    if (this.state.wasTabbed) {
+      // Immediately unset the tab flag to avoid infinite updates.
+      // The flag should only ever be set in one place -- interactive mode + tab press.
+      this.setState({ wasTabbed: false }); // eslint-disable-line react/no-did-update-set-state
     }
   }
 
@@ -55,6 +62,24 @@ class FancyInputGridCell extends React.Component {
       }
       case 'Escape': {
         this.setState({ interactive: false });
+        break;
+      }
+      case 'Tab': {
+        const nextCell = event.shiftKey ? this.props.minusX : this.props.plusX;
+
+        if (nextCell === this.props.gridCellRef) {
+          this.setState({
+            interactive: false,
+          });
+        } else {
+          this.setState({
+            interactive: false,
+            wasTabbed: true,
+          });
+          nextCell.current.focus();
+        }
+
+        event.preventDefault();
         break;
       }
       default: {
@@ -108,7 +133,19 @@ FancyInputGridCell.defaultProps = {
 FancyInputGridCell.propTypes = {
   defaultValue: PropTypes.string.isRequired,
   gridCellRef: RefType.isRequired,
+  minusX: RefType.isRequired,
+  minusY: RefType.isRequired,
+  plusX: RefType.isRequired,
+  plusY: RefType.isRequired,
 };
+
+function getMinusX(refs, x, y) {
+  return refs[y][Math.max(x - 1, 0)];
+}
+
+function getPlusX(refs, x, y) {
+  return refs[y][Math.min(x + 1, refs[0].length - 1)];
+}
 
 export default function FocusableFancyInputGridCell(props) {
   const {
@@ -118,7 +155,14 @@ export default function FocusableFancyInputGridCell(props) {
 
   return (
     <GridContext.Consumer>
-      {gridRefs => <FancyInputGridCell {...props} gridCellRef={gridRefs[idY][idX]} />}
+      {gridRefs => (
+        <FancyInputGridCell
+          {...props}
+          gridCellRef={gridRefs[idY][idX]}
+          minusX={getMinusX(gridRefs, idX, idY)}
+          plusX={getPlusX(gridRefs, idX, idY)}
+        />
+      )}
     </GridContext.Consumer>
   );
 }
