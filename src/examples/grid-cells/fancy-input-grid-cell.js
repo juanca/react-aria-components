@@ -84,21 +84,24 @@ class FancyInputGridCell extends React.Component {
         break;
       }
       case 'Tab': {
-        const nextCell = event.shiftKey ? this.props.minusX : this.props.plusX;
+        if (this.state.interactive) {
+          const nextCell = event.shiftKey ? this.props.minusX : this.props.plusX;
 
-        if (nextCell === this.props.gridCellRef) {
-          this.setState({
-            interactive: false,
-          });
-        } else {
-          this.setState({
-            interactive: false,
-            wasTabbed: true,
-          });
-          nextCell.current.focus();
+          if (nextCell === this.props.gridCellRef) {
+            this.setState({
+              interactive: false,
+            });
+          } else {
+            this.setState({
+              interactive: false,
+              wasTabbed: true,
+            });
+            nextCell.current.focus();
+          }
+
+          event.preventDefault();
         }
 
-        event.preventDefault();
         break;
       }
       default: {
