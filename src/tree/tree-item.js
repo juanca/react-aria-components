@@ -9,7 +9,10 @@ export default function TreeItem({
   id,
   title,
 }) {
-  const Consumer = combineConsumers(ActiveIdContext.Consumer, OpenIdsContext.Consumer);
+  const Consumer = combineConsumers(
+    ActiveIdContext.Consumer,
+    OpenIdsContext.Consumer,
+  );
 
   return (
     <Consumer>

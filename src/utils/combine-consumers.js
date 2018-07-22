@@ -1,16 +1,16 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 
-export default function combineConsumers(First, Second) {
-  return function Consumer({ children }) {
-    return (
-      <First>
-        {arg1 => (
-          <Second>
-            {arg2 => children(arg1, arg2)}
-          </Second>
-        )}
-      </First>
-    );
+function reducer(acc, Consumer) {
+  return (...propsList) => (
+    <Consumer>
+      {arg => acc(...propsList.concat([arg]))}
+    </Consumer>
+  );
+}
+
+export default function combineConsumers(...consumers) {
+  return function Composed({ children }) {
+    const reduced = consumers.reduceRight(reducer, children);
+    return reduced();
   };
 }
