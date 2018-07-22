@@ -29,6 +29,10 @@ export default class Grid extends React.Component {
       return newColumnIndex > -1;
     });
 
+    // If the click event does not match any of grid cell containers,
+    // it must be within the active cell.
+    if (newRowIndex === -1 || newColumnIndex === -1) { return; }
+
     this.setState({
       columnIndex: newColumnIndex,
       rowIndex: newRowIndex,
