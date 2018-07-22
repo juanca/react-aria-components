@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ActiveIdContext from './active-id-context.js';
 import OpenIdsContext from './open-ids-context.js';
-import combineConsumers from '../utils/combine-consumers.js';
+import combineRenderProps from '../utils/combine-render-props.js';
 
 export default function TreeItem({
   children,
   id,
   title,
 }) {
-  const Consumer = combineConsumers(
+  const Consumer = combineRenderProps(
     ActiveIdContext.Consumer,
     OpenIdsContext.Consumer,
   );
