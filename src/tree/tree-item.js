@@ -23,6 +23,7 @@ export default function TreeItem({
         return (
           <li
             aria-expanded={children ? open : undefined}
+            aria-selected={active ? true : undefined}
             role="treeitem"
             tabIndex={active ? '0' : undefined}
           >
