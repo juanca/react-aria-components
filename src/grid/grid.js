@@ -14,7 +14,7 @@ export default class Grid extends React.Component {
       columnIndex: 0,
     };
 
-    this.onClick = this.onClick.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
@@ -22,7 +22,7 @@ export default class Grid extends React.Component {
     this.props.gridRefs[this.state.rowIndex][this.state.columnIndex].current.focus();
   }
 
-  onClick(event) {
+  onFocus(event) {
     let newColumnIndex;
     const newRowIndex = this.props.gridRefs.findIndex((rows) => {
       newColumnIndex = rows.findIndex(cellRef => cellRef.current === event.target);
@@ -84,7 +84,7 @@ export default class Grid extends React.Component {
         <div // eslint-disable-line jsx-a11y/interactive-supports-focus
           className={this.props.className}
           role="grid"
-          onClick={this.onClick}
+          onFocus={this.onFocus}
           onKeyDown={this.onKeyDown}
         >
           {this.props.children}
