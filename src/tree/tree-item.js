@@ -5,6 +5,7 @@ import OpenIdsContext from './open-ids-context.js';
 import combineRenderProps from '../utils/combine-render-props.js';
 
 export default function TreeItem({
+  allowFocus,
   children,
   id,
   title,
@@ -25,7 +26,7 @@ export default function TreeItem({
             aria-expanded={children ? open : undefined}
             aria-selected={active ? true : undefined}
             role="treeitem"
-            tabIndex={active ? '0' : undefined}
+            tabIndex={active || allowFocus ? '0' : undefined}
           >
             <span>
               {title}
@@ -43,11 +44,13 @@ export default function TreeItem({
 }
 
 TreeItem.propTypes = {
+  allowFocus: PropTypes.bool,
   children: PropTypes.node,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   title: PropTypes.node.isRequired,
 };
 
 TreeItem.defaultProps = {
+  allowFocus: undefined,
   children: undefined,
 };

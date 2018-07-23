@@ -5,7 +5,7 @@ import { Tree, TreeItem } from '../tree';
 export default class TreeExample extends React.Component {
   constructor() {
     super();
-    this.state = { activeId: '0', openIds: [] };
+    this.state = { activeId: undefined, openIds: [] };
   }
 
   render() {

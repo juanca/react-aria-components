@@ -18,7 +18,12 @@ export default function Tree({
     >
       <ActiveIdContext.Provider value={activeId}>
         <OpenIdsContext.Provider value={openIds}>
-          {children}
+          {React.Children.map(children, (child, index) => {
+            if (!activeId && index === 0) {
+              return React.cloneElement(child, { allowFocus: true });
+            }
+            return child;
+          })}
         </OpenIdsContext.Provider>
       </ActiveIdContext.Provider>
     </ul>
@@ -26,7 +31,7 @@ export default function Tree({
 }
 
 Tree.propTypes = {
-  activeId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  activeId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   'aria-label': PropTypes.string,
   'aria-labelledby': PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -34,6 +39,7 @@ Tree.propTypes = {
 };
 
 Tree.defaultProps = {
+  activeId: undefined,
   'aria-label': undefined,
   'aria-labelledby': undefined,
 };
