@@ -13,7 +13,7 @@ class FancyInputGridCell extends React.Component {
     this.state = {
       interactive: false,
       value: props.defaultValue,
-      wasTabbed: false,
+      wasEscaped: false,
     };
 
     this.onBlur = this.onBlur.bind(this);
@@ -27,14 +27,14 @@ class FancyInputGridCell extends React.Component {
       this.inputRef.current.focus();
     }
 
-    if (state.interactive && !this.state.interactive && !this.state.wasTabbed) {
+    if (state.interactive && !this.state.interactive && this.state.wasEscaped) {
       this.props.gridCellRef.current.focus();
     }
 
-    if (this.state.wasTabbed) {
+    if (this.state.wasEscaped) {
       // Immediately unset the tab flag to avoid infinite updates.
       // The flag should only ever be set in one place -- interactive mode + tab press.
-      this.setState({ wasTabbed: false }); // eslint-disable-line react/no-did-update-set-state
+      this.setState({ wasEscaped: false }); // eslint-disable-line react/no-did-update-set-state
     }
   }
 
@@ -67,7 +67,6 @@ class FancyInputGridCell extends React.Component {
           } else {
             this.setState({
               interactive: false,
-              wasTabbed: true,
             });
             nextCell.current.focus();
           }
@@ -80,7 +79,10 @@ class FancyInputGridCell extends React.Component {
         break;
       }
       case 'Escape': {
-        this.setState({ interactive: false });
+        this.setState({
+          interactive: false,
+          wasEscaped: true,
+        });
         break;
       }
       case 'Tab': {
@@ -94,7 +96,6 @@ class FancyInputGridCell extends React.Component {
           } else {
             this.setState({
               interactive: false,
-              wasTabbed: true,
             });
             nextCell.current.focus();
           }
