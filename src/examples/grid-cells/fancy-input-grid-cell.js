@@ -105,8 +105,10 @@ class FancyInputGridCell extends React.Component {
         break;
       }
       default: {
-        // Do not use keyboard navigation while interactive
         if (this.state.interactive) {
+          // Do not use native keyboard navigation while interactive
+          event.preventDefault();
+          // Do not use grid keyboard navigation while interactive
           event.stopPropagation();
         }
 
