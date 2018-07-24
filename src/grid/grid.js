@@ -10,8 +10,8 @@ export default class Grid extends React.Component {
     super(props);
 
     this.state = {
-      rowIndex: 0,
-      columnIndex: 0,
+      rowIndex: -1,
+      columnIndex: -1,
     };
 
     this.onFocus = this.onFocus.bind(this);
@@ -44,6 +44,7 @@ export default class Grid extends React.Component {
       case 'ArrowDown': {
         event.preventDefault();
         this.setState(state => ({
+          columnIndex: Math.max(state.columnIndex, 0),
           rowIndex: Math.min(state.rowIndex + 1, this.props.gridRefs.length - 1),
         }));
 
@@ -53,6 +54,7 @@ export default class Grid extends React.Component {
         event.preventDefault();
         this.setState(state => ({
           columnIndex: Math.max(state.columnIndex - 1, 0),
+          rowIndex: Math.max(state.rowIndex, 0),
         }));
 
         return true;
@@ -61,6 +63,7 @@ export default class Grid extends React.Component {
         event.preventDefault();
         this.setState(state => ({
           columnIndex: Math.min(state.columnIndex + 1, this.props.gridRefs[0].length - 1),
+          rowIndex: Math.max(state.rowIndex, 0),
         }));
 
         return true;
@@ -68,6 +71,7 @@ export default class Grid extends React.Component {
       case 'ArrowUp': {
         event.preventDefault();
         this.setState(state => ({
+          columnIndex: Math.max(state.columnIndex, 0),
           rowIndex: Math.max(state.rowIndex - 1, 0),
         }));
 
@@ -86,6 +90,7 @@ export default class Grid extends React.Component {
           role="grid"
           onFocus={this.onFocus}
           onKeyDown={this.onKeyDown}
+          tabIndex="0"
         >
           {this.props.children}
         </div>
