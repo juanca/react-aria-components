@@ -7,6 +7,7 @@
     "type": "git",
     "url": "https://github.com/juanca/react-aria-components"
   },
+  "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
     "deploy": "ghpages -d dist/",
     "predeploy": "webpack --mode production",
