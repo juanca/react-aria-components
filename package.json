@@ -9,7 +9,7 @@
   },
   "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
-    "deploy": "ghpages -d dist/",
+    "deploy": "gh-pages -d dist/",
     "predeploy": "webpack --mode production",
     "start": "webpack-serve",
     "test": "echo \"Error: no test specified\" && exit 1"
