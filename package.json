@@ -9,6 +9,7 @@
   },
   "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
+    "build-ssr": "webpack --config webpack.ssr.config.js",
     "deploy": "gh-pages -d dist/",
     "predeploy": "webpack --mode production",
     "start": "webpack-serve",
