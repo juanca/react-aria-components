@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d dist/",
     "predeploy": "webpack --mode production",
     "start": "webpack-serve",
+    "start-ssr": "node hypernova.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juan Carlos Medina",
