@@ -1,21 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uniqueId from '../utils/unique-id.js';
 
-export default function Section({ children, open, title, onClick }) {
-  const titleVal = typeof title === 'function' ? title({ open }) : title;
+export default class Section extends React.Component {
+  constructor() {
+    super();
+    this.accessibleId = uniqueId();
+  }
 
-  return (
-    <div>
-      <div role="heading">
-        <button aria-expanded={open} type="button" onClick={onClick}>{titleVal}</button>
-      </div>
-      { open && (
-        <div>
-          { children }
+  render() {
+    const { children, open, title, onClick } = this.props;
+    const titleVal = typeof title === 'function' ? title({ open }) : title;
+
+    return (
+      <div>
+        <div role="heading">
+          <button
+            aria-controls={this.accessibleId}
+            aria-expanded={open}
+            type="button"
+            onClick={onClick}
+          >
+            {titleVal}
+          </button>
         </div>
-      )}
-    </div>
-  );
+        <div id={this.accessibleId}>
+          {open && children}
+        </div>
+      </div>
+    );
+  }
 }
 
 Section.propTypes = {
