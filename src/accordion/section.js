@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Section({ children, open, title, onClick }) {
-  const titleVal = typeof title === 'function' ? title({ open, onClick }) : <button type="button" onClick={onClick}>{title}</button>;
+  const titleVal = typeof title === 'function' ? title({ open }) : title;
 
   return (
     <React.Fragment>
-      { titleVal }
+      <div role="heading">
+        <button aria-expanded={open} type="button" onClick={onClick}>{titleVal}</button>
+      </div>
       { open && (
         <div>
           { children }

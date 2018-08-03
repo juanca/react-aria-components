@@ -2,10 +2,8 @@ import React from 'react';
 import Example from './example.js';
 import { Accordion, Section } from '../accordion';
 
-const customTitle = ({ onClick }) => ( // eslint-disable-line react/prop-types
-  <button type="button" onClick={onClick}>
-    Third
-  </button>
+const customTitle = () => (
+  <span>Third</span>
 );
 
 export default class AccordionExample extends React.Component {
