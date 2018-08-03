@@ -42,14 +42,14 @@ export default class Section extends React.Component {
 Section.propTypes = {
   cannotClose: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
   open: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  onClick: PropTypes.func,
 };
 
 Section.defaultProps = {
   cannotClose: undefined,
+  onClick: undefined,
   open: false,
   title: undefined,
-  onClick: undefined,
 };
