@@ -9,7 +9,13 @@ export default class Section extends React.Component {
   }
 
   render() {
-    const { children, open, title, onClick } = this.props;
+    const {
+      cannotClose,
+      children,
+      onClick,
+      open,
+      title,
+    } = this.props;
     const titleVal = typeof title === 'function' ? title({ open }) : title;
 
     return (
@@ -17,6 +23,7 @@ export default class Section extends React.Component {
         <div role="heading">
           <button
             aria-controls={this.accessibleId}
+            aria-disabled={cannotClose}
             aria-expanded={open}
             type="button"
             onClick={onClick}
@@ -33,6 +40,7 @@ export default class Section extends React.Component {
 }
 
 Section.propTypes = {
+  cannotClose: PropTypes.bool,
   children: PropTypes.node.isRequired,
   open: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
@@ -40,6 +48,7 @@ Section.propTypes = {
 };
 
 Section.defaultProps = {
+  cannotClose: undefined,
   open: false,
   title: undefined,
   onClick: undefined,
