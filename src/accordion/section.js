@@ -5,7 +5,7 @@ export default function Section({ children, open, title, onClick }) {
   const titleVal = typeof title === 'function' ? title({ open }) : title;
 
   return (
-    <React.Fragment>
+    <div>
       <div role="heading">
         <button aria-expanded={open} type="button" onClick={onClick}>{titleVal}</button>
       </div>
@@ -14,7 +14,7 @@ export default function Section({ children, open, title, onClick }) {
           { children }
         </div>
       )}
-    </React.Fragment>
+    </div>
   );
 }
 
