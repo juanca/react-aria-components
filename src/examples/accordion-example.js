@@ -2,9 +2,14 @@ import React from 'react';
 import Example from './example.js';
 import { Accordion, Section } from '../accordion';
 
-const customTitle = () => (
-  <span>Third</span>
-);
+function CustomTitle({ open, title }) { // eslint-disable-line react/prop-types
+  return (
+    <React.Fragment>
+      <span>{title}</span>
+      <span>{open ? '▲' : '▼'}</span>
+    </React.Fragment>
+  );
+}
 
 export default class AccordionExample extends React.Component {
   constructor() {
@@ -31,17 +36,25 @@ export default class AccordionExample extends React.Component {
     return (
       <Example title="Accordion">
         <Accordion>
-          <Section title="First" open={this.state.first} onClick={this.handleClick('first')}>
+          <Section onClick={this.handleClick('first')} open={this.state.first} title="First">
             <span>
               A
             </span>
           </Section>
-          <Section title="Second" open={this.state.second} onClick={this.handleClick('second')}>
+          <Section
+            onClick={this.handleClick('second')}
+            open={this.state.second}
+            title={({ open }) => <CustomTitle open={open} title="Second" />}
+          >
             <span>
               B
             </span>
           </Section>
-          <Section title={customTitle} open={this.state.third} onClick={this.handleClick('third')}>
+          <Section
+            onClick={this.handleClick('third')}
+            open={this.state.third}
+            title={({ open }) => <CustomTitle open={open} title="Third" />}
+          >
             <span>
               C
             </span>
