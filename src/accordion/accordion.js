@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './accordion.css';
 
-export default function Accordion({ children }) {
+export default function Accordion({ children, className }) {
   return (
-    <div>
+    <div className={className}>
       { children }
     </div>
   );
@@ -11,4 +12,9 @@ export default function Accordion({ children }) {
 
 Accordion.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
+
+Accordion.defaultProps = {
+  className: styles.container,
 };

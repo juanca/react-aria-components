@@ -6,7 +6,7 @@ function CustomTitle({ open, title }) { // eslint-disable-line react/prop-types
   return (
     <React.Fragment>
       <span>{title}</span>
-      <span>{open ? '▲' : '▼'}</span>
+      <span style={{ float: 'right' }}>{open ? '▲' : '▼'}</span>
     </React.Fragment>
   );
 }
