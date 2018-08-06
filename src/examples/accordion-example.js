@@ -37,6 +37,7 @@ export default class AccordionExample extends React.Component {
       <Example title="Accordion">
         <Accordion>
           <Section
+            headingLevel={3}
             onClick={this.handleClick('first')}
             open={this.state.first}
             title={({ open }) => <CustomTitle open={open} title="First" />}
@@ -46,6 +47,7 @@ export default class AccordionExample extends React.Component {
             </span>
           </Section>
           <Section
+            headingLevel={3}
             onClick={this.handleClick('second')}
             open={this.state.second}
             title={({ open }) => <CustomTitle open={open} title="Second" />}
@@ -55,6 +57,7 @@ export default class AccordionExample extends React.Component {
             </span>
           </Section>
           <Section
+            headingLevel={3}
             onClick={this.handleClick('third')}
             open={this.state.third}
             title={({ open }) => <CustomTitle open={open} title="Third" />}

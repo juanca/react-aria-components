@@ -2,6 +2,10 @@
   border-top: 1px solid LightGrey;
 }
 
+.heading {
+  margin: 0;
+}
+
 .panel {
   border-top: 1px solid LightGrey;
   padding: 1em 1.5em;
