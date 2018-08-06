@@ -6,7 +6,7 @@ function CustomTitle({ open, title }) { // eslint-disable-line react/prop-types
   return (
     <React.Fragment>
       <span>{title}</span>
-      <span style={{ float: 'right' }}>{open ? '▲' : '▼'}</span>
+      <span style={{ float: 'right' }}>{open ? '-' : '+'}</span>
     </React.Fragment>
   );
 }
@@ -36,7 +36,11 @@ export default class AccordionExample extends React.Component {
     return (
       <Example title="Accordion">
         <Accordion>
-          <Section onClick={this.handleClick('first')} open={this.state.first} title="First">
+          <Section
+            onClick={this.handleClick('first')}
+            open={this.state.first}
+            title={({ open }) => <CustomTitle open={open} title="First" />}
+          >
             <span>
               A
             </span>
