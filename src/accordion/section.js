@@ -34,7 +34,7 @@ export default class Section extends React.Component {
     const titleVal = typeof title === 'function' ? title({ open }) : title;
     const Heading = headings[headingLevel];
 
-    if (!Heading) {
+    if (!headings.hasOwnProperty(headingLevel)) {
       throw new Error('Accordion must have a headingLevel between 1 and 6');
     }
 

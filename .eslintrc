@@ -2,6 +2,7 @@
   "extends": "airbnb",
   "rules": {
     "import/extensions": "off",
+    "no-prototype-builtins": "off",
     "object-curly-newline": "off",
     "prefer-destructuring": "off",
     "react/destructuring-assignment": "off",
