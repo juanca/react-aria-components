@@ -5,7 +5,7 @@ import styles from './accordion.css';
 export default function Accordion({ children, className }) {
   return (
     <div className={className}>
-      { children }
+      {children}
     </div>
   );
 }
