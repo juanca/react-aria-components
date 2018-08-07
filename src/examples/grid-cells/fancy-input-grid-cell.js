@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import GridCell from '../../grid/grid-cell.js';
-import GridContext from '../../grid/grid-context.js';
-import RefType from '../../prop-types/ref.js';
+import GridCell from '../../../packages/grid/src/grid-cell.js';
+import GridContext from '../../../packages/grid/src/grid-context.js';
+import RefType from '../../../packages/core/src/prop-types/ref.js';
 
 class FancyInputGridCell extends React.Component {
   constructor(props) {

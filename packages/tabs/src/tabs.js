@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import uniqueId from '../utils/unique-id';
+import uniqueId from '@react-aria-components/core/src/utils/unique-id';
 import TabList from './tab-list';
 import TabPanels from './tab-panels';
 

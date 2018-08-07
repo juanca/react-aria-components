@@ -6,7 +6,7 @@ import {
   Grid,
   Row,
   RowHeaders,
-} from '../grid';
+} from '../../packages/grid/src';
 
 import FancyInputGridCell from './grid-cells/fancy-input-grid-cell.js';
 import Example from './example.js';

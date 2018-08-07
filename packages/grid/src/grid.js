@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import RefType from '@react-aria-components/core/src/prop-types/ref.js';
 
 import GridContext from './grid-context.js';
-import RefType from '../prop-types/ref.js';
 import styles from './grid.css';
 
 export default class Grid extends React.Component {

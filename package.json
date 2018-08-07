@@ -1,8 +1,5 @@
 {
-  "name": "react-aria-components",
-  "version": "0.0.3",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/juanca/react-aria-components"
@@ -12,7 +9,8 @@
     "deploy": "gh-pages -d dist/",
     "predeploy": "webpack --mode production",
     "start": "webpack-serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lerna": "lerna"
   },
   "author": "Juan Carlos Medina",
   "license": "MIT",
@@ -37,6 +35,7 @@
     "gh-pages": "^1.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "lerna": "^2.11.0",
     "mini-css-extract-plugin": "^0.4.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
@@ -44,10 +43,5 @@
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.4",
     "webpack-serve": "^1.0.2"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.6.1",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0"
   }
 }

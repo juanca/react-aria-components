@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import RefType from '@react-aria-components/core/src/prop-types/ref.js';
 
 import GridCell from './grid-cell.js';
 import GridContext from './grid-context.js';
-import RefType from '../prop-types/ref.js';
 
 class InteractiveGridCell extends React.Component {
   constructor(props) {
