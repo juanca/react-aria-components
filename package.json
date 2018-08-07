@@ -4,7 +4,10 @@
     "type": "git",
     "url": "https://github.com/juanca/react-aria-components"
   },
+  "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
+    "deploy": "gh-pages -d dist/",
+    "predeploy": "webpack --mode production",
     "start": "webpack-serve",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lerna": "lerna"
@@ -29,6 +32,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "faker": "^4.1.0",
+    "gh-pages": "^1.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "lerna": "^2.11.0",

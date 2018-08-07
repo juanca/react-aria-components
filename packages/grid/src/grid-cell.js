@@ -15,7 +15,7 @@ class GridCell extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
 
     this.state = {
-      tabIndex: this.props.gridCellRefs[0][0] === this.props.gridCellRef ? 0 : -1,
+      tabIndex: -1,
     };
   }
 
