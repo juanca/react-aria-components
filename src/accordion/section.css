@@ -19,7 +19,3 @@
   text-align: left;
   width: 100%
 }
-
-.trigger:focus, .trigger:hover {
-  background-color: WhiteSmoke;
-}
