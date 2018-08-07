@@ -10,11 +10,11 @@ export default class Grid extends React.Component {
     super(props);
 
     this.state = {
-      rowIndex: 0,
-      columnIndex: 0,
+      rowIndex: -1,
+      columnIndex: -1,
     };
 
-    this.onClick = this.onClick.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
@@ -22,7 +22,7 @@ export default class Grid extends React.Component {
     this.props.gridRefs[this.state.rowIndex][this.state.columnIndex].current.focus();
   }
 
-  onClick(event) {
+  onFocus(event) {
     let newColumnIndex;
     const newRowIndex = this.props.gridRefs.findIndex((rows) => {
       newColumnIndex = rows.findIndex(cellRef => cellRef.current === event.target);
@@ -44,6 +44,7 @@ export default class Grid extends React.Component {
       case 'ArrowDown': {
         event.preventDefault();
         this.setState(state => ({
+          columnIndex: Math.max(state.columnIndex, 0),
           rowIndex: Math.min(state.rowIndex + 1, this.props.gridRefs.length - 1),
         }));
 
@@ -53,6 +54,7 @@ export default class Grid extends React.Component {
         event.preventDefault();
         this.setState(state => ({
           columnIndex: Math.max(state.columnIndex - 1, 0),
+          rowIndex: Math.max(state.rowIndex, 0),
         }));
 
         return true;
@@ -61,6 +63,7 @@ export default class Grid extends React.Component {
         event.preventDefault();
         this.setState(state => ({
           columnIndex: Math.min(state.columnIndex + 1, this.props.gridRefs[0].length - 1),
+          rowIndex: Math.max(state.rowIndex, 0),
         }));
 
         return true;
@@ -68,6 +71,7 @@ export default class Grid extends React.Component {
       case 'ArrowUp': {
         event.preventDefault();
         this.setState(state => ({
+          columnIndex: Math.max(state.columnIndex, 0),
           rowIndex: Math.max(state.rowIndex - 1, 0),
         }));
 
@@ -84,8 +88,9 @@ export default class Grid extends React.Component {
         <div // eslint-disable-line jsx-a11y/interactive-supports-focus
           className={this.props.className}
           role="grid"
-          onClick={this.onClick}
+          onFocus={this.onFocus}
           onKeyDown={this.onKeyDown}
+          tabIndex="0"
         >
           {this.props.children}
         </div>
