@@ -2,7 +2,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/examples/index.js',
+  entry: {
+    design_studies: './src/design-studies/index.js',
+    examples: './src/examples/index.js',
+  },
   mode: 'development',
   module: {
     rules: [{
@@ -32,8 +35,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/examples/index.html',
+      chunks: ['design_studies'],
+      filename: './design-studies.html',
+      template: './src/design-studies/index.html',
+    }),
+    new HtmlWebPackPlugin({
+      chunks: ['examples'],
       filename: './index.html',
+      template: './src/examples/index.html',
     }),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',
