@@ -17,7 +17,7 @@ module.exports = {
         loader: 'babel-loader',
       }, {
         loader: 'eslint-loader',
-      }]
+      }],
     }, {
       test: /\.css$/,
       use: [{
@@ -39,5 +39,5 @@ module.exports = {
       chunkFilename: '[id].css',
       filename: '[name].css',
     }),
-  ]
+  ],
 };
