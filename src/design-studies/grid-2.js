@@ -20,11 +20,11 @@ export default function Grid2() {
   return (
     <Grid className={styles['grid-2-container']} gridRefs={createGridRefs()}>
       <RowHeaders className={styles['row-headers']} key="row-headers">
-        {columns.map(column => (
+        {columns.map((column, index) => (
           <ColumnHeader
             className={column.columnHeaderClassName}
-            key={column.id}
-            idX={column.id}
+            key={index} // eslint-disable-line
+            idX={index}
             idY={0}
           >
             {column}
@@ -33,11 +33,11 @@ export default function Grid2() {
       </RowHeaders>
       {data.map(datum => (
         <Row key={datum.id}>
-          {columns.map(column => (
+          {columns.map((column, index) => (
             <FancyInputGridCell
               defaultValue={datum[column].toString()}
-              key={column.id}
-              idX={column.id}
+              key={index} // eslint-disable-line
+              idX={index}
               idY={datum.id}
             />
           ))}
