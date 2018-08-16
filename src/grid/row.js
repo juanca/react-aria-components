@@ -1,11 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import RefPropType from '../prop-types/ref.js';
 import styles from './row.css';
 
 export default function Row(props) {
   return (
-    <div className={props.className} role="row">
+    <div // eslint-disable-line jsx-a11y/interactive-supports-focus
+      className={props.className}
+      onBlur={props.onBlur}
+      onKeyDown={props.onKeyDown}
+      ref={props.rowRef}
+      role="row"
+    >
       {props.children}
     </div>
   );
@@ -13,9 +20,15 @@ export default function Row(props) {
 
 Row.defaultProps = {
   className: styles.container,
+  onBlur: () => {},
+  onKeyDown: () => {},
+  rowRef: { current: null },
 };
 
 Row.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  onBlur: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  rowRef: RefPropType,
 };
