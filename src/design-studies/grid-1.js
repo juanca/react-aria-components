@@ -21,11 +21,11 @@ export default function Grid1() {
   return (
     <Grid className={styles['grid-1-container']} gridRefs={createGridRefs()}>
       <RowHeaders className={styles['row-headers']} key="row-headers">
-        {columns.map(column => (
+        {columns.map((column, index) => (
           <ColumnHeader
             className={column.columnHeaderClassName}
-            key={column.id}
-            idX={column.id}
+            key={index} // eslint-disable-line react/no-array-index-key
+            idX={index}
             idY={0}
           >
             {column}
@@ -34,11 +34,11 @@ export default function Grid1() {
       </RowHeaders>
       {data.map(datum => (
         <Row key={datum.id}>
-          {columns.map(column => (
+          {columns.map((column, index) => (
             <InteractiveGridCell
               defaultValue={datum[column].toString()}
-              key={column.id}
-              idX={column.id}
+              key={index} // eslint-disable-line react/no-array-index-key
+              idX={index}
               idY={datum.id}
             >
               {interactive => (
