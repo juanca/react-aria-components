@@ -12,6 +12,7 @@ class FancyInputGridCell extends React.Component {
     this.inputRef = React.createRef();
     this.state = {
       interactive: false,
+      lastValue: props.defaultValue, // eslint-disable-line react/no-unused-state
       value: props.defaultValue,
       wasEscaped: false,
     };
@@ -61,13 +62,15 @@ class FancyInputGridCell extends React.Component {
           const nextCell = event.shiftKey ? this.props.minusY : this.props.plusY;
 
           if (nextCell === this.props.gridCellRef) {
-            this.setState({
+            this.setState(state => ({
+              lastValue: state.value,
               interactive: false,
-            });
+            }));
           } else {
-            this.setState({
+            this.setState(state => ({
+              lastValue: state.value,
               interactive: false,
-            });
+            }));
             nextCell.current.focus();
           }
         } else {
@@ -79,10 +82,12 @@ class FancyInputGridCell extends React.Component {
         break;
       }
       case 'Escape': {
-        this.setState({
+        this.setState(state => ({
           interactive: false,
+          value: state.lastValue,
           wasEscaped: true,
-        });
+        }));
+
         break;
       }
       case 'Tab': {

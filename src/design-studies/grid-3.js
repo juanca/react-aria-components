@@ -6,6 +6,7 @@ import {
   RowHeaders,
 } from '../grid';
 import EditableRow from '../grid/editable-row.js';
+import InputGridCell from '../examples/grid-cells/input-grid-cell.js';
 
 import data from './data.js';
 import styles from './styles.css';
@@ -40,9 +41,10 @@ export default function Grid3() {
               idX={index}
               idY={datum.id}
             >
-              {editing
-                ? <input defaultValue={datum[column].toString()} />
-                : datum[column].toString()}
+              <InputGridCell
+                defaultValue={datum[column].toString()}
+                interactive={editing}
+              />
             </GridCell>
           ))}
         </EditableRow>
