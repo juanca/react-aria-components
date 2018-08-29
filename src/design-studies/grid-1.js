@@ -7,11 +7,15 @@ import {
   RowHeaders,
 } from '../grid';
 import InputGridCell from '../examples/grid-cells/input-grid-cell.js';
+import SelectablePosition from './grid-cells/selectable-position.js';
 
 import data from './data.js';
 import styles from './styles.css';
 
-const columns = Object.keys(data[0]);
+const columns = Object.keys(data[0]).map(column => ({
+  element: column === 'id' ? SelectablePosition : InputGridCell,
+  key: column,
+}));
 
 function createGridRefs() {
   return [0].concat(data).map(() => columns.map(() => React.createRef()));
@@ -28,7 +32,7 @@ export default function Grid1() {
             idX={index}
             idY={0}
           >
-            {column}
+            {column.key}
           </ColumnHeader>
         ))}
       </RowHeaders>
@@ -36,15 +40,15 @@ export default function Grid1() {
         <Row key={datum.id}>
           {columns.map((column, index) => (
             <InteractiveGridCell
-              defaultValue={datum[column].toString()}
+              defaultValue={datum[column.key].toString()}
               key={index} // eslint-disable-line react/no-array-index-key
               idX={index}
               idY={datum.id}
             >
               {interactive => (
-                <InputGridCell
+                <column.element
                   interactive={interactive}
-                  defaultValue={datum[column].toString()}
+                  defaultValue={datum[column.key].toString()}
                 />
               )}
             </InteractiveGridCell>
