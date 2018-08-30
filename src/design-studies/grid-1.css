@@ -1,0 +1,41 @@
+.grid-container {
+}
+
+.column-header {
+  composes: container from '../grid/column-header.css';
+
+  background-color: #fbfaf6;
+  border-right: 1px solid #e1e1dd;
+  border-top: 1px solid #e1e1dd;
+  border-bottom: 1px solid #e1e1dd;
+  color: #4a4a4a;
+  font-size: 12px;
+  height: auto;
+  padding: 5px 10px 5px 10px;
+  text-transform: uppercase;
+}
+
+.column-header:first-child {
+  border-left: none;
+}
+
+.row-headers {
+  composes: container from '../grid/row-headers.css';
+}
+
+.body-row {
+  composes: container from '../grid/row.css';
+}
+
+.body-cell {
+  composes: container from '../grid/grid-cell.css';
+
+  border-bottom: 1px solid #e1e1dd;
+  border-right: none;
+  height: auto;
+  padding: 5px 10px 5px 10px;
+}
+
+.body-cell:first-child {
+  border-left: none;
+}

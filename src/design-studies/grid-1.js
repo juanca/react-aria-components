@@ -10,7 +10,7 @@ import InputGridCell from '../examples/grid-cells/input-grid-cell.js';
 import SelectablePosition from './grid-cells/selectable-position.js';
 
 import data from './data.js';
-import styles from './styles.css';
+import styles from './grid-1.css';
 
 const columns = Object.keys(data[0]).map(column => ({
   element: column === 'id' ? SelectablePosition : InputGridCell,
@@ -23,11 +23,11 @@ function createGridRefs() {
 
 export default function Grid1() {
   return (
-    <Grid className={styles['grid-1-container']} gridRefs={createGridRefs()}>
+    <Grid className={styles['grid-container']} gridRefs={createGridRefs()}>
       <RowHeaders className={styles['row-headers']} key="row-headers">
         {columns.map((column, index) => (
           <ColumnHeader
-            className={column.columnHeaderClassName}
+            className={styles['column-header']}
             key={index} // eslint-disable-line react/no-array-index-key
             idX={index}
             idY={0}
@@ -37,9 +37,13 @@ export default function Grid1() {
         ))}
       </RowHeaders>
       {data.map(datum => (
-        <Row key={datum.id}>
+        <Row
+          className={styles['body-row']}
+          key={datum.id}
+        >
           {columns.map((column, index) => (
             <InteractiveGridCell
+              className={styles['body-cell']}
               defaultValue={datum[column.key].toString()}
               key={index} // eslint-disable-line react/no-array-index-key
               idX={index}
