@@ -26,14 +26,14 @@ export default class TabsExample extends React.Component {
         onActivateTab={index => this.setState({ activeIndex: index })}
       >
         <TabList>
-          <Tab>Grid 1</Tab>
-          <Tab>Grid 2</Tab>
-          <Tab>Grid 3</Tab>
+          <Tab id="grid-1-label">Grid Concept 1</Tab>
+          <Tab id="grid-2-label">Grid Concept 2</Tab>
+          <Tab id="grid-3-label">Grid Concept 3</Tab>
         </TabList>
         <TabPanels hasFocusableContent>
-          <Grid1 />
-          <Grid2 />
-          <Grid3 />
+          <Grid1 aria-labelledby="grid-1-label" />
+          <Grid2 aria-labelledby="grid-2-label" />
+          <Grid3 aria-labelledby="grid-2-label" />
         </TabPanels>
       </Tabs>
     );

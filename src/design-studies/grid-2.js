@@ -16,9 +16,9 @@ function createGridRefs() {
   return [0].concat(data).map(() => columns.map(() => React.createRef()));
 }
 
-export default function Grid2() {
+export default function Grid2(props) {
   return (
-    <Grid className={styles['grid-2-container']} gridRefs={createGridRefs()}>
+    <Grid {...props} className={styles['grid-2-container']} gridRefs={createGridRefs()}>
       <RowHeaders className={styles['row-headers']} key="row-headers">
         {columns.map((column, index) => (
           <ColumnHeader

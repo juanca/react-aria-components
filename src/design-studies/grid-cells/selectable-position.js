@@ -25,7 +25,7 @@ export default class SelectablePosition extends React.Component {
 
   render() {
     const position = (
-      <div role="checkbox" aria-checked="false" tabIndex="0">{this.props.defaultValue}</div>
+      <div role="checkbox" aria-checked="false">{this.props.defaultValue}</div>
     );
 
     const checkbox = (

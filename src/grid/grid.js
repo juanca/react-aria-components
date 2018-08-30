@@ -86,6 +86,7 @@ export default class Grid extends React.Component {
     return (
       <GridContext.Provider value={this.props.gridRefs}>
         <div // eslint-disable-line jsx-a11y/interactive-supports-focus
+          aria-labelledby={this.props['aria-labelledby']}
           className={this.props.className}
           role="grid"
           onFocus={this.onFocus}
@@ -104,6 +105,7 @@ Grid.defaultProps = {
 };
 
 Grid.propTypes = {
+  'aria-labelledby': PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   gridRefs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
