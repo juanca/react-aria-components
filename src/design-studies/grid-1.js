@@ -10,7 +10,7 @@ import InputGridCell from '../examples/grid-cells/input-grid-cell.js';
 import SelectablePosition from './grid-cells/selectable-position.js';
 
 import data from './data.js';
-import styles from './grid-1.css';
+import styles from './grid.css';
 
 const columns = Object.keys(data[0]).map(column => ({
   element: column === 'id' ? SelectablePosition : InputGridCell,

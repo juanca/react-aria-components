@@ -137,6 +137,7 @@ class FancyInputGridCell extends React.Component {
     return (
       <GridCell
         {...this.props}
+        className={this.props.cssContainer}
         onBlur={this.onBlur}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
@@ -144,6 +145,7 @@ class FancyInputGridCell extends React.Component {
         {this.state.interactive
           ? (
             <input
+              className={this.props.cssInput}
               defaultValue={this.state.value}
               onChange={this.onChange}
               ref={this.inputRef}
