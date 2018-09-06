@@ -51,8 +51,8 @@ export default function Grid1() {
             >
               {interactive => (
                 <column.element
-                  interactive={interactive}
                   defaultValue={datum[column.key].toString()}
+                  interactive={interactive}
                 />
               )}
             </InteractiveGridCell>
