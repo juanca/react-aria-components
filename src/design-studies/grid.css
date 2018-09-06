@@ -39,3 +39,12 @@
 .body-cell:first-child {
   border-left: none;
 }
+
+.input-cell-container {
+
+}
+
+.input-cell-input {
+  box-sizing: border-box;
+  width: 100%;
+}
