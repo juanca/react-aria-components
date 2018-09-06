@@ -51,6 +51,7 @@ export default function Grid1() {
             >
               {interactive => (
                 <column.element
+                  className={styles['input-cell-input']}
                   defaultValue={datum[column.key].toString()}
                   interactive={interactive}
                 />
