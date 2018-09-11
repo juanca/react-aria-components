@@ -21,6 +21,7 @@
     "npm": "^6.0.0"
   },
   "devDependencies": {
+    "@beyonk/google-fonts-webpack-plugin": "^0.5.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-polyfill": "^6.26.0",

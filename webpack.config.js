@@ -1,3 +1,4 @@
+const GoogleFontsPlugin = require('@beyonk/google-fonts-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
@@ -34,6 +35,12 @@ module.exports = {
     }],
   },
   plugins: [
+    new GoogleFontsPlugin({
+      fonts: [{
+        family: 'Open Sans',
+        variants: ['400', '600'],
+      }],
+    }),
     new HtmlWebPackPlugin({
       chunks: ['design_studies'],
       filename: './design-studies.html',
