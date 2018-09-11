@@ -6,16 +6,10 @@ import {
   Row,
   RowHeaders,
 } from '../grid';
-import InputGridCell from '../examples/grid-cells/input-grid-cell.js';
-import SelectablePosition from './grid-cells/selectable-position.js';
 
+import columns from './columns.js';
 import data from './data.js';
 import styles from './grid.css';
-
-const columns = Object.keys(data[0]).map(column => ({
-  element: column === 'id' ? SelectablePosition : InputGridCell,
-  key: column,
-}));
 
 function createGridRefs() {
   return [0].concat(data).map(() => columns.map(() => React.createRef()));
@@ -50,7 +44,7 @@ export default function Grid1(props) {
               idY={datum.id}
             >
               {interactive => (
-                <column.element
+                <column.component
                   className={styles['input-cell-input']}
                   defaultValue={datum[column.key].toString()}
                   interactive={interactive}
