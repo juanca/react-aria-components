@@ -28,6 +28,7 @@
 ._1B78s2qohBUzyVFCr6Ok62 {
   border-bottom: 1px solid black;
   border-right: 1px solid black;
+  box-sizing: border-box;
   flex-shrink: 0;
   height: 50px;
   overflow: auto; /* This might break DOM-based dropdowns */

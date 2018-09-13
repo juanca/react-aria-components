@@ -1,0 +1,29 @@
+/* === Open Sans - regular */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: url("./font/OpenSans-Regular.eot");
+	src: local("Open Sans Regular"),
+		local("OpenSans-Regular"),
+		url("./font/OpenSans-Regular.eot") format("embedded-opentype"),
+		url("./font/OpenSans-Regular.woff2") format("woff2"),
+		url("./font/OpenSans-Regular.woff") format("woff"),
+		url("./font/OpenSans-Regular.ttf") format("truetype"),
+		url("./font/OpenSans-Regular.svg") format("svg");
+}
+
+/* === Open Sans - 600 */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 600;
+	src: url("./font/OpenSans-SemiBold.eot");
+	src: local("Open Sans SemiBold"),
+		local("OpenSans-SemiBold"),
+		url("./font/OpenSans-SemiBold.eot") format("embedded-opentype"),
+		url("./font/OpenSans-SemiBold.woff2") format("woff2"),
+		url("./font/OpenSans-SemiBold.woff") format("woff"),
+		url("./font/OpenSans-SemiBold.ttf") format("truetype"),
+		url("./font/OpenSans-SemiBold.svg") format("svg");
+}
