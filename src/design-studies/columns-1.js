@@ -18,7 +18,6 @@ export default [
       >
         {interactive => (
           <SelectablePosition
-            className={styles['input-cell-input']}
             defaultValue={`${data.id}`}
             interactive={interactive}
           />
@@ -47,7 +46,8 @@ export default [
       >
         {interactive => (
           <InputGridCell
-            className={styles['input-cell-input']}
+            cssNonInteractive={styles['input-cell-non-interactive']}
+            cssInteractive={styles['input-cell-interactive']}
             defaultValue={data.title}
             interactive={interactive}
           />
@@ -76,7 +76,8 @@ export default [
       >
         {interactive => (
           <InputGridCell
-            className={styles['input-cell-input']}
+            cssNonInteractive={styles['input-cell-non-interactive']}
+            cssInteractive={styles['input-cell-interactive']}
             defaultValue={data.status}
             interactive={interactive}
           />
@@ -105,7 +106,8 @@ export default [
       >
         {interactive => (
           <InputGridCell
-            className={styles['input-cell-input']}
+            cssNonInteractive={styles['input-cell-non-interactive']}
+            cssInteractive={styles['input-cell-interactive']}
             defaultValue={data.tags.join(', ')}
             interactive={interactive}
           />
@@ -134,7 +136,8 @@ export default [
       >
         {interactive => (
           <InputGridCell
-            className={styles['input-cell-input']}
+            cssNonInteractive={styles['input-cell-non-interactive']}
+            cssInteractive={styles['input-cell-interactive']}
             defaultValue={data.assignees.join(', ')}
             interactive={interactive}
           />
@@ -163,7 +166,8 @@ export default [
       >
         {interactive => (
           <InputGridCell
-            className={styles['input-cell-input']}
+            cssNonInteractive={styles['input-cell-non-interactive']}
+            cssInteractive={styles['input-cell-interactive']}
             defaultValue={data.startDate}
             interactive={interactive}
           />
@@ -192,7 +196,8 @@ export default [
       >
         {interactive => (
           <InputGridCell
-            className={styles['input-cell-input']}
+            cssNonInteractive={styles['input-cell-non-interactive']}
+            cssInteractive={styles['input-cell-interactive']}
             defaultValue={data.endDate}
             interactive={interactive}
           />
@@ -221,7 +226,8 @@ export default [
       >
         {interactive => (
           <InputGridCell
-            className={styles['input-cell-input']}
+            cssNonInteractive={styles['input-cell-non-interactive']}
+            cssInteractive={styles['input-cell-interactive']}
             defaultValue={`${data.percent}`}
             interactive={interactive}
           />

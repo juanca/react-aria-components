@@ -51,23 +51,29 @@ export default class InputGridCell extends React.Component {
     return this.props.interactive
       ? (
         <input
-          className={this.props.className}
+          className={this.props.cssInteractive}
           defaultValue={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           ref={this.inputRef}
         />
       )
-      : this.state.value;
+      : (
+        <div className={this.props.cssNonInteractive}>
+          {this.state.value}
+        </div>
+      );
   }
 }
 
 InputGridCell.defaultProps = {
-  className: undefined,
+  cssNonInteractive: undefined,
+  cssInteractive: undefined,
 };
 
 InputGridCell.propTypes = {
-  className: PropTypes.string,
+  cssNonInteractive: PropTypes.string,
+  cssInteractive: PropTypes.string,
   defaultValue: PropTypes.string.isRequired,
   interactive: PropTypes.bool.isRequired,
 };

@@ -18,7 +18,6 @@ export default [
       >
         {interactive => (
           <SelectablePosition
-            className={styles['input-cell-input']}
             defaultValue={`${data.id}`}
             interactive={interactive}
           />
@@ -41,7 +40,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['large-body-cell']}
-        cssInput={styles['input-cell-input']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
         defaultValue={data.title}
         key="title"
         idX={1}
@@ -64,7 +64,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssInput={styles['input-cell-input']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
         defaultValue={data.status}
         key="status"
         idX={2}
@@ -87,7 +88,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssInput={styles['input-cell-input']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
         defaultValue={data.tags.join(', ')}
         key="tags"
         idX={3}
@@ -110,7 +112,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssInput={styles['input-cell-input']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
         defaultValue={data.assignees.join(', ')}
         key="assignees"
         idX={4}
@@ -133,7 +136,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssInput={styles['input-cell-input']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
         defaultValue={data.startDate}
         key="start-date"
         idX={5}
@@ -156,7 +160,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssInput={styles['input-cell-input']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
         defaultValue={data.endDate}
         key="end-date"
         idX={6}
@@ -179,7 +184,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssInput={styles['input-cell-input']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
         defaultValue={`${data.percent}`}
         key="percent-complete"
         idX={7}

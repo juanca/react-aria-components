@@ -145,13 +145,17 @@ class FancyInputGridCell extends React.Component {
         {this.state.interactive
           ? (
             <input
-              className={this.props.cssInput}
+              className={this.props.cssInteractive}
               defaultValue={this.state.value}
               onChange={this.onChange}
               ref={this.inputRef}
             />
           )
-          : this.state.value}
+          : (
+            <div className={this.props.cssNonInteractive}>
+              {this.state.value}
+            </div>
+          )}
       </GridCell>
     );
   }

@@ -40,9 +40,14 @@
   composes: large-column;
 }
 
-.input-cell-input {
+.input-cell-non-interactive {
+  padding: 5px 10px 5px 10px;
+}
+
+.input-cell-interactive {
   box-sizing: border-box;
   font-size: 14px;
   height: 100%;
+  padding: 5px 10px 5px 10px;
   width: 100%;
 }
