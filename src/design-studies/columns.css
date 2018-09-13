@@ -42,5 +42,7 @@
 
 .input-cell-input {
   box-sizing: border-box;
+  font-size: 14px;
+  height: 100%;
   width: 100%;
 }
