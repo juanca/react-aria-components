@@ -1,0 +1,46 @@
+.small-column {
+  width: 50px;
+}
+
+.medium-column {
+  width: 150px;
+}
+
+.large-column {
+  width: 300px;
+}
+
+.small-header-cell {
+  composes: column-header from './grid.css';
+  composes: small-column;
+}
+
+.medium-header-cell {
+  composes: column-header from './grid.css';
+  composes: medium-column;
+}
+
+.large-header-cell {
+  composes: column-header from './grid.css';
+  composes: large-column;
+}
+
+.small-body-cell {
+  composes: body-cell from './grid.css';
+  composes: small-column;
+}
+
+.medium-body-cell {
+  composes: body-cell from './grid.css';
+  composes: medium-column;
+}
+
+.large-body-cell {
+  composes: body-cell from './grid.css';
+  composes: large-column;
+}
+
+.input-cell-input {
+  box-sizing: border-box;
+  width: 100%;
+}
