@@ -25,19 +25,18 @@ export default class SelectablePosition extends React.Component {
 
   render() {
     const position = (
-      <div role="checkbox" aria-checked="false">{this.props.defaultValue}</div>
+      <div className={this.props.cssNonInteractive} role="checkbox" aria-checked="false">{this.props.defaultValue}</div>
     );
 
     const checkbox = (
-      <label htmlFor="ham">
-        <span>Ham</span>
+      <label className={this.props.cssInteractive} htmlFor="selected">
         <input
-          id="ham"
+          id="selected"
           type="checkbox"
           name="toppings"
           onKeyDown={SelectablePosition.onKeyDown}
           ref={this.inputRef}
-          value="ham"
+          value="selected"
         />
       </label>
     );
@@ -46,7 +45,14 @@ export default class SelectablePosition extends React.Component {
   }
 }
 
+SelectablePosition.defaultProps = {
+  cssNonInteractive: undefined,
+  cssInteractive: undefined,
+};
+
 SelectablePosition.propTypes = {
+  cssNonInteractive: PropTypes.string,
+  cssInteractive: PropTypes.string,
   defaultValue: PropTypes.string.isRequired,
   interactive: PropTypes.bool.isRequired,
 };

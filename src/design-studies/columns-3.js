@@ -17,6 +17,8 @@ export default [
         idY={data.id}
       >
         <SelectablePosition
+          cssNonInteractive={styles['position-cell-non-interactive']}
+          cssInteractive={styles['position-cell-interactive']}
           defaultValue={`${data.id}`}
           interactive={interactive}
         />
@@ -155,8 +157,8 @@ export default [
         idY={data.id}
       >
         <InputGridCell
-          cssNonInteractive={styles['input-cell-non-interactive']}
-          cssInteractive={styles['input-cell-interactive']}
+          cssNonInteractive={styles['date-cell-non-interactive']}
+          cssInteractive={styles['date-cell-interactive']}
           defaultValue={data.startDate}
           interactive={interactive}
         />
@@ -183,8 +185,8 @@ export default [
         idY={data.id}
       >
         <InputGridCell
-          cssNonInteractive={styles['input-cell-non-interactive']}
-          cssInteractive={styles['input-cell-interactive']}
+          cssNonInteractive={styles['date-cell-non-interactive']}
+          cssInteractive={styles['date-cell-interactive']}
           defaultValue={data.endDate}
           interactive={interactive}
         />
@@ -211,8 +213,8 @@ export default [
         idY={data.id}
       >
         <InputGridCell
-          cssNonInteractive={styles['input-cell-non-interactive']}
-          cssInteractive={styles['input-cell-interactive']}
+          cssNonInteractive={styles['number-cell-non-interactive']}
+          cssInteractive={styles['number-cell-interactive']}
           defaultValue={`${data.percent}`}
           interactive={interactive}
         />

@@ -18,6 +18,8 @@ export default [
       >
         {interactive => (
           <SelectablePosition
+            cssNonInteractive={styles['position-cell-non-interactive']}
+            cssInteractive={styles['position-cell-interactive']}
             defaultValue={`${data.id}`}
             interactive={interactive}
           />
@@ -136,8 +138,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssNonInteractive={styles['input-cell-non-interactive']}
-        cssInteractive={styles['input-cell-interactive']}
+        cssNonInteractive={styles['date-cell-non-interactive']}
+        cssInteractive={styles['date-cell-interactive']}
         defaultValue={data.startDate}
         key="start-date"
         idX={5}
@@ -160,8 +162,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssNonInteractive={styles['input-cell-non-interactive']}
-        cssInteractive={styles['input-cell-interactive']}
+        cssNonInteractive={styles['date-cell-non-interactive']}
+        cssInteractive={styles['date-cell-interactive']}
         defaultValue={data.endDate}
         key="end-date"
         idX={6}
@@ -184,8 +186,8 @@ export default [
     element: data => (
       <FancyInputGridCell
         cssContainer={styles['medium-body-cell']}
-        cssNonInteractive={styles['input-cell-non-interactive']}
-        cssInteractive={styles['input-cell-interactive']}
+        cssNonInteractive={styles['number-cell-non-interactive']}
+        cssInteractive={styles['number-cell-interactive']}
         defaultValue={`${data.percent}`}
         key="percent-complete"
         idX={7}
