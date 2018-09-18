@@ -60,6 +60,7 @@
 }
 
 .input-cell-interactive {
+  border: 0;
   box-sizing: border-box;
   font-family: inherit;
   font-size: 14px;
