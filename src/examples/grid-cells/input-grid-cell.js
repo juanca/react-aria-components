@@ -18,6 +18,7 @@ export default class InputGridCell extends React.Component {
   componentDidUpdate() {
     if (this.props.interactive) {
       this.inputRef.current.focus();
+      this.inputRef.current.select();
     }
   }
 

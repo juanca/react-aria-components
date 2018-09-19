@@ -26,6 +26,7 @@ class FancyInputGridCell extends React.Component {
   componentDidUpdate(props, state) {
     if (this.state.interactive) {
       this.inputRef.current.focus();
+      this.inputRef.current.select();
     }
 
     if (state.interactive && !this.state.interactive && this.state.wasEscaped) {
