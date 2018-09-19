@@ -15,8 +15,8 @@ export default class InputGridCell extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  componentDidUpdate() {
-    if (this.props.interactive) {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.interactive && this.props.interactive) {
       this.inputRef.current.focus();
       this.inputRef.current.select();
     }
