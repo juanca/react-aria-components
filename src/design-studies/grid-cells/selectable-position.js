@@ -14,15 +14,6 @@ export default class SelectablePosition extends React.Component {
     }
   }
 
-  static onKeyDown(event) {
-    switch (event.key) {
-      case 'Enter':
-        // event.stopPropagation();
-        break;
-      default:
-    }
-  }
-
   render() {
     const position = (
       <div className={this.props.cssNonInteractive} role="checkbox" aria-checked="false">{this.props.defaultValue}</div>
@@ -34,7 +25,6 @@ export default class SelectablePosition extends React.Component {
           id="selected"
           type="checkbox"
           name="toppings"
-          onKeyDown={SelectablePosition.onKeyDown}
           ref={this.inputRef}
           value="selected"
         />
