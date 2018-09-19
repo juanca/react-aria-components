@@ -39,6 +39,7 @@
 .large-body-cell {
   composes: body-cell from './grid.css';
   composes: large-column;
+  font-weight: 600;
 }
 
 .non-interactive {
@@ -60,8 +61,6 @@
 .position-cell-interactive {
   text-align: center;
 }
-
-
 
 .input-cell-non-interactive {
   composes: non-interactive;
