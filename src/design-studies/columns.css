@@ -28,6 +28,7 @@
 .small-body-cell {
   composes: body-cell from './grid.css';
   composes: small-column;
+  border-right: 1px solid #f5f5f2;
 }
 
 .medium-body-cell {
@@ -46,7 +47,14 @@
 
 .position-cell-non-interactive {
   composes: non-interactive;
+  color: #737373;
+  cursor: pointer;
+  font-size: 10px;
   text-align: right;
+}
+
+.position-cell-non-interactive:hover {
+  color: #333;
 }
 
 .position-cell-interactive {
