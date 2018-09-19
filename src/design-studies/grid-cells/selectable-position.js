@@ -1,11 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+let i = 0;
+function counter() {
+  i += 1;
+
+  return i;
+}
+
 export default class SelectablePosition extends React.Component {
   constructor(props) {
     super(props);
 
     this.inputRef = React.createRef();
+    this.onChange = this.onChange.bind(this);
+
+    this.state = {
+      checked: false,
+      id: `position-${counter()}`,
+    };
   }
 
   componentDidUpdate() {
@@ -14,24 +27,31 @@ export default class SelectablePosition extends React.Component {
     }
   }
 
+  onChange() {
+    this.setState(state => ({ checked: !state.checked }));
+  }
+
   render() {
-    const position = (
-      <div className={this.props.cssNonInteractive} role="checkbox" aria-checked="false">{this.props.defaultValue}</div>
-    );
-
-    const checkbox = (
-      <label className={this.props.cssInteractive} htmlFor="selected">
+    return (
+      <React.Fragment>
+        <label // eslint-disable-line jsx-a11y/label-has-for
+          className={this.props.cssNonInteractive}
+          htmlFor={this.state.id}
+          style={{ display: this.props.interactive ? 'none' : 'block' }}
+        >
+          {this.props.defaultValue}
+        </label>
         <input
-          id="selected"
-          type="checkbox"
-          name="toppings"
+          checked={this.state.checked}
+          className={this.props.cssInteractive}
+          hidden={!this.props.interactive}
+          id={this.state.id}
+          onChange={this.onChange}
           ref={this.inputRef}
-          value="selected"
+          type="checkbox"
         />
-      </label>
+      </React.Fragment>
     );
-
-    return this.props.interactive ? checkbox : position;
   }
 }
 
