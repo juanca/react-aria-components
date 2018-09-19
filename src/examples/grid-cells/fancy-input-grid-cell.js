@@ -23,13 +23,13 @@ class FancyInputGridCell extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  componentDidUpdate(props, state) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.interactive) {
       this.inputRef.current.focus();
       this.inputRef.current.select();
     }
 
-    if (state.interactive && !this.state.interactive && !this.state.wasTabbed) {
+    if (prevState.interactive && !this.state.interactive && !this.state.wasTabbed) {
       this.props.gridCellRef.current.focus();
     }
 
