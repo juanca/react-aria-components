@@ -19,6 +19,7 @@ export default class Grid extends React.Component {
   }
 
   componentDidUpdate() {
+    if (this.state.rowIndex === -1 || this.state.columnIndex === -1) return;
     this.props.gridRefs[this.state.rowIndex][this.state.columnIndex].current.focus();
   }
 
