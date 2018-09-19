@@ -137,7 +137,7 @@ export default [
   {
     element: data => (
       <FancyInputGridCell
-        cssContainer={styles['medium-body-cell']}
+        cssContainer={styles['date-cell-layout']}
         cssNonInteractive={styles['date-cell-non-interactive']}
         cssInteractive={styles['date-cell-interactive']}
         defaultValue={data.startDate}
@@ -148,7 +148,7 @@ export default [
     ),
     header: (
       <ColumnHeader
-        className={styles['medium-header-cell']}
+        className={styles['date-header-cell']}
         key="start-date"
         idX={5}
         idY={0}
@@ -161,7 +161,7 @@ export default [
   {
     element: data => (
       <FancyInputGridCell
-        cssContainer={styles['medium-body-cell']}
+        cssContainer={styles['date-cell-layout']}
         cssNonInteractive={styles['date-cell-non-interactive']}
         cssInteractive={styles['date-cell-interactive']}
         defaultValue={data.endDate}
@@ -172,7 +172,7 @@ export default [
     ),
     header: (
       <ColumnHeader
-        className={styles['medium-header-cell']}
+        className={styles['date-header-cell']}
         key="end-date"
         idX={6}
         idY={0}
@@ -185,7 +185,7 @@ export default [
   {
     element: data => (
       <FancyInputGridCell
-        cssContainer={styles['medium-body-cell']}
+        cssContainer={styles['number-cell-layout']}
         cssNonInteractive={styles['number-cell-non-interactive']}
         cssInteractive={styles['number-cell-interactive']}
         defaultValue={`${data.percent}`}
@@ -196,7 +196,7 @@ export default [
     ),
     header: (
       <ColumnHeader
-        className={styles['medium-header-cell']}
+        className={styles['number-header-cell']}
         key="percent-complete"
         idX={7}
         idY={0}

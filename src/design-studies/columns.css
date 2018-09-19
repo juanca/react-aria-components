@@ -76,6 +76,17 @@
   width: 100%;
 }
 
+.date-header-cell {
+  composes: column-header from './grid.css';
+  text-align: right;
+  width: 125px;
+}
+
+.date-cell-layout {
+  composes: body-cell from './grid.css';
+  width: 125px;
+}
+
 .date-cell-non-interactive {
   composes: non-interactive;
   text-align: right;
@@ -84,6 +95,17 @@
 .date-cell-interactive {
   composes: input-cell-interactive;
   text-align: right;
+}
+
+.number-header-cell {
+  composes: column-header from './grid.css';
+  text-align: right;
+  width: 100px;
+}
+
+.number-cell-layout {
+  composes: body-cell from './grid.css';
+  width: 100px;
 }
 
 .number-cell-non-interactive {

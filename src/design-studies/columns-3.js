@@ -151,7 +151,7 @@ export default [
   {
     element: (data, interactive) => (
       <GridCell
-        className={styles['medium-body-cell']}
+        className={styles['date-cell-layout']}
         key="start-date"
         idX={5}
         idY={data.id}
@@ -166,7 +166,7 @@ export default [
     ),
     header: (
       <ColumnHeader
-        className={styles['medium-header-cell']}
+        className={styles['date-header-cell']}
         key="start-date"
         idX={5}
         idY={0}
@@ -179,7 +179,7 @@ export default [
   {
     element: (data, interactive) => (
       <GridCell
-        className={styles['medium-body-cell']}
+        className={styles['date-cell-layout']}
         key="end-date"
         idX={6}
         idY={data.id}
@@ -194,7 +194,7 @@ export default [
     ),
     header: (
       <ColumnHeader
-        className={styles['medium-header-cell']}
+        className={styles['date-header-cell']}
         key="end-date"
         idX={6}
         idY={0}
@@ -207,7 +207,7 @@ export default [
   {
     element: (data, interactive) => (
       <GridCell
-        className={styles['medium-body-cell']}
+        className={styles['number-cell-layout']}
         key="percent-complete"
         idX={7}
         idY={data.id}
@@ -222,7 +222,7 @@ export default [
     ),
     header: (
       <ColumnHeader
-        className={styles['medium-header-cell']}
+        className={styles['number-header-cell']}
         key="percent-complete"
         idX={7}
         idY={0}
