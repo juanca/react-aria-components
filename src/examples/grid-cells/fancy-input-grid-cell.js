@@ -11,10 +11,10 @@ class FancyInputGridCell extends React.Component {
 
     this.inputRef = React.createRef();
     this.state = {
+      doNotFocus: false,
       interactive: false,
       lastValue: props.defaultValue, // eslint-disable-line react/no-unused-state
       value: props.defaultValue,
-      wasTabbed: false,
     };
 
     this.onBlur = this.onBlur.bind(this);
@@ -29,14 +29,12 @@ class FancyInputGridCell extends React.Component {
       this.inputRef.current.select();
     }
 
-    if (prevState.interactive && !this.state.interactive && !this.state.wasTabbed) {
+    if (prevState.interactive && !this.state.interactive && !this.state.doNotFocus) {
       this.props.gridCellRef.current.focus();
     }
 
-    if (this.state.wasTabbed) {
-      // Immediately unset the tab flag to avoid infinite updates.
-      // The flag should only ever be set in one place -- interactive mode + tab press.
-      this.setState({ wasTabbed: false }); // eslint-disable-line react/no-did-update-set-state
+    if (this.state.doNotFocus) {
+      this.setState({ doNotFocus: false }); // eslint-disable-line react/no-did-update-set-state
     }
   }
 
@@ -44,6 +42,13 @@ class FancyInputGridCell extends React.Component {
     const focusWithinCell = this.props.gridCellRef.current === event.relatedTarget
       || this.props.gridCellRef.current.contains(event.relatedTarget);
     if (focusWithinCell) return;
+
+    const focusWithinGrid = this.props.gridCellRefs.some(rows => (
+      rows.some(cellRef => cellRef.current === event.relatedTarget)
+    ));
+    if (focusWithinGrid) {
+      this.setState({ doNotFocus: true });
+    }
 
     this.setState({ interactive: false });
   }
@@ -84,16 +89,11 @@ class FancyInputGridCell extends React.Component {
         if (this.state.interactive) {
           const nextCell = event.shiftKey ? this.props.minusX : this.props.plusX;
 
-          if (nextCell === this.props.gridCellRef) {
-            this.setState({
-              interactive: false,
-              wasTabbed: true,
-            });
-          } else {
-            this.setState({
-              interactive: false,
-              wasTabbed: true,
-            });
+          this.setState({
+            interactive: false,
+          });
+
+          if (nextCell !== this.props.gridCellRef) {
             nextCell.current.focus();
           }
 
@@ -182,6 +182,7 @@ export default function FocusableFancyInputGridCell(props) {
       {gridRefs => (
         <FancyInputGridCell
           {...props}
+          gridCellRefs={gridRefs}
           gridCellRef={gridRefs[idY][idX]}
           minusX={getMinusX(gridRefs, idX, idY)}
           plusX={getPlusX(gridRefs, idX, idY)}
