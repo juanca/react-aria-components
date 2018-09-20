@@ -14,13 +14,18 @@ class InteractiveGridCell extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
 
     this.state = {
+      doNotFocus: false,
       interactive: false,
     };
   }
 
-  componentDidUpdate(props, state) {
-    if (state.interactive && !this.state.interactive) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.interactive && !this.state.interactive && !this.state.doNotFocus) {
       this.props.gridCellRef.current.focus();
+    }
+
+    if (this.state.doNotFocus) {
+      this.setState({ doNotFocus: false }); // eslint-disable-line react/no-did-update-set-state
     }
   }
 
@@ -28,6 +33,13 @@ class InteractiveGridCell extends React.Component {
     const focusWithinCell = this.props.gridCellRef.current === event.relatedTarget
       || this.props.gridCellRef.current.contains(event.relatedTarget);
     if (focusWithinCell) return;
+
+    const focusWithinGrid = this.props.gridCellRefs.some(rows => (
+      rows.some(cellRef => cellRef.current === event.relatedTarget)
+    ));
+    if (focusWithinGrid) {
+      this.setState({ doNotFocus: true });
+    }
 
     this.setState({ interactive: false });
   }
@@ -85,7 +97,13 @@ export default function FocusableInteractiveGridCell(props) {
 
   return (
     <GridContext.Consumer>
-      {gridRefs => <InteractiveGridCell {...props} gridCellRef={gridRefs[idY][idX]} />}
+      {gridRefs => (
+        <InteractiveGridCell
+          {...props}
+          gridCellRefs={gridRefs}
+          gridCellRef={gridRefs[idY][idX]}
+        />
+      )}
     </GridContext.Consumer>
   );
 }
