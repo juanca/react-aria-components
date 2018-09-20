@@ -20,13 +20,14 @@ class FancyInputGridCell extends React.Component {
     this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.interactive && this.state.interactive) {
       this.inputRef.current.focus();
-      this.inputRef.current.select();
+      setTimeout(() => this.inputRef.current && this.inputRef.current.select(), 0);
     }
 
     if (prevState.interactive && !this.state.interactive && !this.state.doNotFocus) {
@@ -59,6 +60,19 @@ class FancyInputGridCell extends React.Component {
 
   onClick() {
     this.setState({ interactive: true });
+  }
+
+  onFocus(event) { // eslint-disable-line
+    if (this.inputRef.current === event.relatedTarget) return;
+
+    const focusWithinGrid = this.props.gridCellRefs.some(rows => rows.some((cellRef) => {
+      const isNotLayout = cellRef.current !== event.relatedTarget;
+      const isWithinACell = cellRef.current.contains(event.relatedTarget);
+      return isNotLayout && isWithinACell;
+    }));
+    if (focusWithinGrid) {
+      this.setState({ interactive: true });
+    }
   }
 
   onKeyDown(event) {
@@ -132,6 +146,7 @@ class FancyInputGridCell extends React.Component {
         className={this.props.cssContainer}
         onBlur={this.onBlur}
         onClick={this.onClick}
+        onFocus={this.onFocus}
         onKeyDown={this.onKeyDown}
       >
         {this.state.interactive
