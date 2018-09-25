@@ -2,7 +2,7 @@ import React from 'react';
 
 import ColumnHeader from '../grid/column-header.js';
 import GridCell from '../grid/grid-cell.js';
-import SelectablePosition from './grid-cells/selectable-position.js';
+import EditableRowSelectablePosition from './grid-cells/editable-row-selectable-position.js';
 import EditableRowInputCell from './grid-cells/editable-row-input-cell.js';
 
 import styles from './columns.css';
@@ -16,7 +16,7 @@ export default [
         idX={0}
         idY={data.id}
       >
-        <SelectablePosition
+        <EditableRowSelectablePosition
           cssNonInteractive={styles['position-cell-non-interactive']}
           cssInteractive={styles['position-cell-interactive']}
           defaultValue={`${data.id}`}
