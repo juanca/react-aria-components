@@ -19,9 +19,10 @@ export default function Grid3(props) {
       <RowHeaders className={styles['row-headers']} key="row-headers">
         {columns.map(column => column.header)}
       </RowHeaders>
-      {data.map(datum => (
+      {data.map((datum, index) => (
         <EditableRow
           className={styles['body-row']}
+          idY={index + 1}
           key={datum.id}
         >
           {editing => columns.map(column => column.element(datum, editing))}

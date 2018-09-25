@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import GridContext from './grid-context.js';
 import Row from './row.js';
 
-export default class EditableRow extends React.Component {
+class EditableRow extends React.Component {
   constructor(props) {
     super(props);
 
@@ -62,3 +63,19 @@ EditableRow.defaultProps = {
 EditableRow.propTypes = {
   children: PropTypes.func.isRequired,
 };
+
+export default function FocusableEditableRow(props) {
+  const {
+    idY,
+  } = props;
+
+  return (
+    <GridContext.Consumer>
+      {gridRefs => <EditableRow
+        {...props}
+        gridRefs={gridRefs}
+        rowRefs={gridRefs[idY]}
+      />}
+    </GridContext.Consumer>
+  );
+}
