@@ -2,8 +2,8 @@ import React from 'react';
 
 import ColumnHeader from '../grid/column-header.js';
 import GridCell from '../grid/grid-cell.js';
-import InputGridCell from '../examples/grid-cells/input-grid-cell.js';
 import SelectablePosition from './grid-cells/selectable-position.js';
+import EditableRowInputCell from './grid-cells/editable-row-input-cell.js';
 
 import styles from './columns.css';
 
@@ -38,19 +38,16 @@ export default [
   },
   {
     element: (data, interactive) => (
-      <GridCell
-        className={styles['large-body-cell']}
+      <EditableRowInputCell
+        cssContainer={styles['large-body-cell']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
+        defaultValue={data.title}
+        interactive={interactive}
         key="title"
         idX={1}
         idY={data.id}
-      >
-        <InputGridCell
-          cssNonInteractive={styles['input-cell-non-interactive']}
-          cssInteractive={styles['input-cell-interactive']}
-          defaultValue={data.title}
-          interactive={interactive}
-        />
-      </GridCell>
+      />
     ),
     header: (
       <ColumnHeader
@@ -66,19 +63,16 @@ export default [
   },
   {
     element: (data, interactive) => (
-      <GridCell
-        className={styles['medium-body-cell']}
+      <EditableRowInputCell
+        cssContainer={styles['medium-body-cell']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
+        defaultValue={data.status}
+        interactive={interactive}
         key="status"
         idX={2}
         idY={data.id}
-      >
-        <InputGridCell
-          cssNonInteractive={styles['input-cell-non-interactive']}
-          cssInteractive={styles['input-cell-interactive']}
-          defaultValue={data.status}
-          interactive={interactive}
-        />
-      </GridCell>
+      />
     ),
     header: (
       <ColumnHeader
@@ -94,19 +88,16 @@ export default [
   },
   {
     element: (data, interactive) => (
-      <GridCell
-        className={styles['medium-body-cell']}
+      <EditableRowInputCell
+        cssContainer={styles['medium-body-cell']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
+        defaultValue={data.tags.join(', ')}
+        interactive={interactive}
         key="tags"
         idX={3}
         idY={data.id}
-      >
-        <InputGridCell
-          cssNonInteractive={styles['input-cell-non-interactive']}
-          cssInteractive={styles['input-cell-interactive']}
-          defaultValue={data.tags.join(', ')}
-          interactive={interactive}
-        />
-      </GridCell>
+      />
     ),
     header: (
       <ColumnHeader
@@ -122,19 +113,16 @@ export default [
   },
   {
     element: (data, interactive) => (
-      <GridCell
-        className={styles['medium-body-cell']}
+      <EditableRowInputCell
+        cssContainer={styles['medium-body-cell']}
+        cssNonInteractive={styles['input-cell-non-interactive']}
+        cssInteractive={styles['input-cell-interactive']}
+        defaultValue={data.assignees.join(', ')}
+        interactive={interactive}
         key="assignees"
         idX={4}
         idY={data.id}
-      >
-        <InputGridCell
-          cssNonInteractive={styles['input-cell-non-interactive']}
-          cssInteractive={styles['input-cell-interactive']}
-          defaultValue={data.assignees.join(', ')}
-          interactive={interactive}
-        />
-      </GridCell>
+      />
     ),
     header: (
       <ColumnHeader
@@ -150,19 +138,16 @@ export default [
   },
   {
     element: (data, interactive) => (
-      <GridCell
-        className={styles['date-cell-layout']}
+      <EditableRowInputCell
+        cssContainer={styles['date-cell-layout']}
+        cssNonInteractive={styles['date-cell-non-interactive']}
+        cssInteractive={styles['date-cell-interactive']}
+        defaultValue={data.startDate}
+        interactive={interactive}
         key="start-date"
         idX={5}
         idY={data.id}
-      >
-        <InputGridCell
-          cssNonInteractive={styles['date-cell-non-interactive']}
-          cssInteractive={styles['date-cell-interactive']}
-          defaultValue={data.startDate}
-          interactive={interactive}
-        />
-      </GridCell>
+      />
     ),
     header: (
       <ColumnHeader
@@ -178,19 +163,16 @@ export default [
   },
   {
     element: (data, interactive) => (
-      <GridCell
-        className={styles['date-cell-layout']}
+      <EditableRowInputCell
+        cssContainer={styles['date-cell-layout']}
+        cssNonInteractive={styles['date-cell-non-interactive']}
+        cssInteractive={styles['date-cell-interactive']}
+        defaultValue={data.endDate}
+        interactive={interactive}
         key="end-date"
-        idX={6}
+        idX={5}
         idY={data.id}
-      >
-        <InputGridCell
-          cssNonInteractive={styles['date-cell-non-interactive']}
-          cssInteractive={styles['date-cell-interactive']}
-          defaultValue={data.endDate}
-          interactive={interactive}
-        />
-      </GridCell>
+      />
     ),
     header: (
       <ColumnHeader
@@ -206,19 +188,16 @@ export default [
   },
   {
     element: (data, interactive) => (
-      <GridCell
-        className={styles['number-cell-layout']}
+      <EditableRowInputCell
+        cssContainer={styles['number-cell-layout']}
+        cssNonInteractive={styles['number-cell-non-interactive']}
+        cssInteractive={styles['number-cell-interactive']}
+        defaultValue={`${data.percent}`}
+        interactive={interactive}
         key="percent-complete"
         idX={7}
         idY={data.id}
-      >
-        <InputGridCell
-          cssNonInteractive={styles['number-cell-non-interactive']}
-          cssInteractive={styles['number-cell-interactive']}
-          defaultValue={`${data.percent}`}
-          interactive={interactive}
-        />
-      </GridCell>
+      />
     ),
     header: (
       <ColumnHeader
