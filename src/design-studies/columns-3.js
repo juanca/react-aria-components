@@ -170,7 +170,7 @@ export default [
         defaultValue={data.endDate}
         interactive={interactive}
         key="end-date"
-        idX={5}
+        idX={6}
         idY={data.id}
       />
     ),
