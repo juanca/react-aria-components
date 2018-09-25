@@ -81,11 +81,13 @@ export default function FocusableEditableRow(props) {
 
   return (
     <GridContext.Consumer>
-      {gridRefs => <EditableRow
-        {...props}
-        gridRefs={gridRefs}
-        rowRefs={gridRefs[idY]}
-      />}
+      {gridRefs => (
+        <EditableRow
+          {...props}
+          gridRefs={gridRefs}
+          rowRefs={gridRefs[idY]}
+        />
+      )}
     </GridContext.Consumer>
   );
 }
