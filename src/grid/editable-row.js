@@ -48,6 +48,7 @@ class EditableRow extends React.Component {
       <Row
         {...this.props}
         onBlur={this.onBlur}
+        onFocus={this.onFocus}
         onKeyDown={this.onKeyDown}
         rowRef={this.rowRef}
       >
