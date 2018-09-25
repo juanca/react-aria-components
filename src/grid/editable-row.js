@@ -11,10 +11,11 @@ class EditableRow extends React.Component {
     this.rowRef = React.createRef();
 
     this.onBlur = this.onBlur.bind(this);
-    // this.onClick = this.onClick.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
 
     this.state = {
+      cursorX: -1,
       editing: false,
     };
   }
@@ -24,6 +25,14 @@ class EditableRow extends React.Component {
 
     if (!focusWithinRow) {
       this.setState({ editing: false });
+    }
+  }
+
+  onFocus(event) {
+    const cursorX = this.props.rowRefs.findIndex(cellRef => cellRef.current === event.target);
+
+    if (this.state.cursorX !== cursorX) {
+      this.setState({ cursorX });
     }
   }
 
