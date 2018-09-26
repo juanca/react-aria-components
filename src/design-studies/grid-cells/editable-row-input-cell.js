@@ -24,7 +24,7 @@ class EditableRowInputCell extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.active && !prevProps.interactive && this.props.interactive) {
       this.inputRef.current.focus();
-      setTimeout(() => this.inputRef.current.select(), 0);
+      setTimeout(() => this.inputRef.current && this.inputRef.current.select(), 0);
     }
   }
 
