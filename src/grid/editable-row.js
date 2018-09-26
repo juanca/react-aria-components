@@ -38,7 +38,10 @@ class EditableRow extends React.Component {
     const cursorX = this.props.rowRefs.findIndex(cellRef => cellRef.current === event.target);
 
     if (this.state.cursorX !== cursorX) {
-      this.setState({ cursorX });
+      this.setState({
+        cursorX,
+        editing: true,
+      });
     }
   }
 
