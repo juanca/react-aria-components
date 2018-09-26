@@ -9,6 +9,7 @@ export default function Row(props) {
     <div // eslint-disable-line jsx-a11y/interactive-supports-focus
       className={props.className}
       onBlur={props.onBlur}
+      onClick={props.onClick}
       onFocus={props.onFocus}
       onKeyDown={props.onKeyDown}
       ref={props.rowRef}
@@ -22,6 +23,7 @@ export default function Row(props) {
 Row.defaultProps = {
   className: styles.container,
   onBlur: () => {},
+  onClick: () => {},
   onFocus: () => {},
   onKeyDown: () => {},
   rowRef: { current: null },
@@ -31,6 +33,7 @@ Row.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   onBlur: PropTypes.func,
+  onClick: PropTypes.func,
   onFocus: PropTypes.func,
   onKeyDown: PropTypes.func,
   rowRef: RefPropType,

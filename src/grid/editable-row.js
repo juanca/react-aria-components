@@ -11,6 +11,7 @@ class EditableRow extends React.Component {
     this.rowRef = React.createRef();
 
     this.onBlur = this.onBlur.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
 
@@ -40,9 +41,12 @@ class EditableRow extends React.Component {
     if (this.state.cursorX !== cursorX) {
       this.setState({
         cursorX,
-        editing: true,
       });
     }
+  }
+
+  onClick() {
+    this.setState({ editing: true });
   }
 
   onKeyDown(event) {
@@ -66,6 +70,7 @@ class EditableRow extends React.Component {
       <Row
         {...this.props}
         onBlur={this.onBlur}
+        onClick={this.onClick}
         onFocus={this.onFocus}
         onKeyDown={this.onKeyDown}
         rowRef={this.rowRef}
