@@ -20,6 +20,12 @@ class EditableRow extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.editing && this.state.editing) {
+      this.props.rowRefs[this.state.cursorX].current.focus();
+    }
+  }
+
   onBlur(event) {
     const focusWithinRow = this.rowRef.current.contains(event.relatedTarget);
 
@@ -61,7 +67,7 @@ class EditableRow extends React.Component {
         onKeyDown={this.onKeyDown}
         rowRef={this.rowRef}
       >
-        {this.props.children(this.state.editing)}
+        {this.props.children(this.state.editing, this.state.cursorX)}
       </Row>
     );
   }

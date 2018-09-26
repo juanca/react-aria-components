@@ -11,7 +11,6 @@ class EditableRowInputCell extends React.Component {
 
     this.inputRef = React.createRef();
     this.state = {
-      interactive: props.interactive,
       value: props.defaultValue,
     };
 
@@ -22,7 +21,11 @@ class EditableRowInputCell extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) { // eslint-disable-line
+  componentDidUpdate(prevProps) {
+    if (this.props.active && !prevProps.interactive && this.props.interactive) {
+      this.inputRef.current.focus();
+      setTimeout(() => this.inputRef.current.select(), 0);
+    }
   }
 
   onBlur(event) { // eslint-disable-line
@@ -34,8 +37,8 @@ class EditableRowInputCell extends React.Component {
   onClick() { // eslint-disable-line
   }
 
-  onFocus(event) { // eslint-disable-line
-    console.log('on focus');
+  onFocus(event) {
+    console.log('cell onFocus', 'interactive', this.props.interactive, event.target, event.relatedTarget);
   }
 
   onKeyDown(event) { // eslint-disable-line
@@ -51,7 +54,7 @@ class EditableRowInputCell extends React.Component {
         onFocus={this.onFocus}
         onKeyDown={this.onKeyDown}
       >
-        {this.state.interactive
+        {this.props.interactive
           ? (
             <input
               className={this.props.cssInteractive}

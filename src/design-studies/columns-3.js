@@ -9,7 +9,7 @@ import styles from './columns.css';
 
 export default [
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <GridCell
         className={styles['small-body-cell']}
         key="position"
@@ -17,6 +17,7 @@ export default [
         idY={data.id}
       >
         <EditableRowSelectablePosition
+          active={active}
           cssNonInteractive={styles['position-cell-non-interactive']}
           cssInteractive={styles['position-cell-interactive']}
           defaultValue={`${data.id}`}
@@ -37,8 +38,9 @@ export default [
     key: 'id',
   },
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <EditableRowInputCell
+        active={active}
         cssContainer={styles['large-body-cell']}
         cssNonInteractive={styles['input-cell-non-interactive']}
         cssInteractive={styles['input-cell-interactive']}
@@ -62,8 +64,9 @@ export default [
     key: 'title',
   },
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <EditableRowInputCell
+        active={active}
         cssContainer={styles['medium-body-cell']}
         cssNonInteractive={styles['input-cell-non-interactive']}
         cssInteractive={styles['input-cell-interactive']}
@@ -87,8 +90,9 @@ export default [
     key: 'status',
   },
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <EditableRowInputCell
+        active={active}
         cssContainer={styles['medium-body-cell']}
         cssNonInteractive={styles['input-cell-non-interactive']}
         cssInteractive={styles['input-cell-interactive']}
@@ -112,8 +116,9 @@ export default [
     key: 'tags',
   },
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <EditableRowInputCell
+        active={active}
         cssContainer={styles['medium-body-cell']}
         cssNonInteractive={styles['input-cell-non-interactive']}
         cssInteractive={styles['input-cell-interactive']}
@@ -137,8 +142,9 @@ export default [
     key: 'assignees',
   },
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <EditableRowInputCell
+        active={active}
         cssContainer={styles['date-cell-layout']}
         cssNonInteractive={styles['date-cell-non-interactive']}
         cssInteractive={styles['date-cell-interactive']}
@@ -162,8 +168,9 @@ export default [
     key: 'startDate',
   },
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <EditableRowInputCell
+        active={active}
         cssContainer={styles['date-cell-layout']}
         cssNonInteractive={styles['date-cell-non-interactive']}
         cssInteractive={styles['date-cell-interactive']}
@@ -187,8 +194,9 @@ export default [
     key: 'endDate',
   },
   {
-    element: (data, interactive) => (
+    element: (data, interactive, active) => (
       <EditableRowInputCell
+        active={active}
         cssContainer={styles['number-cell-layout']}
         cssNonInteractive={styles['number-cell-non-interactive']}
         cssInteractive={styles['number-cell-interactive']}

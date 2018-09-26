@@ -25,7 +25,11 @@ export default function Grid3(props) {
           idY={index + 1}
           key={datum.id}
         >
-          {editing => columns.map(column => column.element(datum, editing))}
+          {(editing, activeIndex) => (
+            columns.map((column, jndex) => (
+              column.element(datum, editing, activeIndex === jndex)
+            ))
+          )}
         </EditableRow>
       ))}
     </Grid>
