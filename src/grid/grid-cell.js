@@ -26,7 +26,10 @@ class GridCell extends React.Component {
     if (focusWithinCell) return;
 
     const focusWithinGrid = this.props.gridCellRefs.some(rows => (
-      rows.some(cellRef => cellRef.current === event.relatedTarget) // `relatedTarget` is not supported in IE 11 :( https://github.com/facebook/react/issues/3751
+      rows.some(cellRef => (
+        cellRef.current === event.relatedTarget
+        || cellRef.current.contains(event.relatedTarget)
+      )) // `relatedTarget` is not supported in IE 11 :( https://github.com/facebook/react/issues/3751
     ));
     if (focusWithinGrid) this.setState({ tabIndex: -1 });
 
