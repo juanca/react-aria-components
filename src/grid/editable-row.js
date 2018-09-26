@@ -36,7 +36,7 @@ class EditableRow extends React.Component {
   }
 
   onFocus(event) {
-    const cursorX = this.props.rowRefs.findIndex(cellRef => cellRef.current === event.target);
+    const cursorX = this.props.rowRefs.findIndex(cellRef => cellRef.current.contains(event.target));
 
     if (this.state.cursorX !== cursorX) {
       this.setState({
