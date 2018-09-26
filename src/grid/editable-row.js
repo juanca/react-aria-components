@@ -22,7 +22,7 @@ class EditableRow extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!prevState.editing && this.state.editing) {
+    if (prevState.editing && !this.state.editing) {
       this.props.rowRefs[this.state.cursorX].current.focus();
     }
   }
