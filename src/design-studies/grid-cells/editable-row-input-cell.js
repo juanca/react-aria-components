@@ -11,7 +11,7 @@ class EditableRowInputCell extends React.Component {
 
     this.inputRef = React.createRef();
     this.state = {
-      lastValue: props.defaultValue,
+      lastValue: props.defaultValue, // eslint-disable-line react/no-unused-state
       value: props.defaultValue,
     };
 
