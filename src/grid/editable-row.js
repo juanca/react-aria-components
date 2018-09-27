@@ -53,7 +53,7 @@ class EditableRow extends React.Component {
     switch (event.key) {
       case 'Enter': {
         event.preventDefault();
-        this.setState({ editing: true });
+        this.setState(state => ({ editing: !state.editing }));
         break;
       }
       case 'Escape': {
