@@ -13,6 +13,5 @@
 }
 
 .container[tabindex="0"] {
-  border: 1px solid red;
   z-index: 1;
 }
