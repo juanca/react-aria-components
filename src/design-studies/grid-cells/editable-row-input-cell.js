@@ -11,13 +11,11 @@ class EditableRowInputCell extends React.Component {
 
     this.inputRef = React.createRef();
     this.state = {
+      lastValue: props.defaultValue,
       value: props.defaultValue,
     };
 
-    this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.onFocus = this.onFocus.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
@@ -28,20 +26,47 @@ class EditableRowInputCell extends React.Component {
     }
   }
 
-  onBlur(event) { // eslint-disable-line
+  onChange(event) {
+    this.setState({ value: event.target.value });
   }
 
-  onChange(event) { // eslint-disable-line
-  }
+  onKeyDown(event) {
+    switch (event.key) {
+      case 'Enter': {
+        this.setState(state => ({
+          lastValue: state.value,
+        }));
 
-  onClick() { // eslint-disable-line
-  }
+        break;
+      }
+      case 'Escape': {
+        if (this.props.interactive) {
+          this.setState(state => ({
+            value: state.lastValue,
+          }));
+        }
 
-  onFocus(event) {
-    console.log('cell onFocus', 'interactive', this.props.interactive, event.target, event.relatedTarget);
-  }
+        break;
+      }
+      default: {
+        if (this.props.interactive && /Arrow/.test(event.key)) {
+          // Do not use grid keyboard navigation while interactive
+          event.stopPropagation();
+        }
 
-  onKeyDown(event) { // eslint-disable-line
+        if (!this.props.interactive && event.key.length === 1) {
+          // Seems like the actual key will emitted on the input as well!
+          // We only need to wipe it out and enter interactive mode.
+          this.setState({
+            value: '',
+          });
+        } else if (!this.props.interactive && event.key === 'Backspace') {
+          this.setState({
+            value: '',
+          });
+        }
+      }
+    }
   }
 
   render() {
@@ -49,9 +74,6 @@ class EditableRowInputCell extends React.Component {
       <GridCell
         {...this.props}
         className={this.props.cssContainer}
-        onBlur={this.onBlur}
-        onClick={this.onClick}
-        onFocus={this.onFocus}
         onKeyDown={this.onKeyDown}
       >
         {this.props.interactive
