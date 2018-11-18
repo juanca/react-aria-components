@@ -12,7 +12,8 @@
     "deploy": "gh-pages -d dist/",
     "predeploy": "webpack --mode production",
     "start": "webpack-serve",
-    "test": "jest"
+    "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "author": "Juan Carlos Medina",
   "license": "MIT",
