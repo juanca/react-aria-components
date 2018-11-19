@@ -13,6 +13,13 @@ function render() {
   );
 }
 
+test('is receives keyboard events', () => {
+  const renderer = render();
+  const root = renderer.toJSON();
+
+  expect(root.props.tabIndex).toEqual('0');
+});
+
 test('renders the default state', () => {
   const renderer = render();
   const root = renderer.toJSON();

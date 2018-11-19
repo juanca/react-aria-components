@@ -11,7 +11,7 @@ export default class Cursor extends React.Component {
 
   render() {
     return (
-      <div>
+      <div tabIndex="0">
         {this.props.children(this.state.position)}
       </div>
     );
