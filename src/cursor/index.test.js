@@ -12,6 +12,7 @@ test('renders the default state', () => {
       </Cursor>
   );
 
-  expect(renderer.toJSON().children.length).toEqual(1);
-  expect(renderer.toJSON().children[0]).toEqual('Current position: -1');
+  const root = renderer.toJSON();
+  expect(root.children.length).toEqual(1);
+  expect(root.children[0]).toEqual('Current position: -1');
 });
