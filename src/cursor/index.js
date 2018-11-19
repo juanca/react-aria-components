@@ -6,6 +6,7 @@ export default class Cursor extends React.Component {
 
     this.state = {
       positionX: -1,
+      positionY: -1,
     };
 
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -13,11 +14,17 @@ export default class Cursor extends React.Component {
 
   onKeyDown(event) {
     switch (event.key) {
+      case 'ArrowDown': return this.setState(state => ({
+        positionY: state.positionY + 1,
+      }));
       case 'ArrowLeft': return this.setState(state => ({
         positionX: state.positionX - 1,
       }));
       case 'ArrowRight': return this.setState(state => ({
         positionX: state.positionX + 1,
+      }));
+      case 'ArrowUp': return this.setState(state => ({
+        positionY: state.positionY - 1,
       }));
       default:
     }
@@ -26,7 +33,7 @@ export default class Cursor extends React.Component {
   render() {
     return (
       <div onKeyDown={this.onKeyDown} tabIndex="0">
-        {this.props.children(this.state.positionX)}
+        {this.props.children(this.state.positionX, this.state.positionY)}
       </div>
     );
   }
