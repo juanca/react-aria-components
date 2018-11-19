@@ -6,8 +6,8 @@ import Cursor from './index.js';
 function render() {
   return TestRenderer.create(
     <Cursor>
-      {(position) => (
-        `Current position: ${position}`
+      {(positionX) => (
+        `Current position: ${positionX}`
       )}
     </Cursor>
   );
@@ -28,7 +28,7 @@ test('renders the default state', () => {
   expect(root.children[0]).toEqual('Current position: -1');
 });
 
-test('increments its position', () => {
+test('increments its position on the x-axis', () => {
   const renderer = render();
 
   renderer.toTree().rendered.props.onKeyDown({ key: 'ArrowRight' });
@@ -38,7 +38,7 @@ test('increments its position', () => {
   expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1');
 });
 
-test('decrements its position', () => {
+test('decrements its position on the x-axis', () => {
   const renderer = render();
 
   renderer.toTree().rendered.props.onKeyDown({ key: 'ArrowLeft' });
