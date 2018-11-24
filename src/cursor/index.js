@@ -9,23 +9,42 @@ export default class Cursor extends React.Component {
       positionY: -1,
     };
 
+    this.keyHandlers = {
+      ArrowDown: function(event) {
+        event.preventDefault();
+        this.setState(state => ({
+          positionY: state.positionY + 1,
+        }));
+      }.bind(this),
+      ArrowLeft: function(event) {
+        event.preventDefault();
+        this.setState(state => ({
+          positionX: state.positionX - 1,
+        }));
+      }.bind(this),
+      ArrowRight: function(event) {
+        event.preventDefault();
+        this.setState(state => ({
+          positionX: state.positionX + 1,
+        }));
+      }.bind(this),
+      ArrowUp: function(event) {
+        event.preventDefault();
+        this.setState(state => ({
+          positionY: state.positionY - 1,
+        }));
+      }.bind(this),
+    }
+
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   onKeyDown(event) {
     switch (event.key) {
-      case 'ArrowDown': return this.setState(state => ({
-        positionY: state.positionY + 1,
-      }));
-      case 'ArrowLeft': return this.setState(state => ({
-        positionX: state.positionX - 1,
-      }));
-      case 'ArrowRight': return this.setState(state => ({
-        positionX: state.positionX + 1,
-      }));
-      case 'ArrowUp': return this.setState(state => ({
-        positionY: state.positionY - 1,
-      }));
+      case 'ArrowDown': return this.keyHandlers.ArrowDown(event);
+      case 'ArrowLeft': return this.keyHandlers.ArrowLeft(event);
+      case 'ArrowRight': return this.keyHandlers.ArrowRight(event);
+      case 'ArrowUp': return this.keyHandlers.ArrowUp(event);
       default:
     }
   }
