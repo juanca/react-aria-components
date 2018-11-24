@@ -1,5 +1,13 @@
 import React from 'react';
 
+import Cursor from '../cursor';
+
 export default function Grid() {
-  return <span>I am a grid</span>;
+  return (
+    <Cursor>
+      {(x, y) => (
+        <span>{x}, {y}</span>
+      )}
+    </Cursor>
+  );
 }
