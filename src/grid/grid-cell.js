@@ -20,8 +20,10 @@ export default class Cell extends React.Component {
   }
 
   render() {
+    const tabIndex = this.props.active ? 0 : -1;
+
     return (
-      <span ref={this.nodeRef}>
+      <span tabIndex={tabIndex} ref={this.nodeRef}>
         {this.props.active ? 'cell!' : 'cell'}
       </span>
     );

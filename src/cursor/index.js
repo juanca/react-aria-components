@@ -50,8 +50,10 @@ export default class Cursor extends React.Component {
   }
 
   render() {
+    const tabIndex = this.state.positionY === -1 ? 0 : -1;
+
     return (
-      <div onKeyDown={this.onKeyDown} tabIndex="0">
+      <div onKeyDown={this.onKeyDown} tabIndex={tabIndex}>
         {this.props.children(this.state.positionX, this.state.positionY)}
       </div>
     );
