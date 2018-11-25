@@ -20,14 +20,14 @@ export default class Cursor extends React.Component {
       ArrowLeft: function(event) {
         event.preventDefault();
         this.setState(state => ({
-          positionX: state.positionX - 1,
+          positionX: Math.max(state.positionX - 1, 0),
           positionY: state.positionY === -1 ? 0 : state.positionY,
         }));
       }.bind(this),
       ArrowRight: function(event) {
         event.preventDefault();
         this.setState(state => ({
-          positionX: state.positionX + 1,
+          positionX: Math.min(state.positionX + 1, this.props.refs[0].length - 1),
           positionY: state.positionY === -1 ? 0 : state.positionY,
         }));
       }.bind(this),

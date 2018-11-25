@@ -42,34 +42,62 @@ test('renders the default state', () => {
 describe('x-axis position', () => {
   test('increments', () => {
     const renderer = render();
-    const event = {
+    const keyEvent = {
       key: 'ArrowRight',
       preventDefault: jest.fn(),
     };
 
-    renderer.toTree().rendered.props.onKeyDown(event);
+    renderer.toTree().rendered.props.onKeyDown(keyEvent);
     expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-
-    renderer.toTree().rendered.props.onKeyDown(event);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
-
-    expect(event.preventDefault.mock.calls.length).toEqual(2);
+    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 
   test('decrements', () => {
     const renderer = render();
-    const event = {
+    const clickEvent = {
+      target: [1, 0],
+    };
+    const keyEvent = {
       key: 'ArrowLeft',
       preventDefault: jest.fn(),
     };
 
-    renderer.toTree().rendered.props.onKeyDown(event);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: -2, 0');
+    renderer.toTree().rendered.props.onClick(clickEvent);
+    renderer.toTree().rendered.props.onKeyDown(keyEvent);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+  });
 
-    renderer.toTree().rendered.props.onKeyDown(event);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: -3, 0');
+  test('has a lower-bound', () => {
+    const renderer = render();
+    const clickEvent = {
+      target: [0, 0],
+    };
+    const keyEvent = {
+      key: 'ArrowLeft',
+      preventDefault: jest.fn(),
+    };
 
-    expect(event.preventDefault.mock.calls.length).toEqual(2);
+    renderer.toTree().rendered.props.onClick(clickEvent);
+    renderer.toTree().rendered.props.onKeyDown(keyEvent);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+  });
+
+  test('has an upper-bound', () => {
+    const renderer = render();
+    const clickEvent = {
+      target: [1, 0],
+    };
+    const keyEvent = {
+      key: 'ArrowRight',
+      preventDefault: jest.fn(),
+    };
+
+    renderer.toTree().rendered.props.onClick(clickEvent);
+    renderer.toTree().rendered.props.onKeyDown(keyEvent);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 });
 
