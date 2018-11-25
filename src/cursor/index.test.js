@@ -91,3 +91,14 @@ test('decrements its position on the y-axis', () => {
 
   expect(event.preventDefault.mock.calls.length).toEqual(2);
 });
+
+test('does not prevent default behavior on non-navigation keys', () => {
+  const renderer = render();
+  const event = {
+    key: 'Space',
+    preventDefault: jest.fn(),
+  };
+
+  renderer.toTree().rendered.props.onKeyDown(event);
+  expect(event.preventDefault.mock.calls.length).toEqual(0);
+});
