@@ -20,6 +20,7 @@ export default class Cursor extends React.Component {
 
   onClick(event) {
     let x, y;
+
     y = this.props.refs.findIndex(cellRefs => {
       x = cellRefs.findIndex(cellRef => (
         cellRef.current.contains(event.target)
