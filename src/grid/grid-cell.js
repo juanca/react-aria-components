@@ -3,19 +3,17 @@ import React from 'react';
 export default class GridCell extends React.Component {
   constructor(props) {
     super(props);
-
-    this.nodeRef = React.createRef();
   }
 
   componentDidMount() {
     if (this.props.active) {
-      this.nodeRef.current.focus();
+      this.props.cellRef.current.focus();
     }
   }
 
   componentDidUpdate() {
     if (this.props.active) {
-      this.nodeRef.current.focus();
+      this.props.cellRef.current.focus();
     }
   }
 
@@ -23,7 +21,7 @@ export default class GridCell extends React.Component {
     const tabIndex = this.props.active ? 0 : -1;
 
     return (
-      <span tabIndex={tabIndex} ref={this.nodeRef}>
+      <span tabIndex={tabIndex} ref={this.props.cellRef}>
         {this.props.active ? 'cell!' : 'cell'}
       </span>
     );
