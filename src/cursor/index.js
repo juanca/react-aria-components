@@ -40,7 +40,25 @@ export default class Cursor extends React.Component {
       }.bind(this),
     }
 
+    this.onClick = this.onClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+  }
+
+  onClick(event) {
+    let x, y;
+    y = this.props.refs.findIndex(cellRefs => {
+      x = cellRefs.findIndex(cellRef => (
+        cellRef.current.contains(event.target)
+      ))
+      return x !== -1;
+    });
+
+    if (x !== -1 && y !== -1) {
+      this.setState({
+        positionX: x,
+        positionY: y,
+      });
+    }
   }
 
   onKeyDown(event) {
@@ -57,7 +75,7 @@ export default class Cursor extends React.Component {
     const tabIndex = this.state.positionY === -1 ? 0 : -1;
 
     return (
-      <div onKeyDown={this.onKeyDown} tabIndex={tabIndex}>
+      <div onClick={this.onClick} onKeyDown={this.onKeyDown} tabIndex={tabIndex}>
         {this.props.children(this.state.positionX, this.state.positionY)}
       </div>
     );

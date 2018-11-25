@@ -4,8 +4,19 @@ import TestRenderer from 'react-test-renderer';
 import Cursor from './index.js';
 
 function render() {
+  const refs = [
+    [
+      { current: { contains: ([x, y]) => x === 0 && y === 0 } },
+      { current: { contains: ([x, y]) => x === 1 && y === 0 } },
+    ],
+    [
+      { current: { contains: ([x, y]) => x === 0 && y === 1 } },
+      { current: { contains: ([x, y]) => x === 1 && y === 1 } },
+    ],
+  ];
+
   return TestRenderer.create(
-    <Cursor>
+    <Cursor refs={refs}>
       {(positionX, positionY) => (
         `Current position: ${positionX}, ${positionY}`
       )}
@@ -101,4 +112,14 @@ test('does not prevent default behavior on non-navigation keys', () => {
 
   renderer.toTree().rendered.props.onKeyDown(event);
   expect(event.preventDefault.mock.calls.length).toEqual(0);
+});
+
+test('finds indices and updates its position', () => {
+  const renderer = render();
+  const event = {
+    target: [1, 1]
+  };
+
+  renderer.toTree().rendered.props.onClick(event);
+  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 1');
 });

@@ -4,7 +4,7 @@ import Cursor from '../cursor';
 
 export default function Grid(props) {
   return (
-    <Cursor>
+    <Cursor refs={props.refs}>
       {(x, y) => (
         <React.Fragment>
           <span>{x}, {y}</span>
