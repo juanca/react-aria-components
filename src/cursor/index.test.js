@@ -215,3 +215,35 @@ test('shortcuts to the end of the row', () => {
   expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
   expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
 });
+
+test('shortcuts to the first row', () => {
+  const renderer = render();
+  const clickEvent = {
+    target: [0, 1],
+  };
+  const keyEvent = {
+    key: 'PageUp',
+    preventDefault: jest.fn(),
+  };
+
+  renderer.toTree().rendered.props.onClick(clickEvent);
+  renderer.toTree().rendered.props.onKeyDown(keyEvent);
+  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
+  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+});
+
+test('shortcuts to the last row', () => {
+  const renderer = render();
+  const clickEvent = {
+    target: [0, 0],
+  };
+  const keyEvent = {
+    key: 'PageDown',
+    preventDefault: jest.fn(),
+  };
+
+  renderer.toTree().rendered.props.onClick(clickEvent);
+  renderer.toTree().rendered.props.onKeyDown(keyEvent);
+  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 1');
+  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+});

@@ -61,6 +61,14 @@ export default class Cursor extends React.Component {
         positionX: 0,
         positionY: state.positionY === -1 ? 0 : state.positionY,
       }));
+      case 'PageDown': return this.handleKey(event, state => ({
+        positionX: state.positionX === -1 ? 0 : state.positionX,
+        positionY: this.props.refs.length - 1,
+      }));
+      case 'PageUp': return this.handleKey(event, state => ({
+        positionX: state.positionX === -1 ? 0 : state.positionX,
+        positionY: 0,
+      }));
       default:
     }
   }
