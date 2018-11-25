@@ -9,39 +9,13 @@ export default class Cursor extends React.Component {
       positionY: -1,
     };
 
-    this.keyHandlers = {
-      ArrowDown: function(event) {
-        event.preventDefault();
-        this.setState(state => ({
-          positionX: state.positionX === -1 ? 0 : state.positionX,
-          positionY: Math.min(state.positionY + 1, this.props.refs.length - 1),
-        }));
-      }.bind(this),
-      ArrowLeft: function(event) {
-        event.preventDefault();
-        this.setState(state => ({
-          positionX: Math.max(state.positionX - 1, 0),
-          positionY: state.positionY === -1 ? 0 : state.positionY,
-        }));
-      }.bind(this),
-      ArrowRight: function(event) {
-        event.preventDefault();
-        this.setState(state => ({
-          positionX: Math.min(state.positionX + 1, this.props.refs[0].length - 1),
-          positionY: state.positionY === -1 ? 0 : state.positionY,
-        }));
-      }.bind(this),
-      ArrowUp: function(event) {
-        event.preventDefault();
-        this.setState(state => ({
-          positionX: state.positionX === -1 ? 0 : state.positionX,
-          positionY: Math.max(state.positionY - 1, 0),
-        }));
-      }.bind(this),
-    }
-
     this.onClick = this.onClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+  }
+
+  handleKey(event, updater) {
+    event.preventDefault();
+    this.setState(updater);
   }
 
   onClick(event) {
@@ -63,10 +37,22 @@ export default class Cursor extends React.Component {
 
   onKeyDown(event) {
     switch (event.key) {
-      case 'ArrowDown': return this.keyHandlers.ArrowDown(event);
-      case 'ArrowLeft': return this.keyHandlers.ArrowLeft(event);
-      case 'ArrowRight': return this.keyHandlers.ArrowRight(event);
-      case 'ArrowUp': return this.keyHandlers.ArrowUp(event);
+      case 'ArrowDown': return this.handleKey(event, state => ({
+        positionX: state.positionX === -1 ? 0 : state.positionX,
+        positionY: Math.min(state.positionY + 1, this.props.refs.length - 1),
+      }));
+      case 'ArrowLeft': return this.handleKey(event, state => ({
+        positionX: Math.max(state.positionX - 1, 0),
+        positionY: state.positionY === -1 ? 0 : state.positionY,
+      }));
+      case 'ArrowRight': return this.handleKey(event, state => ({
+        positionX: Math.min(state.positionX + 1, this.props.refs[0].length - 1),
+        positionY: state.positionY === -1 ? 0 : state.positionY,
+      }));
+      case 'ArrowUp': return this.handleKey(event, state => ({
+        positionX: state.positionX === -1 ? 0 : state.positionX,
+        positionY: Math.max(state.positionY - 1, 0),
+      }));
       default:
     }
   }
