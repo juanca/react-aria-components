@@ -39,68 +39,72 @@ test('renders the default state', () => {
   expect(root.children[0]).toEqual('Current position: -1, -1');
 });
 
-test('increments its position on the x-axis', () => {
-  const renderer = render();
-  const event = {
-    key: 'ArrowRight',
-    preventDefault: jest.fn(),
-  };
+describe('x-axis position', () => {
+  test('increments', () => {
+    const renderer = render();
+    const event = {
+      key: 'ArrowRight',
+      preventDefault: jest.fn(),
+    };
 
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
 
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
 
-  expect(event.preventDefault.mock.calls.length).toEqual(2);
+    expect(event.preventDefault.mock.calls.length).toEqual(2);
+  });
+
+  test('decrements', () => {
+    const renderer = render();
+    const event = {
+      key: 'ArrowLeft',
+      preventDefault: jest.fn(),
+    };
+
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: -2, 0');
+
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: -3, 0');
+
+    expect(event.preventDefault.mock.calls.length).toEqual(2);
+  });
 });
 
-test('decrements its position on the x-axis', () => {
-  const renderer = render();
-  const event = {
-    key: 'ArrowLeft',
-    preventDefault: jest.fn(),
-  };
+describe('y-axis position', () => {
+  test('increments its position on the y-axis', () => {
+    const renderer = render();
+    const event = {
+      key: 'ArrowDown',
+      preventDefault: jest.fn(),
+    };
 
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: -2, 0');
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
 
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: -3, 0');
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 1');
 
-  expect(event.preventDefault.mock.calls.length).toEqual(2);
-});
+    expect(event.preventDefault.mock.calls.length).toEqual(2);
+  });
 
-test('increments its position on the y-axis', () => {
-  const renderer = render();
-  const event = {
-    key: 'ArrowDown',
-    preventDefault: jest.fn(),
-  };
+  test('decrements its position on the y-axis', () => {
+    const renderer = render();
+    const event = {
+      key: 'ArrowUp',
+      preventDefault: jest.fn(),
+    };
 
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, -2');
 
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 1');
+    renderer.toTree().rendered.props.onKeyDown(event);
+    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, -3');
 
-  expect(event.preventDefault.mock.calls.length).toEqual(2);
-});
-
-test('decrements its position on the y-axis', () => {
-  const renderer = render();
-  const event = {
-    key: 'ArrowUp',
-    preventDefault: jest.fn(),
-  };
-
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, -2');
-
-  renderer.toTree().rendered.props.onKeyDown(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, -3');
-
-  expect(event.preventDefault.mock.calls.length).toEqual(2);
+    expect(event.preventDefault.mock.calls.length).toEqual(2);
+  });
 });
 
 test('does not prevent default behavior on non-navigation keys', () => {
