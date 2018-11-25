@@ -13,6 +13,7 @@ export default class Cursor extends React.Component {
       ArrowDown: function(event) {
         event.preventDefault();
         this.setState(state => ({
+          positionX: state.positionX === -1 ? 0 : state.positionX,
           positionY: state.positionY + 1,
         }));
       }.bind(this),
@@ -20,17 +21,20 @@ export default class Cursor extends React.Component {
         event.preventDefault();
         this.setState(state => ({
           positionX: state.positionX - 1,
+          positionY: state.positionY === -1 ? 0 : state.positionY,
         }));
       }.bind(this),
       ArrowRight: function(event) {
         event.preventDefault();
         this.setState(state => ({
           positionX: state.positionX + 1,
+          positionY: state.positionY === -1 ? 0 : state.positionY,
         }));
       }.bind(this),
       ArrowUp: function(event) {
         event.preventDefault();
         this.setState(state => ({
+          positionX: state.positionX === -1 ? 0 : state.positionX,
           positionY: state.positionY - 1,
         }));
       }.bind(this),
