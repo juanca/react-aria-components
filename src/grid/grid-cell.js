@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Cell extends React.Component {
+export default class GridCell extends React.Component {
   constructor(props) {
     super(props);
 
