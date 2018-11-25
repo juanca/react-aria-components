@@ -53,6 +53,14 @@ export default class Cursor extends React.Component {
         positionX: state.positionX === -1 ? 0 : state.positionX,
         positionY: Math.max(state.positionY - 1, 0),
       }));
+      case 'End': return this.handleKey(event, state => ({
+        positionX: this.props.refs[0].length - 1,
+        positionY: state.positionY === -1 ? 0 : state.positionY,
+      }));
+      case 'Home': return this.handleKey(event, state => ({
+        positionX: 0,
+        positionY: state.positionY === -1 ? 0 : state.positionY,
+      }));
       default:
     }
   }

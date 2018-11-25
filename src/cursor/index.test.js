@@ -183,3 +183,35 @@ test('finds indices and updates its position', () => {
   renderer.toTree().rendered.props.onClick(event);
   expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 1');
 });
+
+test('shortcuts to the start of the row', () => {
+  const renderer = render();
+  const clickEvent = {
+    target: [1, 0],
+  };
+  const keyEvent = {
+    key: 'Home',
+    preventDefault: jest.fn(),
+  };
+
+  renderer.toTree().rendered.props.onClick(clickEvent);
+  renderer.toTree().rendered.props.onKeyDown(keyEvent);
+  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
+  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+});
+
+test('shortcuts to the end of the row', () => {
+  const renderer = render();
+  const clickEvent = {
+    target: [0, 0],
+  };
+  const keyEvent = {
+    key: 'End',
+    preventDefault: jest.fn(),
+  };
+
+  renderer.toTree().rendered.props.onClick(clickEvent);
+  renderer.toTree().rendered.props.onKeyDown(keyEvent);
+  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
+  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+});
