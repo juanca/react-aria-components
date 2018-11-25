@@ -9,27 +9,13 @@ export default function GridExample() {
   return (
     <Example title="Grid">
       <DataGrid>
-        <GridRow>
-          <GridCell />
-          <GridCell />
-          <GridCell />
-          <GridCell />
-          <GridCell />
-        </GridRow>
-        <GridRow>
-          <GridCell />
-          <GridCell />
-          <GridCell />
-          <GridCell />
-          <GridCell />
-        </GridRow>
-        <GridRow>
-          <GridCell />
-          <GridCell />
-          <GridCell />
-          <GridCell />
-          <GridCell />
-        </GridRow>
+        {Array(10).fill(undefined).map(_ => (
+          <GridRow>
+            {Array(10).fill(undefined).map(_ => (
+              <GridCell />
+            ))}
+          </GridRow>
+        ))}
       </DataGrid>
     </Example>
   );
