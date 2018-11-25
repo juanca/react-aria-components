@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Example from './example.js';
-import Grid from '../grid';
+import DataGrid from '../grid/data-grid.js';
 
 function Row(props) {
   return (
