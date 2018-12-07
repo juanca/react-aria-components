@@ -19,9 +19,9 @@ export default function GridExample() {
     <Example title="Grid">
       <DataGrid refs={gridRefs}>
         {Array(rows).fill(undefined).map((_, y) => (
-          <GridRow cellRefs={gridRefs[y]} index={y}>
+          <GridRow key={y} cellRefs={gridRefs[y]} index={y}>
             {Array(columns).fill(undefined).map((_, x) => (
-              <GridCell cellRef={gridRefs[y][x]} />
+              <GridCell key={x} cellRef={gridRefs[y][x]} />
             ))}
           </GridRow>
         ))}
