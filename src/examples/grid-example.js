@@ -5,8 +5,11 @@ import DataGrid from '../grid/data-grid.js';
 import GridRow from '../grid/grid-row.js';
 import GridCell from '../grid/grid-cell.js';
 
-const gridRefs = Array(10).fill(undefined).map(_ => (
-  Array(10).fill(undefined).map(_ => (
+const rows = 10;
+const columns = 10;
+
+const gridRefs = Array(rows).fill(undefined).map(_ => (
+  Array(columns).fill(undefined).map(_ => (
     React.createRef()
   ))
 ));
@@ -15,9 +18,9 @@ export default function GridExample() {
   return (
     <Example title="Grid">
       <DataGrid refs={gridRefs}>
-        {Array(10).fill(undefined).map((_, y) => (
-          <GridRow cellRefs={gridRefs[y]}>
-            {Array(10).fill(undefined).map((_, x) => (
+        {Array(rows).fill(undefined).map((_, y) => (
+          <GridRow cellRefs={gridRefs[y]} index={y}>
+            {Array(columns).fill(undefined).map((_, x) => (
               <GridCell cellRef={gridRefs[y][x]} />
             ))}
           </GridRow>
