@@ -17,6 +17,10 @@ export default class GridCell extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.active !== nextProps.active;
+  }
+
   render() {
     const tabIndex = this.props.active ? 0 : -1;
 

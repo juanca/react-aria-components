@@ -5,12 +5,25 @@ const styles = {
   flexDirection: 'row',
 };
 
-export default function Row(props) {
-  return (
-    <div style={styles}>
-      {React.Children.map(props.children, (cell, index) => (
-        React.cloneElement(cell, { active: props.active && index === props.cellIndex })
-      ))}
-    </div>
-  );
+export default class Row extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return (
+      this.props.active === true ||
+      this.props.active !== nextProps.active
+    );
+  }
+
+  render() {
+    return (
+      <div style={styles}>
+        {React.Children.map(this.props.children, (cell, index) => (
+          React.cloneElement(cell, { active: this.props.active && index === this.props.cellIndex })
+        ))}
+      </div>
+    );
+  }
 }
