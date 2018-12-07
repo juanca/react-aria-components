@@ -21,7 +21,9 @@ export default function GridExample() {
         {Array(rows).fill(undefined).map((_, y) => (
           <GridRow key={y} cellRefs={gridRefs[y]} index={y}>
             {Array(columns).fill(undefined).map((_, x) => (
-              <GridCell key={x} cellRef={gridRefs[y][x]} />
+              <GridCell key={x} cellRef={gridRefs[y][x]}>
+                {active => active ? 'cell!' : 'cell'}
+              </GridCell>
             ))}
           </GridRow>
         ))}

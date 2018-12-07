@@ -26,7 +26,7 @@ export default class GridCell extends React.Component {
 
     return (
       <div tabIndex={tabIndex} ref={this.props.cellRef}>
-        {this.props.active ? 'cell!' : 'cell'}
+        {this.props.children(this.props.active)}
       </div>
     );
   }
