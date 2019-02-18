@@ -42,7 +42,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-test-renderer": "^16.6.3",
+    "react-test-renderer": "^16.8.2",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.4",
     "webpack-serve": "^1.0.2"
@@ -51,5 +51,6 @@
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
-  }
+  },
+  "dependencies": {}
 }
