@@ -35,3 +35,13 @@ Each component is driven by three principles:
 1. A component has minimal footprint.
 
 [WAI-ARIA Authoring Practices]: https://www.w3.org/TR/wai-aria-practices-1.1
+
+## Contributing
+
+```
+npm test
+```
+
+```
+npm run lint
+```
