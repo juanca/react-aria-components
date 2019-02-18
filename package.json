@@ -10,6 +10,7 @@
   "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
     "deploy": "gh-pages -d dist/",
+    "lint": "eslint .",
     "predeploy": "webpack --mode production",
     "start": "webpack-serve",
     "test": "jest"
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.4",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -29,7 +31,6 @@
     "css-loader": "^0.28.11",
     "eslint": "^5.14.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-loader": "^2.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",

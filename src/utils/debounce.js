@@ -8,5 +8,5 @@ export default function debounce(funk) {
       lastCalled = now;
       funk(...args);
     }
-  }
+  };
 }
