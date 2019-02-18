@@ -10,6 +10,7 @@
   "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
     "deploy": "gh-pages -d dist/",
+    "lint": "eslint .",
     "predeploy": "webpack --mode production",
     "start": "webpack-serve",
     "test": "jest"
