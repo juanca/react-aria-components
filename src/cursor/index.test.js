@@ -15,13 +15,13 @@ function render() {
     ],
   ];
 
-  return TestRenderer.create(
+  return TestRenderer.create((
     <Cursor refs={refs}>
       {(positionX, positionY) => (
         `Current position: ${positionX}, ${positionY}`
       )}
     </Cursor>
-  );
+  ));
 }
 
 test('is receives keyboard events', () => {
@@ -177,7 +177,7 @@ test('does not prevent default behavior on non-navigation keys', () => {
 test('finds indices and updates its position', () => {
   const renderer = render();
   const event = {
-    target: [1, 1]
+    target: [1, 1],
   };
 
   renderer.toTree().rendered.props.onClick(event);

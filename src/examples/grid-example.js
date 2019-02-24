@@ -8,8 +8,8 @@ import GridCell from '../grid/grid-cell.js';
 const rows = 10;
 const columns = 10;
 
-const gridRefs = Array(rows).fill(undefined).map(_ => (
-  Array(columns).fill(undefined).map(_ => (
+const gridRefs = Array(rows).fill(undefined).map(() => (
+  Array(columns).fill(undefined).map(() => (
     React.createRef()
   ))
 ));

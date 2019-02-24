@@ -6,14 +6,10 @@ const styles = {
 };
 
 export default class Row extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   shouldComponentUpdate(nextProps) {
     return (
-      this.props.active === true ||
-      this.props.active !== nextProps.active
+      this.props.active === true
+      || this.props.active !== nextProps.active
     );
   }
 

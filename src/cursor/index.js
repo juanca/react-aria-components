@@ -13,18 +13,14 @@ export default class Cursor extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
-  handleKey(event, updater) {
-    event.preventDefault();
-    this.setState(updater);
-  }
-
   onClick(event) {
     let x, y;
 
     y = this.props.refs.findIndex(cellRefs => {
       x = cellRefs.findIndex(cellRef => (
         cellRef.current.contains(event.target)
-      ))
+      ));
+
       return x !== -1;
     });
 
@@ -72,6 +68,11 @@ export default class Cursor extends React.Component {
       }));
       default:
     }
+  }
+
+  handleKey(event, updater) {
+    event.preventDefault();
+    this.setState(updater);
   }
 
   render() {
