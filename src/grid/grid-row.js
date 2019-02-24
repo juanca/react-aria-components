@@ -17,7 +17,9 @@ export default class Row extends React.Component {
     return (
       <div style={styles}>
         {React.Children.map(this.props.children, (cell, index) => (
-          React.cloneElement(cell, { active: this.props.active && index === this.props.cellIndex })
+          React.cloneElement(cell, {
+            active: this.props.active && index === this.props.cellIndex,
+          })
         ))}
       </div>
     );

@@ -14,9 +14,9 @@ export default class Cursor extends React.Component {
   }
 
   onClick(event) {
-    let x, y;
+    let x;
 
-    y = this.props.refs.findIndex(cellRefs => {
+    const y = this.props.refs.findIndex((cellRefs) => {
       x = cellRefs.findIndex(cellRef => (
         cellRef.current.contains(event.target)
       ));
@@ -68,6 +68,8 @@ export default class Cursor extends React.Component {
       }));
       default:
     }
+
+    return undefined;
   }
 
   handleKey(event, updater) {
@@ -79,9 +81,14 @@ export default class Cursor extends React.Component {
     const tabIndex = this.state.positionY === -1 ? 0 : -1;
 
     return (
-      <div onClick={this.onClick} onKeyDown={this.onKeyDown} tabIndex={tabIndex}>
+      <div
+        onClick={this.onClick}
+        onKeyDown={this.onKeyDown}
+        role="presentation"
+        tabIndex={tabIndex}
+      >
         {this.props.children(this.state.positionX, this.state.positionY)}
       </div>
     );
   }
-};
+}

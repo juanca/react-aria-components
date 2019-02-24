@@ -3,6 +3,9 @@
   "extends": "airbnb",
   "rules": {
     "import/extensions": "off",
+    "max-len": ["error", {
+      "ignoreTrailingComments": true
+    }],
     "no-prototype-builtins": "off",
     "object-curly-newline": "off",
     "prefer-destructuring": "off",
@@ -15,6 +18,9 @@
       "files": ["*test.js"],
       "env": {
         "jest": true
+      },
+      "rules": {
+        "max-len": "off"
       }
     }
   ]
