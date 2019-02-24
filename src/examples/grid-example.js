@@ -19,11 +19,13 @@ export default function GridExample() {
   return (
     <Example title="Grid">
       <DataGrid refs={gridRefs}>
-        {Array(rows).fill(undefined).map((_, y) => (
+        {Array(rows).fill(undefined).map((row, y) => (
           <GridRow key={y} cellRefs={gridRefs[y]} index={y}>
-            {Array(columns).fill(undefined).map((_, x) => (
+            {Array(columns).fill(undefined).map((column, x) => (
               <GridCell key={x} cellRef={gridRefs[y][x]}>
+                {/* eslint-disable no-confusing-arrow */}
                 {active => active ? 'cell!' : 'cell'}
+                {/* eslint-enable no-confusing-arrow */}
               </GridCell>
             ))}
           </GridRow>
