@@ -26,7 +26,11 @@ export default class Tabs extends React.Component {
 
           switch (child.type) {
             case TabList:
-              return React.cloneElement(child, { accessibleId, activeIndex, onActivateTab });
+              return React.cloneElement(child, {
+                accessibleId,
+                activeIndex,
+                onActivateTab,
+              });
             case TabPanels:
               return React.cloneElement(child, { accessibleId, activeIndex });
             default:

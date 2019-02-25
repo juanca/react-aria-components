@@ -1,231 +1,36 @@
-import faker from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-import {
-  ColumnHeader,
-  Grid,
-  Row,
-  RowHeaders,
-} from '../grid';
-
-import FancyInputGridCell from './grid-cells/fancy-input-grid-cell.js';
 import Example from './example.js';
-import styles from './grid-example.css';
+import DataGrid from '../grid/data-grid.js';
+import GridRow from '../grid/grid-row.js';
+import GridCell from '../grid/grid-cell.js';
 
-function get(key) {
-  return function columnCell(datum) {
-    return datum[key];
-  };
-}
+const rows = 10;
+const columns = 10;
 
-const metaColumns = [
-  { faker: ['name', 'findName'], attrs: { columnClassName: styles['frozen-column'], columnHeaderCell: 'Name', columnHeaderClassName: styles['frozen-header'] } },
-  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
-  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
-  { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },
-  { faker: ['address', 'country'], attrs: { columnHeaderCell: 'Country' } },
-  { faker: ['address', 'city'], attrs: { columnHeaderCell: 'City' } },
-  { faker: ['address', 'zipCode'], attrs: { columnHeaderCell: 'Zip Code' } },
-  { faker: ['company', 'companyName'], attrs: { columnHeaderCell: 'Company' } },
-  { faker: ['company', 'bs'], attrs: { columnHeaderCell: 'Mission' } },
-  { faker: ['database', 'engine'], attrs: { columnHeaderCell: 'Engine' } },
-  { faker: ['date', 'weekday'], attrs: { columnHeaderCell: 'Weekday' } },
-  { faker: ['finance', 'accountName'], attrs: { columnHeaderCell: 'Account Name' } },
-  { faker: ['finance', 'amount'], attrs: { columnHeaderCell: 'Account Amount' } },
-  { faker: ['finance', 'bitcoinAddress'], attrs: { columnHeaderCell: 'Account Address' } },
-  { faker: ['hacker', 'phrase'], attrs: { columnHeaderCell: 'Phrase' } },
-  { faker: ['lorem', 'word'], attrs: { columnHeaderCell: 'Word' } },
-  { faker: ['lorem', 'words'], attrs: { columnHeaderCell: 'Words' } },
-  { faker: ['lorem', 'sentence'], attrs: { columnHeaderCell: 'Sentence' } },
-  { faker: ['lorem', 'slug'], attrs: { columnHeaderCell: 'Slug' } },
-  { faker: ['lorem', 'paragraph'], attrs: { columnHeaderCell: 'Paragraph' } },
-  { faker: ['lorem', 'paragraphs'], attrs: { columnHeaderCell: 'Paragraphs' } },
-  { faker: ['lorem', 'text'], attrs: { columnHeaderCell: 'Text' } },
-  { faker: ['lorem', 'lines'], attrs: { columnHeaderCell: 'Lines' } },
-  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
-  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
-  { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },
-  { faker: ['address', 'country'], attrs: { columnHeaderCell: 'Country' } },
-  { faker: ['address', 'city'], attrs: { columnHeaderCell: 'City' } },
-  { faker: ['address', 'zipCode'], attrs: { columnHeaderCell: 'Zip Code' } },
-  { faker: ['company', 'companyName'], attrs: { columnHeaderCell: 'Company' } },
-  { faker: ['company', 'bs'], attrs: { columnHeaderCell: 'Mission' } },
-  { faker: ['database', 'engine'], attrs: { columnHeaderCell: 'Engine' } },
-  { faker: ['date', 'weekday'], attrs: { columnHeaderCell: 'Weekday' } },
-  { faker: ['finance', 'accountName'], attrs: { columnHeaderCell: 'Account Name' } },
-  { faker: ['finance', 'amount'], attrs: { columnHeaderCell: 'Account Amount' } },
-  { faker: ['finance', 'bitcoinAddress'], attrs: { columnHeaderCell: 'Account Address' } },
-  { faker: ['hacker', 'phrase'], attrs: { columnHeaderCell: 'Phrase' } },
-  { faker: ['lorem', 'word'], attrs: { columnHeaderCell: 'Word' } },
-  { faker: ['lorem', 'words'], attrs: { columnHeaderCell: 'Words' } },
-  { faker: ['lorem', 'sentence'], attrs: { columnHeaderCell: 'Sentence' } },
-  { faker: ['lorem', 'slug'], attrs: { columnHeaderCell: 'Slug' } },
-  { faker: ['lorem', 'paragraph'], attrs: { columnHeaderCell: 'Paragraph' } },
-  { faker: ['lorem', 'paragraphs'], attrs: { columnHeaderCell: 'Paragraphs' } },
-  { faker: ['lorem', 'text'], attrs: { columnHeaderCell: 'Text' } },
-  { faker: ['lorem', 'lines'], attrs: { columnHeaderCell: 'Lines' } },
-  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
-  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
-  { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },
-  { faker: ['address', 'country'], attrs: { columnHeaderCell: 'Country' } },
-  { faker: ['address', 'city'], attrs: { columnHeaderCell: 'City' } },
-  { faker: ['address', 'zipCode'], attrs: { columnHeaderCell: 'Zip Code' } },
-  { faker: ['company', 'companyName'], attrs: { columnHeaderCell: 'Company' } },
-  { faker: ['company', 'bs'], attrs: { columnHeaderCell: 'Mission' } },
-  { faker: ['database', 'engine'], attrs: { columnHeaderCell: 'Engine' } },
-  { faker: ['date', 'weekday'], attrs: { columnHeaderCell: 'Weekday' } },
-  { faker: ['finance', 'accountName'], attrs: { columnHeaderCell: 'Account Name' } },
-  { faker: ['finance', 'amount'], attrs: { columnHeaderCell: 'Account Amount' } },
-  { faker: ['finance', 'bitcoinAddress'], attrs: { columnHeaderCell: 'Account Address' } },
-  { faker: ['hacker', 'phrase'], attrs: { columnHeaderCell: 'Phrase' } },
-  { faker: ['lorem', 'word'], attrs: { columnHeaderCell: 'Word' } },
-  { faker: ['lorem', 'words'], attrs: { columnHeaderCell: 'Words' } },
-  { faker: ['lorem', 'sentence'], attrs: { columnHeaderCell: 'Sentence' } },
-  { faker: ['lorem', 'slug'], attrs: { columnHeaderCell: 'Slug' } },
-  { faker: ['lorem', 'paragraph'], attrs: { columnHeaderCell: 'Paragraph' } },
-  { faker: ['lorem', 'paragraphs'], attrs: { columnHeaderCell: 'Paragraphs' } },
-  { faker: ['lorem', 'text'], attrs: { columnHeaderCell: 'Text' } },
-  { faker: ['lorem', 'lines'], attrs: { columnHeaderCell: 'Lines' } },
-  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
-  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
-  { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },
-  { faker: ['address', 'country'], attrs: { columnHeaderCell: 'Country' } },
-  { faker: ['address', 'city'], attrs: { columnHeaderCell: 'City' } },
-  { faker: ['address', 'zipCode'], attrs: { columnHeaderCell: 'Zip Code' } },
-  { faker: ['company', 'companyName'], attrs: { columnHeaderCell: 'Company' } },
-  { faker: ['company', 'bs'], attrs: { columnHeaderCell: 'Mission' } },
-  { faker: ['database', 'engine'], attrs: { columnHeaderCell: 'Engine' } },
-  { faker: ['date', 'weekday'], attrs: { columnHeaderCell: 'Weekday' } },
-  { faker: ['finance', 'accountName'], attrs: { columnHeaderCell: 'Account Name' } },
-  { faker: ['finance', 'amount'], attrs: { columnHeaderCell: 'Account Amount' } },
-  { faker: ['finance', 'bitcoinAddress'], attrs: { columnHeaderCell: 'Account Address' } },
-  { faker: ['hacker', 'phrase'], attrs: { columnHeaderCell: 'Phrase' } },
-  { faker: ['lorem', 'word'], attrs: { columnHeaderCell: 'Word' } },
-  { faker: ['lorem', 'words'], attrs: { columnHeaderCell: 'Words' } },
-  { faker: ['lorem', 'sentence'], attrs: { columnHeaderCell: 'Sentence' } },
-  { faker: ['lorem', 'slug'], attrs: { columnHeaderCell: 'Slug' } },
-  { faker: ['lorem', 'paragraph'], attrs: { columnHeaderCell: 'Paragraph' } },
-  { faker: ['lorem', 'paragraphs'], attrs: { columnHeaderCell: 'Paragraphs' } },
-  { faker: ['lorem', 'text'], attrs: { columnHeaderCell: 'Text' } },
-  { faker: ['lorem', 'lines'], attrs: { columnHeaderCell: 'Lines' } },
-  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
-  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
-  { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },
-  { faker: ['address', 'country'], attrs: { columnHeaderCell: 'Country' } },
-  { faker: ['address', 'city'], attrs: { columnHeaderCell: 'City' } },
-  { faker: ['address', 'zipCode'], attrs: { columnHeaderCell: 'Zip Code' } },
-  { faker: ['company', 'companyName'], attrs: { columnHeaderCell: 'Company' } },
-  { faker: ['company', 'bs'], attrs: { columnHeaderCell: 'Mission' } },
-  { faker: ['database', 'engine'], attrs: { columnHeaderCell: 'Engine' } },
-  { faker: ['date', 'weekday'], attrs: { columnHeaderCell: 'Weekday' } },
-  { faker: ['finance', 'accountName'], attrs: { columnHeaderCell: 'Account Name' } },
-  { faker: ['finance', 'amount'], attrs: { columnHeaderCell: 'Account Amount' } },
-  { faker: ['finance', 'bitcoinAddress'], attrs: { columnHeaderCell: 'Account Address' } },
-  { faker: ['hacker', 'phrase'], attrs: { columnHeaderCell: 'Phrase' } },
-  { faker: ['lorem', 'word'], attrs: { columnHeaderCell: 'Word' } },
-  { faker: ['lorem', 'words'], attrs: { columnHeaderCell: 'Words' } },
-  { faker: ['lorem', 'sentence'], attrs: { columnHeaderCell: 'Sentence' } },
-  { faker: ['lorem', 'slug'], attrs: { columnHeaderCell: 'Slug' } },
-  { faker: ['lorem', 'paragraph'], attrs: { columnHeaderCell: 'Paragraph' } },
-  { faker: ['lorem', 'paragraphs'], attrs: { columnHeaderCell: 'Paragraphs' } },
-  { faker: ['lorem', 'text'], attrs: { columnHeaderCell: 'Text' } },
-  { faker: ['lorem', 'lines'], attrs: { columnHeaderCell: 'Lines' } },
-  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
-  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
-  { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },
-  { faker: ['address', 'country'], attrs: { columnHeaderCell: 'Country' } },
-  { faker: ['address', 'city'], attrs: { columnHeaderCell: 'City' } },
-  { faker: ['address', 'zipCode'], attrs: { columnHeaderCell: 'Zip Code' } },
-  { faker: ['company', 'companyName'], attrs: { columnHeaderCell: 'Company' } },
-  { faker: ['company', 'bs'], attrs: { columnHeaderCell: 'Mission' } },
-  { faker: ['database', 'engine'], attrs: { columnHeaderCell: 'Engine' } },
-  { faker: ['date', 'weekday'], attrs: { columnHeaderCell: 'Weekday' } },
-  { faker: ['finance', 'accountName'], attrs: { columnHeaderCell: 'Account Name' } },
-  { faker: ['finance', 'amount'], attrs: { columnHeaderCell: 'Account Amount' } },
-  { faker: ['finance', 'bitcoinAddress'], attrs: { columnHeaderCell: 'Account Address' } },
-  { faker: ['hacker', 'phrase'], attrs: { columnHeaderCell: 'Phrase' } },
-  { faker: ['lorem', 'word'], attrs: { columnHeaderCell: 'Word' } },
-  { faker: ['lorem', 'words'], attrs: { columnHeaderCell: 'Words' } },
-  { faker: ['lorem', 'sentence'], attrs: { columnHeaderCell: 'Sentence' } },
-  { faker: ['lorem', 'slug'], attrs: { columnHeaderCell: 'Slug' } },
-  { faker: ['lorem', 'paragraph'], attrs: { columnHeaderCell: 'Paragraph' } },
-  { faker: ['lorem', 'paragraphs'], attrs: { columnHeaderCell: 'Paragraphs' } },
-  { faker: ['lorem', 'text'], attrs: { columnHeaderCell: 'Text' } },
-  { faker: ['lorem', 'lines'], attrs: { columnHeaderCell: 'Lines' } },
-  { faker: ['name', 'jobTitle'], attrs: { columnHeaderCell: 'Job Title' } },
-  { faker: ['name', 'jobDescriptor'], attrs: { columnHeaderCell: 'Job Description' } },
-  { faker: ['phone', 'phoneNumber'], attrs: { columnHeaderCell: 'Phone Number' } },
-  { faker: ['address', 'country'], attrs: { columnHeaderCell: 'Country' } },
-  { faker: ['address', 'city'], attrs: { columnHeaderCell: 'City' } },
-  { faker: ['address', 'zipCode'], attrs: { columnHeaderCell: 'Zip Code' } },
-  { faker: ['company', 'companyName'], attrs: { columnHeaderCell: 'Company' } },
-  { faker: ['company', 'bs'], attrs: { columnHeaderCell: 'Mission' } },
-  { faker: ['database', 'engine'], attrs: { columnHeaderCell: 'Engine' } },
-  { faker: ['date', 'weekday'], attrs: { columnHeaderCell: 'Weekday' } },
-  { faker: ['finance', 'accountName'], attrs: { columnHeaderCell: 'Account Name' } },
-  { faker: ['finance', 'amount'], attrs: { columnHeaderCell: 'Account Amount' } },
-  { faker: ['finance', 'bitcoinAddress'], attrs: { columnHeaderCell: 'Account Address' } },
-  { faker: ['hacker', 'phrase'], attrs: { columnHeaderCell: 'Phrase' } },
-  { faker: ['lorem', 'word'], attrs: { columnHeaderCell: 'Word' } },
-  { faker: ['lorem', 'words'], attrs: { columnHeaderCell: 'Words' } },
-  { faker: ['lorem', 'sentence'], attrs: { columnHeaderCell: 'Sentence' } },
-  { faker: ['lorem', 'slug'], attrs: { columnHeaderCell: 'Slug' } },
-  { faker: ['lorem', 'paragraph'], attrs: { columnHeaderCell: 'Paragraph' } },
-  { faker: ['lorem', 'paragraphs'], attrs: { columnHeaderCell: 'Paragraphs' } },
-  { faker: ['lorem', 'text'], attrs: { columnHeaderCell: 'Text' } },
-  { faker: ['lorem', 'lines'], attrs: { columnHeaderCell: 'Lines' } },
-];
-
-const columns = metaColumns.map((meta, index) => Object.assign({
-  id: index,
-  columnCell: get(meta.faker.slice(-1)[0]),
-}, meta.attrs));
-
-// e.g. { id: 1, findName: faker.name.findName(), jobTitle: faker.name.jobTitle() }
-const data = new Array(20).fill(0).map((_, index) => (
-  metaColumns.map(meta => ({
-    [meta.faker.slice(-1)[0]]: meta.faker.reduce((obj, key) => obj[key], faker)(),
-  })).concat({
-    id: index + 1,
-  }).reduce((merge, obj) => (
-    Object.assign(merge, obj)
+const gridRefs = Array(rows).fill(undefined).map(() => (
+  Array(columns).fill(undefined).map(() => (
+    React.createRef()
   ))
 ));
-
-function createGridRefs() {
-  return [0].concat(data).map(() => columns.map(() => React.createRef()));
-}
 
 export default function GridExample() {
   return (
     <Example title="Grid">
-      <Grid className={styles['grid-container']} gridRefs={createGridRefs()}>
-        <RowHeaders className={styles['row-headers']} key="row-headers">
-          {columns.map(column => (
-            <ColumnHeader
-              className={column.columnHeaderClassName}
-              key={column.id}
-              idX={column.id}
-              idY={0}
-            >
-              {column.columnHeaderCell}
-            </ColumnHeader>
-          ))}
-        </RowHeaders>
-        {data.map(datum => (
-          <Row key={datum.id}>
-            {columns.map(column => (
-              <FancyInputGridCell
-                className={column.columnClassName}
-                defaultValue={column.columnCell(datum)}
-                key={column.id}
-                idX={column.id}
-                idY={datum.id}
-              />
+      <DataGrid refs={gridRefs}>
+        {Array(rows).fill(undefined).map((row, y) => (
+          <GridRow key={y} cellRefs={gridRefs[y]} index={y}>
+            {Array(columns).fill(undefined).map((column, x) => (
+              <GridCell key={x} cellRef={gridRefs[y][x]}>
+                {/* eslint-disable no-confusing-arrow */}
+                {active => active ? 'cell!' : 'cell'}
+                {/* eslint-enable no-confusing-arrow */}
+              </GridCell>
             ))}
-          </Row>
+          </GridRow>
         ))}
-      </Grid>
+      </DataGrid>
     </Example>
   );
 }
