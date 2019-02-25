@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+
+import RefType from '../prop-types/ref.js';
 
 export default class GridCell extends React.Component {
   componentDidMount() {
@@ -27,3 +30,12 @@ export default class GridCell extends React.Component {
     );
   }
 }
+
+GridCell.propTypes = {
+  active: PropTypes.bool.isRequired,
+  cellRef: RefType.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+GridCell.defaultProps = {
+};

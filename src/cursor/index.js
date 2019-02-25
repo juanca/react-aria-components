@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+
+import RefType from '../prop-types/ref.js';
 
 export default class Cursor extends React.Component {
   constructor(props) {
@@ -92,3 +95,11 @@ export default class Cursor extends React.Component {
     );
   }
 }
+
+Cursor.propTypes = {
+  children: PropTypes.func.isRequired,
+  refs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
+};
+
+Cursor.defaultProps = {
+};

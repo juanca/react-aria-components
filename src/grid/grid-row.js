@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const styles = {
@@ -25,3 +26,12 @@ export default class Row extends React.Component {
     );
   }
 }
+
+Row.propTypes = {
+  active: PropTypes.bool.isRequired,
+  cellIndex: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+Row.defaultProps = {
+};
