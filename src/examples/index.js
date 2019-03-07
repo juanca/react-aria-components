@@ -4,7 +4,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Example from './example.js';
-import AccordionExample from './accordion-example.js';
 import GridExample from './grid-example.js';
 import TabsExample from './tabs-example.js';
 
@@ -34,7 +33,6 @@ setTimeout(() => {
       <main>
         <GridExample />
         <TabsExample />
-        <AccordionExample />
       </main>
       <footer>
         <address>
