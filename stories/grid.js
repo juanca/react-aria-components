@@ -28,5 +28,5 @@ storiesOf('Grid', module)
           </GridRow>
         ))}
       </DataGrid>
-    )
+    );
   });
