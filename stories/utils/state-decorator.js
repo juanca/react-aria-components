@@ -3,10 +3,15 @@ import React from 'react';
 
 export default class StateDecorator extends React.Component {
   static propTypes = {
+    initialState: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     storyFn: PropTypes.func.isRequired,
   };
 
-  state = {};
+  static defaultProps = {
+    initialState: {},
+  };
+
+  state = this.props.initialState;
 
   handleSetState = (...args) => {
     this.setState(...args);

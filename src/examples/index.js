@@ -5,7 +5,6 @@ import { render } from 'react-dom';
 
 import Example from './example.js';
 import GridExample from './grid-example.js';
-import TabsExample from './tabs-example.js';
 
 setTimeout(() => {
   render((
@@ -32,7 +31,6 @@ setTimeout(() => {
       </Example>
       <main>
         <GridExample />
-        <TabsExample />
       </main>
       <footer>
         <address>
