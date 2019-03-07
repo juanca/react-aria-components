@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "targets": {
         "browsers": [
           "IE 11",
@@ -10,8 +10,8 @@
           "last 5 Edge versions"
         ]
       },
-      "useBuiltins": true
+      "useBuiltIns": "entry"
     }],
-    "react"
+    "@babel/preset-react"
   ]
 }
