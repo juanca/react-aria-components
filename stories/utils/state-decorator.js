@@ -8,11 +8,15 @@ export default class StateDecorator extends React.Component {
 
   state = {};
 
+  handleSetState = (...args) => {
+    this.setState(...args);
+  }
+
   render() {
     const { storyFn } = this.props;
     return storyFn({
       state: this.state,
-      setState: this.setState.bind(this),
+      setState: this.handleSetState,
     });
   }
 }
