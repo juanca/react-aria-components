@@ -2,18 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class StateDecorator extends React.Component {
-  static propTypes = {
-    initialState: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    storyFn: PropTypes.func.isRequired,
-  };
+  constructor(props) {
+    super(props);
+    this.state = props.initialState;
+    this.handleSetState = this.handleSetState.bind(this);
+  }
 
-  static defaultProps = {
-    initialState: {},
-  };
-
-  state = this.props.initialState;
-
-  handleSetState = (...args) => {
+  handleSetState(...args) {
     this.setState(...args);
   }
 
@@ -25,3 +20,12 @@ export default class StateDecorator extends React.Component {
     });
   }
 }
+
+StateDecorator.propTypes = {
+  initialState: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  storyFn: PropTypes.func.isRequired,
+};
+
+StateDecorator.defaultProps = {
+  initialState: {},
+};
