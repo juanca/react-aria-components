@@ -47,7 +47,7 @@
     "react-dom": "^16.4.0",
     "react-test-renderer": "^16.8.2",
     "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.4",
+    "webpack-cli": "^3.2.3",
     "webpack-serve": "^1.0.2"
   },
   "peerDependencies": {
