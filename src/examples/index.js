@@ -4,7 +4,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Example from './example.js';
-import GridExample from './grid-example.js';
 
 setTimeout(() => {
   render((
@@ -30,7 +29,6 @@ setTimeout(() => {
         </nav>
       </Example>
       <main>
-        <GridExample />
       </main>
       <footer>
         <address>
