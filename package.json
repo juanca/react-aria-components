@@ -9,9 +9,11 @@
   },
   "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
+    "build": "build-storybook -c .storybook -o dist",
+    "clean": "rm -rf dist/",
     "deploy": "gh-pages -d dist/",
     "lint": "eslint .",
-    "predeploy": "webpack --mode production",
+    "predeploy": "npm run build",
     "start": "start-storybook -p 9001 -c .storybook",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
