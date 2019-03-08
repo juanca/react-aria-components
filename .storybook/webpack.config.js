@@ -29,5 +29,7 @@ module.exports = function ({ config }) {
   }
 
   cssLoader.options.modules = true;
+  cssLoader.options.localIdentName = '[name]__[emoji]__[hash:base64:5]';
+
   return config;
 }
