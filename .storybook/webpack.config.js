@@ -18,9 +18,16 @@
 // };
 
 module.exports = function ({ config }) {
-  // TODO... figure out how to make the above work.
-  const cssRule = config.module.rules.filter(x => x.test.test('.css'))[0];
-  const cssLoader = cssRule.use.filter(x => /css-loader/.test(x.loader))[0];
+  const cssRule = config.module.rules.find(rule => rule.test.test('.css'));
+  if (!cssRule) {
+    throw new Error('No css rule detected in base storybook webpack config! Maybe the storybook internals have changed?');
+  }
+
+  const cssLoader = cssRule.use.find(loader => /css-loader/.test(loader.loader));
+  if (!cssLoader) {
+    throw new Error('css-loader not detected in base storybook webpack config! Maybe the storybook internals have changed?');
+  }
+
   cssLoader.options.modules = true;
   return config;
 }
