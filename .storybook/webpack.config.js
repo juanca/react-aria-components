@@ -8,7 +8,16 @@
 //           {
 //             loader: 'css-loader',
 //             options: {
-//               modules: true
+//               importLoaders: 1,
+//               modules: true,
+//               localIdentName: '[name]__[emoji]__[hash:base64:5]',
+//             },
+//           },
+//           {
+//             loader: 'postcss-loader',
+//             options: {
+//               ident: 'postcss',
+//               postcss: {},
 //             },
 //           },
 //         ],
