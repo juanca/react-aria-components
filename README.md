@@ -11,8 +11,7 @@ The demo is manually deployed (for the time being) and can be based off any bran
 | ---------- | --------------- | --------------- | --------------- |
 | IE11, Edge | last 5 versions | last 5 versions | last 5 versions |
 
-The exported modules are expected to be transpiled with Babel and PostCSS autoprefixer.
-In addition, `babel-polyfill` should be used in consumer applications.
+The exported modules are expected to be transpiled with Babel and PostCSS autoprefixer. In addition, you may need to use `@babel/preset-env` in an application, depending on the browsers you need to support.
 
 ## Getting started
 
