@@ -10,7 +10,7 @@ jobs:
           keys:
           - node_modules-1-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
           - node_modules-1-
-      - run: npm install
+      - run: npm ci
       - save_cache:
           paths:
             - node_modules
