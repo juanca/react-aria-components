@@ -8,13 +8,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - node_modules-1-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
-          - node_modules-1-{{ checksum "package.json" }}
-          - node_modules-1-
+          - node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
+          - node_modules-2-{{ checksum "package.json" }}
+          - node_modules-2-
       - run: npm ci
       - save_cache:
           paths:
-            - node_modules
-          key: node_modules-1-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
+            - $HOME/.npm
+          key: node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
       - run: npm run lint
       - run: npm test
