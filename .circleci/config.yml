@@ -10,10 +10,15 @@ workflows:
               ignore:
                 - gh-pages
 
-jobs:
-  build_and_test:
+executors:
+  node:
     docker:
       - image: circleci/node:8.15
+
+
+jobs:
+  build_and_test:
+    executor: node
     working_directory: ~/repo
     steps:
       - checkout
