@@ -2,18 +2,19 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.15
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
-          - node_modules-1-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
-          - node_modules-1-
-      - run: npm install
+          - node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
+          - node_modules-2-{{ checksum "package.json" }}
+          - node_modules-2-
+      - run: npm ci
       - save_cache:
           paths:
-            - node_modules
-          key: node_modules-1-{{ checksum "package.json" }}
+            - $HOME/.npm
+          key: node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
       - run: npm run lint
       - run: npm test
