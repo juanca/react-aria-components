@@ -12,8 +12,8 @@ workflows:
       - deploy:
           filters:
             branches:
-              only:
-                - master
+              ignore:
+                - gh-pages
           requires:
             - build_and_test
 
@@ -56,4 +56,15 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "8a:39:bd:71:f3:c8:ba:19:4e:37:71:e4:c7:77:b9:32"
-      - run: npm run deploy
+      - run:
+          name: Compile and deploy Github pages
+          command: |
+            npm run compile
+            git checkout gh-pages
+            rm -rf $CIRCLE_BRANCH
+            mv dist $CIRCLE_BRANCH
+            git add .
+            git diff-index --quiet HEAD || git commit -m 'Update Github pages'
+            git push origin gh-pages
+      - run: echo https://juanca.github.io/react-aria-components/$CIRCLE_BRANCH/
+      - run: ls $CIRCLE_BRANCH
