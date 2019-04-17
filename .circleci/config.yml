@@ -9,6 +9,13 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+      - deploy:
+          filters:
+            branches:
+              only:
+                - ci-workflows
+          requires:
+            - build_and_test
 
 executors:
   node:
@@ -38,3 +45,15 @@ jobs:
       - install
       - run: npm run lint
       - run: npm test
+  deploy:
+    executor: node
+    working_directory: ~/repo
+    steps:
+      - install
+      - run: |
+          git config user.email "ci@react-aria-components"
+          git config user.name "CI Deployment"
+      - add_ssh_keys:
+          fingerprints:
+            - " 8a:39:bd:71:f3:c8:ba:19:4e:37:71:e4:c7:77:b9:32"
+      - run: npm deploy
