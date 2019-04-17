@@ -37,10 +37,11 @@ Each component is driven by three principles:
 
 ## Contributing
 
-```
-npm test
-```
+Code requirements will be evaluated through peer review.
+CI will run tests and linter rules -- see below for running the same scripts locally.
+CI will also deploy branches to Github pages -- see CI output for URL.
 
 ```
+npm test
 npm run lint
 ```
