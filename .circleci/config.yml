@@ -1,0 +1,70 @@
+version: 2.1
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build_and_test:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - deploy:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+          requires:
+            - build_and_test
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:8.15
+
+commands:
+  install:
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
+          - node_modules-2-{{ checksum "package.json" }}
+          - node_modules-2-
+      - run: npm ci
+      - save_cache:
+          paths:
+            - $HOME/.npm
+          key: node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
+
+jobs:
+  build_and_test:
+    executor: node
+    working_directory: ~/repo
+    steps:
+      - install
+      - run: npm run lint
+      - run: npm test
+  deploy:
+    executor: node
+    working_directory: ~/repo
+    steps:
+      - install
+      - run: |
+          git config user.email "ci@react-aria-components"
+          git config user.name "CI Deployment"
+      - add_ssh_keys:
+          fingerprints:
+            - "8a:39:bd:71:f3:c8:ba:19:4e:37:71:e4:c7:77:b9:32"
+      - run:
+          name: Compile and deploy Github pages
+          command: |
+            npm run compile
+            git checkout gh-pages
+            rm -rf $CIRCLE_BRANCH
+            mv dist $CIRCLE_BRANCH
+            git add .
+            git diff-index --quiet HEAD || git commit -m 'Update Github pages'
+            git push origin gh-pages
+      - run: echo https://juanca.github.io/react-aria-components/$CIRCLE_BRANCH/
+      - run: ls $CIRCLE_BRANCH
