@@ -64,7 +64,7 @@ jobs:
             rm -rf $CIRCLE_BRANCH
             mv dist $CIRCLE_BRANCH
             git add .
-            git commit -m 'Update Github pages'
+            git diff-index --quiet HEAD || git commit -m 'Update Github pages'
             git push origin gh-pages
       - run: echo https://juanca.github.io/react-aria-components/$CIRCLE_BRANCH/
       - run: ls $CIRCLE_BRANCH
