@@ -12,8 +12,8 @@ workflows:
       - deploy:
           filters:
             branches:
-              only:
-                - master
+              ignore:
+                - gh-pages
           requires:
             - build_and_test
 
