@@ -80,10 +80,10 @@ export default function GridExample() {
           <GridRow key={`data-${y + 1}`} cellRefs={gridRefs[y + 1]} className={styles.row} index={y + 1}>{/* eslint-disable-line max-len */}
             {columns.map((column, x) => (
               <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell}>{/* eslint-disable-line max-len */}
-                {active => (
+                {active => ( // eslint-disable-line no-unused-vars
                   (() => {
-                    switch(column) {
-                      case 'Description': return <a href="./#">{row[column]}</a>;
+                    switch (column) {
+                      case 'Description': return <a href="./#">{row[column]}</a>; // eslint-disable-line max-len
                       default: return row[column];
                     }
                   })()
