@@ -10,7 +10,7 @@ export default function Grid(props) {
       {(x, y) => (
         <React.Fragment>
           <span>{x}, {y}</span>
-          <div className={props.className}>
+          <div className={props.className} role="grid">
             {React.Children.map(props.children, (row, index) => (
               React.cloneElement(row, {
                 active: index === y,

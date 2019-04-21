@@ -24,7 +24,7 @@ export default class GridCell extends React.Component {
     const tabIndex = this.props.active ? 0 : -1;
 
     return (
-      <div className={this.props.className} ref={this.props.cellRef} tabIndex={tabIndex}>{/* eslint-disable-line max-len */}
+      <div className={this.props.className} ref={this.props.cellRef} role="cell" tabIndex={tabIndex}>{/* eslint-disable-line max-len */}
         {this.props.children(this.props.active)}
       </div>
     );
