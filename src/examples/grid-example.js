@@ -5,6 +5,7 @@ import Example from './example.js';
 import DataGrid from '../grid/data-grid.js';
 import GridRow from '../grid/grid-row.js';
 import GridCell from '../grid/grid-cell.js';
+import styles from './grid-example.css';
 
 const columns = [
   'Date',
@@ -63,10 +64,10 @@ const gridRefs = [columns.map(() => (
 export default function GridExample() {
   return (
     <Example title="Grid">
-      <DataGrid refs={gridRefs}>
-        <GridRow key="headers" cellRefs={gridRefs[0]} index={0}>
+      <DataGrid className={styles.container} refs={gridRefs}>
+        <GridRow key="headers" cellRefs={gridRefs[0]} className={styles.row} index={0}>{/* eslint-disable-line max-len */}
           {columns.map((header, x) => (
-            <GridCell key={`header-cell-${x}`} cellRef={gridRefs[0][x]}>
+            <GridCell key={`header-cell-${x}`} cellRef={gridRefs[0][x]} className={styles.header}>{/* eslint-disable-line max-len */}
               {active => (
                 <span className={active ? 'active' : undefined}>
                   {header}
@@ -76,9 +77,9 @@ export default function GridExample() {
           ))}
         </GridRow>
         {data.map((row, y) => (
-          <GridRow key={`data-${y + 1}`} cellRefs={gridRefs[y + 1]} index={y + 1}>{/* eslint-disable-line max-len */}
+          <GridRow key={`data-${y + 1}`} cellRefs={gridRefs[y + 1]} className={styles.row} index={y + 1}>{/* eslint-disable-line max-len */}
             {columns.map((column, x) => (
-              <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]}>{/* eslint-disable-line max-len */}
+              <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell}>{/* eslint-disable-line max-len */}
                 {active => (
                   <span className={active ? 'active' : undefined}>
                     {row[column]}
