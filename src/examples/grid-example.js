@@ -81,9 +81,12 @@ export default function GridExample() {
             {columns.map((column, x) => (
               <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell}>{/* eslint-disable-line max-len */}
                 {active => (
-                  <span className={active ? 'active' : undefined}>
-                    {row[column]}
-                  </span>
+                  (() => {
+                    switch(column) {
+                      case 'Description': return <a href="./#">{row[column]}</a>;
+                      default: return row[column];
+                    }
+                  })()
                 )}
               </GridCell>
             ))}
