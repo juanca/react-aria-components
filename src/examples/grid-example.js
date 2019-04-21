@@ -67,7 +67,7 @@ export default function GridExample() {
       <DataGrid className={styles.container} refs={gridRefs}>
         <GridRow key="headers" cellRefs={gridRefs[0]} className={styles.row} index={0}>{/* eslint-disable-line max-len */}
           {columns.map((header, x) => (
-            <GridCell key={`header-cell-${x}`} cellRef={gridRefs[0][x]} className={styles.header}>{/* eslint-disable-line max-len */}
+            <GridCell key={`header-cell-${x}`} cellRef={gridRefs[0][x]} className={styles.header} header>{/* eslint-disable-line max-len */}
               {active => (
                 <span className={active ? 'active' : undefined}>
                   {header}
