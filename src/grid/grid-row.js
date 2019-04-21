@@ -16,7 +16,7 @@ export default class Row extends React.Component {
 
   render() {
     return (
-      <div style={styles}>
+      <div className={this.props.className} style={styles}>
         {React.Children.map(this.props.children, (cell, index) => (
           React.cloneElement(cell, {
             active: this.props.active && index === this.props.cellIndex,
@@ -31,7 +31,9 @@ Row.propTypes = {
   active: PropTypes.bool.isRequired,
   cellIndex: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
 
 Row.defaultProps = {
+  className: undefined,
 };

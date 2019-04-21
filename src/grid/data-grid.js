@@ -10,12 +10,14 @@ export default function Grid(props) {
       {(x, y) => (
         <React.Fragment>
           <span>{x}, {y}</span>
-          {React.Children.map(props.children, (row, index) => (
-            React.cloneElement(row, {
-              active: index === y,
-              cellIndex: x,
-            })
-          ))}
+          <div className={props.className}>
+            {React.Children.map(props.children, (row, index) => (
+              React.cloneElement(row, {
+                active: index === y,
+                cellIndex: x,
+              })
+            ))}
+          </div>
         </React.Fragment>
       )}
     </Cursor>
@@ -24,8 +26,10 @@ export default function Grid(props) {
 
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   refs: PropTypes.arrayOf(RefType).isRequired,
 };
 
 Grid.defaultProps = {
+  className: undefined,
 };
