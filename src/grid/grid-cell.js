@@ -34,7 +34,7 @@ export default class GridCell extends React.Component {
 GridCell.propTypes = {
   active: PropTypes.bool.isRequired,
   cellRef: RefType.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
   className: PropTypes.string,
   header: PropTypes.bool,
 };
