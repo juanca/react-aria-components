@@ -24,7 +24,7 @@ export default class GridCell extends React.Component {
     const tabIndex = this.props.active ? 0 : -1;
 
     return (
-      <div tabIndex={tabIndex} ref={this.props.cellRef}>
+      <div className={this.props.className} ref={this.props.cellRef} role={this.props.header ? 'rowheader' : 'cell'} tabIndex={tabIndex}>{/* eslint-disable-line max-len */}
         {this.props.children(this.props.active)}
       </div>
     );
@@ -34,8 +34,12 @@ export default class GridCell extends React.Component {
 GridCell.propTypes = {
   active: PropTypes.bool.isRequired,
   cellRef: RefType.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  header: PropTypes.bool,
 };
 
 GridCell.defaultProps = {
+  className: undefined,
+  header: false,
 };

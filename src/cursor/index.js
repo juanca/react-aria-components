@@ -84,10 +84,12 @@ export default class Cursor extends React.Component {
     const tabIndex = this.state.positionY === -1 ? 0 : -1;
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
+        className={this.props.className}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
-        role="presentation"
+        role={this.props.role}
         tabIndex={tabIndex}
       >
         {this.props.children(this.state.positionX, this.state.positionY)}
@@ -98,8 +100,12 @@ export default class Cursor extends React.Component {
 
 Cursor.propTypes = {
   children: PropTypes.func.isRequired,
+  className: PropTypes.string,
   refs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
+  role: PropTypes.string,
 };
 
 Cursor.defaultProps = {
+  className: undefined,
+  role: 'presentation',
 };

@@ -3,7 +3,7 @@ import TestRenderer from 'react-test-renderer';
 
 import Cursor from './index.js';
 
-function render() {
+function render(props) {
   const refs = [
     [
       { current: { contains: ([x, y]) => x === 0 && y === 0 } },
@@ -16,7 +16,7 @@ function render() {
   ];
 
   return TestRenderer.create((
-    <Cursor refs={refs}>
+    <Cursor refs={refs} {...props}>
       {(positionX, positionY) => (
         `Current position: ${positionX}, ${positionY}`
       )}
@@ -24,7 +24,7 @@ function render() {
   ));
 }
 
-test('is receives keyboard events', () => {
+test('receives keyboard events', () => {
   const renderer = render();
   const root = renderer.toJSON();
 
@@ -37,6 +37,22 @@ test('renders the default state', () => {
 
   expect(root.children.length).toEqual(1);
   expect(root.children[0]).toEqual('Current position: -1, -1');
+  expect(root.props.className).toEqual(undefined);
+  expect(root.props.role).toEqual('presentation');
+});
+
+test('has a className property', () => {
+  const renderer = render({ className: 'part-of-the-api' });
+  const root = renderer.toJSON();
+
+  expect(root.props.className).toEqual('part-of-the-api');
+});
+
+test('has a role property', () => {
+  const renderer = render({ role: 'part-of-the-api' });
+  const root = renderer.toJSON();
+
+  expect(root.props.role).toEqual('part-of-the-api');
 });
 
 describe('x-axis position', () => {
