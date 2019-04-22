@@ -24,7 +24,7 @@ function render() {
   ));
 }
 
-test('is receives keyboard events', () => {
+test('receives keyboard events', () => {
   const renderer = render();
   const root = renderer.toJSON();
 

@@ -31,7 +31,7 @@ test('has a className property', () => {
 });
 
 describe('active property and cellIndex property', () => {
-  test('disables active cells', () => {
+  test('deactivates all cells', () => {
     const renderer = render({ active: false, cellIndex: -1 });
     const root = renderer.toJSON();
 
