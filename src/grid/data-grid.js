@@ -6,20 +6,13 @@ import RefType from '../prop-types/ref.js';
 
 export default function Grid(props) {
   return (
-    <Cursor refs={props.refs}>
-      {(x, y) => (
-        <React.Fragment>
-          <span>{x}, {y}</span>
-          <div className={props.className} role="grid">
-            {React.Children.map(props.children, (row, index) => (
-              React.cloneElement(row, {
-                active: index === y,
-                cellIndex: x,
-              })
-            ))}
-          </div>
-        </React.Fragment>
-      )}
+    <Cursor className={props.className} refs={props.refs} role="grid">
+      {(x, y) => React.Children.map(props.children, (row, index) => (
+        React.cloneElement(row, {
+          active: index === y,
+          cellIndex: x,
+        })
+      ))}
     </Cursor>
   );
 }
