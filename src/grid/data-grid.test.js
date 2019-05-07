@@ -15,21 +15,21 @@ function render(props) {
 }
 
 test('is a Cursor', () => {
-  expect(render().toTree().rendered.instance.constructor.name).toEqual('Cursor');
+  expect(render().toTree().rendered.instance.constructor.name).toStrictEqual('Cursor');
 });
 
 test('renders the default state', () => {
   const renderer = render();
   const root = renderer.toJSON();
 
-  expect(root.children.length).toEqual(2);
-  expect(root.props.className).toEqual(undefined);
-  expect(root.props.role).toEqual('grid');
+  expect(root.children.length).toStrictEqual(2);
+  expect(root.props.className).toStrictEqual(undefined);
+  expect(root.props.role).toStrictEqual('grid');
 });
 
 test('has a className property', () => {
   const renderer = render({ className: 'part-of-the-api' });
   const root = renderer.toJSON();
 
-  expect(root.props.className).toEqual('part-of-the-api');
+  expect(root.props.className).toStrictEqual('part-of-the-api');
 });
