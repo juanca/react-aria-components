@@ -1,11 +1,11 @@
 {
   "parser": "babel-eslint",
+  "plugins": [
+    "jest"
+  ],
   "extends": [
     "airbnb",
     "plugin:jest/recommended"
-  ],
-  "plugins": [
-    "jest"
   ],
   "rules": {
     "import/extensions": "off",
