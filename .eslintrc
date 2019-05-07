@@ -27,6 +27,7 @@
       "files": ["*test.js"],
       "rules": {
         "jest/consistent-test-it": "error",
+        "jest/expect-expect": "error",
         "max-len": "off"
       }
     }
