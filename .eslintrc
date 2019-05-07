@@ -39,6 +39,7 @@
         "jest/no-jest-import": "error",
         "jest/no-mocks-import": "error",
         "jest/no-test-callback": "error",
+        "jest/no-test-prefixes": "error",
         "max-len": "off"
       }
     }
