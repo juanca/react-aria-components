@@ -45,6 +45,7 @@
         "jest/prefer-spy-on": "error",
         "jest/prefer-strict-equal": "error",
         "jest/prefer-to-be-null": "error",
+        "jest/prefer-to-contain": "error",
         "max-len": "off"
       }
     }
