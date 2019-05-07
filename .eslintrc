@@ -47,6 +47,7 @@
         "jest/prefer-to-be-null": "error",
         "jest/prefer-to-contain": "error",
         "jest/prefer-to-have-length": "error",
+        "jest/prefer-inline-snapshots": "error",
         "max-len": "off"
       }
     }
