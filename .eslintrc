@@ -52,6 +52,7 @@
         "jest/valid-describe": "error",
         "jest/valid-expect": "error",
         "jest/prefer-todo": "error",
+        "jest/prefer-called-with": "error",
         "max-len": "off"
       }
     }
