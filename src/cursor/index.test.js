@@ -28,35 +28,35 @@ test('receives keyboard events', () => {
   const renderer = render();
   const root = renderer.toJSON();
 
-  expect(root.props.tabIndex).toEqual(0);
+  expect(root.props.tabIndex).toStrictEqual(0);
 });
 
 test('renders the default state', () => {
   const renderer = render();
   const root = renderer.toJSON();
 
-  expect(root.children.length).toEqual(1);
-  expect(root.children[0]).toEqual('Current position: -1, -1');
-  expect(root.props.className).toEqual(undefined);
-  expect(root.props.role).toEqual('presentation');
+  expect(root.children.length).toStrictEqual(1);
+  expect(root.children[0]).toStrictEqual('Current position: -1, -1');
+  expect(root.props.className).toStrictEqual(undefined);
+  expect(root.props.role).toStrictEqual('presentation');
 });
 
 test('has a className property', () => {
   const renderer = render({ className: 'part-of-the-api' });
   const root = renderer.toJSON();
 
-  expect(root.props.className).toEqual('part-of-the-api');
+  expect(root.props.className).toStrictEqual('part-of-the-api');
 });
 
 test('has a role property', () => {
   const renderer = render({ role: 'part-of-the-api' });
   const root = renderer.toJSON();
 
-  expect(root.props.role).toEqual('part-of-the-api');
+  expect(root.props.role).toStrictEqual('part-of-the-api');
 });
 
 describe('x-axis position', () => {
-  test('increments', () => {
+  it('increments', () => {
     const renderer = render();
     const keyEvent = {
       key: 'ArrowRight',
@@ -64,11 +64,11 @@ describe('x-axis position', () => {
     };
 
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 
-  test('decrements', () => {
+  it('decrements', () => {
     const renderer = render();
     const clickEvent = {
       target: [1, 0],
@@ -80,11 +80,11 @@ describe('x-axis position', () => {
 
     renderer.toTree().rendered.props.onClick(clickEvent);
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 
-  test('has a lower-bound', () => {
+  it('has a lower-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 0],
@@ -96,11 +96,11 @@ describe('x-axis position', () => {
 
     renderer.toTree().rendered.props.onClick(clickEvent);
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 
-  test('has an upper-bound', () => {
+  it('has an upper-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [1, 0],
@@ -112,13 +112,13 @@ describe('x-axis position', () => {
 
     renderer.toTree().rendered.props.onClick(clickEvent);
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 1, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 });
 
 describe('y-axis position', () => {
-  test('increments its position on the y-axis', () => {
+  it('increments its position on the y-axis', () => {
     const renderer = render();
     const keyEvent = {
       key: 'ArrowDown',
@@ -126,11 +126,11 @@ describe('y-axis position', () => {
     };
 
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 
-  test('decrements its position on the y-axis', () => {
+  it('decrements its position on the y-axis', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 1],
@@ -142,11 +142,11 @@ describe('y-axis position', () => {
 
     renderer.toTree().rendered.props.onClick(clickEvent);
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 
-  test('has a lower-bound', () => {
+  it('has a lower-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 0],
@@ -158,11 +158,11 @@ describe('y-axis position', () => {
 
     renderer.toTree().rendered.props.onClick(clickEvent);
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 
-  test('has an upper-bound', () => {
+  it('has an upper-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 1],
@@ -174,8 +174,8 @@ describe('y-axis position', () => {
 
     renderer.toTree().rendered.props.onClick(clickEvent);
     renderer.toTree().rendered.props.onKeyDown(keyEvent);
-    expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 1');
-    expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+    expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 1');
+    expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
   });
 });
 
@@ -187,7 +187,7 @@ test('does not prevent default behavior on non-navigation keys', () => {
   };
 
   renderer.toTree().rendered.props.onKeyDown(event);
-  expect(event.preventDefault.mock.calls.length).toEqual(0);
+  expect(event.preventDefault.mock.calls.length).toStrictEqual(0);
 });
 
 test('finds indices and updates its position', () => {
@@ -197,7 +197,7 @@ test('finds indices and updates its position', () => {
   };
 
   renderer.toTree().rendered.props.onClick(event);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 1');
+  expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 1, 1');
 });
 
 test('shortcuts to the start of the row', () => {
@@ -212,8 +212,8 @@ test('shortcuts to the start of the row', () => {
 
   renderer.toTree().rendered.props.onClick(clickEvent);
   renderer.toTree().rendered.props.onKeyDown(keyEvent);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+  expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+  expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
 });
 
 test('shortcuts to the end of the row', () => {
@@ -228,8 +228,8 @@ test('shortcuts to the end of the row', () => {
 
   renderer.toTree().rendered.props.onClick(clickEvent);
   renderer.toTree().rendered.props.onKeyDown(keyEvent);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 1, 0');
-  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+  expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 1, 0');
+  expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
 });
 
 test('shortcuts to the first row', () => {
@@ -244,8 +244,8 @@ test('shortcuts to the first row', () => {
 
   renderer.toTree().rendered.props.onClick(clickEvent);
   renderer.toTree().rendered.props.onKeyDown(keyEvent);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 0');
-  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+  expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 0');
+  expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
 });
 
 test('shortcuts to the last row', () => {
@@ -260,6 +260,6 @@ test('shortcuts to the last row', () => {
 
   renderer.toTree().rendered.props.onClick(clickEvent);
   renderer.toTree().rendered.props.onKeyDown(keyEvent);
-  expect(renderer.toTree().rendered.rendered[0]).toEqual('Current position: 0, 1');
-  expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
+  expect(renderer.toTree().rendered.rendered[0]).toStrictEqual('Current position: 0, 1');
+  expect(keyEvent.preventDefault.mock.calls.length).toStrictEqual(1);
 });

@@ -16,42 +16,42 @@ test('renders the default state', () => {
   const renderer = render();
   const root = renderer.toJSON();
 
-  expect(root.children.length).toEqual(2);
-  expect(root.props.className).toEqual(undefined);
-  expect(root.props.role).toEqual('row');
-  expect(root.props.style.display).toEqual('flex');
-  expect(root.props.style.flexDirection).toEqual('row');
+  expect(root.children.length).toStrictEqual(2);
+  expect(root.props.className).toStrictEqual(undefined);
+  expect(root.props.role).toStrictEqual('row');
+  expect(root.props.style.display).toStrictEqual('flex');
+  expect(root.props.style.flexDirection).toStrictEqual('row');
 });
 
 test('has a className property', () => {
   const renderer = render({ className: 'part-of-the-api' });
   const root = renderer.toJSON();
 
-  expect(root.props.className).toEqual('part-of-the-api');
+  expect(root.props.className).toStrictEqual('part-of-the-api');
 });
 
 describe('active property and cellIndex property', () => {
-  test('deactivates all cells', () => {
+  it('deactivates all cells', () => {
     const renderer = render({ active: false, cellIndex: -1 });
     const root = renderer.toJSON();
 
-    expect(root.children[0].props.active).toEqual(false);
-    expect(root.children[1].props.active).toEqual(false);
+    expect(root.children[0].props.active).toStrictEqual(false);
+    expect(root.children[1].props.active).toStrictEqual(false);
   });
 
-  test('activates the first cell', () => {
+  it('activates the first cell', () => {
     const renderer = render({ active: true, cellIndex: 0 });
     const root = renderer.toJSON();
 
-    expect(root.children[0].props.active).toEqual(true);
-    expect(root.children[1].props.active).toEqual(false);
+    expect(root.children[0].props.active).toStrictEqual(true);
+    expect(root.children[1].props.active).toStrictEqual(false);
   });
 
-  test('activates the second cell', () => {
+  it('activates the second cell', () => {
     const renderer = render({ active: true, cellIndex: 1 });
     const root = renderer.toJSON();
 
-    expect(root.children[0].props.active).toEqual(false);
-    expect(root.children[1].props.active).toEqual(true);
+    expect(root.children[0].props.active).toStrictEqual(false);
+    expect(root.children[1].props.active).toStrictEqual(true);
   });
 });

@@ -1,6 +1,12 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "plugins": [
+    "jest"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended"
+  ],
   "rules": {
     "import/extensions": "off",
     "max-len": ["error", {
@@ -15,11 +21,38 @@
   },
   "overrides": [
     {
-      "files": ["*test.js"],
       "env": {
-        "jest": true
+        "jest/globals": true
       },
+      "files": ["*test.js"],
       "rules": {
+        "jest/consistent-test-it": "error",
+        "jest/expect-expect": "error",
+        "jest/lowercase-name": "error",
+        "jest/no-alias-methods": "error",
+        "jest/no-disabled-tests": "error",
+        "jest/no-empty-title": "error",
+        "jest/no-focused-tests": "error",
+        "jest/no-hooks": ["error", { "allow": ["beforeEach", "afterEach"] }],
+        "jest/no-identical-title": "off",
+        "jest/no-jasmine-globals": "error",
+        "jest/no-jest-import": "error",
+        "jest/no-mocks-import": "error",
+        "jest/no-test-callback": "error",
+        "jest/no-test-prefixes": "error",
+        "jest/no-test-return-statement": "error",
+        "jest/no-truthy-falsy": "error",
+        "jest/prefer-spy-on": "error",
+        "jest/prefer-strict-equal": "error",
+        "jest/prefer-to-be-null": "error",
+        "jest/prefer-to-contain": "error",
+        "jest/prefer-to-have-length": "error",
+        "jest/prefer-inline-snapshots": "error",
+        "jest/require-tothrow-message": "error",
+        "jest/valid-describe": "error",
+        "jest/valid-expect": "error",
+        "jest/prefer-todo": "error",
+        "jest/prefer-called-with": "error",
         "max-len": "off"
       }
     }
