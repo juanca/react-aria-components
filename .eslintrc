@@ -37,6 +37,7 @@
         "jest/no-identical-title": "off",
         "jest/no-jasmine-globals": "error",
         "jest/no-jest-import": "error",
+        "jest/no-mocks-import": "error",
         "max-len": "off"
       }
     }
