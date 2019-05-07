@@ -56,7 +56,7 @@ test('has a role property', () => {
 });
 
 describe('x-axis position', () => {
-  test('increments', () => {
+  it('increments', () => {
     const renderer = render();
     const keyEvent = {
       key: 'ArrowRight',
@@ -68,7 +68,7 @@ describe('x-axis position', () => {
     expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 
-  test('decrements', () => {
+  it('decrements', () => {
     const renderer = render();
     const clickEvent = {
       target: [1, 0],
@@ -84,7 +84,7 @@ describe('x-axis position', () => {
     expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 
-  test('has a lower-bound', () => {
+  it('has a lower-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 0],
@@ -100,7 +100,7 @@ describe('x-axis position', () => {
     expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 
-  test('has an upper-bound', () => {
+  it('has an upper-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [1, 0],
@@ -118,7 +118,7 @@ describe('x-axis position', () => {
 });
 
 describe('y-axis position', () => {
-  test('increments its position on the y-axis', () => {
+  it('increments its position on the y-axis', () => {
     const renderer = render();
     const keyEvent = {
       key: 'ArrowDown',
@@ -130,7 +130,7 @@ describe('y-axis position', () => {
     expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 
-  test('decrements its position on the y-axis', () => {
+  it('decrements its position on the y-axis', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 1],
@@ -146,7 +146,7 @@ describe('y-axis position', () => {
     expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 
-  test('has a lower-bound', () => {
+  it('has a lower-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 0],
@@ -162,7 +162,7 @@ describe('y-axis position', () => {
     expect(keyEvent.preventDefault.mock.calls.length).toEqual(1);
   });
 
-  test('has an upper-bound', () => {
+  it('has an upper-bound', () => {
     const renderer = render();
     const clickEvent = {
       target: [0, 1],

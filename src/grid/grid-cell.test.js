@@ -38,21 +38,21 @@ test('has a className property', () => {
 });
 
 describe('active property', () => {
-  test('enables interactivity', () => {
+  it('enables interactivity', () => {
     const renderer = render({ active: true });
     const root = renderer.toJSON();
 
     expect(root.props.tabIndex).toEqual(0);
   });
 
-  test('disables interactivity', () => {
+  it('disables interactivity', () => {
     const renderer = render({ active: false });
     const root = renderer.toJSON();
 
     expect(root.props.tabIndex).toEqual(-1);
   });
 
-  test('passes the property to its children', () => {
+  it('passes the property to its children', () => {
     const activeRenderer = render({ active: true });
     const activeRoot = activeRenderer.toJSON();
     expect(activeRoot.children[0]).toEqual('Cell is active');
@@ -64,14 +64,14 @@ describe('active property', () => {
 });
 
 describe('focus behavior', () => {
-  test('focuses the cell ref', () => {
+  it('focuses the cell ref', () => {
     const renderer = render({ active: true });
     const instance = renderer.getInstance();
 
     expect(instance.props.cellRef.current.focus.mock.calls.length).toEqual(1);
   });
 
-  test('does not focus the cell ref', () => {
+  it('does not focus the cell ref', () => {
     const renderer = render({ active: false });
     const instance = renderer.getInstance();
 
@@ -80,14 +80,14 @@ describe('focus behavior', () => {
 });
 
 describe('header property', () => {
-  test('dictates rowheader role', () => {
+  it('dictates rowheader role', () => {
     const renderer = render({ header: true });
     const root = renderer.toJSON();
 
     expect(root.props.role).toEqual('rowheader');
   });
 
-  test('dictates cell role', () => {
+  it('dictates cell role', () => {
     const renderer = render({ header: false });
     const root = renderer.toJSON();
 

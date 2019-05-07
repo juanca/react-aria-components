@@ -26,6 +26,7 @@
       },
       "files": ["*test.js"],
       "rules": {
+        "jest/consistent-test-it": "error",
         "max-len": "off"
       }
     }

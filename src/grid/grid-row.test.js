@@ -31,7 +31,7 @@ test('has a className property', () => {
 });
 
 describe('active property and cellIndex property', () => {
-  test('deactivates all cells', () => {
+  it('deactivates all cells', () => {
     const renderer = render({ active: false, cellIndex: -1 });
     const root = renderer.toJSON();
 
@@ -39,7 +39,7 @@ describe('active property and cellIndex property', () => {
     expect(root.children[1].props.active).toEqual(false);
   });
 
-  test('activates the first cell', () => {
+  it('activates the first cell', () => {
     const renderer = render({ active: true, cellIndex: 0 });
     const root = renderer.toJSON();
 
@@ -47,7 +47,7 @@ describe('active property and cellIndex property', () => {
     expect(root.children[1].props.active).toEqual(false);
   });
 
-  test('activates the second cell', () => {
+  it('activates the second cell', () => {
     const renderer = render({ active: true, cellIndex: 1 });
     const root = renderer.toJSON();
 
