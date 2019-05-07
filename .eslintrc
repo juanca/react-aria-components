@@ -1,6 +1,12 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended"
+  ],
+  "plugins": [
+    "jest"
+  ],
   "rules": {
     "import/extensions": "off",
     "max-len": ["error", {
@@ -15,10 +21,10 @@
   },
   "overrides": [
     {
-      "files": ["*test.js"],
       "env": {
-        "jest": true
+        "jest/globals": true
       },
+      "files": ["*test.js"],
       "rules": {
         "max-len": "off"
       }
