@@ -34,6 +34,7 @@
         "jest/no-empty-title": "error",
         "jest/no-focused-tests": "error",
         "jest/no-hooks": ["error", { "allow": ["beforeEach", "afterEach"] }],
+        "jest/no-identical-title": "off",
         "max-len": "off"
       }
     }
