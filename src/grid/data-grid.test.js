@@ -2,6 +2,8 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 
 import DataGrid from './data-grid.js';
+import GridCell from './grid-cell.js';
+import GridRow from './grid-row.js';
 
 function render(props) {
   const refs = [];
@@ -32,4 +34,25 @@ test('has a className property', () => {
   const root = renderer.toJSON();
 
   expect(root.props.className).toStrictEqual('part-of-the-api');
+});
+
+describe('end-to-end grid components', () => {
+  it('does not have prop-type validation errors', () => {
+    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+
+    TestRenderer.create((
+      <DataGrid refs={[]}>
+        <GridRow>
+          <GridCell>{() => 'I am the'}</GridCell>
+          <GridCell>{() => 'first row'}</GridCell>
+        </GridRow>
+        <GridRow>
+          <GridCell>{() => 'I am the'}</GridCell>
+          <GridCell>{() => 'second row'}</GridCell>
+        </GridRow>
+      </DataGrid>
+    ));
+
+    expect(console.error).not.toHaveBeenCalled(); // eslint-disable-line no-console
+  });
 });
