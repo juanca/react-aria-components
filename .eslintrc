@@ -38,6 +38,7 @@
         "jest/no-jasmine-globals": "error",
         "jest/no-jest-import": "error",
         "jest/no-mocks-import": "error",
+        "jest/no-test-callback": "error",
         "max-len": "off"
       }
     }
