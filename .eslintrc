@@ -33,6 +33,7 @@
         "jest/no-disabled-tests": "error",
         "jest/no-empty-title": "error",
         "jest/no-focused-tests": "error",
+        "jest/no-hooks": ["error", { "allow": ["beforeEach", "afterEach"] }],
         "max-len": "off"
       }
     }
