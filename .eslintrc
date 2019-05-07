@@ -32,6 +32,7 @@
         "jest/no-alias-methods": "error",
         "jest/no-disabled-tests": "error",
         "jest/no-empty-title": "error",
+        "jest/no-focused-tests": "error",
         "max-len": "off"
       }
     }
