@@ -42,6 +42,7 @@
         "jest/no-test-prefixes": "error",
         "jest/no-test-return-statement": "error",
         "jest/no-truthy-falsy": "error",
+        "jest/prefer-spy-on": "error",
         "max-len": "off"
       }
     }
