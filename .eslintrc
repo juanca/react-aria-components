@@ -31,6 +31,7 @@
         "jest/lowercase-name": "error",
         "jest/no-alias-methods": "error",
         "jest/no-disabled-tests": "error",
+        "jest/no-empty-title": "error",
         "max-len": "off"
       }
     }
