@@ -49,6 +49,7 @@
         "jest/prefer-to-have-length": "error",
         "jest/prefer-inline-snapshots": "error",
         "jest/require-tothrow-message": "error",
+        "jest/valid-describe": "error",
         "max-len": "off"
       }
     }
