@@ -20,7 +20,7 @@ npm install
 npm start
 ```
 
-Visit the webpage hosted by `webpack-serve`.
+Visit the webpage listed in the output.
 The URL should have been copied to the clipboard.
 Otherwise, please inspect the console output.
 
