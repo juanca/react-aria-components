@@ -28,12 +28,14 @@ export default class Row extends React.Component {
 }
 
 Row.propTypes = {
-  active: PropTypes.bool.isRequired,
-  cellIndex: PropTypes.number.isRequired,
+  active: PropTypes.bool,
+  cellIndex: PropTypes.number,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
 Row.defaultProps = {
+  active: false,
+  cellIndex: -1,
   className: undefined,
 };
