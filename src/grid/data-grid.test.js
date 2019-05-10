@@ -43,12 +43,12 @@ describe('end-to-end grid components', () => {
     TestRenderer.create((
       <DataGrid refs={[]}>
         <GridRow>
-          <GridCell>{() => 'I am the'}</GridCell>
-          <GridCell>{() => 'first row'}</GridCell>
+          <GridCell cellRef={React.createRef()}>{() => 'I am the'}</GridCell>
+          <GridCell cellRef={React.createRef()}>{() => 'first row'}</GridCell>
         </GridRow>
         <GridRow>
-          <GridCell>{() => 'I am the'}</GridCell>
-          <GridCell>{() => 'second row'}</GridCell>
+          <GridCell cellRef={React.createRef()}>{() => 'I am the'}</GridCell>
+          <GridCell cellRef={React.createRef()}>{() => 'second row'}</GridCell>
         </GridRow>
       </DataGrid>
     ));
