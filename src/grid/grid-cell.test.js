@@ -7,7 +7,7 @@ function render(props) {
   const cellRef = React.createRef();
 
   return TestRenderer.create((
-    <GridCell active={false} cellRef={cellRef} {...props}>
+    <GridCell cellRef={cellRef} {...props}>
       {active => (
         `Cell is ${active ? 'active' : 'inactive'}`
       )}

@@ -5,7 +5,7 @@ import GridRow from './grid-row.js';
 
 function render(props) {
   return TestRenderer.create((
-    <GridRow active={false} cellIndex={-1} {...props}>
+    <GridRow {...props}>
       <div>I am the first cell</div>
       <div>I am the second cell</div>
     </GridRow>
@@ -17,6 +17,8 @@ test('renders the default state', () => {
   const root = renderer.toJSON();
 
   expect(root.children.length).toStrictEqual(2);
+  expect(root.children[0].props.active).toStrictEqual(false);
+  expect(root.children[1].props.active).toStrictEqual(false);
   expect(root.props.className).toStrictEqual(undefined);
   expect(root.props.role).toStrictEqual('row');
   expect(root.props.style.display).toStrictEqual('flex');
