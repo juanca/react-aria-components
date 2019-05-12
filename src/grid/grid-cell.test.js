@@ -8,8 +8,8 @@ function render(props) {
 
   return TestRenderer.create((
     <GridCell cellRef={cellRef} {...props}>
-      {active => (
-        `Cell is ${active ? 'active' : 'inactive'}`
+      {(active, interactiveRef) => (
+        `Cell is ${active ? 'active' : 'inactive'}${interactiveRef ? ' and interactive' : ''}`
       )}
     </GridCell>
   ), {
@@ -92,5 +92,21 @@ describe('header property', () => {
     const root = renderer.toJSON();
 
     expect(root.props.role).toStrictEqual('cell');
+  });
+});
+
+describe('interactive property', () => {
+  it('disables interactivity on cell container', () => {
+    const renderer = render({ interactive: true });
+    const root = renderer.toJSON();
+
+    expect(root.props.tabIndex).toStrictEqual(undefined);
+  });
+
+  it('passes the interactivity reference to its children', () => {
+    const renderer = render({ interactive: true });
+    const root = renderer.toJSON();
+
+    expect(root.children[0]).toStrictEqual('Cell is inactive and interactive');
   });
 });
