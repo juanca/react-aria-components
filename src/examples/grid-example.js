@@ -78,18 +78,23 @@ export default function GridExample() {
         </GridRow>
         {data.map((row, y) => (
           <GridRow key={`data-${y + 1}`} cellRefs={gridRefs[y + 1]} className={styles.row} index={y + 1}>{/* eslint-disable-line max-len */}
-            {columns.map((column, x) => (
-              <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell}>{/* eslint-disable-line max-len */}
-                {active => ( // eslint-disable-line no-unused-vars
-                  (() => {
-                    switch (column) {
-                      case 'Description': return <a href="./#">{row[column]}</a>; // eslint-disable-line max-len
-                      default: return row[column];
-                    }
-                  })()
-                )}
-              </GridCell>
-            ))}
+            {columns.map((column, x) => {
+              if (column === 'Description') {
+                return (
+                  <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell} interactive>{/* eslint-disable-line max-len */}
+                    {(active, cellRef) => (
+                      <a href="./#" tabIndex={active ? 0 : -1} ref={cellRef}>{row[column]}</a> // eslint-disable-line max-len
+                    )}
+                  </GridCell>
+                );
+              }
+
+              return (
+                <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell}>{/* eslint-disable-line max-len */}
+                  {() => row[column]}
+                </GridCell>
+              );
+            })}
           </GridRow>
         ))}
       </DataGrid>
