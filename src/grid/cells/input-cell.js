@@ -23,8 +23,6 @@ export default class InputCell extends React.Component {
   }
 
   onKeyDown(event) {
-    console.log(event.key);
-
     switch (event.key) {
       case 'Enter': return this.setState(state => ({ interactive: !state.interactive })); // eslint-disable-line max-len
       case 'Escape': return this.setState({ interactive: false });
