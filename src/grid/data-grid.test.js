@@ -41,7 +41,7 @@ describe('end-to-end grid components', () => {
     jest.spyOn(console, 'error').mockImplementation(() => undefined);
 
     TestRenderer.create((
-      <DataGrid refs={[]}>
+      <DataGrid refs={[[{}, {}], [{}, {}]]}>
         <GridRow>
           <GridCell cellRef={React.createRef()}>{() => 'I am the'}</GridCell>
           <GridCell cellRef={React.createRef()}>{() => 'first row'}</GridCell>

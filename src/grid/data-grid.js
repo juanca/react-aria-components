@@ -20,7 +20,7 @@ export default function Grid(props) {
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  refs: PropTypes.arrayOf(RefType).isRequired,
+  refs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
 };
 
 Grid.defaultProps = {
