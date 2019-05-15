@@ -11,7 +11,7 @@ export default class GridCell extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.active !== nextProps.active;
+    return this.props.active || this.props.active !== nextProps.active;
   }
 
   componentDidUpdate() {
@@ -24,11 +24,11 @@ export default class GridCell extends React.Component {
     const tabIndex = this.props.active ? 0 : -1;
 
     const element = this.props.interactive ? (
-      <div className={this.props.className} role={this.props.header ? 'rowheader' : 'cell'}>{/* eslint-disable-line max-len */}
+      <div className={this.props.className} onKeyDown={this.props.onKeyDown} role={this.props.header ? 'rowheader' : 'cell'}>{/* eslint-disable-line max-len, jsx-a11y/no-static-element-interactions */}
         {this.props.children(this.props.active, this.props.cellRef)}
       </div>
     ) : (
-      <div className={this.props.className} ref={this.props.cellRef} role={this.props.header ? 'rowheader' : 'cell'} tabIndex={tabIndex}>{/* eslint-disable-line max-len */}
+      <div className={this.props.className} onKeyDown={this.props.onKeyDown} ref={this.props.cellRef} role={this.props.header ? 'rowheader' : 'cell'} tabIndex={tabIndex}>{/* eslint-disable-line max-len, jsx-a11y/no-static-element-interactions */}
         {this.props.children(this.props.active)}
       </div>
     );
@@ -38,12 +38,13 @@ export default class GridCell extends React.Component {
 }
 
 GridCell.propTypes = {
-  active: PropTypes.bool,
+  active: PropTypes.bool, // Implicit property from React.cloneElement
   cellRef: RefType.isRequired,
   children: PropTypes.func.isRequired,
   className: PropTypes.string,
   header: PropTypes.bool,
   interactive: PropTypes.bool,
+  onKeyDown: PropTypes.func,
 };
 
 GridCell.defaultProps = {
@@ -51,4 +52,5 @@ GridCell.defaultProps = {
   className: undefined,
   header: false,
   interactive: false,
+  onKeyDown: () => {},
 };
