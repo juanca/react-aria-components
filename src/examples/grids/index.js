@@ -5,15 +5,11 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Example1 from './example-1.js';
+import Header from '../header.js';
 
 render((
   <React.Fragment>
-    <header>
-      <h1>
-        React ARIA Components - Grids
-      </h1>
-    </header>
-    <a href="..">Go back to table of contents</a>
+    <Header title="Grids" />
     <main>
       <Example1 />
     </main>
