@@ -6,7 +6,10 @@ module.exports = {
     contentBase: './dist',
   },
   entry: {
-    examples: './src/examples/index.js',
+    accordions: './src/examples/accordions/index.js',
+    index: './src/examples/index.js',
+    grids: './src/examples/grids/index.js',
+    tabs: './src/examples/tabs/index.js',
   },
   mode: 'development',
   module: {
@@ -35,9 +38,24 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      chunks: ['examples'],
+      chunks: ['accordions'],
+      filename: './accordions/index.html',
+      template: './src/examples/accordions/index.html',
+    }),
+    new HtmlWebPackPlugin({
+      chunks: ['index'],
       filename: './index.html',
       template: './src/examples/index.html',
+    }),
+    new HtmlWebPackPlugin({
+      chunks: ['grids'],
+      filename: './grids/index.html',
+      template: './src/examples/grids/index.html',
+    }),
+    new HtmlWebPackPlugin({
+      chunks: ['tabs'],
+      filename: './tabs/index.html',
+      template: './src/examples/tabs/index.html',
     }),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',

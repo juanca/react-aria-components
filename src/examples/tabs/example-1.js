@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Example from './example.js';
+import Example from '../example.js';
 import {
   Tabs,
   TabList,
   Tab,
   TabPanels,
-} from '../tabs';
+} from '../../tabs';
 
 export default class TabsExample extends React.Component {
   constructor() {
