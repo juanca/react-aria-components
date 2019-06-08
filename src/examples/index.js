@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 
 import Example from './example.js';
 import AccordionExample from './accordion-example.js';
+import Footer from './footer.js';
 import TabsExample from './tabs-example.js';
 
 setTimeout(() => {
@@ -35,17 +36,7 @@ setTimeout(() => {
         <TabsExample />
         <AccordionExample />
       </main>
-      <footer>
-        <address>
-          <a href="https://github.com/juanca/react-aria-components">
-            Github repository
-          </a>
-          <br />
-          <a href="https://npmjs.com/package/react-aria-components">
-            NPM package
-          </a>
-        </address>
-      </footer>
+      <Footer />
     </React.Fragment>
   ), window.document.getElementById('page'));
 }, 100);
