@@ -6,7 +6,6 @@ import { render } from 'react-dom';
 
 import Example from './example.js';
 import AccordionExample from './accordion-example.js';
-import GridExample from './grid-example.js';
 import TabsExample from './tabs-example.js';
 
 setTimeout(() => {
@@ -24,7 +23,7 @@ setTimeout(() => {
           </p>
           <ol>
             <li>
-              Grid
+              <a href="./grids">Grid</a>
             </li>
             <li>
               Tabs
@@ -33,7 +32,6 @@ setTimeout(() => {
         </nav>
       </Example>
       <main>
-        <GridExample />
         <TabsExample />
         <AccordionExample />
       </main>
