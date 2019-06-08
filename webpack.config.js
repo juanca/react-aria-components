@@ -6,8 +6,8 @@ module.exports = {
     contentBase: './dist',
   },
   entry: {
-    examples: './src/examples/index.js',
-    examplesGrids: './src/examples/grids/index.js',
+    index: './src/examples/index.js',
+    grids: './src/examples/grids/index.js',
   },
   mode: 'development',
   module: {
@@ -36,12 +36,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      chunks: ['examples'],
+      chunks: ['index'],
       filename: './index.html',
       template: './src/examples/index.html',
     }),
     new HtmlWebPackPlugin({
-      chunks: ['examplesGrids'],
+      chunks: ['grids'],
       filename: './grids/index.html',
       template: './src/examples/grids/index.html',
     }),
