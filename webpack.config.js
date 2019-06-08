@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     index: './src/examples/index.js',
     grids: './src/examples/grids/index.js',
+    tabs: './src/examples/tabs/index.js',
   },
   mode: 'development',
   module: {
@@ -44,6 +45,11 @@ module.exports = {
       chunks: ['grids'],
       filename: './grids/index.html',
       template: './src/examples/grids/index.html',
+    }),
+    new HtmlWebPackPlugin({
+      chunks: ['tabs'],
+      filename: './tabs/index.html',
+      template: './src/examples/tabs/index.html',
     }),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',
