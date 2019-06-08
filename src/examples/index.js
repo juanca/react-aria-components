@@ -5,7 +5,6 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Example from './example.js';
-import AccordionExample from './accordion-example.js';
 import Footer from './footer.js';
 
 setTimeout(() => {
@@ -22,14 +21,12 @@ setTimeout(() => {
             List of WAI-ARIA components implemented in React:
           </p>
           <ol>
+            <li><a href="./accordions">Accordion</a></li>
             <li><a href="./grids">Grid</a></li>
             <li><a href="./tabs">Tabs</a></li>
           </ol>
         </nav>
       </Example>
-      <main>
-        <AccordionExample />
-      </main>
       <Footer />
     </React.Fragment>
   ), window.document.getElementById('page'));

@@ -1,6 +1,6 @@
 import React from 'react';
-import Example from './example.js';
-import { Accordion, Section } from '../accordion';
+import Example from '../example.js';
+import { Accordion, Section } from '../../accordion';
 
 function CustomTitle({ open, title }) { // eslint-disable-line react/prop-types
   return (

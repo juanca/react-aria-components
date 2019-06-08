@@ -6,6 +6,7 @@ module.exports = {
     contentBase: './dist',
   },
   entry: {
+    accordions: './src/examples/accordions/index.js',
     index: './src/examples/index.js',
     grids: './src/examples/grids/index.js',
     tabs: './src/examples/tabs/index.js',
@@ -36,6 +37,11 @@ module.exports = {
     }],
   },
   plugins: [
+    new HtmlWebPackPlugin({
+      chunks: ['accordions'],
+      filename: './accordions/index.html',
+      template: './src/examples/accordions/index.html',
+    }),
     new HtmlWebPackPlugin({
       chunks: ['index'],
       filename: './index.html',
