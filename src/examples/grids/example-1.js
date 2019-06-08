@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 
-import Example from './example.js';
-import DataGrid from '../grid/data-grid.js';
-import GridRow from '../grid/grid-row.js';
-import GridCell from '../grid/grid-cell.js';
-import styles from './grid-example.css';
+import Example from '../example.js';
+import DataGrid from '../../grid/data-grid.js';
+import GridRow from '../../grid/grid-row.js';
+import GridCell from '../../grid/grid-cell.js';
+import styles from './example-1.css';
 
 const columns = [
   'Date',
