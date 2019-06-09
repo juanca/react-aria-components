@@ -1,0 +1,28 @@
+.container {
+  font-family: sans-serif;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.row:not(:first-child) {
+  border-color: silver;
+  border-top-style: solid;
+  border-width: 1px;
+}
+
+.cell {
+  flex-basis: 0px;
+  flex-grow: 1;
+  padding: 0.5em 1em;
+}
+
+.header {
+  composes: cell;
+  font-weight: 700;
+}
+
+.header:first-child {
+  border-color: black;
+  border-right-style: solid;
+  border-width: 2px;
+}

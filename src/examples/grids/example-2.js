@@ -5,7 +5,8 @@ import Example from '../example.js';
 import DataGrid from '../../grid/data-grid.js';
 import GridRow from '../../grid/grid-row.js';
 import GridCell from '../../grid/grid-cell.js';
-import styles from './example-1.css';
+import InputCell from '../../grid/cells/input-cell.js';
+import styles from './example-2.css';
 
 const columns = [
   'Date',
@@ -86,6 +87,17 @@ export default function GridExample() {
                       <a href="./#" tabIndex={active ? 0 : -1} ref={cellRef}>{row[column]}</a> // eslint-disable-line max-len
                     )}
                   </GridCell>
+                );
+              }
+
+              if (column === 'Amount') {
+                return (
+                  <InputCell
+                    key={`cell-${y + 1}${x}`}
+                    cellRef={gridRefs[y + 1][x]}
+                    className={styles.cell}
+                    value={row[column]}
+                  />
                 );
               }
 
