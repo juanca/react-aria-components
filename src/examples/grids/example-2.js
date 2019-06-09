@@ -82,16 +82,6 @@ export default function GridExample() {
             {columns.map((column, x) => {
               if (column === 'Description') {
                 return (
-                  <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell} interactive>{/* eslint-disable-line max-len */}
-                    {(active, cellRef) => (
-                      <a href="./#" tabIndex={active ? 0 : -1} ref={cellRef}>{row[column]}</a> // eslint-disable-line max-len
-                    )}
-                  </GridCell>
-                );
-              }
-
-              if (column === 'Amount') {
-                return (
                   <InputCell
                     key={`cell-${y + 1}${x}`}
                     cellRef={gridRefs[y + 1][x]}
