@@ -15,11 +15,16 @@ export default class InputCell extends React.Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   onChange(event) {
     this.setState({ value: event.target.value });
+  }
+
+  onClick() {
+    this.setState({ interactive: true });
   }
 
   onKeyDown(event) {
@@ -41,7 +46,7 @@ export default class InputCell extends React.Component {
         )}
       </GridCell>
     ) : (
-      <GridCell active={this.props.active} cellRef={this.props.cellRef} className={this.props.className} onKeyDown={this.onKeyDown}>{/* eslint-disable-line max-len */}
+      <GridCell active={this.props.active} cellRef={this.props.cellRef} className={this.props.className} onClick={this.onClick} onKeyDown={this.onKeyDown}>{/* eslint-disable-line max-len */}
         {() => (
           <React.Fragment>
             <span className={this.props.classNameText}>{this.state.value}</span>

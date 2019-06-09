@@ -24,11 +24,11 @@ export default class GridCell extends React.Component {
     const tabIndex = this.props.active ? 0 : -1;
 
     const element = this.props.interactive ? (
-      <div className={this.props.className} onKeyDown={this.props.onKeyDown} role={this.props.header ? 'rowheader' : 'cell'}>{/* eslint-disable-line max-len, jsx-a11y/no-static-element-interactions */}
+      <div className={this.props.className} onClick={this.props.onClick} onKeyDown={this.props.onKeyDown} role={this.props.header ? 'rowheader' : 'cell'}>{/* eslint-disable-line max-len, jsx-a11y/no-static-element-interactions */}
         {this.props.children(this.props.active, this.props.cellRef)}
       </div>
     ) : (
-      <div className={this.props.className} onKeyDown={this.props.onKeyDown} ref={this.props.cellRef} role={this.props.header ? 'rowheader' : 'cell'} tabIndex={tabIndex}>{/* eslint-disable-line max-len, jsx-a11y/no-static-element-interactions */}
+      <div className={this.props.className} onClick={this.props.onClick} onKeyDown={this.props.onKeyDown} ref={this.props.cellRef} role={this.props.header ? 'rowheader' : 'cell'} tabIndex={tabIndex}>{/* eslint-disable-line max-len, jsx-a11y/no-static-element-interactions */}
         {this.props.children(this.props.active)}
       </div>
     );
@@ -44,6 +44,7 @@ GridCell.propTypes = {
   className: PropTypes.string,
   header: PropTypes.bool,
   interactive: PropTypes.bool,
+  onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
 };
 
@@ -52,5 +53,6 @@ GridCell.defaultProps = {
   className: undefined,
   header: false,
   interactive: false,
+  onClick: () => {},
   onKeyDown: () => {},
 };
