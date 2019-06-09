@@ -28,6 +28,14 @@
   color: black;
 }
 
+.inputCellSVG {
+  opacity: 0.8;
+}
+
+.inputCell:hover .inputCellSVG {
+  opacity: 1;
+}
+
 .header {
   composes: cell;
   font-weight: 700;
