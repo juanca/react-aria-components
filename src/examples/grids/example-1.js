@@ -63,7 +63,7 @@ const gridRefs = [columns.map(() => (
 
 export default function GridExample() {
   return (
-    <Example title="Grid">
+    <Example title="Example 1: Minimal Data Grid">
       <DataGrid className={styles.container} refs={gridRefs}>
         <GridRow key="headers" cellRefs={gridRefs[0]} className={styles.row} index={0}>{/* eslint-disable-line max-len */}
           {columns.map((header, x) => (
