@@ -11,8 +11,11 @@
 }
 
 .cell {
+  align-items: center;
+  display: inline-flex;
   flex-basis: 0px;
   flex-grow: 1;
+  justify-content: space-between;
   padding: 0.5em 1em;
 }
 
