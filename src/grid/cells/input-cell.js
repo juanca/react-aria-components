@@ -14,9 +14,14 @@ export default class InputCell extends React.Component {
       value: this.props.value,
     };
 
+    this.onBlur = this.onBlur.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+  }
+
+  onBlur() {
+    this.setState({ interactive: false });
   }
 
   onChange(event) {
@@ -42,7 +47,7 @@ export default class InputCell extends React.Component {
     return this.state.interactive ? (
       <GridCell active={this.props.active} cellRef={this.props.cellRef} className={this.props.className} interactive>{/* eslint-disable-line max-len */}
         {(active, cellRef) => (
-          <input onChange={this.onChange} onKeyDown={this.onKeyDown} tabIndex={active ? 0 : -1} ref={cellRef} value={this.state.value} /> // eslint-disable-line max-len
+          <input onBlur={this.onBlur} onChange={this.onChange} onKeyDown={this.onKeyDown} tabIndex={active ? 0 : -1} ref={cellRef} value={this.state.value} /> // eslint-disable-line max-len
         )}
       </GridCell>
     ) : (
