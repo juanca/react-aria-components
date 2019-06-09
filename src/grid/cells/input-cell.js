@@ -42,8 +42,8 @@ export default class InputCell extends React.Component {
       </GridCell>
     ) : (
       <GridCell active={this.props.active} cellRef={this.props.cellRef} className={this.props.className} onKeyDown={this.onKeyDown}>{/* eslint-disable-line max-len */}
-        {active => (
-          <input onChange={this.onChange} tabIndex={active ? 0 : -1} value={this.state.value} /> // eslint-disable-line max-len
+        {() => (
+          <span>{this.state.value}</span>
         )}
       </GridCell>
     );

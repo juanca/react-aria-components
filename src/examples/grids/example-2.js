@@ -85,7 +85,7 @@ export default function GridExample() {
                   <InputCell
                     key={`cell-${y + 1}${x}`}
                     cellRef={gridRefs[y + 1][x]}
-                    className={styles.cell}
+                    className={styles.inputCell}
                     value={row[column]}
                   />
                 );

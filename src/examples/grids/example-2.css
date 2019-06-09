@@ -16,6 +16,15 @@
   padding: 0.5em 1em;
 }
 
+.inputCell {
+  composes: cell;
+  color: #360;
+}
+
+.inputCell:hover {
+  color: black;
+}
+
 .header {
   composes: cell;
   font-weight: 700;
