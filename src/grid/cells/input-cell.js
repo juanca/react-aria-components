@@ -44,7 +44,7 @@ export default class InputCell extends React.Component {
       <GridCell active={this.props.active} cellRef={this.props.cellRef} className={this.props.className} onKeyDown={this.onKeyDown}>{/* eslint-disable-line max-len */}
         {() => (
           <React.Fragment>
-            <span>{this.state.value}</span>
+            <span className={this.props.classNameText}>{this.state.value}</span>
             <svg className={this.props.classNameSVG} x="0px" y="0px" width="23px" height="23px" viewBox="0 0 512 512">{/* eslint-disable-line max-len */}
               <path fill="#333" d="M 422,176 c 0.5,-0.5,1,-1,1.5,-1.5 l 21,-21 c 13,-13,13,-34,0,-46.5 l -40,-40 c -12,-12,-33,-12,-46,0 l -21,21 c -0.5,0.5,-1,1,-1.5,1.5 L 422,176 z" />{/* eslint-disable-line max-len */}
               <polygon fill="#333" points="114,397 157,440 106,448 56,456 63,405 71,354" />{/* eslint-disable-line max-len */}
@@ -62,6 +62,7 @@ InputCell.propTypes = {
   cellRef: RefType.isRequired,
   className: PropTypes.string,
   classNameSVG: PropTypes.string,
+  classNameText: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -69,5 +70,6 @@ InputCell.defaultProps = {
   active: false,
   className: styles.container,
   classNameSVG: undefined,
+  classNameText: undefined,
   value: '',
 };

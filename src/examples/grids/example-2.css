@@ -24,6 +24,10 @@
   color: #360;
 }
 
+.inputCell:focus {
+  outline: none;
+}
+
 .inputCell:hover {
   color: black;
 }
@@ -34,6 +38,12 @@
 
 .inputCell:hover .inputCellSVG {
   opacity: 1;
+}
+
+.inputCell:focus .inputCellText {
+  outline: #005a9c;
+  outline-style: dotted;
+  outline-width: 3px;
 }
 
 .header {

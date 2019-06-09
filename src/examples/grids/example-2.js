@@ -87,6 +87,7 @@ export default function GridExample() {
                     cellRef={gridRefs[y + 1][x]}
                     className={styles.inputCell}
                     classNameSVG={styles.inputCellSVG}
+                    classNameText={styles.inputCellText}
                     value={row[column]}
                   />
                 );
