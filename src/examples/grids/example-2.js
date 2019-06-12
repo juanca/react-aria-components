@@ -122,7 +122,7 @@ export default function GridExample() {
                     {(active, cellRef) => (
                       <select tabIndex={active ? 0 : -1} ref={cellRef}>
                         {categories.map(category => (
-                          <option value={category} selected={row[column] === category}>{category}</option>
+                          <option value={category} selected={row[column] === category}>{category}</option> // eslint-disable-line max-len
                         ))}
                       </select>
                     )}
