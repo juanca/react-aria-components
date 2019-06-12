@@ -120,7 +120,7 @@ export default function GridExample() {
                 return (
                   <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell} interactive>{/* eslint-disable-line max-len */}
                     {(active, cellRef) => (
-                      <select tabIndex="-1" ref={cellRef}>
+                      <select tabIndex={active ? 0 : -1} ref={cellRef}>
                         {categories.map(category => (
                           <option value={category} selected={row[column] === category}>{category}</option>
                         ))}
