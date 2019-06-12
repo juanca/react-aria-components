@@ -17,6 +17,15 @@ const columns = [
   'Balance',
 ];
 
+const categories = [
+  'Income',
+  'Groceries',
+  'Dining Out',
+  'Auto',
+  'Household',
+  'Beauty',
+];
+
 const data = [{
   Date: '01-Jan-16',
   Type: 'Depost',
@@ -104,6 +113,20 @@ export default function GridExample() {
                     classNameText={styles.inputCellText}
                     value={row[column]}
                   />
+                );
+              }
+
+              if (column === 'Category') {
+                return (
+                  <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell} interactive>{/* eslint-disable-line max-len */}
+                    {(active, cellRef) => (
+                      <select tabIndex="-1" ref={cellRef}>
+                        {categories.map(category => (
+                          <option value={category} selected={row[column] === category}>{category}</option>
+                        ))}
+                      </select>
+                    )}
+                  </GridCell>
                 );
               }
 
