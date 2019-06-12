@@ -12,6 +12,7 @@ const columns = [
   'Date',
   'Type',
   'Description',
+  'Category',
   'Amount',
   'Balance',
 ];
@@ -20,38 +21,51 @@ const data = [{
   Date: '01-Jan-16',
   Type: 'Depost',
   Description: 'Cash Deposit',
+  Category: 'Income',
   Amount: '$1,000,000.00',
   Balance: '$1,000,000.00',
 }, {
   Date: '02-Jan-16',
   Type: 'Debit',
   Description: 'Downtown Grocery',
+  Category: 'Groceries',
   Amount: '$250.00',
   Balance: '$999,750.00',
 }, {
   Date: '03-Jan-16',
   Type: 'Debit',
   Description: 'Hot Coffee',
+  Category: 'Dining Out',
   Amount: '$9.00',
   Balance: '$999,741.00',
 }, {
   Date: '04-Jan-16',
   Type: 'Debit',
   Description: 'The Filling Station',
+  Category: 'Auto',
   Amount: '$88.00',
   Balance: '$999,653.00',
 }, {
   Date: '05-Jan-16',
   Type: 'Debit',
   Description: 'Tinker\'s Hardware',
+  Category: 'Household',
   Amount: '$3,421.00',
   Balance: '$996,232.00',
 }, {
   Date: '06-Jan-16',
   Type: 'Debit',
   Description: 'Cutey\' Salon',
+  Category: 'Beauty',
   Amount: '$700.00',
   Balance: '$995,532.00',
+}, {
+  Date: '07-Jan-16',
+  Type: 'Debit',
+  Description: 'My Chocolate Shop',
+  Category: 'Dining Out',
+  Amount: '$41.00',
+  Balance: '$995,491.00',
 }];
 
 const gridRefs = [columns.map(() => (
