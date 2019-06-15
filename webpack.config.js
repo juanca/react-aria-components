@@ -1,16 +1,19 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+// Hoisted entries map to easily generate HtmlWebPackPlugin configurations
+const entries = {
+  accordions: './src/examples/accordions/index.js',
+  index: './src/examples/index.js',
+  grids: './src/examples/grids/index.js',
+  tabs: './src/examples/tabs/index.js',
+};
+
 module.exports = {
   devServer: {
     contentBase: './dist',
   },
-  entry: {
-    accordions: './src/examples/accordions/index.js',
-    index: './src/examples/index.js',
-    grids: './src/examples/grids/index.js',
-    tabs: './src/examples/tabs/index.js',
-  },
+  entry: entries,
   mode: 'development',
   module: {
     rules: [{
@@ -37,29 +40,13 @@ module.exports = {
     }],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      chunks: ['accordions'],
-      filename: './accordions/index.html',
-      template: './src/examples/accordions/index.html',
-    }),
-    new HtmlWebPackPlugin({
-      chunks: ['index'],
-      filename: './index.html',
-      template: './src/examples/index.html',
-    }),
-    new HtmlWebPackPlugin({
-      chunks: ['grids'],
-      filename: './grids/index.html',
-      template: './src/examples/grids/index.html',
-    }),
-    new HtmlWebPackPlugin({
-      chunks: ['tabs'],
-      filename: './tabs/index.html',
-      template: './src/examples/tabs/index.html',
-    }),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',
       filename: '[name].css',
     }),
-  ],
+  ].concat(Object.keys(entries).map(key => new HtmlWebPackPlugin({
+    chunks: [key],
+    filename: key === 'index' ? './index.html' : `./${key}/index.html`,
+    template: key === 'index' ? './src/examples/index.html' : `./src/examples/${key}/index.html`,
+  }))),
 };
