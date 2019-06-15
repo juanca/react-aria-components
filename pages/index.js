@@ -23,6 +23,7 @@ setTimeout(() => {
           <ol>
             <li><a href="./accordions">Accordion</a></li>
             <li><a href="./grids">Grid</a></li>
+            <li><a href="./listboxes">Listbox</a></li>
             <li><a href="./tabs">Tabs</a></li>
           </ol>
         </nav>

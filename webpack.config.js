@@ -13,6 +13,11 @@ const entries = {
     publicPath: './grids/index.html',
     title: 'Grid Examples - React WAI-ARIA Components',
   },
+  listboxes: {
+    entry: './pages/listboxes/index.js',
+    publicPath: './listboxes/index.html',
+    title: 'Listbox Examples - React WAI-ARIA Components',
+  },
   index: {
     entry: './pages/index.js',
     publicPath: './index.html',
