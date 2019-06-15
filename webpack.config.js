@@ -3,10 +3,10 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 // Hoisted entries map to easily generate HtmlWebPackPlugin configurations
 const entries = {
-  accordions: './src/examples/accordions/index.js',
-  index: './src/examples/index.js',
-  grids: './src/examples/grids/index.js',
-  tabs: './src/examples/tabs/index.js',
+  accordions: './pages/accordions/index.js',
+  index: './pages/index.js',
+  grids: './pages/grids/index.js',
+  tabs: './pages/tabs/index.js',
 };
 
 module.exports = {
@@ -47,6 +47,6 @@ module.exports = {
   ].concat(Object.keys(entries).map(key => new HtmlWebPackPlugin({
     chunks: [key],
     filename: key === 'index' ? './index.html' : `./${key}/index.html`,
-    template: key === 'index' ? './src/examples/index.html' : `./src/examples/${key}/index.html`,
+    template: key === 'index' ? './pages/index.html' : `./pages/${key}/index.html`,
   }))),
 };
