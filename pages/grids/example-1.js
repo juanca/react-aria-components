@@ -2,9 +2,9 @@
 import React from 'react';
 
 import Example from '../example.js';
-import DataGrid from '../../grid/data-grid.js';
-import GridRow from '../../grid/grid-row.js';
-import GridCell from '../../grid/grid-cell.js';
+import DataGrid from '../../src/grid/data-grid.js';
+import GridRow from '../../src/grid/grid-row.js';
+import GridCell from '../../src/grid/grid-cell.js';
 import styles from './example-1.css';
 
 const columns = [

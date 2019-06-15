@@ -1,24 +1,40 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+// Hoisted entries map to easily generate HtmlWebPackPlugin configurations
+const entries = {
+  accordions: {
+    entry: './pages/accordions/index.js',
+    publicPath: './accordions/index.html',
+    title: 'Accordion Examples - React WAI-ARIA Components',
+  },
+  grids: {
+    entry: './pages/grids/index.js',
+    publicPath: './grids/index.html',
+    title: 'Grid Examples - React WAI-ARIA Components',
+  },
+  index: {
+    entry: './pages/index.js',
+    publicPath: './index.html',
+    title: 'React WAI-ARIA Components',
+  },
+  tabs: {
+    entry: './pages/tabs/index.js',
+    publicPath: './tabs/index.html',
+    title: 'Tabs Examples - React WAI-ARIA Components',
+  },
+};
+
 module.exports = {
   devServer: {
     contentBase: './dist',
   },
-  entry: {
-    accordions: './src/examples/accordions/index.js',
-    index: './src/examples/index.js',
-    grids: './src/examples/grids/index.js',
-    tabs: './src/examples/tabs/index.js',
-  },
+  entry: Object.keys(entries).reduce((config, key) => (Object.assign(config, {
+    [key]: entries[key].entry,
+  })), {}),
   mode: 'development',
   module: {
     rules: [{
-      test: /\.html$/,
-      use: [{
-        loader: 'html-loader',
-      }],
-    }, {
       exclude: /node_modules/,
       test: /\.js$/,
       use: [{
@@ -37,29 +53,14 @@ module.exports = {
     }],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      chunks: ['accordions'],
-      filename: './accordions/index.html',
-      template: './src/examples/accordions/index.html',
-    }),
-    new HtmlWebPackPlugin({
-      chunks: ['index'],
-      filename: './index.html',
-      template: './src/examples/index.html',
-    }),
-    new HtmlWebPackPlugin({
-      chunks: ['grids'],
-      filename: './grids/index.html',
-      template: './src/examples/grids/index.html',
-    }),
-    new HtmlWebPackPlugin({
-      chunks: ['tabs'],
-      filename: './tabs/index.html',
-      template: './src/examples/tabs/index.html',
-    }),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',
       filename: '[name].css',
     }),
-  ],
+  ].concat(Object.keys(entries).map(key => new HtmlWebPackPlugin({
+    chunks: [key],
+    filename: entries[key].publicPath,
+    template: './pages/index.html',
+    title: entries[key].title,
+  }))),
 };
