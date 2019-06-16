@@ -28,3 +28,9 @@
   background: #bde4ff;
 }
 
+._2ZC8hCfNpf_1_gzaOPxDC5[aria-selected="true"]::before {
+  content: "✓";
+  position: absolute;
+  left: 0.5em;
+}
+
