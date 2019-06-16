@@ -4,10 +4,6 @@ import React from 'react';
 import RefType from '../prop-types/ref.js';
 
 export default class Option extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     if (this.props.active) {
       this.props.optionRef.current.focus();
