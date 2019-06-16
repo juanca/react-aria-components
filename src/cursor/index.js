@@ -82,10 +82,11 @@ export default class Cursor extends React.Component {
 
   render() {
     const tabIndex = this.state.positionY === -1 ? 0 : -1;
+    const ElementType = this.props.dimensions === 1 ? 'ul' : 'div';
 
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      <div
+      <ElementType
         className={this.props.className}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
@@ -93,7 +94,7 @@ export default class Cursor extends React.Component {
         tabIndex={tabIndex}
       >
         {this.props.children(this.state.positionX, this.state.positionY)}
-      </div>
+      </ElementType>
     );
   }
 }
@@ -101,11 +102,13 @@ export default class Cursor extends React.Component {
 Cursor.propTypes = {
   children: PropTypes.func.isRequired,
   className: PropTypes.string,
+  dimensions: PropTypes.number,
   refs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
   role: PropTypes.string,
 };
 
 Cursor.defaultProps = {
   className: undefined,
+  dimensions: 2,
   role: 'presentation',
 };
