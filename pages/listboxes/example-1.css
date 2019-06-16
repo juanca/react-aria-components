@@ -27,3 +27,9 @@
 .option:focus {
   background: #bde4ff;
 }
+
+.option[aria-selected="true"]::before {
+  content: "✓";
+  position: absolute;
+  left: 0.5em;
+}
