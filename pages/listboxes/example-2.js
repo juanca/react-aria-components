@@ -1,7 +1,40 @@
 import React from 'react';
 
 import Example from '../example.js';
+import Listbox from '../../src/listbox/index.js';
+import Option from '../../src/listbox/option.js';
 import styles from './example-2.css';
+
+const list = [
+  'Neptunium',
+  'Plutonium',
+  'Americium',
+  'Curium',
+  'Berkelium',
+  'Californium',
+  'Einsteinium',
+  'Fermium',
+  'Mendelevium',
+  'Nobelium',
+  'Lawrencium',
+  'Rutherfordium',
+  'Dubnium',
+  'Seaborgium',
+  'Bohrium',
+  'Hassium',
+  'Meitnerium',
+  'Darmstadtium',
+  'Roentgenium',
+  'Copernicium',
+  'Nihonium',
+  'Flerovium',
+  'Moscovium',
+  'Livermorium',
+  'Tennessine',
+  'Oganesson',
+];
+
+const refs = list.map(() => React.createRef());
 
 export default class ListboxExample2 extends React.Component {
   constructor(props) {
@@ -33,6 +66,17 @@ export default class ListboxExample2 extends React.Component {
             >
               Neptunium
             </button>
+            <Listbox className={this.state.expanded ? styles.listbox : styles.hidden} refs={refs}>
+              {list.map((option, index) => (
+                <Option
+                  key={option}
+                  className={styles.option}
+                  optionRef={refs[index]}
+                >
+                  {option}
+                </Option>
+              ))}
+            </Listbox>
           </div>
         </div>
       </Example>

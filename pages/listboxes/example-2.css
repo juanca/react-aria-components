@@ -37,3 +37,40 @@
   right: 5px;
   top: 10px;
 }
+
+.hidden {
+  display: none;
+}
+
+.listbox {
+  border-top: 0;
+  max-height: 10em;
+  overflow-y: auto;
+  position: absolute;
+  margin: 0;
+  width: 148px;
+
+  min-height: 18em;
+  padding: 0;
+  background: white;
+  border: 1px solid #aaa;
+}
+
+.option {
+  display: block;
+  padding: 0 1em 0 1.5em;
+  position: relative;
+  line-height: 1.8em;
+  margin: 0.25em 0 0.5em;
+  font-size: 14px;
+}
+
+.option:focus {
+  background: #bde4ff;
+}
+
+.option[aria-selected="true"]::before {
+  content: "✓";
+  position: absolute;
+  left: 0.5em;
+}
