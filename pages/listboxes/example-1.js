@@ -46,7 +46,13 @@ export default function ListboxExample1() {
         </span>
         <Listbox className={styles.listbox} refs={refs}>
           {list.map((option, index) => (
-            <Option key={option} className={styles.option} optionRef={refs[index]}>{option}</Option>
+            <Option
+              key={option}
+              className={styles.option}
+              optionRef={refs[index]}
+            >
+              {option}
+            </Option>
           ))}
         </Listbox>
       </div>
