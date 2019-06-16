@@ -28,6 +28,7 @@ export default class Option extends React.Component {
         onFocus={this.onFocus}
         tabIndex={this.props.active ? 0 : -1}
         ref={this.props.optionRef}
+        role="option"
       >
         {this.props.children}{this.props.active ? '!' : ''}
       </li>
