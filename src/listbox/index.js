@@ -9,7 +9,7 @@ export default function Listbox(props) {
     <Cursor
       className={props.className}
       dimensions={1}
-      refs={props.refs}
+      refs={props.refs.map(ref => [ref])}
       role="listbox"
     >
       {(x, y) => React.Children.map(props.children, (option, index) => (
