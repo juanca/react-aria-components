@@ -90,6 +90,7 @@ export default class Cursor extends React.Component {
         className={this.props.className}
         onClick={this.onClick}
         onKeyDown={this.onKeyDown}
+        ref={this.props.containerRef}
         role={this.props.role}
         tabIndex={tabIndex}
       >
@@ -102,6 +103,7 @@ export default class Cursor extends React.Component {
 Cursor.propTypes = {
   children: PropTypes.func.isRequired,
   className: PropTypes.string,
+  containerRef: RefType,
   dimensions: PropTypes.number,
   refs: PropTypes.arrayOf(PropTypes.arrayOf(RefType)).isRequired,
   role: PropTypes.string,
@@ -109,6 +111,7 @@ Cursor.propTypes = {
 
 Cursor.defaultProps = {
   className: undefined,
+  containerRef: undefined,
   dimensions: 2,
   role: 'presentation',
 };

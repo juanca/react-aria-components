@@ -44,7 +44,24 @@ export default class ListboxExample2 extends React.Component {
       expanded: false,
     };
 
+    this.containerRef = React.createRef();
     this.onClick = this.onClick.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.state.expanded) {
+      this.containerRef.current.focus();
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.expanded !== nextState.expanded;
+  }
+
+  componentDidUpdate() {
+    if (this.state.expanded) {
+      this.containerRef.current.focus();
+    }
   }
 
   onClick() {
@@ -66,7 +83,11 @@ export default class ListboxExample2 extends React.Component {
             >
               Neptunium
             </button>
-            <Listbox className={this.state.expanded ? styles.listbox : styles.hidden} refs={refs}>
+            <Listbox
+              className={this.state.expanded ? styles.listbox : styles.hidden}
+              containerRef={this.containerRef}
+              refs={refs}
+            >
               {list.map((option, index) => (
                 <Option
                   key={option}
