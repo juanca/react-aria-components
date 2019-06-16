@@ -23,6 +23,7 @@ export default class Option extends React.Component {
   render() {
     return (
       <li
+        aria-selected={this.props.selected}
         className={this.props.className}
         onBlur={this.onBlur}
         onFocus={this.onFocus}
@@ -41,9 +42,11 @@ Option.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   optionRef: RefType.isRequired,
+  selected: PropTypes.bool,
 };
 
 Option.defaultProps = {
   active: false,
   className: undefined,
+  selected: false,
 };
