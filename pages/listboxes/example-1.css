@@ -1,0 +1,29 @@
+.container {
+  padding: 20px;
+  background: #eee;
+  border: 1px solid #aaa;
+}
+
+.listbox {
+  background: white;
+  border: 1px solid #aaa;
+  margin-left: 0;
+  max-height: 18em;
+  min-height: 18em;
+  overflow-y: auto;
+  padding: 0;
+  position: relative;
+}
+
+.option {
+  display: block;
+  padding: 0 1em 0 1.5em;
+  position: relative;
+  line-height: 1.8em;
+  margin: 0.25em 0 0.5em;
+  font-size: 14px;
+}
+
+.option:focus {
+  background: #bde4ff;
+}
