@@ -42,20 +42,19 @@ export default class ListboxExample2 extends React.Component {
 
     this.state = {
       expanded: false,
+      selected: [],
     };
 
     this.containerRef = React.createRef();
     this.onClick = this.onClick.bind(this);
+    this.onDeselect = this.onDeselect.bind(this);
+    this.onSelect = this.onSelect.bind(this);
   }
 
   componentDidMount() {
     if (this.state.expanded) {
       this.containerRef.current.focus();
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.expanded !== nextState.expanded;
   }
 
   componentDidUpdate() {
@@ -68,7 +67,21 @@ export default class ListboxExample2 extends React.Component {
     this.setState(state => ({ expanded: !state.expanded }));
   }
 
+  onDeselect(selected) {
+    this.setState(state => ({
+      selected: state.selected.filter(ref => ref !== selected)
+    }));
+  }
+
+  onSelect(selected) {
+    this.setState(state => ({
+      selected: state.selected.concat(selected)
+    }));
+  }
+
   render() {
+    const selectedRefs = refs.filter(ref => this.state.selected.includes(ref));
+
     return (
       <Example title="Collapsible Dropdown Listbox Example">
         <div className={styles.container}>
@@ -81,7 +94,7 @@ export default class ListboxExample2 extends React.Component {
               onClick={this.onClick}
               type="button"
             >
-              Neptunium
+              {selectedRefs.length > 0 ? selectedRefs[0].current.textContent : 'No selection'}
             </button>
             <Listbox
               className={this.state.expanded ? styles.listbox : styles.hidden}
@@ -92,7 +105,10 @@ export default class ListboxExample2 extends React.Component {
                 <Option
                   key={option}
                   className={styles.option}
+                  onDeselect={this.onDeselect}
+                  onSelect={this.onSelect}
                   optionRef={refs[index]}
+                  selected={this.state.selected.includes(refs[index])}
                 >
                   {option}
                 </Option>

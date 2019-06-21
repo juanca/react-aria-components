@@ -4,6 +4,13 @@ import React from 'react';
 import RefType from '../prop-types/ref.js';
 
 export default class Option extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onClick = this.onClick.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+  }
+
   componentDidMount() {
     if (this.props.active) {
       this.props.optionRef.current.focus();
@@ -11,12 +18,33 @@ export default class Option extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.active !== nextProps.active;
+    return this.props.active !== nextProps.active || this.props.selected !== nextProps.selected;
   }
 
   componentDidUpdate() {
+    console.log('did update', this.props.optionRef.current.textContent)
     if (this.props.active) {
       this.props.optionRef.current.focus();
+    }
+  }
+
+  onClick() {
+    if (this.props.selected) {
+      this.props.onDeselect(this.props.optionRef);
+    } else {
+      this.props.onSelect(this.props.optionRef);
+    }
+  }
+
+  onKeyDown(event) {
+    if (event.key !== ' ') return;
+
+    event.preventDefault();
+
+    if (this.props.selected) {
+      this.props.onDeselect(this.props.optionRef);
+    } else {
+      this.props.onSelect(this.props.optionRef);
     }
   }
 
@@ -25,13 +53,13 @@ export default class Option extends React.Component {
       <li
         aria-selected={this.props.selected}
         className={this.props.className}
-        onBlur={this.onBlur}
-        onFocus={this.onFocus}
+        onClick={this.onClick}
+        onKeyDown={this.onKeyDown}
         tabIndex={this.props.active ? 0 : -1}
         ref={this.props.optionRef}
         role="option"
       >
-        {this.props.children}{this.props.active ? '!' : ''}
+        {this.props.children}
       </li>
     );
   }

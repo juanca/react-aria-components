@@ -16,7 +16,6 @@ export default function Listbox(props) {
       {(x, y) => React.Children.map(props.children, (option, index) => (
         React.cloneElement(option, {
           active: index === y,
-          selected: index === y,
         })
       ))}
     </Cursor>
