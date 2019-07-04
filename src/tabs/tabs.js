@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import uniqueId from '../utils/unique-id';
-import TabList from './tab-list';
-import TabPanels from './tab-panels';
+import uniqueId from '../utils/unique-id.js';
+import TabList from './tab-list.js';
+import TabPanels from './tab-panels.js';
 
 export default class Tabs extends React.Component {
   constructor() {
