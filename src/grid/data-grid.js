@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Cursor from '../cursor';
+import Cursor from '../cursor/index.js';
 import RefType from '../prop-types/ref.js';
 
 export default function Grid(props) {
