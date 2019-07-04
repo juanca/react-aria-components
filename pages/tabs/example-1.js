@@ -6,7 +6,7 @@ import {
   TabList,
   Tab,
   TabPanels,
-} from '../../src/tabs';
+} from '../../src/tabs/index.js';
 
 export default class TabsExample extends React.Component {
   constructor() {

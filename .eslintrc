@@ -8,7 +8,9 @@
     "plugin:jest/recommended"
   ],
   "rules": {
-    "import/extensions": "off",
+    "import/extensions": ["error", "always", {
+      "ignorePackages": true
+    }],
     "max-len": ["error", {
       "ignoreTrailingComments": true
     }],
