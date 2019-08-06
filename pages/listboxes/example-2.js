@@ -69,14 +69,14 @@ export default class ListboxExample2 extends React.Component {
 
   onDeselect(selected) {
     this.setState(state => ({
-      selected: state.selected.filter(ref => ref !== selected)
+      selected: state.selected.filter(ref => ref !== selected),
     }));
   }
 
   onSelect(selected) {
-    this.setState(state => ({
-      selected: [selected]
-    }));
+    this.setState({
+      selected: [selected],
+    });
   }
 
   render() {
@@ -94,7 +94,7 @@ export default class ListboxExample2 extends React.Component {
               onClick={this.onClick}
               type="button"
             >
-              {selectedRefs.length > 0 ? selectedRefs[0].current.textContent : 'No selection'}
+              {selectedRefs.length > 0 ? selectedRefs[0].current.textContent : 'No selection'}{/* eslint-disable-line max-len */}
             </button>
             <Listbox
               className={this.state.expanded ? styles.listbox : styles.hidden}

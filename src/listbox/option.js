@@ -18,7 +18,7 @@ export default class Option extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return this.props.active !== nextProps.active || this.props.selected !== nextProps.selected;
+    return this.props.active !== nextProps.active || this.props.selected !== nextProps.selected; // eslint-disable-line max-len
   }
 
   componentDidUpdate() {
@@ -68,6 +68,8 @@ Option.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  onDeselect: PropTypes.func,
+  onSelect: PropTypes.func,
   optionRef: RefType.isRequired,
   selected: PropTypes.bool,
 };
