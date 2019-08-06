@@ -46,14 +46,33 @@ export default class ListboxExample2 extends React.Component {
     };
 
     this.containerRef = React.createRef();
+    this.onBodyClick = this.onBodyClick.bind(this);
+    this.onBodyFocus = this.onBodyFocus.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onDeselect = this.onDeselect.bind(this);
     this.onSelect = this.onSelect.bind(this);
   }
 
+  componentDidMount() {
+    window.document.body.addEventListener('click', this.onBodyClick);
+    window.document.body.addEventListener('focusin', this.onBodyFocus);
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.expanded && this.state.expanded) {
       this.containerRef.current.focus();
+    }
+  }
+
+  onBodyClick(event) {
+    if (!this.containerRef.current.contains(event.target)) {
+      this.setState({ expanded: false });
+    }
+  }
+
+  onBodyFocus(event) {
+    if (!this.containerRef.current.contains(event.target)) {
+      this.setState({ expanded: false });
     }
   }
 
