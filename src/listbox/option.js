@@ -22,7 +22,6 @@ export default class Option extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('did update', this.props.optionRef.current.textContent)
     if (this.props.active) {
       this.props.optionRef.current.focus();
     }
