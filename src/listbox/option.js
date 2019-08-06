@@ -75,5 +75,7 @@ Option.propTypes = {
 Option.defaultProps = {
   active: false,
   className: undefined,
+  onDeselect: () => {},
+  onSelect: () => {},
   selected: false,
 };
