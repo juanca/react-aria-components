@@ -57,6 +57,12 @@ export default class ListboxExample2 extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.expanded && this.state.expanded) {
+      this.containerRef.current.focus();
+    }
+  }
+
   onClick() {
     this.setState(state => ({ expanded: !state.expanded }));
   }
