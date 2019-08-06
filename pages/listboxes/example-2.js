@@ -75,7 +75,7 @@ export default class ListboxExample2 extends React.Component {
 
   onSelect(selected) {
     this.setState(state => ({
-      selected: state.selected.concat(selected)
+      selected: [selected]
     }));
   }
 
