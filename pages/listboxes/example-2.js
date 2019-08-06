@@ -51,12 +51,6 @@ export default class ListboxExample2 extends React.Component {
     this.onSelect = this.onSelect.bind(this);
   }
 
-  componentDidMount() {
-    if (this.state.expanded) {
-      this.containerRef.current.focus();
-    }
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.expanded && this.state.expanded) {
       this.containerRef.current.focus();
