@@ -57,6 +57,11 @@
         "jest/prefer-called-with": "error",
         "max-len": "off"
       }
+    }, {
+      "env": {
+        "browser": true,
+      },
+      "files": ["pages/**/*.js"],
     }
   ]
 }
