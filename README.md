@@ -45,3 +45,11 @@ CI will also deploy branches to Github pages -- see CI output for URL.
 npm test
 npm run lint
 ```
+
+## Docker
+
+```
+docker run --publish 8080:8080 --mount type=bind,source="$(pwd)",destination=/app --interactive --tty node:latest /bin/bash
+cd /app/
+npm start -- --host 0.0.0.0
+```
