@@ -4,20 +4,14 @@ import '@babel/polyfill'; // eslint-disable-line import/no-extraneous-dependenci
 import React from 'react';
 import { render } from 'react-dom';
 
+import Header from './header.js';
 import Example from './example.js';
 import Footer from './footer.js';
 
 setTimeout(() => {
   render((
     <React.Fragment>
-      <header>
-        <h1>
-          React ARIA Components
-        </h1>
-        <p>
-          Support this project by <a href="https://github.com/sponsors/juanca">becoming a sponsor</a>. {/* eslint-disable-line max-len */}
-        </p>
-      </header>
+      <Header root />
       <Example title="Table of Contents">
         <nav>
           <p>
