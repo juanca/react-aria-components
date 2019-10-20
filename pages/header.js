@@ -8,6 +8,9 @@ export default function Header(props) {
         <h1>
           React ARIA Components - {props.title}
         </h1>
+        <p>
+          Support this project by <a href="https://github.com/sponsors/juanca">becoming a sponsor</a>. {/* eslint-disable-line max-len */}
+        </p>
       </header>
       <nav>
         <a href="..">Go back to table of contents</a>

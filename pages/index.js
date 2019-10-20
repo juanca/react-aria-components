@@ -14,6 +14,9 @@ setTimeout(() => {
         <h1>
           React ARIA Components
         </h1>
+        <p>
+          Support this project by <a href="https://github.com/sponsors/juanca">becoming a sponsor</a>. {/* eslint-disable-line max-len */}
+        </p>
       </header>
       <Example title="Table of Contents">
         <nav>
