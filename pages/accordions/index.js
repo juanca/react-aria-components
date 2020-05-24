@@ -12,6 +12,9 @@ render((
   <React.Fragment>
     <Header title="Accordion" />
     <main>
+      <p>
+        <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#accordion">WAI-ARIA Authoring Practices 1.1 - Accordion</a>
+      </p>
       <Example1 />
     </main>
     <Footer />
