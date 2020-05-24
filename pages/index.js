@@ -11,7 +11,7 @@ import Footer from './footer.js';
 setTimeout(() => {
   render((
     <React.Fragment>
-      <Header root />
+      <Header />
       <Example title="Table of Contents">
         <nav>
           <p>

@@ -10,7 +10,7 @@ import Header from '../header.js';
 
 render((
   <React.Fragment>
-    <Header title="Grids" />
+    <Header link="./grids" title="Grid" />
     <main>
       <Example1 />
     </main>

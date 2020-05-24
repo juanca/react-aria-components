@@ -10,7 +10,7 @@ import Header from '../header.js';
 
 render((
   <React.Fragment>
-    <Header title="Tabs" />
+    <Header link="./tabs" title="Tabs" />
     <main>
       <Example1 />
     </main>

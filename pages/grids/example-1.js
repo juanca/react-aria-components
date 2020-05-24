@@ -1,6 +1,6 @@
-/* eslint-disable react/no-array-index-key */
-import React from 'react';
+/* eslint-disable react/no-array-index-key, max-len */
 
+import React from 'react';
 import Example from '../example.js';
 import DataGrid from '../../src/grid/data-grid.js';
 import GridRow from '../../src/grid/grid-row.js';
@@ -65,9 +65,9 @@ export default function GridExample() {
   return (
     <Example title="Grid">
       <DataGrid className={styles.container} refs={gridRefs}>
-        <GridRow key="headers" cellRefs={gridRefs[0]} className={styles.row} index={0}>{/* eslint-disable-line max-len */}
+        <GridRow key="headers" cellRefs={gridRefs[0]} className={styles.row} index={0}>
           {columns.map((header, x) => (
-            <GridCell key={`header-cell-${x}`} cellRef={gridRefs[0][x]} className={styles.header} header>{/* eslint-disable-line max-len */}
+            <GridCell key={`header-cell-${x}`} cellRef={gridRefs[0][x]} className={styles.header} header>
               {active => (
                 <span className={active ? 'active' : undefined}>
                   {header}
@@ -77,20 +77,20 @@ export default function GridExample() {
           ))}
         </GridRow>
         {data.map((row, y) => (
-          <GridRow key={`data-${y + 1}`} cellRefs={gridRefs[y + 1]} className={styles.row} index={y + 1}>{/* eslint-disable-line max-len */}
+          <GridRow key={`data-${y + 1}`} cellRefs={gridRefs[y + 1]} className={styles.row} index={y + 1}>
             {columns.map((column, x) => {
               if (column === 'Description') {
                 return (
-                  <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell} interactive>{/* eslint-disable-line max-len */}
+                  <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell} interactive>
                     {(active, cellRef) => (
-                      <a href="./#" tabIndex={active ? 0 : -1} ref={cellRef}>{row[column]}</a> // eslint-disable-line max-len
+                      <a href="./#" tabIndex={active ? 0 : -1} ref={cellRef}>{row[column]}</a>
                     )}
                   </GridCell>
                 );
               }
 
               return (
-                <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell}>{/* eslint-disable-line max-len */}
+                <GridCell key={`cell-${y + 1}${x}`} cellRef={gridRefs[y + 1][x]} className={styles.cell}>
                   {() => row[column]}
                 </GridCell>
               );
