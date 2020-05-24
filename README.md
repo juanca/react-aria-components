@@ -51,5 +51,6 @@ npm run lint
 ```
 docker run --publish 8080:8080 --mount type=bind,source="$(pwd)",destination=/app --interactive --tty node:latest /bin/bash
 cd /app/
-npm start -- --host 0.0.0.0
+npm install
+npm start
 ```

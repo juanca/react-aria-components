@@ -28,6 +28,7 @@ const entries = {
 module.exports = {
   devServer: {
     contentBase: './dist',
+    host: '0.0.0.0',
   },
   entry: Object.keys(entries).reduce((config, key) => (Object.assign(config, {
     [key]: entries[key].entry,
