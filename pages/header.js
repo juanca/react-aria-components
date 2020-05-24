@@ -1,28 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function Heading(props) {
-  return props.root ? (
-    <h1>
-      React ARIA Components
-    </h1>
-  ) : (
-    <h1>
-      React ARIA Components - {props.title}
-    </h1>
-  );
-}
-
-Heading.propTypes = {
-  root: PropTypes.bool,
-  title: PropTypes.string,
-};
-
-Heading.defaultProps = {
-  root: false,
-  title: undefined,
-};
-
 export default function Header(props) {
   return (
     <React.Fragment>
@@ -36,7 +14,9 @@ export default function Header(props) {
         )}
       </nav>
       <header>
-        <Heading root={props.root} title={props.title} />
+        <h1>
+          React ARIA Components
+        </h1>
         <p>
           Support this project by <a href="https://github.com/sponsors/juanca">becoming a sponsor</a>. {/* eslint-disable-line max-len */}
         </p>
@@ -46,9 +26,11 @@ export default function Header(props) {
 }
 
 Header.defaultProps = {
+  link: undefined,
+  title: undefined,
 };
 
 Header.propTypes = {
-  link: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  title: PropTypes.string,
 };
