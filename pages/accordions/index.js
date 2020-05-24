@@ -10,7 +10,7 @@ import Header from '../header.js';
 
 render((
   <React.Fragment>
-    <Header title="Accordion" />
+    <Header link="./accordions" title="Accordion" />
     <main>
       <p>
         <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#accordion">WAI-ARIA Authoring Practices 1.1 - Accordion</a>
