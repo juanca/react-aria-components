@@ -20,7 +20,7 @@ workflows:
 executors:
   node:
     docker:
-      - image: circleci/node:8.15
+      - image: circleci/node:10
 
 commands:
   install:
@@ -28,14 +28,14 @@ commands:
       - checkout
       - restore_cache:
           keys:
-          - node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
-          - node_modules-2-{{ checksum "package.json" }}
-          - node_modules-2-
+          - node_10-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
+          - node_10-{{ checksum "package.json" }}
+          - node_10
       - run: npm ci
       - save_cache:
           paths:
             - $HOME/.npm
-          key: node_modules-2-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
+          key: node_10-{{ checksum "package.json" }}-{{ checksum "package-lock.json"}}
 
 jobs:
   build_and_test:
