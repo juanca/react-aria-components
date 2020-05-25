@@ -54,3 +54,10 @@ cd /app/
 npm install
 npm start
 ```
+
+```
+docker run --mount type=bind,source="$(pwd)",destination=/app --interactive --tty node:latest /bin/bash
+cd /app/
+npm install
+npm test # or npm run lint
+```
