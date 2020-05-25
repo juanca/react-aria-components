@@ -4,10 +4,8 @@ import AccordionPanel from './accordion-panel.js';
 
 describe('<AccordionPanel />', () => {
   it('has default props', () => {
-    expect(renderer.create(<AccordionPanel />).toJSON()).toMatchInlineSnapshot(`
-      <div>
-        Accordion Panel
-      </div>
-    `);
+    expect(renderer.create(<AccordionPanel />).toJSON()).toMatchInlineSnapshot(
+      `<div />`
+    );
   });
 });

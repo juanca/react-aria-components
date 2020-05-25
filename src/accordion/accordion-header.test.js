@@ -8,9 +8,7 @@ describe('<AccordionHeader />', () => {
       .toMatchInlineSnapshot(`
       <button
         type="button"
-      >
-        Accordion Header
-      </button>
+      />
     `);
   });
 });
