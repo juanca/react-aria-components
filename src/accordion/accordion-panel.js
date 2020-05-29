@@ -12,6 +12,7 @@ const AccordionPanel = forwardRef((props, ref) => {
     close: () => {
       setOpen(false);
     },
+    id: props.id,
     open: () => {
       setOpen(true);
     },
@@ -26,6 +27,7 @@ const AccordionPanel = forwardRef((props, ref) => {
 
 AccordionPanel.propTypes = {
   children: PropTypes.node,
+  id: PropTypes.string.isRequired,
 };
 
 AccordionPanel.defaultProps = {

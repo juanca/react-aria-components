@@ -4,9 +4,10 @@ import AccordionHeader from './accordion-header.js';
 
 describe('<AccordionHeader />', () => {
   it('has default props', () => {
-    expect(renderer.create(<AccordionHeader />).toJSON())
-      .toMatchInlineSnapshot(`
+    expect(renderer.create(<AccordionHeader htmlFor="foo" onClick={() => {}} />).toJSON()).toMatchInlineSnapshot(`
       <button
+        htmlFor="foo"
+        onClick={[Function]}
         type="button"
       />
     `);

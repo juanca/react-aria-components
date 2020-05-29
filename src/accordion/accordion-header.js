@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function AccordionHeader(props) {
   return (
-    <button type="button">
+    <button htmlFor={props.htmlFor} type="button" onClick={props.onClick}>
       {props.children}
     </button>
   );
@@ -11,6 +11,8 @@ export default function AccordionHeader(props) {
 
 AccordionHeader.propTypes = {
   children: PropTypes.node,
+  htmlFor: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 AccordionHeader.defaultProps = {
