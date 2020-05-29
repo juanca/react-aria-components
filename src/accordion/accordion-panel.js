@@ -1,13 +1,28 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useState,
+} from 'react';
 
-export default function AccordionPanel(props) {
+const AccordionPanel = forwardRef((props, ref) => {
+  const [opened, setOpen] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    close: () => {
+      setOpen(false);
+    },
+    open: () => {
+      setOpen(true);
+    },
+  }));
+
   return (
     <div>
-      {props.children}
+      {opened ? props.children : undefined}
     </div>
   );
-}
+});
 
 AccordionPanel.propTypes = {
   children: PropTypes.node,
@@ -16,3 +31,5 @@ AccordionPanel.propTypes = {
 AccordionPanel.defaultProps = {
   children: undefined,
 };
+
+export default AccordionPanel;
