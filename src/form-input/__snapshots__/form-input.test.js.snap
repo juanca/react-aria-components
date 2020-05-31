@@ -1,3 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormInput /> has default 1`] = `<div />`;
+exports[`<FormInput /> has default 1`] = `
+Array [
+  <label
+    htmlFor="test-id"
+  >
+    Test label
+  </label>,
+  <input
+    id="test-id"
+  />,
+]
+`;

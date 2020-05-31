@@ -12,7 +12,7 @@ render((
   <React.Fragment>
     <Header link="./forms" title="Forms" />
     <main>
-      <FormInput>Example 1?</FormInput>
+      <FormInput id="example-1" label="This is a label">Example 1?</FormInput>
     </main>
     <Footer />
   </React.Fragment>

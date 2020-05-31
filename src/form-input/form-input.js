@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 
 export default function FormInput(props) {
   return (
-    <div>{props.children}</div>
+    <React.Fragment>
+      <label htmlFor={props.id}>{props.label}</label>
+      <input id={props.id} />
+    </React.Fragment>
   );
 }
 
 FormInput.propTypes = {
-  children: PropTypes.node,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
+
 };
 
 FormInput.defaultProps = {
-  children: undefined,
 };
