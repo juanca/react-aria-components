@@ -8,6 +8,11 @@ const entries = {
     publicPath: './accordions/index.html',
     title: 'Accordion Examples - React WAI-ARIA Components',
   },
+  forms: {
+    entry: './pages/forms/index.js',
+    publicPath: './forms/index.html',
+    title: 'Form Examples - React WAI-ARIA Components',
+  },
   grids: {
     entry: './pages/grids/index.js',
     publicPath: './grids/index.html',
