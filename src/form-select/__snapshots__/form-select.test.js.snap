@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form Select /> has defaults 1`] = `
+Array [
+  <label
+    htmlFor="test-id"
+  >
+    Test label
+  </label>,
+  <select
+    id="test-id"
+  />,
+]
+`;
