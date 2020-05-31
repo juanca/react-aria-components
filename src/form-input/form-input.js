@@ -4,6 +4,7 @@ import React, {
   useRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import styles from './form-input.css';
 
 const FormInput = forwardRef((props, ref) => {
   const inputRef = useRef();
@@ -14,19 +15,31 @@ const FormInput = forwardRef((props, ref) => {
 
   return (
     <React.Fragment>
-      <label htmlFor={props.id}>{props.label}</label>
-      <input id={props.id} ref={inputRef} />
+      <label
+        className={props.classLabel}
+        htmlFor={props.id}
+      >
+        {props.label}
+      </label>
+      <input
+        className={props.classInput}
+        id={props.id}
+        ref={inputRef}
+      />
     </React.Fragment>
   );
 });
 
 FormInput.propTypes = {
+  classLabel: PropTypes.string,
+  classInput: PropTypes.string,
   id: PropTypes.string.isRequired,
   label: PropTypes.node.isRequired,
-
 };
 
 FormInput.defaultProps = {
+  classLabel: styles.label,
+  classInput: styles.input,
 };
 
 export default FormInput;
