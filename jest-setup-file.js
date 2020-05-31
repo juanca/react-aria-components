@@ -1,5 +1,9 @@
 /* eslint-disable no-console */
 
-console.error = (message) => {
-  throw new Error(message);
+console.error = (...args) => {
+  throw new Error([
+    '>>> console.error arguments start',
+    args.join('\n'),
+    '>>> console.error arguments end',
+  ]);
 };
