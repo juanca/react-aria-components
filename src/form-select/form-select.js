@@ -1,11 +1,15 @@
 import React, {
   forwardRef,
   useImperativeHandle,
+  useRef,
 } from 'react';
 import PropTypes from 'prop-types';
 
 const FormSelect = forwardRef((props, ref) => {
+  const inputRef = useRef();
+
   useImperativeHandle(ref, () => ({
+    focus: () => inputRef.current.focus(),
   }));
 
   return (
@@ -17,6 +21,7 @@ const FormSelect = forwardRef((props, ref) => {
       </label>
       <select
         id={props.id}
+        ref={inputRef}
       >
         {props.children}
       </select>

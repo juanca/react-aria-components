@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  createRef,
+} from 'react';
 import renderer from 'react-test-renderer';
 import {
   render,
@@ -24,6 +26,16 @@ describe('<Form Select />', () => {
         </FormSelect>
       ));
       expect(screen.getByText('Unique option')).toBeDefined();
+    });
+  });
+
+  describe('focus ref API', () => {
+    it('focuses the input', () => {
+      const ref = createRef();
+      render(<FormSelect {...requiredProps} ref={ref} />);
+      expect(screen.getByLabelText('Test label')).not.toHaveFocus();
+      ref.current.focus();
+      expect(screen.getByLabelText('Test label')).toHaveFocus();
     });
   });
 
