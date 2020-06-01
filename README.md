@@ -48,16 +48,15 @@ npm run lint
 
 ## Docker
 
-```
-docker run --publish 8080:8080 --mount type=bind,source="$(pwd)",destination=/app --interactive --tty node:latest /bin/bash
-cd /app/
-npm install
-npm start
-```
 
-```
-docker run --mount type=bind,source="$(pwd)",destination=/app --interactive --tty node:latest /bin/bash
-cd /app/
-npm install
-npm test # or npm run lint
-```
+1. Install node modules:
+
+    ```
+    docker-compose up install
+    ```
+
+2. Start / Test / Lint
+
+    ```
+    docker-compuse up start / test / lint
+    ```

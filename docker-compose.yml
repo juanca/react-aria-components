@@ -1,0 +1,28 @@
+version: "3.3"
+services:
+  install:
+    command: "npm install"
+    image: node:latest
+    volumes:
+      - ./:/home/node/
+    working_dir: /home/node/
+  start:
+    command: "npm start"
+    image: node:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/home/node/
+    working_dir: /home/node/
+  test:
+    command: "npm test"
+    image: node:latest
+    volumes:
+      - ./:/home/node/
+    working_dir: /home/node/
+  lint:
+    command: "npm run lint"
+    image: node:latest
+    volumes:
+      - ./:/home/node/
+    working_dir: /home/node/
