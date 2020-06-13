@@ -58,5 +58,5 @@ npm run lint
 2. Start / Test / Lint
 
     ```
-    docker-compuse up start / test / lint
+    docker-compose up start / test / lint
     ```
