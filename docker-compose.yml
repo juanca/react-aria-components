@@ -1,13 +1,13 @@
 version: "3.3"
 services:
   install:
-    command: "npm install"
+    entrypoint: "npm install"
     image: node:latest
     volumes:
       - ./:/home/node/
     working_dir: /home/node/
   start:
-    command: "npm start"
+    entrypoint: "npm start"
     image: node:latest
     ports:
       - 8080:8080
@@ -15,13 +15,13 @@ services:
       - ./:/home/node/
     working_dir: /home/node/
   test:
-    command: "npm test"
+    entrypoint: "npm test"
     image: node:latest
     volumes:
       - ./:/home/node/
     working_dir: /home/node/
   lint:
-    command: "npm run lint"
+    entrypoint: "npm run lint"
     image: node:latest
     volumes:
       - ./:/home/node/

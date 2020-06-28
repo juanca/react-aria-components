@@ -23,6 +23,11 @@ const entries = {
     publicPath: './index.html',
     title: 'React WAI-ARIA Components',
   },
+  listbox: {
+    entry: './pages/listbox/index.js',
+    publicPath: './listbox/index.html',
+    title: 'Listbox Examples - React WAI-ARIA Components',
+  },
   tabs: {
     entry: './pages/tabs/index.js',
     publicPath: './tabs/index.html',
