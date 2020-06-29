@@ -15,7 +15,17 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const [selected, setSelected] = useState(props.selected);
 
   function onClick() {
-    setSelected(!selected);
+    setSelected(true);
+  }
+
+  function onKeyDown(event) {
+    switch (event.key) {
+      case 'Enter':
+        event.preventDefault();
+        setSelected(true);
+        break;
+      default:
+    }
   }
 
   useEffect(() => {
@@ -40,7 +50,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     <li
       aria-selected={selected}
       onClick={onClick}
-      onKeyDown={() => {}}
+      onKeyDown={onKeyDown}
       ref={containerRef}
       role="option"
       tabIndex={active ? 0 : -1}

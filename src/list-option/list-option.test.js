@@ -4,6 +4,7 @@ import React, {
 import renderer from 'react-test-renderer';
 import {
   act,
+  fireEvent,
   render,
   screen,
   waitFor,
@@ -26,6 +27,14 @@ describe('<ListOption />', () => {
 
       expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
       userEvent.click(screen.getByText('Test option'));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true'));
+    });
+
+    it('selects on enter key', async () => {
+      render(<ListOption {...requiredProps} />);
+
+      expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
+      fireEvent.keyDown(screen.getByText('Test option'), { key: 'Enter' });
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true'));
     });
   });
