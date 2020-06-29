@@ -52,11 +52,17 @@ npm run lint
 1. Install node modules:
 
     ```
-    docker-compose up install
+    docker-compose run install
     ```
 
 2. Start / Test / Lint
 
     ```
-    docker-compose up start / test / lint
+    docker-compose run start / test / lint
+    ```
+
+    For example:
+
+    ```
+    docker-compose run test listbox
     ```

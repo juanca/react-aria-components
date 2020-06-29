@@ -34,6 +34,8 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   return (
     <li
       aria-selected={props.selected}
+      onClick={() => {}}
+      onKeyDown={() => {}}
       ref={containerRef}
       role="option"
       tabIndex={active ? 0 : -1}
@@ -45,9 +47,11 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 
 ListOption.propTypes = {
   children: PropTypes.node.isRequired,
+  selected: PropTypes.bool,
 };
 
 ListOption.defaultProps = {
+  selected: false,
 };
 
 export default ListOption;

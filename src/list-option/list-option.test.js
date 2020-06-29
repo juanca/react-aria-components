@@ -8,6 +8,7 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ListOption from './list-option.js';
 
 describe('<ListOption />', () => {
@@ -19,7 +20,15 @@ describe('<ListOption />', () => {
     expect(renderer.create(<ListOption {...requiredProps} />).toJSON()).toMatchSnapshot();
   });
 
-  describe('accessibility', () => {});
+  describe('accessibility', () => {
+    it('selects on click', async () => {
+      render(<ListOption {...requiredProps} />);
+
+      expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
+      userEvent.click(screen.getByText('Test option'));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true'));
+    });
+  });
 
   describe('blur ref API', () => {
     it('manages its page tab sequence', async () => {
