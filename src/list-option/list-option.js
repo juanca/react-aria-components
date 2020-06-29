@@ -12,6 +12,11 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(true);
   const [focusQueued, setFocusQueued] = useState(false);
+  const [selected, setSelected] = useState(props.selected);
+
+  function onClick() {
+    setSelected(!selected);
+  }
 
   useEffect(() => {
     if (active && focusQueued) {
@@ -33,8 +38,8 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 
   return (
     <li
-      aria-selected={props.selected}
-      onClick={() => {}}
+      aria-selected={selected}
+      onClick={onClick}
       onKeyDown={() => {}}
       ref={containerRef}
       role="option"
