@@ -34,7 +34,7 @@ describe('<Listbox />', () => {
       expect(document.body).toHaveFocus();
     });
 
-    it('focuses the list item with a click', () => {
+    it('focuses the list item with a click', async () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
@@ -45,10 +45,10 @@ describe('<Listbox />', () => {
       ));
 
       userEvent.click(screen.getByText('Second'));
-      waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
     });
 
-    it('focuses the next list item with arrow down key', () => {
+    it('focuses the next list item with arrow down key', async () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
@@ -60,10 +60,10 @@ describe('<Listbox />', () => {
 
       userEvent.click(screen.getByText('Second'));
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
     });
 
-    it('focuses the previous list item with arrow up key', () => {
+    it('focuses the previous list item with arrow up key', async () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
@@ -75,10 +75,10 @@ describe('<Listbox />', () => {
 
       userEvent.click(screen.getByText('Second'));
       fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-      waitFor(() => expect(screen.getByText('First')).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
     });
 
-    it('focuses the last list item with end key', () => {
+    it('focuses the last list item with end key', async () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
@@ -90,10 +90,10 @@ describe('<Listbox />', () => {
 
       userEvent.click(screen.getByText('First'));
       fireEvent.keyDown(document.activeElement, { key: 'End' });
-      waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
     });
 
-    it('focuses the first list item with home key', () => {
+    it('focuses the first list item with home key', async () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
@@ -105,10 +105,10 @@ describe('<Listbox />', () => {
 
       userEvent.click(screen.getByText('Third'));
       fireEvent.keyDown(document.activeElement, { key: 'Home' });
-      waitFor(() => expect(screen.getByText('First')).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
     });
 
-    it('only has one list item in the page tab sequence', () => {
+    it('only has one list item in the page tab sequence', async () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
@@ -119,9 +119,9 @@ describe('<Listbox />', () => {
       ));
 
       userEvent.tab();
-      waitFor(() => expect(screen.getByText('First')).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
       userEvent.tab();
-      waitFor(() => expect(document.body).toHaveFocus());
+      await waitFor(() => expect(document.body).toHaveFocus());
     });
   });
 
@@ -138,7 +138,7 @@ describe('<Listbox />', () => {
   });
 
   describe('focus ref API', () => {
-    it('focuses its active child', () => {
+    it('focuses its active child', async () => {
       const ref = createRef();
       const refs = [createRef()];
       render((
@@ -149,7 +149,7 @@ describe('<Listbox />', () => {
 
       expect(screen.getByText('Unique option')).not.toHaveFocus();
       ref.current.focus();
-      waitFor(() => expect(screen.getByText('Unique option')).toHaveFocus());
+      await waitFor(() => expect(screen.getByText('Unique option')).toHaveFocus());
     });
   });
 
