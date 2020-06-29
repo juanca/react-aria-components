@@ -44,7 +44,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 });
 
 ListOption.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 ListOption.defaultProps = {
