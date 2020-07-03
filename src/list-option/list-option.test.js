@@ -39,18 +39,6 @@ describe('<ListOption />', () => {
     });
   });
 
-  describe('blur ref API', () => {
-    it('manages its page tab sequence', async () => {
-      const ref = createRef();
-      render((
-        <ListOption {...requiredProps} ref={ref} />
-      ));
-
-      act(() => ref.current.blur());
-      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1'));
-    });
-  });
-
   describe('children prop API', () => {
     it('can be set', () => {
       render((
@@ -84,20 +72,26 @@ describe('<ListOption />', () => {
   });
 
   describe('focus ref API', () => {
-    it('manages its page tab sequence', async () => {
-      const ref = createRef();
-      render(<ListOption {...requiredProps} ref={ref} />);
-
-      act(() => ref.current.focus());
-      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '0'));
-    });
-
     it('focuses itself', async () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
 
       act(() => ref.current.focus());
       await waitFor(() => expect(screen.getByText('Test option')).toHaveFocus());
+    });
+  });
+
+  describe('setAttribute ref API', () => {
+    it('can set tabindex', async () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} ref={ref} />);
+
+      act(() => ref.current.setAttribute('tabindex', 0));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '0'));
+
+
+      act(() => ref.current.setAttribute('tabindex', -1));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1'));
     });
   });
 

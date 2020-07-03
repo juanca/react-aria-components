@@ -36,13 +36,22 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }, [focusQueued]);
 
   useImperativeHandle(ref, () => ({
-    blur: () => {
-      setActive(false);
-    },
     contains: node => containerRef.current.contains(node),
     focus: () => {
       setActive(true);
       setFocusQueued(true);
+    },
+    setAttribute: (attribute, value) => {
+      switch (attribute) {
+        case 'tabindex':
+          if (value === -1) {
+            setActive(false);
+          } else {
+            setActive(true);
+          }
+          break;
+        default:
+      }
     },
   }));
 

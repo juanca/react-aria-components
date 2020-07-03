@@ -25,9 +25,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]}>First</li>
-          <li ref={refs[1]}>Second</li>
-          <li ref={refs[2]}>Third</li>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -38,9 +38,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]}>First</li>
-          <li ref={refs[1]}>Second</li>
-          <li ref={refs[2]}>Third</li>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -52,9 +52,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]}>First</li>
-          <li ref={refs[1]}>Second</li>
-          <li ref={refs[2]}>Third</li>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -67,9 +67,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]}>First</li>
-          <li ref={refs[1]}>Second</li>
-          <li ref={refs[2]}>Third</li>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -82,9 +82,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]}>First</li>
-          <li ref={refs[1]}>Second</li>
-          <li ref={refs[2]}>Third</li>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -97,9 +97,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]}>First</li>
-          <li ref={refs[1]}>Second</li>
-          <li ref={refs[2]}>Third</li>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -112,14 +112,14 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]}>First</li>
-          <li ref={refs[1]}>Second</li>
-          <li ref={refs[2]}>Third</li>
+          <li aria-selected={false} ref={refs[0]} role="option" tabIndex="0">First</li>
+          <li aria-selected={false} ref={refs[1]} role="option" tabIndex="-1">Second</li>
+          <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
         </Listbox>
       ));
 
-      userEvent.tab();
-      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
+      userEvent.click(screen.getByText('Second'));
+      await waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
       userEvent.tab();
       await waitFor(() => expect(document.body).toHaveFocus());
     });
@@ -143,7 +143,7 @@ describe('<Listbox />', () => {
       const refs = [createRef()];
       render((
         <Listbox {...requiredProps} ref={ref} refs={refs}>
-          <li ref={refs[0]}>Unique option</li>
+          <li ref={refs[0]} tabIndex="-1">Unique option</li>
         </Listbox>
       ));
 

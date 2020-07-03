@@ -55,8 +55,9 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       props.refs.forEach((childRef, index) => {
         if (index === activeIndex) {
           childRef.current.focus();
+          childRef.current.setAttribute('tabindex', 0);
         } else {
-          childRef.current.blur();
+          childRef.current.setAttribute('tabindex', -1);
         }
       });
     }
