@@ -70,6 +70,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   return (
     <ul
       aria-labelledby={props.labelledBy}
+      className={props.className}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="listbox"
@@ -81,6 +82,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
 
 Listbox.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
   refs: PropTypes.arrayOf(PropTypes.shape({
     current: PropTypes.any,
@@ -89,6 +91,7 @@ Listbox.propTypes = {
 
 Listbox.defaultProps = {
   children: undefined,
+  className: undefined,
   refs: [],
 };
 
