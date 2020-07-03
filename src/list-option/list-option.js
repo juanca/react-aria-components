@@ -58,6 +58,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   return (
     <li
       aria-selected={selected}
+      className={props.className}
       onClick={onClick}
       onKeyDown={onKeyDown}
       ref={containerRef}
@@ -71,10 +72,12 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 
 ListOption.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   selected: PropTypes.bool,
 };
 
 ListOption.defaultProps = {
+  className: undefined,
   selected: false,
 };
 

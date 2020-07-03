@@ -51,6 +51,14 @@ describe('<ListOption />', () => {
     });
   });
 
+  describe('className prop API', () => {
+    it('can be set', () => {
+      render(<ListOption {...requiredProps} className="unique-class" />);
+
+      expect(screen.getByText('Test option')).toHaveClass('unique-class');
+    });
+  });
+
   describe('contains ref API', () => {
     it('matches on a node', () => {
       const ref = createRef();

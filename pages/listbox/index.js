@@ -10,6 +10,7 @@ import Listbox from '../../src/listbox/listbox.js';
 import ListOption from '../../src/list-option/list-option.js';
 import Footer from '../footer.js';
 import Header from '../header.js';
+import styles from './styles.css';
 
 function ScrollableListExample() {
   const options = [
@@ -45,19 +46,29 @@ function ScrollableListExample() {
   return (
     <section>
       <h2>Scrollable Listbox Example</h2>
-      <label id="scrollable-list-example-label">
-        Transuranium elements:
-      </label>
-      <Listbox
-        labelledBy="scrollable-list-example-label"
-        refs={refs}
-      >
-        {options.map((option, index) => (
-          <ListOption key={option} ref={refs[index]}>
-            {option}
-          </ListOption>
-        ))}
-      </Listbox>
+      <p>
+        Choose your favorite transuranic element (actinide or transactinide).
+      </p>
+      <div className={styles['scrollable-example-container']}>
+        <label id="scrollable-list-example-label">
+          Transuranium elements:
+        </label>
+        <Listbox
+          className={styles['scrollable-example-listbox']}
+          labelledBy="scrollable-list-example-label"
+          refs={refs}
+        >
+          {options.map((option, index) => (
+            <ListOption
+              className={styles['scrollable-example-option']}
+              key={option}
+              ref={refs[index]}
+            >
+              {option}
+            </ListOption>
+          ))}
+        </Listbox>
+      </div>
     </section>
   );
 }
