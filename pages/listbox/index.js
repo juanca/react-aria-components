@@ -47,7 +47,9 @@ function ScrollableListExample() {
     <section>
       <h2>Scrollable Listbox Example</h2>
       <p>
-        Choose your favorite transuranic element (actinide or transactinide).
+        <a href="https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-scrollable.html">{/* eslint-disable-line max-len */}
+          WAI ARIA practices example source.
+        </a>
       </p>
       <div className={styles['scrollable-example-container']}>
         <label id="scrollable-list-example-label">
