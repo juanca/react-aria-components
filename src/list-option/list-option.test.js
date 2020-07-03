@@ -23,11 +23,17 @@ describe('<ListOption />', () => {
 
   describe('accessibility', () => {
     it('selects on click', async () => {
-      render(<ListOption {...requiredProps} />);
+      render(<ListOption {...requiredProps} selected={false} />);
 
-      expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
       userEvent.click(screen.getByText('Test option'));
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true'));
+    });
+
+    it('deselects on click', async () => {
+      render(<ListOption {...requiredProps} selected />);
+
+      userEvent.click(screen.getByText('Test option'));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false'));
     });
 
     it('selects on enter key', async () => {
@@ -36,6 +42,13 @@ describe('<ListOption />', () => {
       expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
       fireEvent.keyDown(screen.getByText('Test option'), { key: 'Enter' });
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true'));
+    });
+
+    it('deselects on enter key', async () => {
+      render(<ListOption {...requiredProps} selected />);
+
+      fireEvent.keyDown(screen.getByText('Test option'), { key: 'Enter' });
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false'));
     });
   });
 
