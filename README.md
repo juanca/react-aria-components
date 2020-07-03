@@ -55,10 +55,17 @@ npm run lint
     docker-compose run install
     ```
 
-2. Start / Test / Lint
+2. Start
 
     ```
-    docker-compose run start / test / lint
+    docker-compose up start
+    ```
+
+
+3. Test / Lint
+
+    ```
+    docker-compose run test / lint
     ```
 
     For example:
