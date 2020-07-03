@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListOption /> has defaults 1`] = `
+<li
+  aria-selected={false}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  role="option"
+  tabIndex={0}
+>
+  Test option
+</li>
+`;
