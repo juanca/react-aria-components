@@ -3,7 +3,6 @@
 Disclaimer: this is in an alpha stage.
 
 For a hands-on approach to this library, see the [demo](https://juanca.github.io/react-aria-components).
-The demo is manually deployed (for the time being) and can be based off any branch -- which means it might not be stable!
 
 ## Browsers support
 
@@ -30,8 +29,8 @@ The components available through this module are inspired from the [WAI-ARIA Aut
 Each component is driven by three principles:
 
 1. A component is accessible.
-1. A component can be used in composition.
-1. A component has minimal footprint.
+1. A component can be used in composition (favoring web components interfaces).
+1. A component has a minimal footprint.
 
 [WAI-ARIA Authoring Practices]: https://www.w3.org/TR/wai-aria-practices-1.1
 
