@@ -5,12 +5,14 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react';
+import useDidMount from '../hooks/use-did-mount.js';
 import useRef from '../hooks/use-ref.js';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const containerRef = useRef();
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(true);
+  const [didMount] = useDidMount();
   const [focusQueued, setFocusQueued] = useState(false);
   const [selected, setSelected] = useState(props.selected);
 
@@ -35,14 +37,24 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     }
   }, [focusQueued]);
 
+  useEffect(() => {
+    if (didMount) {
+      props.onSelectChange({ target: ref.current });
+    }
+  }, [selected]);
+
   useImperativeHandle(ref, () => ({
     contains: node => containerRef.current.contains(node),
     focus: () => {
       setActive(true);
       setFocusQueued(true);
     },
+    selected,
     setAttribute: (attribute, value) => {
       switch (attribute) {
+        case 'selected':
+          setSelected(value);
+          break;
         case 'tabindex':
           if (value === -1) {
             setActive(false);
@@ -53,6 +65,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
         default:
       }
     },
+    value: props.value,
   }));
 
   return (
@@ -73,11 +86,14 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 ListOption.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  onSelectChange: PropTypes.func,
   selected: PropTypes.bool,
+  value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 ListOption.defaultProps = {
   className: undefined,
+  onSelectChange: () => {},
   selected: false,
 };
 

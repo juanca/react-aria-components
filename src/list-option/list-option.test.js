@@ -1,7 +1,6 @@
 import React, {
   createRef,
 } from 'react';
-import renderer from 'react-test-renderer';
 import {
   act,
   fireEvent,
@@ -15,10 +14,12 @@ import ListOption from './list-option.js';
 describe('<ListOption />', () => {
   const requiredProps = {
     children: 'Test option',
+    value: 'test-value',
   };
 
   it('has defaults', () => {
-    expect(renderer.create(<ListOption {...requiredProps} />).toJSON()).toMatchSnapshot();
+    render(<ListOption {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
@@ -102,17 +103,16 @@ describe('<ListOption />', () => {
     });
   });
 
-  describe('setAttribute ref API', () => {
-    it('can set tabindex', async () => {
+  describe('onSelectChange prop API', () => {
+    it('is called when selected state changes', () => {
       const ref = createRef();
-      render(<ListOption {...requiredProps} ref={ref} />);
+      const onSelectChangeSpy = jest.fn();
 
-      act(() => ref.current.setAttribute('tabindex', 0));
-      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '0'));
+      render(<ListOption {...requiredProps} onSelectChange={onSelectChangeSpy} ref={ref} />);
+      expect(onSelectChangeSpy).not.toHaveBeenCalled();
 
-
-      act(() => ref.current.setAttribute('tabindex', -1));
-      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1'));
+      userEvent.click(screen.getByText('Test option'));
+      expect(onSelectChangeSpy).toHaveBeenCalledWith({ target: ref.current });
     });
   });
 
@@ -127,6 +127,55 @@ describe('<ListOption />', () => {
       render(<ListOption {...requiredProps} selected={false} />);
 
       expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false');
+    });
+  });
+
+  describe('selected ref API', () => {
+    it('exposes selected state', () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} ref={ref} />);
+
+      act(() => ref.current.setAttribute('selected', true));
+      expect(ref.current.selected).toBe(true);
+
+
+      act(() => ref.current.setAttribute('selected', false));
+      expect(ref.current.selected).toBe(false);
+    });
+  });
+
+  describe('setAttribute ref API', () => {
+    it('can set selected', async () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} ref={ref} />);
+
+      act(() => ref.current.setAttribute('selected', true));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true'));
+
+
+      act(() => ref.current.setAttribute('selected', false));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false'));
+    });
+
+    it('can set tabindex', async () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} ref={ref} />);
+
+      act(() => ref.current.setAttribute('tabindex', 0));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '0'));
+
+
+      act(() => ref.current.setAttribute('tabindex', -1));
+      await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1'));
+    });
+  });
+
+  describe('value ref API', () => {
+    it('exposes value prop', () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} ref={ref} value="unique-value" />);
+
+      expect(ref.current.value).toBe('unique-value');
     });
   });
 });
