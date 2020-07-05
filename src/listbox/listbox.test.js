@@ -136,7 +136,7 @@ describe('<Listbox />', () => {
 
     it('only has one list item in the page tab sequence', async () => {
       const refs = [createRef(), createRef(), createRef()];
-      render((
+      const { rerender } = render((
         <Listbox {...requiredProps} refs={refs}>
           {() => (
             <React.Fragment>
@@ -152,6 +152,20 @@ describe('<Listbox />', () => {
       await waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
       userEvent.tab();
       await waitFor(() => expect(document.body).toHaveFocus());
+
+      rerender((
+        <Listbox {...requiredProps} refs={[refs[0], refs[2]]}>
+          {() => (
+            <React.Fragment>
+              <li aria-selected={false} ref={refs[0]} role="option" tabIndex="-1">First</li>
+              <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
+        </Listbox>
+      ));
+
+      userEvent.tab();
+      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
     });
   });
 

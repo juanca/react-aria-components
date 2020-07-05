@@ -32,6 +32,10 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     props.multiple,
   ));
 
+  function onBlur() {
+    setActive(false);
+  }
+
   function onFocus(event) {
     const nextActiveIndex = props.refs.findIndex(childRef => (
       childRef.current.contains(event.target)
@@ -81,17 +85,12 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   }
 
   useEffect(() => {
-    if (active) {
-      props.refs.forEach((childRef, index) => {
-        if (index === activeIndex) {
-          childRef.current.focus();
-          childRef.current.setAttribute('tabindex', 0);
-        } else {
-          childRef.current.setAttribute('tabindex', -1);
-        }
-      });
-    }
-  }, [active, activeIndex, props.refs.length]);
+    props.refs.forEach((childRef, index) => {
+      childRef.current.setAttribute('tabindex', index === activeIndex ? 0 : -1);
+    });
+
+    if (active) props.refs[activeIndex].current.focus();
+  }, [active, activeIndex, props.refs]);
 
   useEffect(() => {
     if (active) {
@@ -110,6 +109,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       aria-labelledby={props.labelledBy}
       aria-multiselectable={props.multiple}
       className={props.className}
+      onBlur={onBlur}
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="listbox"
