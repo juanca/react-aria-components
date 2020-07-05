@@ -107,6 +107,7 @@ function SingleSelectListboxExample() {
     const selectedFeature = importantListboxRef.current.value;
     setImportantFeatures(importantFeatures.filter(feature => feature !== selectedFeature));
     setNotImportantFeatures([...notImportantFeatures, selectedFeature]);
+    importantListboxRef.current.setValue(undefined);
     setNotImportantDisabled(true);
   }
 
@@ -115,7 +116,7 @@ function SingleSelectListboxExample() {
   }
 
   function onImportantClick() {
-    const selectedFeature = importantListboxRef.current.value;
+    const selectedFeature = notImportantListboxRef.current.value;
     setImportantFeatures([...importantFeatures, selectedFeature]);
     setNotImportantFeatures(notImportantFeatures.filter(feature => feature !== selectedFeature));
     notImportantListboxRef.current.setValue(undefined);
