@@ -1,7 +1,6 @@
 import React, {
   createRef,
 } from 'react';
-import renderer from 'react-test-renderer';
 import {
   fireEvent,
   render,
@@ -13,11 +12,13 @@ import Listbox from './listbox.js';
 
 describe('<Listbox />', () => {
   const requiredProps = {
+    children: () => {},
     labelledBy: 'test-label-id',
   };
 
   it('has defaults', () => {
-    expect(renderer.create(<Listbox {...requiredProps} />).toJSON()).toMatchSnapshot();
+    render(<Listbox {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
@@ -25,9 +26,13 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
+          {() => (
+            <React.Fragment>
+              <li ref={refs[0]} tabIndex="-1">First</li>
+              <li ref={refs[1]} tabIndex="-1">Second</li>
+              <li ref={refs[2]} tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
         </Listbox>
       ));
 
@@ -38,9 +43,13 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
+          {() => (
+            <React.Fragment>
+              <li ref={refs[0]} tabIndex="-1">First</li>
+              <li ref={refs[1]} tabIndex="-1">Second</li>
+              <li ref={refs[2]} tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
         </Listbox>
       ));
 
@@ -52,9 +61,13 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
+          {() => (
+            <React.Fragment>
+              <li ref={refs[0]} tabIndex="-1">First</li>
+              <li ref={refs[1]} tabIndex="-1">Second</li>
+              <li ref={refs[2]} tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
         </Listbox>
       ));
 
@@ -67,9 +80,13 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
+          {() => (
+            <React.Fragment>
+              <li ref={refs[0]} tabIndex="-1">First</li>
+              <li ref={refs[1]} tabIndex="-1">Second</li>
+              <li ref={refs[2]} tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
         </Listbox>
       ));
 
@@ -82,9 +99,13 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
+          {() => (
+            <React.Fragment>
+              <li ref={refs[0]} tabIndex="-1">First</li>
+              <li ref={refs[1]} tabIndex="-1">Second</li>
+              <li ref={refs[2]} tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
         </Listbox>
       ));
 
@@ -97,9 +118,13 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
+          {() => (
+            <React.Fragment>
+              <li ref={refs[0]} tabIndex="-1">First</li>
+              <li ref={refs[1]} tabIndex="-1">Second</li>
+              <li ref={refs[2]} tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
         </Listbox>
       ));
 
@@ -112,9 +137,13 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          <li aria-selected={false} ref={refs[0]} role="option" tabIndex="0">First</li>
-          <li aria-selected={false} ref={refs[1]} role="option" tabIndex="-1">Second</li>
-          <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
+          {() => (
+            <React.Fragment>
+              <li aria-selected={false} ref={refs[0]} role="option" tabIndex="0">First</li>
+              <li aria-selected={false} ref={refs[1]} role="option" tabIndex="-1">Second</li>
+              <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
+            </React.Fragment>
+          )}
         </Listbox>
       ));
 
@@ -129,11 +158,32 @@ describe('<Listbox />', () => {
     it('can be set', () => {
       render((
         <Listbox {...requiredProps}>
-          <li>Unique option</li>
+          {() => <li>Unique option</li>}
         </Listbox>
       ));
 
       expect(screen.getByText('Unique option')).toBeInTheDocument();
+    });
+
+    it('has an onSelectChange render prop', () => {
+      const ref = createRef();
+      render((
+        <Listbox {...requiredProps} ref={ref}>
+          {({ onSelectChange }) => (
+            <li
+              aria-selected
+              onClick={() => onSelectChange({ target: { selected: true, value: 'unique-value' } })}
+              onKeyDown={() => {}}
+              role="option"
+            >
+              Unique option
+            </li>
+          )}
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByRole('option', { name: 'Unique option' }));
+      expect(ref.current.value).toContain('unique-value');
     });
   });
 
@@ -151,7 +201,7 @@ describe('<Listbox />', () => {
       const refs = [createRef()];
       render((
         <Listbox {...requiredProps} ref={ref} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">Unique option</li>
+          {() => <li ref={refs[0]} tabIndex="-1">Unique option</li>}
         </Listbox>
       ));
 
@@ -174,6 +224,123 @@ describe('<Listbox />', () => {
     });
   });
 
+  describe('multiple prop API', () => {
+    it('can be set', () => {
+      render(<Listbox {...requiredProps} multiple />);
+      expect(screen.getByRole('listbox')).toHaveAttribute('aria-multiselectable', 'true');
+    });
+
+    it('can be unset', () => {
+      render(<Listbox {...requiredProps} multiple={false} />);
+      expect(screen.getByRole('listbox')).toHaveAttribute('aria-multiselectable', 'false');
+    });
+  });
+
+  describe('onValueChange prop API', () => {
+    describe('single select', () => {
+      it('is called on select', async () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const onValueChangeSpy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} onValueChange={onValueChangeSpy} ref={ref} refs={refs}>
+            {({ onSelectChange }) => (
+              <React.Fragment>
+                <li onClick={() => onSelectChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                <li onClick={() => onSelectChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                <li onClick={() => onSelectChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+              </React.Fragment>
+            )}
+          </Listbox>
+        ));
+
+        expect(ref.current.value).toBeUndefined();
+        userEvent.click(screen.getByText('Second'));
+        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(ref.current.value).toBe('second');
+      });
+
+      it('is called on deselect', () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const onValueChangeSpy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} onValueChange={onValueChangeSpy} ref={ref} refs={refs} value="second">
+            {({ onSelectChange }) => (
+              <React.Fragment>
+                <li onClick={() => onSelectChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                <li onClick={() => onSelectChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                <li onClick={() => onSelectChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+              </React.Fragment>
+            )}
+          </Listbox>
+        ));
+
+        expect(ref.current.value).toBe('second');
+        userEvent.click(screen.getByText('Second'));
+        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(ref.current.value).toBeUndefined();
+      });
+    });
+
+    describe('multi select', () => {
+      it('is called on select', () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const onValueChangeSpy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} multiple onValueChange={onValueChangeSpy} ref={ref} refs={refs}>
+            {({ onSelectChange }) => (
+              <React.Fragment>
+                <li onClick={() => onSelectChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                <li onClick={() => onSelectChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                <li onClick={() => onSelectChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+              </React.Fragment>
+            )}
+          </Listbox>
+        ));
+
+        expect(ref.current.value).toHaveLength(0);
+        userEvent.click(screen.getByText('Second'));
+        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(ref.current.value).toContain('second');
+        userEvent.click(screen.getByText('Third'));
+        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(ref.current.value).toContain('third');
+      });
+
+      it('is called on deselect', () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const onValueChangeSpy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} multiple onValueChange={onValueChangeSpy} ref={ref} refs={refs} value={['first', 'second']}>
+            {({ onSelectChange }) => (
+              <React.Fragment>
+                <li onClick={() => onSelectChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                <li onClick={() => onSelectChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                <li onClick={() => onSelectChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+              </React.Fragment>
+            )}
+          </Listbox>
+        ));
+
+        expect(ref.current.value).toContain('first');
+        expect(ref.current.value).toContain('second');
+        userEvent.click(screen.getByText('Second'));
+        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(ref.current.value).toContain('first');
+        userEvent.click(screen.getByText('First'));
+        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(ref.current.value).toHaveLength(0);
+      });
+    });
+  });
+
   describe('ref prop API', () => {
     it('can be set', () => {
       const ref = createRef();
@@ -183,8 +350,41 @@ describe('<Listbox />', () => {
     });
   });
 
+  describe('value ref API', () => {
+    it('exposes value prop when single select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} ref={ref} value="unique-value" />);
+
+      expect(ref.current.value).toBe('unique-value');
+    });
+
+    it('exposes value prop when multi select', () => {
+      const ref = createRef();
+      const value = ['unique-value'];
+      render(<Listbox {...requiredProps} multiple ref={ref} value={value} />);
+
+      expect(ref.current.value).toBe(value);
+    });
+  });
+
+  describe('value prop API', () => {
+    it('defaults when single select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} ref={ref} value={undefined} />);
+
+      expect(ref.current.value).toBeUndefined();
+    });
+
+    it('defaults when multi select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} multiple ref={ref} value={undefined} />);
+
+      expect(ref.current.value).toHaveLength(0);
+    });
+  });
+
   describe('refs prop API', () => {
     // No direct tests at the moment
-    // Tested elsewhere
+    // Tested accessibility tests
   });
 });
