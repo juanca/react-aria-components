@@ -97,20 +97,33 @@ function SingleSelectListboxExample() {
   const importantListboxRef = useRef();
   const [importantFeatures, setImportantFeatures] = useState(options);
   const importantFeaturesRefs = importantFeatures.map(() => createRef());
+  const [importantDisabled, setImportantDisabled] = useState(true);
   const notImportantListboxRef = useRef();
   const [notImportantFeatures, setNotImportantFeatures] = useState([]);
   const notImportantFeaturesRefs = notImportantFeatures.map(() => createRef());
+  const [notImportantDisabled, setNotImportantDisabled] = useState(true);
 
   function onNotImporantClick() {
     const selectedFeature = importantListboxRef.current.value;
     setImportantFeatures(importantFeatures.filter(feature => feature !== selectedFeature));
     setNotImportantFeatures([...notImportantFeatures, selectedFeature]);
+    setNotImportantDisabled(true);
+  }
+
+  function onNotImportantValueChange() {
+    setImportantDisabled(false);
   }
 
   function onImportantClick() {
     const selectedFeature = importantListboxRef.current.value;
     setImportantFeatures([...importantFeatures, selectedFeature]);
     setNotImportantFeatures(notImportantFeatures.filter(feature => feature !== selectedFeature));
+    notImportantListboxRef.current.setValue(undefined);
+    setImportantDisabled(true);
+  }
+
+  function onImportantValueChange() {
+    setNotImportantDisabled(false);
   }
 
   return (
@@ -129,6 +142,7 @@ function SingleSelectListboxExample() {
           <Listbox
             className={styles['example-listbox']}
             labelledBy="single-select-example-label-1"
+            onValueChange={onImportantValueChange}
             ref={importantListboxRef}
             refs={importantFeaturesRefs}
           >
@@ -144,7 +158,7 @@ function SingleSelectListboxExample() {
               </ListOption>
             ))}
           </Listbox>
-          <button onClick={onNotImporantClick} type="button">
+          <button disabled={notImportantDisabled} onClick={onNotImporantClick} type="button">
             Not Important →
           </button>
         </div>
@@ -155,6 +169,7 @@ function SingleSelectListboxExample() {
           <Listbox
             className={styles['example-listbox']}
             labelledBy="single-select-example-label-2"
+            onValueChange={onNotImportantValueChange}
             ref={notImportantListboxRef}
             refs={notImportantFeaturesRefs}
           >
@@ -170,7 +185,7 @@ function SingleSelectListboxExample() {
               </ListOption>
             ))}
           </Listbox>
-          <button onClick={onImportantClick} type="button">
+          <button disabled={importantDisabled} onClick={onImportantClick} type="button">
             ← Important
           </button>
         </div>
