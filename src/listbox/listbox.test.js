@@ -2,6 +2,7 @@ import React, {
   createRef,
 } from 'react';
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -347,6 +348,41 @@ describe('<Listbox />', () => {
       render(<Listbox {...requiredProps} ref={ref} />);
 
       expect(ref.current).toBeDefined();
+    });
+  });
+
+  describe('setValue ref API', () => {
+    it('sets the value state when single select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} ref={ref} value={undefined} />);
+
+      act(() => ref.current.setValue('unique-value'));
+      expect(ref.current.value).toBe('unique-value');
+    });
+
+    it('clears the value state when single select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} ref={ref} value="unique-value" />);
+
+      act(() => ref.current.setValue(undefined));
+      expect(ref.current.value).toBeUndefined();
+    });
+
+    it('sets the value state when multi select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} multiple ref={ref} value={[]} />);
+
+      act(() => ref.current.setValue(['unique-value']));
+      expect(ref.current.value).toHaveLength(1);
+      expect(ref.current.value[0]).toBe('unique-value');
+    });
+
+    it('clears the value state when multi select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} multiple ref={ref} value={['unique-value']} />);
+
+      act(() => ref.current.setValue(undefined));
+      expect(ref.current.value).toHaveLength(0);
     });
   });
 

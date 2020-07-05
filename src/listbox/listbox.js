@@ -91,7 +91,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
         }
       });
     }
-  }, [active, activeIndex]);
+  }, [active, activeIndex, props.refs.length]);
 
   useEffect(() => {
     if (active) {
@@ -101,6 +101,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     focus: () => props.refs[activeIndex].current.focus(),
+    setValue: state => setValue(getInitialValue(state, props.multiple)),
     value: props.multiple ? value : value[0],
   }));
 
