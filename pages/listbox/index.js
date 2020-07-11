@@ -50,7 +50,7 @@ function ScrollableListExample() {
       <h2>Scrollable Listbox Example</h2>
       <p>
         <a href="https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-scrollable.html">
-          WAI ARIA practices example source.
+          WAI ARIA authoring practices example source.
         </a>
       </p>
       <div className={styles['example-container']}>
@@ -131,8 +131,8 @@ function SingleSelectListboxExample() {
     <section>
       <h2>Single-Select Listbox Example</h2>
       <p>
-        <a href="https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-rearrangeable.html">
-          WAI ARIA practices examples source.
+        <a href="https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-rearrangeable.html#ex1_label">
+          WAI ARIA authoring practices examples source.
         </a>
       </p>
       <div className={styles['example-container']}>
@@ -147,15 +147,15 @@ function SingleSelectListboxExample() {
             ref={importantListboxRef}
             refs={importantFeaturesRefs}
           >
-            {({ onSelectChange }) => importantFeatures.map((upgrade, index) => (
+            {({ onSelectChange }) => importantFeatures.map((feature, index) => (
               <ListOption
                 className={styles['example-option']}
-                key={upgrade}
+                key={feature}
                 onSelectChange={onSelectChange}
                 ref={importantFeaturesRefs[index]}
-                value={upgrade}
+                value={feature}
               >
-                {upgrade}
+                {feature}
               </ListOption>
             ))}
           </Listbox>
@@ -174,20 +174,137 @@ function SingleSelectListboxExample() {
             ref={notImportantListboxRef}
             refs={notImportantFeaturesRefs}
           >
-            {({ onSelectChange }) => notImportantFeatures.map((upgrade, index) => (
+            {({ onSelectChange }) => notImportantFeatures.map((feature, index) => (
+              <ListOption
+                className={styles['example-option']}
+                key={feature}
+                onSelectChange={onSelectChange}
+                ref={notImportantFeaturesRefs[index]}
+                value={feature}
+              >
+                {feature}
+              </ListOption>
+            ))}
+          </Listbox>
+          <button disabled={importantDisabled} onClick={onImportantClick} type="button">
+            ← Important
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MultiSelectListboxExample() {
+  const options = [
+    'Leather seats',
+    'Front seat warmers',
+    'Rear bucket seats',
+    'Rear seat warmers',
+    'Front sun roof',
+    'Rear sun roof',
+    'Privacy cloque',
+    'Food synthesizer',
+    'Advanced waste recycling system',
+    'Turbo vertical take-off capability',
+  ];
+
+  const [availableUpgrades, setAvailableUpgrades] = useState(options);
+  const availableUpgradesRefs = availableUpgrades.map(() => createRef());
+  const availableUpgradesListboxRef = useRef();
+  const [chosenUpgrades, setChosenUpgrades] = useState([]);
+  const chosenUpgradesRefs = chosenUpgrades.map(() => createRef());
+  const chosenUpgradesListboxRef = useRef();
+  const [addUpgradeDisabled, setAddUpgradeDisabled] = useState(true);
+  const [removeUpgradeDisabled, setRemoveUpgradeDisabled] = useState(true);
+
+  function onAvailableUpgradesValueChange() {
+    setAddUpgradeDisabled(false);
+  }
+
+  function onAddUpgradeClick() {
+    const selectedUpgrades = availableUpgradesListboxRef.current.value;
+    setAddUpgradeDisabled(true);
+    setAvailableUpgrades(availableUpgrades.filter(upgrade => !selectedUpgrades.includes(upgrade)));
+    setChosenUpgrades([...chosenUpgrades, ...selectedUpgrades]);
+    availableUpgradesListboxRef.current.setValue([]);
+  }
+
+  function onChosenUpgradesValueChange() {
+    setRemoveUpgradeDisabled(false);
+  }
+
+  function onRemoveUpgradeClick() {
+    const selectedUpgrades = chosenUpgradesListboxRef.current.value;
+    setRemoveUpgradeDisabled(true);
+    setAvailableUpgrades([...availableUpgrades, ...selectedUpgrades]);
+    setChosenUpgrades(chosenUpgrades.filter(upgrade => !selectedUpgrades.includes(upgrade)))
+    chosenUpgradesListboxRef.current.setValue([]);
+  }
+
+  return (
+    <section>
+      <h2>Multi-Select Listbox Example</h2>
+      <p>
+        <a href="https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-rearrangeable.html#ex2_label">
+          WAI ARIA authoring practices example source.
+        </a>
+      </p>
+      <div className={styles['example-container']}>
+        <div style={{ width: '100%' }}>
+          <label id="multi-select-example-label-1">
+            Available upgrades:
+          </label>
+          <Listbox
+            className={styles['example-listbox']}
+            labelledBy="multi-select-example-label-1"
+            multiple
+            onValueChange={onAvailableUpgradesValueChange}
+            ref={availableUpgradesListboxRef}
+            refs={availableUpgradesRefs}
+          >
+            {({ onSelectChange }) => availableUpgrades.map((upgrade, index) => (
               <ListOption
                 className={styles['example-option']}
                 key={upgrade}
                 onSelectChange={onSelectChange}
-                ref={notImportantFeaturesRefs[index]}
+                ref={availableUpgradesRefs[index]}
                 value={upgrade}
               >
                 {upgrade}
               </ListOption>
             ))}
           </Listbox>
-          <button disabled={importantDisabled} onClick={onImportantClick} type="button">
-            ← Important
+          <button disabled={addUpgradeDisabled} onClick={onAddUpgradeClick} type="button">
+            Add →
+          </button>
+        </div>
+        <div style={{ marginLeft: '20px', width: '100%' }}>
+          <label id="single-select-example-label-2">
+            Upgrades you have chosen:
+          </label>
+          <Listbox
+            className={styles['example-listbox']}
+            labelledBy="single-select-example-label-2"
+            multiple
+            onValueChange={onChosenUpgradesValueChange}
+            ref={chosenUpgradesListboxRef}
+            refs={chosenUpgradesRefs}
+          >
+            {({ onSelectChange }) => chosenUpgrades.map((upgrade, index) => (
+              <ListOption
+                className={styles['example-option']}
+                key={upgrade}
+                onSelectChange={onSelectChange}
+                ref={chosenUpgradesRefs[index]}
+                value={upgrade}
+              >
+                {upgrade}
+              </ListOption>
+            ))}
+          </Listbox>
+          <button disabled={removeUpgradeDisabled} onClick={onRemoveUpgradeClick} type="button">
+            ← Remove
           </button>
         </div>
       </div>
@@ -201,6 +318,7 @@ render((
     <main>
       <ScrollableListExample />
       <SingleSelectListboxExample />
+      <MultiSelectListboxExample />
     </main>
     <Footer />
   </React.Fragment>
