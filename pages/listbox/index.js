@@ -238,7 +238,7 @@ function MultiSelectListboxExample() {
     const selectedUpgrades = chosenUpgradesListboxRef.current.value;
     setRemoveUpgradeDisabled(true);
     setAvailableUpgrades([...availableUpgrades, ...selectedUpgrades]);
-    setChosenUpgrades(chosenUpgrades.filter(upgrade => !selectedUpgrades.includes(upgrade)))
+    setChosenUpgrades(chosenUpgrades.filter(upgrade => !selectedUpgrades.includes(upgrade)));
     chosenUpgradesListboxRef.current.setValue([]);
   }
 
