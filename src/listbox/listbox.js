@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import useActiveIndex from '../hooks/use-active-index.js';
+import useDidMount from '../hooks/use-did-mount.js';
 import useRef from '../hooks/use-ref.js';
 
 function getInitialValue(value, multiple) {
@@ -17,6 +18,7 @@ function getInitialValue(value, multiple) {
 }
 
 const Listbox = forwardRef(function Listbox(props, forwardedRef) {
+  const [didMount] = useDidMount();
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(false);
   const {
@@ -93,7 +95,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   }, [active, activeIndex, props.refs]);
 
   useEffect(() => {
-    if (active) {
+    if (didMount) {
       props.onValueChange({ target: ref.current });
     }
   }, [value]);

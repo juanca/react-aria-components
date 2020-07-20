@@ -7,10 +7,12 @@ import React, {
 import PropTypes from 'prop-types';
 import Listbox from '../listbox/listbox.js';
 import styles from './form-select.css';
+import useDidMount from '../hooks/use-did-mount.js';
 import useRef from '../hooks/use-ref.js';
 
 
 const FormSelect = forwardRef((props, forwardedRef) => {
+  const [didMount] = useDidMount();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
   const inputRef = useRef();
@@ -38,7 +40,9 @@ const FormSelect = forwardRef((props, forwardedRef) => {
   }
 
   useEffect(() => {
-    props.onValueChange(ref.current);
+    if (didMount) {
+      props.onValueChange({ target: ref.current });
+    }
   }, [value]);
 
   useEffect(() => {

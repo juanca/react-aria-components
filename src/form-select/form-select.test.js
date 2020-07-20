@@ -6,6 +6,7 @@ import {
   render,
   screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import FormSelect from './form-select.js';
 
 describe('<Form Select />', () => {
@@ -52,6 +53,33 @@ describe('<Form Select />', () => {
     it('can be set', () => {
       render(<FormSelect {...requiredProps} label="Unique label" />);
       expect(screen.getByText('Unique label', { selector: 'label' })).toBeInTheDocument();
+    });
+  });
+
+  describe('onValueChange prop', () => {
+    it('is called when the value changes', () => {
+      const onValueChangeSpy = jest.fn();
+      render((
+        <FormSelect {...requiredProps} onValueChange={onValueChangeSpy}>
+          {({ onSelectChange }) => (
+            <option
+              onClick={(event) => {
+                event.target.selected = true; // eslint-disable-line
+                onSelectChange(event);
+              }}
+              value="unique-option"
+            >
+              Option
+            </option>
+          )}
+        </FormSelect>
+      ));
+
+      userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
+      userEvent.click(screen.getByText('Option'));
+      expect(onValueChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({ value: 'unique-option' }),
+      }));
     });
   });
 });
