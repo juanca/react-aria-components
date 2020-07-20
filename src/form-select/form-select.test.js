@@ -82,4 +82,11 @@ describe('<FormSelect />', () => {
       }));
     });
   });
+
+  describe('value prop API', () => {
+    it('can be set', () => {
+      render(<FormSelect {...requiredProps} value="unique-value" />);
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('unique-value');
+    });
+  });
 });

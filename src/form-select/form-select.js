@@ -98,10 +98,12 @@ FormSelect.propTypes = {
   label: PropTypes.string.isRequired,
   onValueChange: PropTypes.func,
   refs: PropTypes.shape({ current: PropTypes.any }),
+  value: PropTypes.string,
 };
 
 FormSelect.defaultProps = {
   onValueChange: () => {},
+  value: '',
 };
 
 export default FormSelect;
