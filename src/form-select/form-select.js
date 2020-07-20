@@ -89,7 +89,7 @@ const FormSelect = forwardRef((props, forwardedRef) => {
 });
 
 FormSelect.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onValueChange: PropTypes.func,
@@ -97,7 +97,6 @@ FormSelect.propTypes = {
 };
 
 FormSelect.defaultProps = {
-  children: undefined,
   onValueChange: () => {},
 };
 

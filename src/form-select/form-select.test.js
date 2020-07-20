@@ -1,8 +1,8 @@
 import React, {
   createRef,
 } from 'react';
-import renderer from 'react-test-renderer';
 import {
+  act,
   render,
   screen,
 } from '@testing-library/react';
@@ -10,19 +10,21 @@ import FormSelect from './form-select.js';
 
 describe('<Form Select />', () => {
   const requiredProps = {
+    children: () => {},
     id: 'test-id',
     label: 'Test label',
   };
 
   it('has defaults', () => {
-    expect(renderer.create(<FormSelect {...requiredProps} />).toJSON()).toMatchSnapshot();
+    render(<FormSelect {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
-  describe('children API', () => {
+  describe('children prop API', () => {
     it('can be set', () => {
       render((
         <FormSelect {...requiredProps}>
-          <option>Unique option</option>
+          {() => <option>Unique option</option>}
         </FormSelect>
       ));
       expect(screen.getByText('Unique option')).toBeDefined();
@@ -33,23 +35,23 @@ describe('<Form Select />', () => {
     it('focuses the input', () => {
       const ref = createRef();
       render(<FormSelect {...requiredProps} ref={ref} />);
-      expect(screen.getByLabelText('Test label')).not.toHaveFocus();
-      ref.current.focus();
-      expect(screen.getByLabelText('Test label')).toHaveFocus();
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).not.toHaveFocus();
+      act(() => ref.current.focus());
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveFocus();
     });
   });
 
-  describe('id API', () => {
+  describe('id prop API', () => {
     it('can be set', () => {
       render(<FormSelect {...requiredProps} id="unique-id" />);
-      expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'unique-id');
+      expect(screen.getByText('Test label')).toHaveAttribute('id', 'unique-id-label');
     });
   });
 
-  describe('label API', () => {
+  describe('label prop API', () => {
     it('can be set', () => {
       render(<FormSelect {...requiredProps} label="Unique label" />);
-      expect(screen.getByLabelText('Unique label')).toBeDefined();
+      expect(screen.getByText('Unique label', { selector: 'label' })).toBeInTheDocument();
     });
   });
 });

@@ -1,14 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Form Select /> has defaults 1`] = `
-Array [
-  <label
-    htmlFor="test-id"
-  >
-    Test label
-  </label>,
-  <select
-    id="test-id"
-  />,
-]
+<body>
+  <div>
+    <div
+      class="container"
+      role="presentation"
+    >
+      <label
+        class="label"
+        id="test-id-label"
+      >
+        Test label
+      </label>
+      <input
+        aria-labelledby="test-id-label"
+        class="input"
+        tabindex="0"
+        value=""
+      />
+      <ul
+        aria-labelledby="test-id-label"
+        aria-multiselectable="false"
+        class="collapsed"
+        role="listbox"
+      />
+    </div>
+  </div>
+</body>
 `;
