@@ -9,7 +9,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import FormSelect from './form-select.js';
 
-describe('<Form Select />', () => {
+describe('<FormSelect />', () => {
   const requiredProps = {
     children: () => {},
     id: 'test-id',
