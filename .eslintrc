@@ -16,48 +16,58 @@
     }],
     "no-prototype-builtins": "off",
     "object-curly-newline": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for": "off",
+    "prefer-arrow-callback": ["error", {
+      "allowNamedFunctions": true
+    }],
     "prefer-destructuring": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-one-expression-per-line": "off"
   },
-  "overrides": [
-    {
-      "env": {
-        "jest/globals": true
-      },
-      "files": ["*test.js"],
-      "rules": {
-        "jest/consistent-test-it": "error",
-        "jest/expect-expect": "error",
-        "jest/lowercase-name": "error",
-        "jest/no-alias-methods": "error",
-        "jest/no-disabled-tests": "error",
-        "jest/no-empty-title": "error",
-        "jest/no-focused-tests": "error",
-        "jest/no-hooks": ["error", { "allow": ["beforeEach", "afterEach"] }],
-        "jest/no-identical-title": "off",
-        "jest/no-jasmine-globals": "error",
-        "jest/no-jest-import": "error",
-        "jest/no-mocks-import": "error",
-        "jest/no-test-callback": "error",
-        "jest/no-test-prefixes": "error",
-        "jest/no-test-return-statement": "error",
-        "jest/no-truthy-falsy": "error",
-        "jest/prefer-inline-snapshots": "off",
-        "jest/prefer-spy-on": "error",
-        "jest/prefer-strict-equal": "error",
-        "jest/prefer-to-be-null": "error",
-        "jest/prefer-to-contain": "error",
-        "jest/prefer-to-have-length": "error",
-        "jest/require-tothrow-message": "error",
-        "jest/valid-describe": "error",
-        "jest/valid-expect": "error",
-        "jest/prefer-todo": "error",
-        "jest/prefer-called-with": "error",
-        "max-len": "off"
-      }
+  "overrides": [{
+    "env": {
+      "browser": true,
+      "jest/globals": true
+    },
+    "files": ["*test.js"],
+    "rules": {
+      "jest/consistent-test-it": "error",
+      "jest/expect-expect": "error",
+      "jest/lowercase-name": "error",
+      "jest/no-alias-methods": "error",
+      "jest/no-disabled-tests": "error",
+      "jest/no-empty-title": "error",
+      "jest/no-focused-tests": "error",
+      "jest/no-hooks": ["error", { "allow": ["beforeEach", "afterEach"] }],
+      "jest/no-identical-title": "off",
+      "jest/no-jasmine-globals": "error",
+      "jest/no-jest-import": "error",
+      "jest/no-mocks-import": "error",
+      "jest/no-test-callback": "error",
+      "jest/no-test-prefixes": "error",
+      "jest/no-test-return-statement": "error",
+      "jest/no-truthy-falsy": "error",
+      "jest/prefer-inline-snapshots": "off",
+      "jest/prefer-spy-on": "error",
+      "jest/prefer-strict-equal": "error",
+      "jest/prefer-to-be-null": "error",
+      "jest/prefer-to-contain": "error",
+      "jest/prefer-to-have-length": "error",
+      "jest/require-tothrow-message": "error",
+      "jest/valid-describe": "error",
+      "jest/valid-expect": "error",
+      "jest/prefer-todo": "error",
+      "jest/prefer-called-with": "error",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "jsx-a11y/no-noninteractive-element-interactions": "off",
+      "max-len": "off"
     }
-  ]
+  }, {
+    "files": ["pages/**/*"],
+    "rules": {
+      "max-len": "off"
+    }
+  }]
 }
