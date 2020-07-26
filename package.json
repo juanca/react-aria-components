@@ -9,8 +9,9 @@
   },
   "homepage": "https://juanca.github.io/react-aria-components",
   "scripts": {
-    "lint": "eslint .",
     "compile": "webpack --mode production",
+    "install": "npm install",
+    "lint": "eslint .",
     "start": "webpack-dev-server --open",
     "test": "jest",
     "test:debug": "node inspect node_modules/.bin/jest --runInBand"
@@ -47,6 +48,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-styleguidist": "^11.0.8",
     "react-test-renderer": "^16.13.1",
     "utf-8-validate": "^5.0.2",
     "webpack": "^4.43.0",
