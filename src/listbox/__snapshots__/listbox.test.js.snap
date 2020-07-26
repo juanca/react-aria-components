@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Listbox /> has defaults 1`] = `
+<body>
+  <div>
+    <ul
+      aria-labelledby="test-label-id"
+      aria-multiselectable="false"
+      role="listbox"
+    />
+  </div>
+</body>
+`;
