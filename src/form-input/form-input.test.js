@@ -31,7 +31,7 @@ describe('<FormInput />', () => {
   describe('id API', () => {
     it('can be set', () => {
       render(<FormInput {...requiredProps} id="unique-id" />);
-      expect(screen.getByLabelText('Test label')).toBeDefined();
+      expect(screen.getByLabelText('Test label')).toHaveAttribute('id', 'unique-id');
     });
   });
 

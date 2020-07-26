@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ListOption /> has defaults 1`] = `
+<body>
+  <div>
+    <li
+      aria-selected="false"
+      role="option"
+      tabindex="0"
+    >
+      Test option
+    </li>
+  </div>
+</body>
+`;
