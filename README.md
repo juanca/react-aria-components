@@ -2,15 +2,13 @@
 
 Disclaimer: this is in an alpha stage.
 
-For a hands-on approach to this library, see the [demo](https://juanca.github.io/react-aria-components).
+For a hands-on approach to this library, see the [documentation site](https://juanca.github.io/react-aria-components).
 
 ## Browsers support
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="Edge browser" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox browser" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome browser" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari browser" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/) |
-| ---------- | --------------- | --------------- | --------------- |
-| Edge | last 5 versions | last 5 versions | last 5 versions |
-
-The exported modules are expected to be transpiled with Babel and PostCSS autoprefixer. In addition, you may need to use `@babel/preset-env` in an application, depending on the browsers you need to support.
+This library publishes uncompiled source code.
+It is expected for host applications to set up compilation processes.
+For example, there is a [Webpack configuration used for the documentation site](./webpack.config.js).
 
 ## Getting started
 
