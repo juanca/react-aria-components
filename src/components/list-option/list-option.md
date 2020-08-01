@@ -11,10 +11,11 @@ All list options should be be nested in a `Listbox`.
 
 | Element | Label |
 | --- | --- |
+| ListOption | Text content |
 
 ### React ref API
 
-| Key | Type | Description |
+| Property | Type | Description |
 | --- | --- | --- |
 | contains | function | Determines whether a node is a descendant of the component |
 | focus | function | Activates the component and sets focus on the component |
