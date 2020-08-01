@@ -5,7 +5,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import Listbox from '../listbox/listbox.js';
+import Listbox from '../components/listbox/listbox.js';
 import styles from './form-select.css';
 import useDidMount from '../hooks/use-did-mount.js';
 import useRef from '../hooks/use-ref.js';

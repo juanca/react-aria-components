@@ -5,9 +5,9 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import useActiveIndex from '../hooks/use-active-index.js';
-import useDidMount from '../hooks/use-did-mount.js';
-import useRef from '../hooks/use-ref.js';
+import useActiveIndex from '../../hooks/use-active-index.js';
+import useDidMount from '../../hooks/use-did-mount.js';
+import useRef from '../../hooks/use-ref.js';
 
 function getInitialValue(value, multiple) {
   if (value) {

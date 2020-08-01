@@ -1,7 +1,6 @@
 .example-container {
   background-color: #eee;
   border: 1px solid #aaa;
-  display: flex;
   padding: 20px;
 }
 
