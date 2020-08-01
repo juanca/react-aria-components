@@ -1,6 +1,5 @@
 /* global window:false */
 
-import '@babel/polyfill'; // eslint-disable-line import/no-extraneous-dependencies
 import React, {
   useRef,
 } from 'react';
