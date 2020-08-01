@@ -5,8 +5,8 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react';
-import useDidMount from '../hooks/use-did-mount.js';
-import useRef from '../hooks/use-ref.js';
+import useDidMount from '../../hooks/use-did-mount.js';
+import useRef from '../../hooks/use-ref.js';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const containerRef = useRef();
@@ -86,6 +86,9 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 ListOption.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  /**
+   * Callback invoked with `{ target: ref }` after `selected` state change
+   */
   onSelectChange: PropTypes.func,
   selected: PropTypes.bool,
   value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types

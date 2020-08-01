@@ -9,7 +9,7 @@ import React, {
 import { render } from 'react-dom';
 
 import Listbox from '../../src/listbox/listbox.js';
-import ListOption from '../../src/list-option/list-option.js';
+import ListOption from '../../src/components/list-option/list-option.js';
 import Footer from '../footer.js';
 import Header from '../header.js';
 import styles from './styles.css';
