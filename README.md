@@ -62,7 +62,7 @@ npm run lint
 3. Test / Lint
 
     ```
-    docker-compose run npm test / test:debug / lint
+    docker-compose run npm test / run test:debug / run lint
     ```
 
     For example:
