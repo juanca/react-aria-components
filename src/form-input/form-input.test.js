@@ -1,7 +1,6 @@
 import React, {
   createRef,
 } from 'react';
-import renderer from 'react-test-renderer';
 import {
   render,
   screen,
@@ -15,7 +14,8 @@ describe('<FormInput />', () => {
   };
 
   it('has default', () => {
-    expect(renderer.create(<FormInput {...requiredProps} />).toJSON()).toMatchSnapshot();
+    render(<FormInput {...requiredProps} />);
+    expect(document.body).toMatchSnapshot();
   });
 
   describe('focus ref API', () => {
