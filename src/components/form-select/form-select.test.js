@@ -14,6 +14,7 @@ describe('<FormSelect />', () => {
     children: () => {},
     id: 'test-id',
     label: 'Test label',
+    refs: [],
   };
 
   it('has defaults', () => {

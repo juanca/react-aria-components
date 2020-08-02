@@ -11,7 +11,7 @@ import useDidMount from '../../hooks/use-did-mount.js';
 import useRef from '../../hooks/use-ref.js';
 
 
-const FormSelect = forwardRef((props, forwardedRef) => {
+const FormSelect = forwardRef(function FormSelect(props, forwardedRef) {
   const [didMount] = useDidMount();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
@@ -97,7 +97,7 @@ FormSelect.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onValueChange: PropTypes.func,
-  refs: PropTypes.shape({ current: PropTypes.any }).isRequired,
+  refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
   value: PropTypes.string,
 };
 
