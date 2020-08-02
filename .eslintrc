@@ -64,10 +64,5 @@
       "jsx-a11y/no-noninteractive-element-interactions": "off",
       "max-len": "off"
     }
-  }, {
-    "files": ["pages/**/*"],
-    "rules": {
-      "max-len": "off"
-    }
   }]
 }
