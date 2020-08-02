@@ -17,7 +17,6 @@ setTimeout(() => {
             List of WAI-ARIA components implemented in React:
           </p>
           <ol>
-            <li><a href="./accordions">Accordion</a></li>
             <li><a href="./forms">Forms</a></li>
             <li><a href="./grids">Grid</a></li>
             <li><a href="./tabs">Tabs</a></li>
