@@ -1,4 +1,4 @@
-`Example` is a convenience component for the w3 [`exapmle` role](https://www.w3.org/WAI/PF/aria/roles#example).
+`FormInput` enforces common practices for accessible inputs in a form.
 
 ### Keyboard Support
 

@@ -5,10 +5,10 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import Listbox from '../components/listbox/listbox.js';
+import Listbox from '../listbox/listbox.js';
 import styles from './form-select.css';
-import useDidMount from '../hooks/use-did-mount.js';
-import useRef from '../hooks/use-ref.js';
+import useDidMount from '../../hooks/use-did-mount.js';
+import useRef from '../../hooks/use-ref.js';
 
 
 const FormSelect = forwardRef((props, forwardedRef) => {
@@ -97,7 +97,7 @@ FormSelect.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onValueChange: PropTypes.func,
-  refs: PropTypes.shape({ current: PropTypes.any }),
+  refs: PropTypes.shape({ current: PropTypes.any }).isRequired,
   value: PropTypes.string,
 };
 
