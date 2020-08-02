@@ -210,14 +210,6 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('className prop API', () => {
-    it('can be set', () => {
-      render(<Listbox {...requiredProps} className="unique-class" />);
-
-      expect(screen.getByRole('listbox')).toHaveClass('unique-class');
-    });
-  });
-
   describe('focus ref API', () => {
     it('focuses its active child', async () => {
       const ref = createRef();
