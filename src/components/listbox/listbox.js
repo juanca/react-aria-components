@@ -128,10 +128,10 @@ Listbox.propTypes = {
   multiple: PropTypes.bool,
   onValueChange: PropTypes.func,
   refs: PropTypes.arrayOf(PropTypes.shape({
-    current: PropTypes.any,
+    current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   })),
   value: PropTypes.oneOfType([
-    PropTypes.any,
+    PropTypes.any, // eslint-disable-line react/forbid-prop-types
     PropTypes.arrayOf(PropTypes.any),
   ]),
 };
@@ -141,6 +141,7 @@ Listbox.defaultProps = {
   multiple: false,
   onValueChange: () => {},
   refs: [],
+  value: undefined,
 };
 
 export default Listbox;

@@ -97,7 +97,9 @@ FormSelect.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onValueChange: PropTypes.func,
-  refs: PropTypes.arrayOf(PropTypes.shape({ current: PropTypes.any })).isRequired,
+  refs: PropTypes.arrayOf(PropTypes.shape({
+    current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  })).isRequired,
   value: PropTypes.string,
 };
 
