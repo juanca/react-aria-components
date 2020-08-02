@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormInput /> has default 1`] = `
+<body>
+  <div>
+    <label
+      class="label"
+      for="test-id"
+    >
+      Test label
+    </label>
+    <input
+      class="input"
+      id="test-id"
+    />
+  </div>
+</body>
+`;

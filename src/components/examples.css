@@ -1,0 +1,25 @@
+.example-container {
+  background-color: #eee;
+  border: 1px solid #aaa;
+  padding: 20px;
+}
+
+.example-listbox {
+  background-color: white;
+  border: 1px solid #aaa;
+  height: 18em;
+  overflow-y: scroll;
+  padding: 0;
+  width: 100%;
+}
+
+.example-option {
+  line-height: 1.8em;
+  list-style-type: none;
+  padding: 0 1em 0 1.5em;
+  position: relative;
+}
+
+.example-option[aria-selected=true] {
+  background-color: #bde4ff;
+}

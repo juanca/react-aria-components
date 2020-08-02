@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   npm:
-    entrypoint: "npm run"
+    entrypoint: "npm"
     image: node:latest
     volumes:
       - ./:/home/node/
@@ -10,7 +10,7 @@ services:
     entrypoint: "npm start"
     image: node:latest
     ports:
-      - 8080:8080
+      - 6060:6060
     volumes:
       - ./:/home/node/
     working_dir: /home/node/
