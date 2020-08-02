@@ -39,7 +39,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   }
 
   function onFocus(event) {
-    const nextActiveIndex = props.refs.findIndex(childRef => (
+    const nextActiveIndex = props.refs.findIndex((childRef) => (
       childRef.current.contains(event.target)
     ));
     if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
@@ -73,7 +73,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       if (props.multiple) {
         setValue([...value, event.target.value]);
       } else {
-        const previouslySelected = props.refs.find(childRef => (
+        const previouslySelected = props.refs.find((childRef) => (
           childRef.current.selected && childRef.current !== event.target
         ));
         if (previouslySelected) {
@@ -82,7 +82,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
         setValue([event.target.value]);
       }
     } else {
-      setValue(value.filter(val => val !== event.target.value));
+      setValue(value.filter((val) => val !== event.target.value));
     }
   }
 
@@ -102,7 +102,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
 
   useImperativeHandle(ref, () => ({
     focus: () => props.refs[activeIndex].current.focus(),
-    setValue: state => setValue(getInitialValue(state, props.multiple)),
+    setValue: (state) => setValue(getInitialValue(state, props.multiple)),
     value: props.multiple ? value : value[0],
   }));
 

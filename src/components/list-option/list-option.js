@@ -44,7 +44,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }, [selected]);
 
   useImperativeHandle(ref, () => ({
-    contains: node => containerRef.current.contains(node),
+    contains: (node) => containerRef.current.contains(node),
     focus: () => {
       setActive(true);
       setFocusQueued(true);

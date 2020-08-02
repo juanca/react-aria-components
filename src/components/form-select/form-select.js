@@ -10,7 +10,6 @@ import styles from './form-select.css';
 import useDidMount from '../../hooks/use-did-mount.js';
 import useRef from '../../hooks/use-ref.js';
 
-
 const FormSelect = forwardRef(function FormSelect(props, forwardedRef) {
   const [didMount] = useDidMount();
   const [expanded, setExpanded] = useState(false);

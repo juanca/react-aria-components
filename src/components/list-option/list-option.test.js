@@ -138,7 +138,6 @@ describe('<ListOption />', () => {
       act(() => ref.current.setAttribute('selected', true));
       expect(ref.current.selected).toBe(true);
 
-
       act(() => ref.current.setAttribute('selected', false));
       expect(ref.current.selected).toBe(false);
     });
@@ -152,7 +151,6 @@ describe('<ListOption />', () => {
       act(() => ref.current.setAttribute('selected', true));
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'true'));
 
-
       act(() => ref.current.setAttribute('selected', false));
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false'));
     });
@@ -163,7 +161,6 @@ describe('<ListOption />', () => {
 
       act(() => ref.current.setAttribute('tabindex', 0));
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '0'));
-
 
       act(() => ref.current.setAttribute('tabindex', -1));
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('tabindex', '-1'));
