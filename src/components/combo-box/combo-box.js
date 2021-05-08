@@ -7,11 +7,11 @@ import React, {
 import PropTypes from 'prop-types';
 import Listbox from '../listbox/listbox.js';
 import styles from './combo-box.css';
-import useDidMount from '../../hooks/use-did-mount.js';
+import useMounted from '../../hooks/use-mounted.js';
 import useRef from '../../hooks/use-ref.js';
 
 const ComboBox = forwardRef(function FormSelect(props, forwardedRef) {
-  const [didMount] = useDidMount();
+  const mounted = useMounted();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
   const inputRef = useRef();
@@ -39,9 +39,8 @@ const ComboBox = forwardRef(function FormSelect(props, forwardedRef) {
   }
 
   useEffect(() => {
-    if (didMount) {
-      props.onValueChange({ target: ref.current });
-    }
+    if (!mounted) return;
+    props.onChange({ target: ref.current });
   }, [value]);
 
   useEffect(() => {
@@ -95,7 +94,7 @@ ComboBox.propTypes = {
   children: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  onValueChange: PropTypes.func,
+  onChange: PropTypes.func,
   refs: PropTypes.arrayOf(PropTypes.shape({
     current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   })).isRequired,
@@ -103,7 +102,7 @@ ComboBox.propTypes = {
 };
 
 ComboBox.defaultProps = {
-  onValueChange: () => {},
+  onChange: () => {},
   value: '',
 };
 

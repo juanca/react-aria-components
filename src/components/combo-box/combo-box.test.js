@@ -57,11 +57,11 @@ describe('<ComboBox />', () => {
     });
   });
 
-  describe('onValueChange API', () => {
-    it('is called when the value changes', () => {
-      const onValueChangeSpy = jest.fn();
+  describe('onChange API', () => {
+    it('is a function', () => {
+      const onChange = jest.fn();
       render((
-        <ComboBox {...requiredProps} onValueChange={onValueChangeSpy}>
+        <ComboBox {...requiredProps} onChange={onChange}>
           {({ onSelectChange }) => (
             <option
               onClick={(event) => {
@@ -76,9 +76,10 @@ describe('<ComboBox />', () => {
         </ComboBox>
       ));
 
+      expect(onChange).not.toHaveBeenCalled();
       userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
       userEvent.click(screen.getByText('Option'));
-      expect(onValueChangeSpy).toHaveBeenCalledWith(expect.objectContaining({
+      expect(onChange).toHaveBeenCalledWith(expect.objectContaining({
         target: expect.objectContaining({ value: 'unique-option' }),
       }));
     });
