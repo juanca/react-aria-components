@@ -87,8 +87,10 @@ describe('<ComboBox />', () => {
 
   describe('value API', () => {
     it('can be set', () => {
-      render(<ComboBox {...requiredProps} value="unique-value" />);
+      const { rerender } = render(<ComboBox {...requiredProps} value="unique-value" />);
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('unique-value');
+      rerender(<ComboBox {...requiredProps} value="another-value" />);
+      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('another-value');
     });
   });
 });
