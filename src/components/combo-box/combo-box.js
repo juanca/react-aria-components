@@ -14,7 +14,18 @@ const ComboBox = forwardRef(function FormSelect(props, forwardedRef) {
   const mounted = useMounted();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
-  const inputRef = useRef();
+  const classNames = {
+    container: styles.container,
+    input: styles.input,
+    label: styles.label,
+    listbox: expanded ? styles.expanded : styles.collapsed,
+  };
+  const ids = {
+    label: `${props.id}-label`,
+  };
+  const refs = {
+    input: useRef(),
+  };
   const ref = useRef(forwardedRef);
 
   function onClick() {
@@ -48,37 +59,34 @@ const ComboBox = forwardRef(function FormSelect(props, forwardedRef) {
   }, [props.value]);
 
   useImperativeHandle(ref, () => ({
-    focus: () => inputRef.current.focus(),
+    focus: () => refs.input.current.focus(),
     value,
   }));
 
-  const labelId = `${props.id}-label`;
-  const listboxClass = expanded ? styles.expanded : styles.collapsed;
-
   return (
     <div
-      className={styles.container}
+      className={classNames.container}
       onClick={onClick}
       role="presentation"
     >
       <label
-        className={styles.label}
-        id={labelId}
+        className={classNames.label}
+        id={ids.label}
       >
         {props.label}
       </label>
       <input
-        aria-labelledby={labelId}
-        className={styles.input}
+        aria-labelledby={ids.label}
+        className={classNames.input}
         onChange={onInputChange}
         onKeyDown={onInputKeyDown}
-        ref={inputRef}
+        ref={refs.input}
         tabIndex="0"
         value={value}
       />
       <Listbox
-        className={listboxClass}
-        labelledBy={labelId}
+        className={classNames.listbox}
+        labelledBy={ids.label}
         onValueChange={onListboxValueChange}
         refs={props.refs}
       >
