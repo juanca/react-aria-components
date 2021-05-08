@@ -1,4 +1,4 @@
-`FormSelect` enforces common practices for accessible selects in a form.
+`ComboBox` enforces common practices for accessible selects in a form.
 
 ### Keyboard Support
 
@@ -32,7 +32,7 @@ const options = [
 ]
 const refs = options.map(() => React.createRef());
 
-<FormSelect id="example-1" label="Example 1" refs={refs}>
+<ComboBox id="example-1" label="Example 1" refs={refs}>
   {({ onSelectChange }) => options.map((option, i) => (
     <ListOption
       onSelectChange={onSelectChange}
@@ -42,5 +42,5 @@ const refs = options.map(() => React.createRef());
       {options[i].text}
     </ListOption>
   ))}
-</FormSelect>
+</ComboBox>
 ```

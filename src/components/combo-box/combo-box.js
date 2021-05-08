@@ -6,11 +6,11 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Listbox from '../listbox/listbox.js';
-import styles from './form-select.css';
+import styles from './combo-box.css';
 import useDidMount from '../../hooks/use-did-mount.js';
 import useRef from '../../hooks/use-ref.js';
 
-const FormSelect = forwardRef(function FormSelect(props, forwardedRef) {
+const ComboBox = forwardRef(function FormSelect(props, forwardedRef) {
   const [didMount] = useDidMount();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
@@ -91,7 +91,7 @@ const FormSelect = forwardRef(function FormSelect(props, forwardedRef) {
   );
 });
 
-FormSelect.propTypes = {
+ComboBox.propTypes = {
   children: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -102,9 +102,9 @@ FormSelect.propTypes = {
   value: PropTypes.string,
 };
 
-FormSelect.defaultProps = {
+ComboBox.defaultProps = {
   onValueChange: () => {},
   value: '',
 };
 
-export default FormSelect;
+export default ComboBox;

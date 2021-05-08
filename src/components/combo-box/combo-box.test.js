@@ -7,9 +7,9 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import FormSelect from './form-select.js';
+import ComboBox from './combo-box.js';
 
-describe('<FormSelect />', () => {
+describe('<ComboBox />', () => {
   const requiredProps = {
     children: () => {},
     id: 'test-id',
@@ -18,50 +18,50 @@ describe('<FormSelect />', () => {
   };
 
   it('has defaults', () => {
-    render(<FormSelect {...requiredProps} />);
+    render(<ComboBox {...requiredProps} />);
     expect(document.body).toMatchSnapshot();
   });
 
-  describe('children prop API', () => {
+  describe('children API', () => {
     it('can be set', () => {
       render((
-        <FormSelect {...requiredProps}>
+        <ComboBox {...requiredProps}>
           {() => <option>Unique option</option>}
-        </FormSelect>
+        </ComboBox>
       ));
       expect(screen.getByText('Unique option')).toBeDefined();
     });
   });
 
-  describe('focus ref API', () => {
+  describe('focus API', () => {
     it('focuses the input', () => {
       const ref = createRef();
-      render(<FormSelect {...requiredProps} ref={ref} />);
+      render(<ComboBox {...requiredProps} ref={ref} />);
       expect(screen.getByLabelText('Test label', { selector: 'input' })).not.toHaveFocus();
       act(() => ref.current.focus());
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveFocus();
     });
   });
 
-  describe('id prop API', () => {
+  describe('id API', () => {
     it('can be set', () => {
-      render(<FormSelect {...requiredProps} id="unique-id" />);
+      render(<ComboBox {...requiredProps} id="unique-id" />);
       expect(screen.getByText('Test label')).toHaveAttribute('id', 'unique-id-label');
     });
   });
 
-  describe('label prop API', () => {
+  describe('label API', () => {
     it('can be set', () => {
-      render(<FormSelect {...requiredProps} label="Unique label" />);
+      render(<ComboBox {...requiredProps} label="Unique label" />);
       expect(screen.getByText('Unique label', { selector: 'label' })).toBeInTheDocument();
     });
   });
 
-  describe('onValueChange prop', () => {
+  describe('onValueChange API', () => {
     it('is called when the value changes', () => {
       const onValueChangeSpy = jest.fn();
       render((
-        <FormSelect {...requiredProps} onValueChange={onValueChangeSpy}>
+        <ComboBox {...requiredProps} onValueChange={onValueChangeSpy}>
           {({ onSelectChange }) => (
             <option
               onClick={(event) => {
@@ -73,7 +73,7 @@ describe('<FormSelect />', () => {
               Option
             </option>
           )}
-        </FormSelect>
+        </ComboBox>
       ));
 
       userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
@@ -84,9 +84,9 @@ describe('<FormSelect />', () => {
     });
   });
 
-  describe('value prop API', () => {
+  describe('value API', () => {
     it('can be set', () => {
-      render(<FormSelect {...requiredProps} value="unique-value" />);
+      render(<ComboBox {...requiredProps} value="unique-value" />);
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('unique-value');
     });
   });
