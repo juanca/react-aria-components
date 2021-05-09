@@ -133,7 +133,7 @@ describe('<ListOption />', () => {
 
   describe('selected API', () => {
     it('can be set', () => {
-      render(<ListOption {...requiredProps} selected />);
+      render(<ListOption {...requiredProps} selected={true} />);
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
     });
 
@@ -145,12 +145,16 @@ describe('<ListOption />', () => {
     it('exposes selected state', () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
+      expect(ref.current.selected).toBe(false);
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
 
       act(() => ref.current.setAttribute('selected', true));
       expect(ref.current.selected).toBe(true);
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
 
       act(() => ref.current.setAttribute('selected', false));
       expect(ref.current.selected).toBe(false);
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
     });
   });
 
