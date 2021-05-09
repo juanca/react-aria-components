@@ -105,7 +105,6 @@ describe('<ListOption />', () => {
     it('matches on a node', () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
-
       expect(ref.current.contains(screen.getByRole('option'))).toBe(true);
     });
 
