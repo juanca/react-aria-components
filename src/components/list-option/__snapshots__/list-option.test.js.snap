@@ -5,6 +5,7 @@ exports[`<ListOption /> has defaults 1`] = `
   <div>
     <li
       aria-selected="false"
+      class="container"
       role="option"
       tabindex="0"
     />

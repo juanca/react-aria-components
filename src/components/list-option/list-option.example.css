@@ -1,0 +1,11 @@
+.list-option {
+  composes: container from './list-option.css';
+}
+
+.list-option[aria-selected="false"] {
+  background-color: white;
+}
+
+.list-option[aria-selected="true"] {
+  background-color: #bde4ff;
+}

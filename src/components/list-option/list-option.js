@@ -9,6 +9,7 @@ import React, {
 import { Context } from '../listbox/listbox.js';
 import useDidMount from '../../hooks/use-did-mount.js';
 import useRef from '../../hooks/use-ref.js';
+import styles from './list-option.css';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const { onChange } = useContext(Context);
@@ -95,7 +96,7 @@ ListOption.propTypes = {
 
 ListOption.defaultProps = {
   children: undefined,
-  className: undefined,
+  className: styles.container,
   selected: false,
 };
 

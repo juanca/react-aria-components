@@ -26,13 +26,9 @@ All list options should be nested in a `Listbox`.
 ### Examples
 
 ```js
-const [selected, setSelected] = React.useState(false);
+import styles from './list-option.example.css';
 
-<ListOption
-  className={'example-list-option'}
-  onSelectChange={() => setSelected(!selected)}
-  selected={selected}
->
-  Press to {selected ? 'deselect' : 'select'}
-</ListOption>
+<ListOption className={styles['list-option']}>
+  Press to toggle selection
+</ListOption>  
 ```
