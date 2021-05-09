@@ -74,7 +74,7 @@ describe('<ListOption />', () => {
     });
   });
 
-  describe('children prop API', () => {
+  describe('children API', () => {
     it('can be set', () => {
       render((
         <ListOption {...requiredProps}>
@@ -94,15 +94,14 @@ describe('<ListOption />', () => {
     });
   });
 
-  describe('className prop API', () => {
+  describe('className API', () => {
     it('can be set', () => {
       render(<ListOption {...requiredProps} className="unique-class" />);
-
       expect(screen.getByRole('option')).toHaveClass('unique-class');
     });
   });
 
-  describe('contains ref API', () => {
+  describe('contains API', () => {
     it('matches on a node', () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
@@ -122,7 +121,7 @@ describe('<ListOption />', () => {
     });
   });
 
-  describe('focus ref API', () => {
+  describe('focus API', () => {
     it('focuses itself', async () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
@@ -132,21 +131,17 @@ describe('<ListOption />', () => {
     });
   });
 
-  describe('selected prop API', () => {
+  describe('selected API', () => {
     it('can be set', () => {
       render(<ListOption {...requiredProps} selected />);
-
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
     });
 
     it('can be unset', () => {
       render(<ListOption {...requiredProps} selected={false} />);
-
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
     });
-  });
 
-  describe('selected ref API', () => {
     it('exposes selected state', () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
@@ -159,7 +154,7 @@ describe('<ListOption />', () => {
     });
   });
 
-  describe('setAttribute ref API', () => {
+  describe('setAttribute API', () => {
     it('can set selected', async () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
