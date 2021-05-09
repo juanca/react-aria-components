@@ -33,8 +33,8 @@ describe('<ListOption />', () => {
             <ListOption {...requiredProps} ref={ref} />
           </Context.Provider>
         ));
-        expect(onChange).not.toHaveBeenCalled();
 
+        expect(onChange).not.toHaveBeenCalled();
         userEvent.click(screen.getByRole('option'));
         expect(onChange).toHaveBeenCalledWith({ target: ref.current });
       });
@@ -95,6 +95,17 @@ describe('<ListOption />', () => {
 
       act(() => ref.current.focus());
       expect(screen.getByRole('option')).toHaveFocus();
+    });
+  });
+
+  describe('onChange API', () => {
+    it('is called when selected state changes', () => {
+      const ref = createRef();
+      const onChange = jest.fn();
+      render(<ListOption {...requiredProps} onChange={onChange} ref={ref} />);
+      expect(onChange).not.toHaveBeenCalled();
+      userEvent.click(screen.getByRole('option'));
+      expect(onChange).toHaveBeenCalledWith({ target: ref.current });
     });
   });
 

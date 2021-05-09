@@ -28,7 +28,24 @@ All list options should be nested in a `Listbox`.
 ```js
 import styles from './list-option.example.css';
 
-<ListOption className={styles['list-option']}>
+<ListOption className={styles['list-option']} value="example-value">
   Press to toggle selection
 </ListOption>  
+```
+
+```js
+import RefExample, { Context } from '../ref-example.js';
+import styles from './list-option.example.css';
+
+const ref = React.createRef();
+
+<RefExample ref={ref}>
+  <Context.Consumer>
+    {(onChange) => (
+      <ListOption className={styles['list-option']} onChange={onChange} ref={ref} value="unique-value">
+        Press to toggle selection
+      </ListOption>
+    )}
+  </Context.Consumer>
+</RefExample>
 ```

@@ -43,6 +43,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 
   useEffect(() => {
     if (didMount) {
+      props.onChange({ target: ref.current });
       onChange({ target: ref.current });
     }
   }, [selected]);
@@ -90,6 +91,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 ListOption.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  onChange: PropTypes.func,
   selected: PropTypes.bool,
   value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
 };
@@ -97,6 +99,7 @@ ListOption.propTypes = {
 ListOption.defaultProps = {
   children: undefined,
   className: styles.container,
+  onChange: () => {},
   selected: false,
 };
 
