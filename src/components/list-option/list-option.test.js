@@ -125,9 +125,10 @@ describe('<ListOption />', () => {
     it('focuses itself', async () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
+      expect(screen.getByRole('option')).not.toHaveFocus();
 
       act(() => ref.current.focus());
-      await waitFor(() => expect(screen.getByRole('option')).toHaveFocus());
+      expect(screen.getByRole('option')).toHaveFocus();
     });
   });
 
