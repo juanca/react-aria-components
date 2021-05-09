@@ -7,9 +7,7 @@ exports[`<ListOption /> has defaults 1`] = `
       aria-selected="false"
       role="option"
       tabindex="0"
-    >
-      Test option
-    </li>
+    />
   </div>
 </body>
 `;

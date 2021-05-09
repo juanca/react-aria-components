@@ -87,13 +87,14 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 });
 
 ListOption.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
   selected: PropTypes.bool,
   value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 ListOption.defaultProps = {
+  children: undefined,
   className: undefined,
   selected: false,
 };
