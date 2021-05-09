@@ -1,11 +1,11 @@
 `ListOption` is a convenience component for the w3 [`option` role](https://www.w3.org/WAI/PF/aria/roles#option).
-All list options should be be nested in a `Listbox`.
+All list options should be nested in a `Listbox`.
 
-### Keyboard Support
+### Interaction Support
 
-| Element | Key | Description |
+| Element | Action | Description |
 | --- | --- | --- |
-| ListOption | Enter | Toggle `select` state |
+| ListOption | Click/Space | Toggle `selected` state |
 
 ### Label Support
 

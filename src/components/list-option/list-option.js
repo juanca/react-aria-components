@@ -25,9 +25,9 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 
   function onKeyDown(event) {
     switch (event.key) {
-      case 'Enter':
+      case ' ':
         event.preventDefault();
-        setSelected(!selected);
+        setSelected(state => !state);
         break;
       default:
     }

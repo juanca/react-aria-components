@@ -3,10 +3,8 @@ import React, {
 } from 'react';
 import {
   act,
-  fireEvent,
   render,
   screen,
-  waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Context } from '../listbox/listbox.js';
@@ -22,37 +20,6 @@ describe('<ListOption />', () => {
     render(<ListOption {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
     expect(ref.current).toMatchSnapshot();
-  });
-
-  describe('accessibility', () => {
-    it('selects on click', async () => {
-      render(<ListOption {...requiredProps} selected={false} />);
-
-      userEvent.click(screen.getByRole('option'));
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true'));
-    });
-
-    it('deselects on click', async () => {
-      render(<ListOption {...requiredProps} selected />);
-
-      userEvent.click(screen.getByRole('option'));
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false'));
-    });
-
-    it('selects on enter key', async () => {
-      render(<ListOption {...requiredProps} />);
-
-      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
-      fireEvent.keyDown(screen.getByRole('option'), { key: 'Enter' });
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true'));
-    });
-
-    it('deselects on enter key', async () => {
-      render(<ListOption {...requiredProps} selected />);
-
-      fireEvent.keyDown(screen.getByRole('option'), { key: 'Enter' });
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false'));
-    });
   });
 
   describe('context API', () => {
@@ -194,4 +161,26 @@ describe('<ListOption />', () => {
       expect(ref.current.value).toBe('unique-value');
     });
   });
+
+  describe('selecting behavior', () => {
+    it('uses clicks',  () => {
+      render(<ListOption {...requiredProps} />);
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
+      userEvent.click(screen.getByRole('option'));
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
+      userEvent.click(screen.getByRole('option'));
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
+    });
+
+    it('uses the space key', () => {
+      const ref = createRef();
+      render(<ListOption {...requiredProps} ref={ref} />);
+      act(() => ref.current.focus());
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
+      userEvent.keyboard(' ');
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
+      userEvent.keyboard(' ');
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
+    });
+  })
 });
