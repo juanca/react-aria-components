@@ -11,3 +11,13 @@ exports[`<ListOption /> has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`<ListOption /> has defaults 2`] = `
+Object {
+  "contains": [Function],
+  "focus": [Function],
+  "selected": false,
+  "setAttribute": [Function],
+  "value": "test-value",
+}
+`;

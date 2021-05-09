@@ -18,8 +18,10 @@ describe('<ListOption />', () => {
   };
 
   it('has defaults', () => {
-    render(<ListOption {...requiredProps} />);
+    const ref = createRef();
+    render(<ListOption {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
