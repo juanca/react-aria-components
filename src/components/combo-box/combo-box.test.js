@@ -64,11 +64,11 @@ describe('<ComboBox />', () => {
       render((
         <ComboBox {...requiredProps} onChange={onChange}>
           <Context.Consumer>
-            {({ onChange }) => (
+            {({ onChange: internalOnChange }) => (
               <option
                 onClick={(event) => {
                   event.target.selected = true; // eslint-disable-line
-                  onChange(event);
+                  internalOnChange(event);
                 }}
                 value="unique-option"
               >

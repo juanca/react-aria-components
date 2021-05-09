@@ -28,7 +28,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     switch (event.key) {
       case ' ':
         event.preventDefault();
-        setSelected(state => !state);
+        setSelected((state) => !state);
         break;
       default:
     }

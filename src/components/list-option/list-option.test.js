@@ -139,7 +139,7 @@ describe('<ListOption />', () => {
   describe('setAttribute API', () => {
     it('can set selected', async () => {
       const ref = createRef();
-      render(<ListOption {...requiredProps} ref={ref}/>);
+      render(<ListOption {...requiredProps} ref={ref} />);
       expect(ref.current.selected).toEqual(false);
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
 
@@ -155,13 +155,13 @@ describe('<ListOption />', () => {
     it('can set tabindex', async () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
-      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0')
+      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0');
 
       act(() => ref.current.setAttribute('tabindex', -1));
       expect(screen.getByRole('option')).toHaveAttribute('tabindex', '-1');
 
       act(() => ref.current.setAttribute('tabindex', 0));
-      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0')
+      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0');
     });
   });
 
@@ -174,7 +174,7 @@ describe('<ListOption />', () => {
   });
 
   describe('selecting behavior', () => {
-    it('uses clicks',  () => {
+    it('uses clicks', () => {
       render(<ListOption {...requiredProps} />);
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
       userEvent.click(screen.getByRole('option'));
@@ -193,5 +193,5 @@ describe('<ListOption />', () => {
       userEvent.keyboard(' ');
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
     });
-  })
+  });
 });
