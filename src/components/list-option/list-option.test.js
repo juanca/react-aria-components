@@ -9,6 +9,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Context } from '../listbox/listbox.js';
 import ListOption from './list-option.js';
 
 describe('<ListOption />', () => {
@@ -50,6 +51,26 @@ describe('<ListOption />', () => {
 
       fireEvent.keyDown(screen.getByText('Test option'), { key: 'Enter' });
       await waitFor(() => expect(screen.getByText('Test option')).toHaveAttribute('aria-selected', 'false'));
+    });
+  });
+
+  describe('context API', () => {
+    describe('onChange', () => {
+      it('is called when selected state changes', () => {
+        const ref = createRef();
+        const onChange = jest.fn();
+
+        render((
+          <Context.Provider value={{ onChange }}>
+            <ListOption {
+              ...requiredProps} ref={ref} />
+          </Context.Provider>
+        ));
+        expect(onChange).not.toHaveBeenCalled();
+
+        userEvent.click(screen.getByText('Test option'));
+        expect(onChange).toHaveBeenCalledWith({ target: ref.current });
+      });
     });
   });
 
@@ -100,19 +121,6 @@ describe('<ListOption />', () => {
 
       act(() => ref.current.focus());
       await waitFor(() => expect(screen.getByText('Test option')).toHaveFocus());
-    });
-  });
-
-  describe('onSelectChange prop API', () => {
-    it('is called when selected state changes', () => {
-      const ref = createRef();
-      const onSelectChangeSpy = jest.fn();
-
-      render(<ListOption {...requiredProps} onSelectChange={onSelectChangeSpy} ref={ref} />);
-      expect(onSelectChangeSpy).not.toHaveBeenCalled();
-
-      userEvent.click(screen.getByText('Test option'));
-      expect(onSelectChangeSpy).toHaveBeenCalledWith({ target: ref.current });
     });
   });
 

@@ -1,4 +1,5 @@
 import React, {
+  createContext,
   forwardRef,
   useImperativeHandle,
   useEffect,
@@ -8,6 +9,10 @@ import PropTypes from 'prop-types';
 import useActiveIndex from '../../hooks/use-active-index.js';
 import useDidMount from '../../hooks/use-did-mount.js';
 import useRef from '../../hooks/use-ref.js';
+
+const Context = createContext({
+  onChange: () => {},
+});
 
 function getInitialValue(value, multiple) {
   if (value) {
@@ -116,13 +121,15 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       onKeyDown={onKeyDown}
       role="listbox"
     >
-      {props.children({ onSelectChange })}
+      <Context.Provider value={{ onChange: onSelectChange }}>
+        {props.children}
+      </Context.Provider>
     </ul>
   );
 });
 
 Listbox.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node,
   className: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
@@ -137,6 +144,7 @@ Listbox.propTypes = {
 };
 
 Listbox.defaultProps = {
+  children: undefined,
   className: undefined,
   multiple: false,
   onValueChange: () => {},
@@ -145,3 +153,4 @@ Listbox.defaultProps = {
 };
 
 export default Listbox;
+export { Context };

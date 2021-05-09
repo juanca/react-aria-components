@@ -8,10 +8,11 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ComboBox from './combo-box.js';
+import { Context } from '../listbox/listbox.js';
+import ListOption from '../list-option/list-option.js';
 
 describe('<ComboBox />', () => {
   const requiredProps = {
-    children: () => {},
     id: 'test-id',
     label: 'Test label',
     refs: [],
@@ -26,7 +27,7 @@ describe('<ComboBox />', () => {
     it('can be set', () => {
       render((
         <ComboBox {...requiredProps}>
-          {() => <option>Unique option</option>}
+          <option>Unique option</option>
         </ComboBox>
       ));
       expect(screen.getByText('Unique option')).toBeDefined();
@@ -62,17 +63,19 @@ describe('<ComboBox />', () => {
       const onChange = jest.fn();
       render((
         <ComboBox {...requiredProps} onChange={onChange}>
-          {({ onSelectChange }) => (
-            <option
-              onClick={(event) => {
-                event.target.selected = true; // eslint-disable-line
-                onSelectChange(event);
-              }}
-              value="unique-option"
-            >
-              Option
-            </option>
-          )}
+          <Context.Consumer>
+            {({ onChange }) => (
+              <option
+                onClick={(event) => {
+                  event.target.selected = true; // eslint-disable-line
+                  onChange(event);
+                }}
+                value="unique-option"
+              >
+                Option
+              </option>
+            )}
+          </Context.Consumer>
         </ComboBox>
       ));
 
@@ -91,6 +94,16 @@ describe('<ComboBox />', () => {
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('unique-value');
       rerender(<ComboBox {...requiredProps} value="another-value" />);
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('another-value');
+    });
+  });
+
+  describe('selecting behavior', () => {
+    it('gets a new value', () => {
+      render((
+        <ComboBox {...requiredProps}>
+          <ListOption>Unique option</ListOption>
+        </ComboBox>
+      ));
     });
   });
 });

@@ -72,7 +72,7 @@ const refs = options.map(() => React.useRef());
     labelledBy="scrollable-list-example-label"
     refs={refs}
   >
-    {() => options.map((option, index) => (
+    {options.map((option, index) => (
       <ListOption
         className={styles['example-option']}
         key={option}
@@ -152,11 +152,10 @@ function onImportantValueChange() {
       ref={importantListboxRef}
       refs={importantFeaturesRefs}
     >
-      {({ onSelectChange }) => importantFeatures.map((feature, index) => (
+      {importantFeatures.map((feature, index) => (
         <ListOption
           className={styles['example-option']}
           key={feature}
-          onSelectChange={onSelectChange}
           ref={importantFeaturesRefs[index]}
           value={feature}
         >
@@ -179,11 +178,10 @@ function onImportantValueChange() {
       ref={notImportantListboxRef}
       refs={notImportantFeaturesRefs}
     >
-      {({ onSelectChange }) => notImportantFeatures.map((feature, index) => (
+      {notImportantFeatures.map((feature, index) => (
         <ListOption
           className={styles['example-option']}
           key={feature}
-          onSelectChange={onSelectChange}
           ref={notImportantFeaturesRefs[index]}
           value={feature}
         >
@@ -265,11 +263,10 @@ function onRemoveUpgradeClick() {
       ref={availableUpgradesListboxRef}
       refs={availableUpgradesRefs}
     >
-      {({ onSelectChange }) => availableUpgrades.map((upgrade, index) => (
+      {availableUpgrades.map((upgrade, index) => (
         <ListOption
           className={styles['example-option']}
           key={upgrade}
-          onSelectChange={onSelectChange}
           ref={availableUpgradesRefs[index]}
           value={upgrade}
         >
@@ -293,11 +290,10 @@ function onRemoveUpgradeClick() {
       ref={chosenUpgradesListboxRef}
       refs={chosenUpgradesRefs}
     >
-      {({ onSelectChange }) => chosenUpgrades.map((upgrade, index) => (
+      {chosenUpgrades.map((upgrade, index) => (
         <ListOption
           className={styles['example-option']}
           key={upgrade}
-          onSelectChange={onSelectChange}
           ref={chosenUpgradesRefs[index]}
           value={upgrade}
         >

@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import React, {
   forwardRef,
+  useContext,
   useEffect,
   useImperativeHandle,
   useState,
 } from 'react';
+import { Context } from '../listbox/listbox.js';
 import useDidMount from '../../hooks/use-did-mount.js';
 import useRef from '../../hooks/use-ref.js';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
+  const { onChange } = useContext(Context);
   const containerRef = useRef();
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(true);
@@ -39,7 +42,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 
   useEffect(() => {
     if (didMount) {
-      props.onSelectChange({ target: ref.current });
+      onChange({ target: ref.current });
     }
   }, [selected]);
 
@@ -86,17 +89,12 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
 ListOption.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  /**
-   * Callback invoked with `{ target: ref }` after `selected` state change
-   */
-  onSelectChange: PropTypes.func,
   selected: PropTypes.bool,
   value: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 ListOption.defaultProps = {
   className: undefined,
-  onSelectChange: () => {},
   selected: false,
 };
 

@@ -90,16 +90,14 @@ const ComboBox = forwardRef(function FormSelect(props, forwardedRef) {
         onValueChange={onListboxValueChange}
         refs={props.refs}
       >
-        {({ onSelectChange }) => (
-          props.children({ onSelectChange })
-        )}
+        {props.children}
       </Listbox>
     </div>
   );
 });
 
 ComboBox.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
@@ -110,6 +108,7 @@ ComboBox.propTypes = {
 };
 
 ComboBox.defaultProps = {
+  children: undefined,
   onChange: () => {},
   value: '',
 };

@@ -9,11 +9,10 @@ import {
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Listbox from './listbox.js';
+import Listbox, { Context } from './listbox.js';
 
 describe('<Listbox />', () => {
   const requiredProps = {
-    children: () => {},
     labelledBy: 'test-label-id',
   };
 
@@ -27,13 +26,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          {() => (
-            <React.Fragment>
-              <li ref={refs[0]} tabIndex="-1">First</li>
-              <li ref={refs[1]} tabIndex="-1">Second</li>
-              <li ref={refs[2]} tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -44,13 +39,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          {() => (
-            <React.Fragment>
-              <li ref={refs[0]} tabIndex="-1">First</li>
-              <li ref={refs[1]} tabIndex="-1">Second</li>
-              <li ref={refs[2]} tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -62,13 +53,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          {() => (
-            <React.Fragment>
-              <li ref={refs[0]} tabIndex="-1">First</li>
-              <li ref={refs[1]} tabIndex="-1">Second</li>
-              <li ref={refs[2]} tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -81,13 +68,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          {() => (
-            <React.Fragment>
-              <li ref={refs[0]} tabIndex="-1">First</li>
-              <li ref={refs[1]} tabIndex="-1">Second</li>
-              <li ref={refs[2]} tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -100,13 +83,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          {() => (
-            <React.Fragment>
-              <li ref={refs[0]} tabIndex="-1">First</li>
-              <li ref={refs[1]} tabIndex="-1">Second</li>
-              <li ref={refs[2]} tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -119,13 +98,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       render((
         <Listbox {...requiredProps} refs={refs}>
-          {() => (
-            <React.Fragment>
-              <li ref={refs[0]} tabIndex="-1">First</li>
-              <li ref={refs[1]} tabIndex="-1">Second</li>
-              <li ref={refs[2]} tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -138,13 +113,9 @@ describe('<Listbox />', () => {
       const refs = [createRef(), createRef(), createRef()];
       const { rerender } = render((
         <Listbox {...requiredProps} refs={refs}>
-          {() => (
-            <React.Fragment>
-              <li aria-selected={false} ref={refs[0]} role="option" tabIndex="0">First</li>
-              <li aria-selected={false} ref={refs[1]} role="option" tabIndex="-1">Second</li>
-              <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li aria-selected={false} ref={refs[0]} role="option" tabIndex="0">First</li>
+          <li aria-selected={false} ref={refs[1]} role="option" tabIndex="-1">Second</li>
+          <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -155,12 +126,8 @@ describe('<Listbox />', () => {
 
       rerender((
         <Listbox {...requiredProps} refs={[refs[0], refs[2]]}>
-          {() => (
-            <React.Fragment>
-              <li aria-selected={false} ref={refs[0]} role="option" tabIndex="-1">First</li>
-              <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
-            </React.Fragment>
-          )}
+          <li aria-selected={false} ref={refs[0]} role="option" tabIndex="-1">First</li>
+          <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
         </Listbox>
       ));
 
@@ -173,32 +140,11 @@ describe('<Listbox />', () => {
     it('can be set', () => {
       render((
         <Listbox {...requiredProps}>
-          {() => <li>Unique option</li>}
+          <li>Unique option</li>
         </Listbox>
       ));
 
       expect(screen.getByText('Unique option')).toBeInTheDocument();
-    });
-
-    it('has an onSelectChange render prop', () => {
-      const ref = createRef();
-      render((
-        <Listbox {...requiredProps} ref={ref}>
-          {({ onSelectChange }) => (
-            <li
-              aria-selected
-              onClick={() => onSelectChange({ target: { selected: true, value: 'unique-value' } })}
-              onKeyDown={() => {}}
-              role="option"
-            >
-              Unique option
-            </li>
-          )}
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByRole('option', { name: 'Unique option' }));
-      expect(ref.current.value).toContain('unique-value');
     });
   });
 
@@ -210,13 +156,38 @@ describe('<Listbox />', () => {
     });
   });
 
+  describe('context API', () => {
+    it('has an onChange function', () => {
+      const ref = createRef();
+      render((
+        <Listbox {...requiredProps} ref={ref}>
+          <Context.Consumer>
+            {({ onChange }) => (
+              <li
+                aria-selected
+                onClick={() => onChange({ target: { selected: true, value: 'unique-value' } })}
+                onKeyDown={() => {}}
+                role="option"
+              >
+                Unique option
+              </li>
+            )}
+          </Context.Consumer>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByRole('option', { name: 'Unique option' }));
+      expect(ref.current.value).toContain('unique-value');
+    });
+  });
+
   describe('focus ref API', () => {
     it('focuses its active child', async () => {
       const ref = createRef();
       const refs = [createRef()];
       render((
         <Listbox {...requiredProps} ref={ref} refs={refs}>
-          {() => <li ref={refs[0]} tabIndex="-1">Unique option</li>}
+          <li ref={refs[0]} tabIndex="-1">Unique option</li>
         </Listbox>
       ));
 
@@ -260,13 +231,15 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} onValueChange={onValueChangeSpy} ref={ref} refs={refs}>
-            {({ onSelectChange }) => (
-              <React.Fragment>
-                <li onClick={() => onSelectChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                <li onClick={() => onSelectChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                <li onClick={() => onSelectChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-              </React.Fragment>
-            )}
+            <Context.Consumer>
+              {({ onChange }) => (
+                <React.Fragment>
+                  <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                  <li onClick={() => onChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                  <li onClick={() => onChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+                </React.Fragment>
+              )}
+            </Context.Consumer>
           </Listbox>
         ));
 
@@ -283,13 +256,15 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} onValueChange={onValueChangeSpy} ref={ref} refs={refs} value="second">
-            {({ onSelectChange }) => (
-              <React.Fragment>
-                <li onClick={() => onSelectChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                <li onClick={() => onSelectChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                <li onClick={() => onSelectChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-              </React.Fragment>
-            )}
+            <Context.Consumer>
+              {({ onChange }) => (
+                <React.Fragment>
+                  <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                  <li onClick={() => onChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                  <li onClick={() => onChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+                </React.Fragment>
+              )}
+            </Context.Consumer>
           </Listbox>
         ));
 
@@ -308,13 +283,15 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} multiple onValueChange={onValueChangeSpy} ref={ref} refs={refs}>
-            {({ onSelectChange }) => (
-              <React.Fragment>
-                <li onClick={() => onSelectChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                <li onClick={() => onSelectChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                <li onClick={() => onSelectChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-              </React.Fragment>
-            )}
+            <Context.Consumer>
+              {({ onChange }) => (
+                <React.Fragment>
+                  <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                  <li onClick={() => onChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                  <li onClick={() => onChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+                </React.Fragment>
+              )}
+            </Context.Consumer>
           </Listbox>
         ));
 
@@ -334,13 +311,15 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} multiple onValueChange={onValueChangeSpy} ref={ref} refs={refs} value={['first', 'second']}>
-            {({ onSelectChange }) => (
-              <React.Fragment>
-                <li onClick={() => onSelectChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                <li onClick={() => onSelectChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                <li onClick={() => onSelectChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-              </React.Fragment>
-            )}
+            <Context.Consumer>
+              {({ onChange }) => (
+                <React.Fragment>
+                  <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
+                  <li onClick={() => onChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
+                  <li onClick={() => onChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
+                </React.Fragment>
+              )}
+            </Context.Consumer>
           </Listbox>
         ));
 
