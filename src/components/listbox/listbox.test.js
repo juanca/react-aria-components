@@ -17,8 +17,10 @@ describe('<Listbox />', () => {
   };
 
   it('has defaults', () => {
-    render(<Listbox {...requiredProps} />);
+    const ref = createRef();
+    render(<Listbox {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
   });
 
   describe('accessibility', () => {
@@ -136,7 +138,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('children prop API', () => {
+  describe('children API', () => {
     it('can be set', () => {
       render((
         <Listbox {...requiredProps}>
@@ -148,7 +150,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('className prop API', () => {
+  describe('className API', () => {
     it('can be set', () => {
       render(<Listbox {...requiredProps} className="unique-class" />);
 
@@ -181,7 +183,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('focus ref API', () => {
+  describe('focus API', () => {
     it('focuses its active child', async () => {
       const ref = createRef();
       const refs = [createRef()];
@@ -197,7 +199,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('labelledBy prop API', () => {
+  describe('labelledBy API', () => {
     it('can be set', () => {
       render((
         <React.Fragment>
@@ -210,7 +212,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('multiple prop API', () => {
+  describe('multiple API', () => {
     it('can be set', () => {
       render(<Listbox {...requiredProps} multiple />);
       expect(screen.getByRole('listbox')).toHaveAttribute('aria-multiselectable', 'true');
@@ -222,7 +224,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('onValueChange prop API', () => {
+  describe('onValueChange API', () => {
     describe('single select', () => {
       it('is called on select', async () => {
         const ref = createRef();
@@ -335,7 +337,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('ref prop API', () => {
+  describe('ref API', () => {
     it('can be set', () => {
       const ref = createRef();
       render(<Listbox {...requiredProps} ref={ref} />);
@@ -344,7 +346,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('setValue ref API', () => {
+  describe('setValue API', () => {
     it('sets the value state when single select', () => {
       const ref = createRef();
       render(<Listbox {...requiredProps} ref={ref} value={undefined} />);
@@ -379,7 +381,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('value ref API', () => {
+  describe('value API', () => {
     it('exposes value prop when single select', () => {
       const ref = createRef();
       render(<Listbox {...requiredProps} ref={ref} value="unique-value" />);
@@ -396,7 +398,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('value prop API', () => {
+  describe('value API', () => {
     it('defaults when single select', () => {
       const ref = createRef();
       render(<Listbox {...requiredProps} ref={ref} value={undefined} />);
@@ -412,7 +414,7 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('refs prop API', () => {
+  describe('refs API', () => {
     // No direct tests at the moment
     // Tested accessibility tests
   });

@@ -11,3 +11,11 @@ exports[`<Listbox /> has defaults 1`] = `
   </div>
 </body>
 `;
+
+exports[`<Listbox /> has defaults 2`] = `
+Object {
+  "focus": [Function],
+  "setValue": [Function],
+  "value": undefined,
+}
+`;
