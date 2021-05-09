@@ -157,24 +157,29 @@ describe('<ListOption />', () => {
   describe('setAttribute API', () => {
     it('can set selected', async () => {
       const ref = createRef();
-      render(<ListOption {...requiredProps} ref={ref} />);
+      render(<ListOption {...requiredProps} ref={ref}/>);
+      expect(ref.current.selected).toEqual(false);
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
 
       act(() => ref.current.setAttribute('selected', true));
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true'));
+      expect(ref.current.selected).toEqual(true);
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
 
       act(() => ref.current.setAttribute('selected', false));
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false'));
+      expect(ref.current.selected).toEqual(false);
+      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
     });
 
     it('can set tabindex', async () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
-
-      act(() => ref.current.setAttribute('tabindex', 0));
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0'));
+      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0')
 
       act(() => ref.current.setAttribute('tabindex', -1));
-      await waitFor(() => expect(screen.getByRole('option')).toHaveAttribute('tabindex', '-1'));
+      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '-1');
+
+      act(() => ref.current.setAttribute('tabindex', 0));
+      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0')
     });
   });
 
@@ -182,7 +187,6 @@ describe('<ListOption />', () => {
     it('exposes value prop', () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} value="unique-value" />);
-
       expect(ref.current.value).toBe('unique-value');
     });
   });
