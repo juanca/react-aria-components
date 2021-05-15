@@ -22,26 +22,35 @@ See [WAI ARIA Authoring Practices 1.1 documentation.](https://www.w3.org/TR/wai-
 ### Examples
 
 ```js
+import RefExample, { Context } from '../ref-example.js';
 import ListOption from '../list-option/list-option.js';
 
+const ref = React.createRef();
 const options = [
-  { text: 'Option 1', value: 1 },
-  { text: 'Option 2', value: 2 },
-  { text: 'Option 3', value: 3 },
-  { text: 'Option 4', value: 4 },
-  { text: 'Option 5', value: 5 },
-]
-const refs = options.map(() => React.createRef());
+  {ref: React.createRef(), text: 'Option 1', value: 1},
+  {ref: React.createRef(), text: 'Option 2', value: 2},
+  {ref: React.createRef(), text: 'Option 3', value: 3},
+  {ref: React.createRef(), text: 'Option 4', value: 4},
+  {ref: React.createRef(), text: 'Option 5', value: 5},
+];
 
-<ComboBox id="example-1" label="Example 1" refs={refs}>
-  {({ onSelectChange }) => options.map((option, i) => (
-    <ListOption
-      onSelectChange={onSelectChange}
-      ref={refs[i]}
-      value={options[i].value}
-    >
-      {options[i].text}
-    </ListOption>
-  ))}
-</ComboBox>
+<RefExample ref={ref}>
+  <Context.Consumer>
+    {(onChange) => (
+      <ComboBox
+        id="example-1"
+        label="Example 1"
+        onChange={onChange}
+        ref={ref}
+        refs={options.map(option => option.ref)}
+      >
+        {options.map(option => (
+          <ListOption key={option.value} ref={option.ref} value={option.value}>
+            {option.text}
+          </ListOption>
+        ))}
+      </ComboBox>
+    )}
+  </Context.Consumer>
+</RefExample>;
 ```
