@@ -23,67 +23,74 @@
 | setValue | function | Sets the `value` state |
 | value | one or many values | Exposes the `value` state: values of the selected options |
 
-### Examples
-
 #### Scrollable Listbox
 
 [WAI ARIA authoring practices example source](https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-scrollable.html)
 
 ```js
+import RefExample, { Context } from '../ref-example.js';
 import ListOption from '../list-option/list-option.js';
 import styles from '../examples.css';
 
+const ref = React.createRef();
 const options = [
-  'Neptunium',
-  'Plutonium',
-  'Americium',
-  'Curium',
-  'Berkelium',
-  'Californium',
-  'Einsteinium',
-  'Fermium',
-  'Mendelevium',
-  'Nobelium',
-  'Lawrencium',
-  'Rutherfordium',
-  'Dubnium',
-  'Seaborgium',
-  'Bohrium',
-  'Hassium',
-  'Meitnerium',
-  'Darmstadtium',
-  'Roentgenium',
-  'Copernicium',
-  'Nihonium',
-  'Flerovium',
-  'Moscovium',
-  'Livermorium',
-  'Tennessine',
-  'Oganesson',
+  { label: 'Neptunium', ref: React.createRef() },
+  { label: 'Plutonium', ref: React.createRef() },
+  { label: 'Americium', ref: React.createRef() },
+  { label: 'Curium', ref: React.createRef() },
+  { label: 'Berkelium', ref: React.createRef() },
+  { label: 'Californium', ref: React.createRef() },
+  { label: 'Einsteinium', ref: React.createRef() },
+  { label: 'Fermium', ref: React.createRef() },
+  { label: 'Mendelevium', ref: React.createRef() },
+  { label: 'Nobelium', ref: React.createRef() },
+  { label: 'Lawrencium', ref: React.createRef() },
+  { label: 'Rutherfordium', ref: React.createRef() },
+  { label: 'Dubnium', ref: React.createRef() },
+  { label: 'Seaborgium', ref: React.createRef() },
+  { label: 'Bohrium', ref: React.createRef() },
+  { label: 'Hassium', ref: React.createRef() },
+  { label: 'Meitnerium', ref: React.createRef() },
+  { label: 'Darmstadtium', ref: React.createRef() },
+  { label: 'Roentgenium', ref: React.createRef() },
+  { label: 'Copernicium', ref: React.createRef() },
+  { label: 'Nihonium', ref: React.createRef() },
+  { label: 'Flerovium', ref: React.createRef() },
+  { label: 'Moscovium', ref: React.createRef() },
+  { label: 'Livermorium', ref: React.createRef() },
+  { label: 'Tennessine', ref: React.createRef() },
+  { label: 'Oganesson', ref: React.createRef() },
 ];
-const refs = options.map(() => React.useRef());
 
-<div className={styles['example-container']}>
-  <label id="scrollable-list-example-label">
-    Transuranium elements:
-  </label>
-  <Listbox
-    className={styles['example-listbox']}
-    labelledBy="scrollable-list-example-label"
-    refs={refs}
-  >
-    {options.map((option, index) => (
-      <ListOption
-        className={styles['example-option']}
-        key={option}
-        ref={refs[index]}
-        value={option}
-      >
-        {option}
-      </ListOption>
-    ))}
-  </Listbox>
-</div>
+<RefExample ref={ref}>
+  <Context.Consumer>
+    {(onChange) => (
+      <div className={styles['example-container']}>
+        <label id="scrollable-list-example-label">
+          Transuranium elements:
+        </label>
+        <Listbox
+          className={styles['example-listbox']}
+          labelledBy="scrollable-list-example-label"
+          onValueChange={onChange}
+          ref={ref}
+          refs={options.map(option => option.ref)}
+        >
+          {options.map(option => (
+            <ListOption
+              className={styles['example-option']}
+              key={option.label}
+              ref={option.ref}
+              value={option.label}
+            > 
+              {option.label}
+            </ListOption>
+          ))}
+        </Listbox>
+      </div>
+      )}
+  </Context.Consumer>
+</RefExample>
 ```
 
 #### Single Select Listbox
