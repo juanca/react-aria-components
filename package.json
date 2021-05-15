@@ -22,7 +22,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@testing-library/jest-dom": "^5.8.0",
-    "@testing-library/react": "^10.4.3",
+    "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.8",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
