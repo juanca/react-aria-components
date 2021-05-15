@@ -10,7 +10,7 @@ import styles from './combo-box.css';
 import useMounted from '../../hooks/use-mounted.js';
 import useRef from '../../hooks/use-ref.js';
 
-const ComboBox = forwardRef(function FormSelect(props, forwardedRef) {
+const ComboBox = forwardRef(function ComboBox(props, forwardedRef) {
   const mounted = useMounted();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
