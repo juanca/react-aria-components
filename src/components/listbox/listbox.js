@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import useActiveIndex from '../../hooks/use-active-index.js';
-import useDidMount from '../../hooks/use-did-mount.js';
+import useMounted from '../../hooks/use-mounted.js';
 import useRef from '../../hooks/use-ref.js';
 
 const Context = createContext({
@@ -23,7 +23,7 @@ function getInitialValue(value, multiple) {
 }
 
 const Listbox = forwardRef(function Listbox(props, forwardedRef) {
-  const [didMount] = useDidMount();
+  const mounted = useMounted();
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(false);
   const {
@@ -100,7 +100,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   }, [active, activeIndex, props.refs]);
 
   useEffect(() => {
-    if (didMount) {
+    if (mounted) {
       props.onValueChange({ target: ref.current });
     }
   }, [value]);

@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { Context } from '../listbox/listbox.js';
-import useDidMount from '../../hooks/use-did-mount.js';
+import useMounted from '../../hooks/use-mounted.js';
 import useRef from '../../hooks/use-ref.js';
 import styles from './list-option.css';
 
@@ -16,7 +16,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const containerRef = useRef();
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(true);
-  const [didMount] = useDidMount();
+  const mounted = useMounted();
   const [focusQueued, setFocusQueued] = useState(false);
   const [selected, setSelected] = useState(props.selected);
 
@@ -42,7 +42,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }, [focusQueued]);
 
   useEffect(() => {
-    if (didMount) {
+    if (mounted) {
       props.onChange({ target: ref.current });
       onChange({ target: ref.current });
     }
