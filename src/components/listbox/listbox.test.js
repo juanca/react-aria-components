@@ -23,121 +23,6 @@ describe('<Listbox />', () => {
     expect(ref.current).toMatchSnapshot();
   });
 
-  describe('accessibility', () => {
-    it('does not steal focus on mount', () => {
-      const refs = [createRef(), createRef(), createRef()];
-      render((
-        <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      expect(document.body).toHaveFocus();
-    });
-
-    it('focuses the list item with a click', async () => {
-      const refs = [createRef(), createRef(), createRef()];
-      render((
-        <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('Second'));
-      await waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
-    });
-
-    it('focuses the next list item with arrow down key', async () => {
-      const refs = [createRef(), createRef(), createRef()];
-      render((
-        <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('Second'));
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
-    });
-
-    it('focuses the previous list item with arrow up key', async () => {
-      const refs = [createRef(), createRef(), createRef()];
-      render((
-        <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('Second'));
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
-    });
-
-    it('focuses the last list item with end key', async () => {
-      const refs = [createRef(), createRef(), createRef()];
-      render((
-        <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('First'));
-      fireEvent.keyDown(document.activeElement, { key: 'End' });
-      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
-    });
-
-    it('focuses the first list item with home key', async () => {
-      const refs = [createRef(), createRef(), createRef()];
-      render((
-        <Listbox {...requiredProps} refs={refs}>
-          <li ref={refs[0]} tabIndex="-1">First</li>
-          <li ref={refs[1]} tabIndex="-1">Second</li>
-          <li ref={refs[2]} tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('Third'));
-      fireEvent.keyDown(document.activeElement, { key: 'Home' });
-      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
-    });
-
-    it('only has one list item in the page tab sequence', async () => {
-      const refs = [createRef(), createRef(), createRef()];
-      const { rerender } = render((
-        <Listbox {...requiredProps} refs={refs}>
-          <li aria-selected={false} ref={refs[0]} role="option" tabIndex="0">First</li>
-          <li aria-selected={false} ref={refs[1]} role="option" tabIndex="-1">Second</li>
-          <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByText('Second'));
-      await waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
-      userEvent.tab();
-      await waitFor(() => expect(document.body).toHaveFocus());
-
-      rerender((
-        <Listbox {...requiredProps} refs={[refs[0], refs[2]]}>
-          <li aria-selected={false} ref={refs[0]} role="option" tabIndex="-1">First</li>
-          <li aria-selected={false} ref={refs[2]} role="option" tabIndex="-1">Third</li>
-        </Listbox>
-      ));
-
-      userEvent.tab();
-      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
-    });
-  });
-
   describe('children API', () => {
     it('can be set', () => {
       render((
@@ -417,5 +302,98 @@ describe('<Listbox />', () => {
   describe('refs API', () => {
     // No direct tests at the moment
     // Tested accessibility tests
+  });
+
+  describe('focus behavior', () => {
+    it('does not steal focus on mount', () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <Listbox {...requiredProps} refs={refs}>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
+        </Listbox>
+      ));
+
+      expect(document.body).toHaveFocus();
+      expect(document.body).toMatchSnapshot();
+    });
+
+    it('focuses the list item with a click', async () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <Listbox {...requiredProps} refs={refs}>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Second'));
+      await waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
+    });
+
+    it('focuses the next list item with arrow down key', async () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <Listbox {...requiredProps} refs={refs}>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Second'));
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
+      expect(document.body).toMatchSnapshot();
+    });
+
+    it('focuses the previous list item with arrow up key', async () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <Listbox {...requiredProps} refs={refs}>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Second'));
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
+    });
+
+    it('focuses the last list item with end key', async () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <Listbox {...requiredProps} refs={refs}>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('First'));
+      fireEvent.keyDown(document.activeElement, { key: 'End' });
+      await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
+      expect(document.body).toMatchSnapshot();
+    });
+
+    it('focuses the first list item with home key', async () => {
+      const refs = [createRef(), createRef(), createRef()];
+      render((
+        <Listbox {...requiredProps} refs={refs}>
+          <li ref={refs[0]} tabIndex="-1">First</li>
+          <li ref={refs[1]} tabIndex="-1">Second</li>
+          <li ref={refs[2]} tabIndex="-1">Third</li>
+        </Listbox>
+      ));
+
+      userEvent.click(screen.getByText('Third'));
+      fireEvent.keyDown(document.activeElement, { key: 'Home' });
+      await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
+      expect(document.body).toMatchSnapshot();
+    });
   });
 });
