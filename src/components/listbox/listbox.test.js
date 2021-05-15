@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import {
   act,
-  fireEvent,
   render,
   screen,
   waitFor,
@@ -344,7 +343,7 @@ describe('<Listbox />', () => {
       ));
 
       userEvent.click(screen.getByText('Second'));
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      userEvent.keyboard('{ArrowDown}');
       await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
       expect(document.body).toMatchSnapshot();
     });
@@ -360,7 +359,7 @@ describe('<Listbox />', () => {
       ));
 
       userEvent.click(screen.getByText('Second'));
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+      userEvent.keyboard('{ArrowUp}');
       await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
     });
 
@@ -375,7 +374,7 @@ describe('<Listbox />', () => {
       ));
 
       userEvent.click(screen.getByText('First'));
-      fireEvent.keyDown(document.activeElement, { key: 'End' });
+      userEvent.keyboard('{End}');
       await waitFor(() => expect(screen.getByText('Third')).toHaveFocus());
       expect(document.body).toMatchSnapshot();
     });
@@ -391,7 +390,7 @@ describe('<Listbox />', () => {
       ));
 
       userEvent.click(screen.getByText('Third'));
-      fireEvent.keyDown(document.activeElement, { key: 'Home' });
+      userEvent.keyboard('{Home}');
       await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
       expect(document.body).toMatchSnapshot();
     });
