@@ -266,11 +266,25 @@ describe('<Listbox />', () => {
   });
 
   describe('value API', () => {
+    it('defaults when single select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} ref={ref} value={undefined} />);
+
+      expect(ref.current.value).toBeUndefined();
+    });
+
     it('exposes value prop when single select', () => {
       const ref = createRef();
       render(<Listbox {...requiredProps} ref={ref} value="unique-value" />);
 
       expect(ref.current.value).toBe('unique-value');
+    });
+
+    it('defaults when multi select', () => {
+      const ref = createRef();
+      render(<Listbox {...requiredProps} multiple ref={ref} value={undefined} />);
+
+      expect(ref.current.value).toHaveLength(0);
     });
 
     it('exposes value prop when multi select', () => {
@@ -279,22 +293,6 @@ describe('<Listbox />', () => {
       render(<Listbox {...requiredProps} multiple ref={ref} value={value} />);
 
       expect(ref.current.value).toBe(value);
-    });
-  });
-
-  describe('value API', () => {
-    it('defaults when single select', () => {
-      const ref = createRef();
-      render(<Listbox {...requiredProps} ref={ref} value={undefined} />);
-
-      expect(ref.current.value).toBeUndefined();
-    });
-
-    it('defaults when multi select', () => {
-      const ref = createRef();
-      render(<Listbox {...requiredProps} multiple ref={ref} value={undefined} />);
-
-      expect(ref.current.value).toHaveLength(0);
     });
   });
 
