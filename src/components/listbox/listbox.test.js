@@ -108,15 +108,15 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('onValueChange API', () => {
+  describe('onChange API', () => {
     describe('single select', () => {
       it('is called on select', async () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onValueChangeSpy = jest.fn();
+        const onChangeSpy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} onValueChange={onValueChangeSpy} ref={ref} refs={refs}>
+          <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs}>
             <Context.Consumer>
               {({ onChange }) => (
                 <React.Fragment>
@@ -131,17 +131,17 @@ describe('<Listbox />', () => {
 
         expect(ref.current.value).toBeUndefined();
         userEvent.click(screen.getByText('Second'));
-        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toBe('second');
       });
 
       it('is called on deselect', () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onValueChangeSpy = jest.fn();
+        const onChangeSpy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} onValueChange={onValueChangeSpy} ref={ref} refs={refs} value="second">
+          <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs} value="second">
             <Context.Consumer>
               {({ onChange }) => (
                 <React.Fragment>
@@ -156,7 +156,7 @@ describe('<Listbox />', () => {
 
         expect(ref.current.value).toBe('second');
         userEvent.click(screen.getByText('Second'));
-        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toBeUndefined();
       });
     });
@@ -165,10 +165,10 @@ describe('<Listbox />', () => {
       it('is called on select', () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onValueChangeSpy = jest.fn();
+        const onChangeSpy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} multiple onValueChange={onValueChangeSpy} ref={ref} refs={refs}>
+          <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs}>
             <Context.Consumer>
               {({ onChange }) => (
                 <React.Fragment>
@@ -183,20 +183,20 @@ describe('<Listbox />', () => {
 
         expect(ref.current.value).toHaveLength(0);
         userEvent.click(screen.getByText('Second'));
-        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toContain('second');
         userEvent.click(screen.getByText('Third'));
-        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toContain('third');
       });
 
       it('is called on deselect', () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onValueChangeSpy = jest.fn();
+        const onChangeSpy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} multiple onValueChange={onValueChangeSpy} ref={ref} refs={refs} value={['first', 'second']}>
+          <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs} value={['first', 'second']}>
             <Context.Consumer>
               {({ onChange }) => (
                 <React.Fragment>
@@ -212,10 +212,10 @@ describe('<Listbox />', () => {
         expect(ref.current.value).toContain('first');
         expect(ref.current.value).toContain('second');
         userEvent.click(screen.getByText('Second'));
-        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toContain('first');
         userEvent.click(screen.getByText('First'));
-        expect(onValueChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toHaveLength(0);
       });
     });

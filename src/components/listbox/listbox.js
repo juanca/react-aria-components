@@ -101,7 +101,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
 
   useEffect(() => {
     if (mounted) {
-      props.onValueChange({ target: ref.current });
+      props.onChange({ target: ref.current });
     }
   }, [value]);
 
@@ -120,6 +120,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       role="listbox"
+      // tabIndex="-1"
     >
       <Context.Provider value={{ onChange: onSelectChange }}>
         {props.children}
@@ -133,7 +134,7 @@ Listbox.propTypes = {
   className: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
-  onValueChange: PropTypes.func,
+  onChange: PropTypes.func,
   refs: PropTypes.arrayOf(PropTypes.shape({
     current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   })),
@@ -147,7 +148,7 @@ Listbox.defaultProps = {
   children: undefined,
   className: undefined,
   multiple: false,
-  onValueChange: () => {},
+  onChange: () => {},
   refs: [],
   value: undefined,
 };
