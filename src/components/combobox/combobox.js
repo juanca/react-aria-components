@@ -42,6 +42,10 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
     setExpanded(true);
   }
 
+  function onInput(event) {
+    props.onInput(event);
+  }
+
   function onKeyDown(event) {
     switch (event.key) {
       case 'Escape':
@@ -86,6 +90,7 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
       className={classNames.container}
       onBlur={onBlur}
       onFocus={onFocus}
+      onInput={onInput}
       onKeyDown={onKeyDown}
       ref={refs.container}
       role="combobox"
@@ -126,6 +131,7 @@ Combobox.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  onInput: PropTypes.func,
   refs: PropTypes.arrayOf(PropTypes.shape({
     current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   })).isRequired,
@@ -135,6 +141,7 @@ Combobox.propTypes = {
 Combobox.defaultProps = {
   children: undefined,
   onChange: () => {},
+  onInput: () => {},
   value: '',
 };
 

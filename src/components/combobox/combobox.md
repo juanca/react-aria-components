@@ -99,17 +99,33 @@ const options = [
   { label: 'Zucchini', ref: React.createRef() },
 ];
 
+const [visibleOptions, setVisibleOptions] = React.useState(options);
+
+function onChange(event) {
+  console.log('onChange', event.target.value);
+  setVisibleOptions(options.filter(option => RegExp(event.target.value, 'i').test(option.label)));
+}
+
+function onInput(event) {
+  console.log('onInput', event.target.value);
+  setVisibleOptions(options.filter(option => RegExp(event.target.value, 'i').test(option.label)));
+}
+
 <RefExample ref={ref}>
   <Context.Consumer>
-    {(onChange) => (
+    {(updateRefExample) => (
       <Combobox
         id="example-1"
         label="Choice 1 Fruit or Vegetable"
-        onChange={onChange}
+        onChange={(event) => {
+          updateRefExample();
+          onChange(event);
+        }}
+        onInput={onInput}
         ref={ref}
-        refs={options.map(option => option.ref)}
+        refs={visibleOptions.map(option => option.ref)}
       >
-        {options.map(option => (
+        {visibleOptions.map(option => (
           <ListOption key={option.label} ref={option.ref} value={option.label}>
             {option.label}
           </ListOption>

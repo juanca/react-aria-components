@@ -83,12 +83,25 @@ describe('<Combobox />', () => {
           </Context.Consumer>
         </Combobox>
       ));
-
       expect(onChange).not.toHaveBeenCalled();
+
       userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
       userEvent.click(screen.getByText('Option'));
       expect(onChange).toHaveBeenCalledWith(expect.objectContaining({
         target: expect.objectContaining({ value: 'unique-option' }),
+      }));
+    });
+  });
+
+  describe('onInput API', () => {
+    it('is called on user typing', () => {
+      const spy = jest.fn((event) => event.persist());
+      render(<Combobox {...requiredProps} onInput={spy} />);
+      expect(spy).not.toHaveBeenCalled();
+
+      userEvent.type(screen.getByRole('textbox', { name: 'Test label' }), 'unique text');
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+        target: expect.objectContaining({ value: 'unique text' }),
       }));
     });
   });
