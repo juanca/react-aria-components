@@ -1,5 +1,10 @@
 `Combobox` enforces common practices for accessible selects in a form.
-See [WAI ARIA Authoring Practices 1.1 documentation.](https://www.w3.org/TR/wai-aria-practices-1.1/#combobox)
+
+Relevant documentation for WAI-ARIA 1.1:
+- [Authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#combobox)
+- [`combobox` role](https://www.w3.org/TR/wai-aria-1.1/#combobox)
+- [`textbox` role](https://www.w3.org/TR/wai-aria-1.1/#textbox)
+- [`listbox` role](https://www.w3.org/TR/wai-aria-1.1/#listbox)
 
 ### Keyboard Support
 
