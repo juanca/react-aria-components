@@ -4,28 +4,37 @@ exports[`<ComboBox /> has defaults 1`] = `
 <body>
   <div>
     <div
+      aria-controls="test-id-listbox"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-labelledby="test-id-label"
+      aria-owns="test-id-input test-id-listbox"
       class="container"
-      role="presentation"
+      role="combobox"
+      tabindex="-1"
     >
       <label
         class="label"
+        for="test-id-input"
         id="test-id-label"
       >
         Test label
       </label>
       <input
-        aria-labelledby="test-id-label"
         class="input"
+        id="test-id-input"
         tabindex="0"
+        type="text"
         value=""
-      />
-      <ul
-        aria-labelledby="test-id-label"
-        aria-multiselectable="false"
-        class="collapsed"
-        role="listbox"
       />
     </div>
   </div>
 </body>
+`;
+
+exports[`<ComboBox /> has defaults 2`] = `
+Object {
+  "focus": [Function],
+  "value": "",
+}
 `;

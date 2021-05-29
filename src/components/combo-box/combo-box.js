@@ -2,6 +2,7 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
@@ -18,40 +19,52 @@ const ComboBox = forwardRef(function ComboBox(props, forwardedRef) {
     container: styles.container,
     input: styles.input,
     label: styles.label,
-    listbox: expanded ? styles.expanded : styles.collapsed,
+    listbox: styles.listbox,
   };
   const ids = {
+    input: `${props.id}-input`,
     label: `${props.id}-label`,
+    listbox: `${props.id}-listbox`,
   };
   const refs = {
+    container: useRef(),
     input: useRef(),
   };
   const ref = useRef(forwardedRef);
 
-  function onClick() {
+  function onBlur(event) {
+    if (refs.container.current.contains(event.relatedTarget)) return;
+    setExpanded(false);
+  }
+
+  function onFocus(event) {
+    if (refs.container.current.contains(event.relatedTarget)) return;
     setExpanded(true);
   }
 
-  function onInputChange() {
-  }
-
-  function onInputKeyDown(event) {
+  function onKeyDown(event) {
     switch (event.key) {
       case 'Escape':
         setExpanded(false);
+        refs.input.current.focus();
         break;
       default:
     }
   }
 
-  function onListboxValueChange(event) {
+  function onListboxChange(event) {
     setValue(event.target.value);
     setExpanded(false);
+    refs.input.current.focus();
   }
 
   useEffect(() => {
     if (!mounted) return;
     props.onChange({ target: ref.current });
+  }, [value]);
+
+  useLayoutEffect(() => {
+    refs.input.current.value = value || '';
   }, [value]);
 
   useEffect(() => {
@@ -65,33 +78,45 @@ const ComboBox = forwardRef(function ComboBox(props, forwardedRef) {
 
   return (
     <div
+      aria-controls={ids.listbox}
+      aria-labelledby={ids.label}
+      aria-expanded={expanded}
+      aria-haspopup="listbox"
+      aria-owns={[ids.input, ids.listbox].join(' ')}
       className={classNames.container}
-      onClick={onClick}
-      role="presentation"
+      onBlur={onBlur}
+      onFocus={onFocus}
+      onKeyDown={onKeyDown}
+      ref={refs.container}
+      role="combobox"
+      tabIndex={-1}
     >
       <label
         className={classNames.label}
+        htmlFor={ids.input}
         id={ids.label}
       >
         {props.label}
       </label>
       <input
-        aria-labelledby={ids.label}
         className={classNames.input}
-        onChange={onInputChange}
-        onKeyDown={onInputKeyDown}
+        defaultValue={value}
+        id={ids.input}
         ref={refs.input}
         tabIndex="0"
-        value={value}
+        type="text"
       />
-      <Listbox
-        className={classNames.listbox}
-        labelledBy={ids.label}
-        onValueChange={onListboxValueChange}
-        refs={props.refs}
-      >
-        {props.children}
-      </Listbox>
+      {expanded && (
+        <Listbox
+          className={classNames.listbox}
+          labelledBy={ids.label}
+          id={ids.listbox}
+          onChange={onListboxChange}
+          refs={props.refs}
+        >
+          {props.children}
+        </Listbox>
+      )}
     </div>
   );
 });

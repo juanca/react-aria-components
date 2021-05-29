@@ -19,8 +19,11 @@ describe('<ComboBox />', () => {
   };
 
   it('has defaults', () => {
-    render(<ComboBox {...requiredProps} />);
+    const ref = createRef();
+    render(<ComboBox {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(ref.current).toMatchSnapshot();
+    expect(document.body).toHaveFocus();
   });
 
   describe('children API', () => {
@@ -30,6 +33,7 @@ describe('<ComboBox />', () => {
           <option>Unique option</option>
         </ComboBox>
       ));
+      userEvent.click(screen.getByText('Test label'));
       expect(screen.getByText('Unique option')).toBeDefined();
     });
   });
@@ -38,9 +42,10 @@ describe('<ComboBox />', () => {
     it('focuses the input', () => {
       const ref = createRef();
       render(<ComboBox {...requiredProps} ref={ref} />);
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).not.toHaveFocus();
+      const input = screen.getByLabelText('Test label', { selector: 'input' });
+      expect(input).not.toHaveFocus();
       act(() => ref.current.focus());
-      expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveFocus();
+      expect(input).toHaveFocus();
     });
   });
 
@@ -80,7 +85,7 @@ describe('<ComboBox />', () => {
       ));
 
       expect(onChange).not.toHaveBeenCalled();
-      userEvent.click(screen.getByLabelText('Test label', { selector: 'input' }));
+      userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
       userEvent.click(screen.getByText('Option'));
       expect(onChange).toHaveBeenCalledWith(expect.objectContaining({
         target: expect.objectContaining({ value: 'unique-option' }),
@@ -97,13 +102,98 @@ describe('<ComboBox />', () => {
     });
   });
 
-  describe('selecting behavior', () => {
-    it('gets a new value', () => {
+  describe('blurring', () => {
+    test('with a mouse', () => {
+      const ref = createRef();
+      const refs = [createRef()];
       render((
-        <ComboBox {...requiredProps}>
-          <ListOption>Unique option</ListOption>
+        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+          <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
         </ComboBox>
       ));
+
+      userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
+      const option = screen.getByText('Test option');
+      expect(option).toBeInTheDocument();
+      userEvent.click(document.body);
+      expect(document.body).toHaveFocus();
+      expect(option).not.toBeInTheDocument();
+    });
+
+    test('with a keyboard on the textbox', () => {
+      const ref = createRef();
+      const refs = [createRef()];
+      render((
+        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+          <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
+        </ComboBox>
+      ));
+
+      userEvent.tab();
+      const option = screen.getByText('Test option');
+      expect(option).toBeInTheDocument();
+      userEvent.keyboard('{Escape}');
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      expect(option).not.toBeInTheDocument();
+    });
+
+    test('with a keyboard on the popup', () => {
+      const ref = createRef();
+      const refs = [createRef()];
+      render((
+        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+          <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
+        </ComboBox>
+      ));
+
+      userEvent.tab();
+      const option = screen.getByText('Test option');
+      expect(option).toBeInTheDocument();
+      userEvent.tab();
+      userEvent.keyboard('{Escape}');
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      expect(option).not.toBeInTheDocument();
+    });
+  });
+
+  describe('selecting an option', () => {
+    test('with a mouse', () => {
+      const ref = createRef();
+      const refs = [createRef()];
+      render((
+        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+          <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
+        </ComboBox>
+      ));
+
+      userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
+      const option = screen.getByText('Test option');
+      userEvent.click(option);
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveValue('test-value');
+      expect(ref.current.value).toBe('test-value');
+      expect(option).not.toBeInTheDocument();
+    });
+
+    test('with a keyboard', () => {
+      const ref = createRef();
+      const refs = [createRef()];
+      render((
+        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+          <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
+        </ComboBox>
+      ));
+
+      userEvent.tab();
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      userEvent.tab();
+      const option = screen.getByText('Test option');
+      expect(option).toHaveFocus();
+      userEvent.keyboard(' ');
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveValue('test-value');
+      expect(ref.current.value).toBe('test-value');
+      expect(option).not.toBeInTheDocument();
     });
   });
 });

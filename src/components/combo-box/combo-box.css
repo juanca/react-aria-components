@@ -26,16 +26,6 @@
   position: absolute;
 }
 
-.expanded {
-  composes: listbox;
-  display: block;
-}
-
-.collapsed {
-  composes: listbox;
-  display: none;
-}
-
 .listbox > [role="option"] {
   padding: 0 6px 0;
 }
