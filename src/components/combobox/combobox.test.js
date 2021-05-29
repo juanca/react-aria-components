@@ -7,11 +7,11 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ComboBox from './combo-box.js';
+import Combobox from './combobox.js';
 import { Context } from '../listbox/listbox.js';
 import ListOption from '../list-option/list-option.js';
 
-describe('<ComboBox />', () => {
+describe('<Combobox />', () => {
   const requiredProps = {
     id: 'test-id',
     label: 'Test label',
@@ -20,7 +20,7 @@ describe('<ComboBox />', () => {
 
   it('has defaults', () => {
     const ref = createRef();
-    render(<ComboBox {...requiredProps} ref={ref} />);
+    render(<Combobox {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
     expect(ref.current).toMatchSnapshot();
     expect(document.body).toHaveFocus();
@@ -29,9 +29,9 @@ describe('<ComboBox />', () => {
   describe('children API', () => {
     it('can be set', () => {
       render((
-        <ComboBox {...requiredProps}>
+        <Combobox {...requiredProps}>
           <option>Unique option</option>
-        </ComboBox>
+        </Combobox>
       ));
       userEvent.click(screen.getByText('Test label'));
       expect(screen.getByText('Unique option')).toBeDefined();
@@ -41,7 +41,7 @@ describe('<ComboBox />', () => {
   describe('focus API', () => {
     it('focuses the input', () => {
       const ref = createRef();
-      render(<ComboBox {...requiredProps} ref={ref} />);
+      render(<Combobox {...requiredProps} ref={ref} />);
       const input = screen.getByLabelText('Test label', { selector: 'input' });
       expect(input).not.toHaveFocus();
       act(() => ref.current.focus());
@@ -51,14 +51,14 @@ describe('<ComboBox />', () => {
 
   describe('id API', () => {
     it('can be set', () => {
-      render(<ComboBox {...requiredProps} id="unique-id" />);
+      render(<Combobox {...requiredProps} id="unique-id" />);
       expect(screen.getByText('Test label')).toHaveAttribute('id', 'unique-id-label');
     });
   });
 
   describe('label API', () => {
     it('can be set', () => {
-      render(<ComboBox {...requiredProps} label="Unique label" />);
+      render(<Combobox {...requiredProps} label="Unique label" />);
       expect(screen.getByText('Unique label', { selector: 'label' })).toBeInTheDocument();
     });
   });
@@ -67,7 +67,7 @@ describe('<ComboBox />', () => {
     it('is a function', () => {
       const onChange = jest.fn();
       render((
-        <ComboBox {...requiredProps} onChange={onChange}>
+        <Combobox {...requiredProps} onChange={onChange}>
           <Context.Consumer>
             {({ onChange: internalOnChange }) => (
               <option
@@ -81,7 +81,7 @@ describe('<ComboBox />', () => {
               </option>
             )}
           </Context.Consumer>
-        </ComboBox>
+        </Combobox>
       ));
 
       expect(onChange).not.toHaveBeenCalled();
@@ -95,9 +95,9 @@ describe('<ComboBox />', () => {
 
   describe('value API', () => {
     it('can be set', () => {
-      const { rerender } = render(<ComboBox {...requiredProps} value="unique-value" />);
+      const { rerender } = render(<Combobox {...requiredProps} value="unique-value" />);
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('unique-value');
-      rerender(<ComboBox {...requiredProps} value="another-value" />);
+      rerender(<Combobox {...requiredProps} value="another-value" />);
       expect(screen.getByLabelText('Test label', { selector: 'input' })).toHaveValue('another-value');
     });
   });
@@ -107,9 +107,9 @@ describe('<ComboBox />', () => {
       const ref = createRef();
       const refs = [createRef()];
       render((
-        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+        <Combobox {...requiredProps} ref={ref} refs={refs}>
           <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
-        </ComboBox>
+        </Combobox>
       ));
 
       userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
@@ -124,9 +124,9 @@ describe('<ComboBox />', () => {
       const ref = createRef();
       const refs = [createRef()];
       render((
-        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+        <Combobox {...requiredProps} ref={ref} refs={refs}>
           <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
-        </ComboBox>
+        </Combobox>
       ));
 
       userEvent.tab();
@@ -141,9 +141,9 @@ describe('<ComboBox />', () => {
       const ref = createRef();
       const refs = [createRef()];
       render((
-        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+        <Combobox {...requiredProps} ref={ref} refs={refs}>
           <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
-        </ComboBox>
+        </Combobox>
       ));
 
       userEvent.tab();
@@ -161,9 +161,9 @@ describe('<ComboBox />', () => {
       const ref = createRef();
       const refs = [createRef()];
       render((
-        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+        <Combobox {...requiredProps} ref={ref} refs={refs}>
           <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
-        </ComboBox>
+        </Combobox>
       ));
 
       userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
@@ -179,9 +179,9 @@ describe('<ComboBox />', () => {
       const ref = createRef();
       const refs = [createRef()];
       render((
-        <ComboBox {...requiredProps} ref={ref} refs={refs}>
+        <Combobox {...requiredProps} ref={ref} refs={refs}>
           <ListOption ref={refs[0]} value="test-value">Test option</ListOption>
-        </ComboBox>
+        </Combobox>
       ));
 
       userEvent.tab();

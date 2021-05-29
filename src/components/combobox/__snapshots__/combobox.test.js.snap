@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ComboBox /> has defaults 1`] = `
+exports[`<Combobox /> has defaults 1`] = `
 <body>
   <div>
     <div
@@ -32,7 +32,7 @@ exports[`<ComboBox /> has defaults 1`] = `
 </body>
 `;
 
-exports[`<ComboBox /> has defaults 2`] = `
+exports[`<Combobox /> has defaults 2`] = `
 Object {
   "focus": [Function],
   "value": "",

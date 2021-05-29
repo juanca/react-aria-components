@@ -7,11 +7,11 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import Listbox from '../listbox/listbox.js';
-import styles from './combo-box.css';
+import styles from './combobox.css';
 import useMounted from '../../hooks/use-mounted.js';
 import useRef from '../../hooks/use-ref.js';
 
-const ComboBox = forwardRef(function ComboBox(props, forwardedRef) {
+const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
   const mounted = useMounted();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
@@ -121,7 +121,7 @@ const ComboBox = forwardRef(function ComboBox(props, forwardedRef) {
   );
 });
 
-ComboBox.propTypes = {
+Combobox.propTypes = {
   children: PropTypes.node,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -132,10 +132,10 @@ ComboBox.propTypes = {
   value: PropTypes.string,
 };
 
-ComboBox.defaultProps = {
+Combobox.defaultProps = {
   children: undefined,
   onChange: () => {},
   value: '',
 };
 
-export default ComboBox;
+export default Combobox;
