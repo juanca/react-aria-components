@@ -32,7 +32,7 @@ Relevant documentation for WAI-ARIA 1.1:
 import RefExample, { Context } from '../ref-example.js';
 import ListOption from '../list-option/list-option.js';
 
-const ref = React.createRef();
+const ref = React.useRef();
 const options = [
   { label: 'Apple', ref: React.createRef() },
   { label: 'Artichoke', ref: React.createRef() },
@@ -102,12 +102,10 @@ const options = [
 const [visibleOptions, setVisibleOptions] = React.useState(options);
 
 function onChange(event) {
-  console.log('onChange', event.target.value);
   setVisibleOptions(options.filter(option => RegExp(event.target.value, 'i').test(option.label)));
 }
 
 function onInput(event) {
-  console.log('onInput', event.target.value);
   setVisibleOptions(options.filter(option => RegExp(event.target.value, 'i').test(option.label)));
 }
 
@@ -118,10 +116,13 @@ function onInput(event) {
         id="example-1"
         label="Choice 1 Fruit or Vegetable"
         onChange={(event) => {
-          updateRefExample();
           onChange(event);
+          updateRefExample();
         }}
-        onInput={onInput}
+        onInput={(event) => {
+          onInput(event);
+          updateRefExample();
+        }}
         ref={ref}
         refs={visibleOptions.map(option => option.ref)}
       >
