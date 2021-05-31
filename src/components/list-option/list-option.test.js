@@ -19,6 +19,7 @@ describe('<ListOption />', () => {
     const ref = createRef();
     render(<ListOption {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(document.body).toHaveFocus();
     expect(ref.current).toMatchSnapshot();
   });
 
@@ -52,7 +53,7 @@ describe('<ListOption />', () => {
       expect(screen.getByText('Unique option')).toBeInTheDocument();
     });
 
-    it('can be unset', () => {
+    it('can be blank', () => {
       render((
         <ListOption {...requiredProps} />
       ));
@@ -155,7 +156,6 @@ describe('<ListOption />', () => {
     it('can set tabindex', async () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
-      expect(screen.getByRole('option')).toHaveAttribute('tabindex', '0');
 
       act(() => ref.current.setAttribute('tabindex', -1));
       expect(screen.getByRole('option')).toHaveAttribute('tabindex', '-1');

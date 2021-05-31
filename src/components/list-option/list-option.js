@@ -13,33 +13,33 @@ import styles from './list-option.css';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const { onChange } = useContext(Context);
-  const containerRef = useRef();
-  const ref = useRef(forwardedRef);
-  const [active, setActive] = useState(true);
   const mounted = useMounted();
-  const [focusQueued, setFocusQueued] = useState(false);
+  const ref = useRef(forwardedRef);
+  const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(props.selected);
+  const refs = {
+    container: useRef(),
+  };
+
+  function onMouseDown(event) {
+    event.preventDefault();
+  }
 
   function onClick() {
-    setSelected(!selected);
+    setSelected(state => !state);
+    setActive(true);
+    refs.container.current.focus();
   }
 
   function onKeyDown(event) {
     switch (event.key) {
       case ' ':
         event.preventDefault();
-        setSelected((state) => !state);
+        setSelected(state => !state);
         break;
       default:
     }
   }
-
-  useEffect(() => {
-    if (active && focusQueued) {
-      setFocusQueued(false);
-      containerRef.current.focus();
-    }
-  }, [focusQueued]);
 
   useEffect(() => {
     if (mounted) {
@@ -49,23 +49,19 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }, [selected]);
 
   useImperativeHandle(ref, () => ({
-    contains: (node) => containerRef.current.contains(node),
+    contains: (node) => refs.container.current.contains(node),
     focus: () => {
       setActive(true);
-      setFocusQueued(true);
+      refs.container.current.focus();
     },
     selected,
     setAttribute: (attribute, value) => {
       switch (attribute) {
         case 'selected':
-          setSelected(value);
+          setSelected(!!value);
           break;
         case 'tabindex':
-          if (value === -1) {
-            setActive(false);
-          } else {
-            setActive(true);
-          }
+          setActive(value !== -1);
           break;
         default:
       }
@@ -79,7 +75,8 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
       className={props.className}
       onClick={onClick}
       onKeyDown={onKeyDown}
-      ref={containerRef}
+      onMouseDown={onMouseDown}
+      ref={refs.container}
       role="option"
       tabIndex={active ? 0 : -1}
     >
