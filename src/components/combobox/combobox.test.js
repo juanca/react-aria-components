@@ -200,6 +200,8 @@ describe('<Combobox />', () => {
       userEvent.tab();
       expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
       userEvent.tab();
+      expect(screen.getByRole('listbox')).toHaveFocus();
+      userEvent.keyboard('{ArrowDown}');
       const option = screen.getByText('Test option');
       expect(option).toHaveFocus();
       userEvent.keyboard(' ');
@@ -207,6 +209,38 @@ describe('<Combobox />', () => {
       expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveValue('test-value');
       expect(ref.current.value).toBe('test-value');
       expect(option).not.toBeInTheDocument();
+    });
+  });
+
+  describe('keyboard navigation', () => {
+    it('handles down arrow', () => {
+      const ref = createRef();
+      const refs = [createRef(), createRef()];
+      render((
+        <Combobox {...requiredProps} ref={ref} refs={refs}>
+          <ListOption ref={refs[0]} value="test-value-1">Test option 1</ListOption>
+          <ListOption ref={refs[1]} value="test-value-2">Test option 2</ListOption>
+        </Combobox>
+      ));
+
+      userEvent.click(screen.getByRole('combobox'));
+      userEvent.keyboard('{ArrowDown}');
+      expect(screen.getByText('Test option 1')).toHaveFocus();
+    });
+
+    it('handles up arrow', () => {
+      const ref = createRef();
+      const refs = [createRef(), createRef()];
+      render((
+        <Combobox {...requiredProps} ref={ref} refs={refs}>
+          <ListOption ref={refs[0]} value="test-value-1">Test option 1</ListOption>
+          <ListOption ref={refs[1]} value="test-value-2">Test option 2</ListOption>
+        </Combobox>
+      ));
+
+      userEvent.click(screen.getByRole('combobox'));
+      userEvent.keyboard('{ArrowUp}');
+      expect(screen.getByText('Test option 1')).toHaveFocus();
     });
   });
 });

@@ -8,11 +8,12 @@ import React, {
 import PropTypes from 'prop-types';
 import Listbox from '../listbox/listbox.js';
 import styles from './combobox.css';
-import useMounted from '../../hooks/use-mounted.js';
-import useRef from '../../hooks/use-ref.js';
+import {
+  useMountedEffect,
+  useRef,
+} from '../../hooks';
 
 const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
-  const mounted = useMounted();
   const [expanded, setExpanded] = useState(false);
   const [value, setValue] = useState(props.value);
   const classNames = {
@@ -29,11 +30,13 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
   const refs = {
     container: useRef(),
     input: useRef(),
+    listbox: useRef(),
   };
   const ref = useRef(forwardedRef);
 
   function onBlur(event) {
     if (refs.container.current.contains(event.relatedTarget)) return;
+    if (value !== refs.input.current.value) setValue(Combobox.defaultProps.value);
     setExpanded(false);
   }
 
@@ -47,10 +50,21 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
   }
 
   function onKeyDown(event) {
+    if (event.defaultPrevented) return;
+
     switch (event.key) {
       case 'Escape':
+        event.preventDefault();
         setExpanded(false);
         refs.input.current.focus();
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        refs.listbox.current.focus({ option: 'next' });
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        refs.listbox.current.focus({ option: 'previous' });
         break;
       default:
     }
@@ -62,8 +76,7 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
     refs.input.current.focus();
   }
 
-  useEffect(() => {
-    if (!mounted) return;
+  useMountedEffect(() => {
     props.onChange({ target: ref.current });
   }, [value]);
 
@@ -113,10 +126,12 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
       />
       {expanded && (
         <Listbox
+          active
           className={classNames.listbox}
           labelledBy={ids.label}
           id={ids.listbox}
           onChange={onListboxChange}
+          ref={refs.listbox}
           refs={props.refs}
         >
           {props.children}
