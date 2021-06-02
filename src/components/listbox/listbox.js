@@ -2,12 +2,11 @@ import React, {
   createContext,
   forwardRef,
   useImperativeHandle,
-  useEffect,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import useActiveIndex from '../../hooks/use-active-index.js';
-import useMounted from '../../hooks/use-mounted.js';
+import useMountedEffect from '../../hooks/use-mounted-effect.js';
 import useRef from '../../hooks/use-ref.js';
 
 const Context = createContext({
@@ -23,7 +22,6 @@ function getInitialValue(value, multiple) {
 }
 
 const Listbox = forwardRef(function Listbox(props, forwardedRef) {
-  const mounted = useMounted();
   const ref = useRef(forwardedRef);
   const {
     activeIndex,
@@ -89,11 +87,8 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     }
   }
 
-
-  useEffect(() => {
-    if (mounted) {
-      props.onChange({ target: ref.current });
-    }
+  useMountedEffect(() => {
+    props.onChange({ target: ref.current });
   }, [value]);
 
   useImperativeHandle(ref, () => ({
