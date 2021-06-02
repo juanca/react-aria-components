@@ -1,24 +1,30 @@
 import {
-  useState,
+  useRef,
 } from 'react';
 
+
 export default function useActiveIndex(lowerbound, upperbound) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndex = useRef(-1);
+  if (activeIndex.current > upperbound) activeIndex.current = -1;
+
+  function setActiveIndex(index) {
+    activeIndex.current = index;
+  }
 
   function setFirstActiveIndex() {
-    setActiveIndex(lowerbound);
+    activeIndex.current = lowerbound;
   }
 
   function setLastActiveIndex() {
-    setActiveIndex(upperbound);
+    activeIndex.current = upperbound;
   }
 
   function setNextActiveIndex() {
-    setActiveIndex(Math.min(activeIndex + 1, upperbound));
+    activeIndex.current = Math.min(activeIndex.current + 1, upperbound);
   }
 
   function setPreviousActiveIndex() {
-    setActiveIndex(Math.max(activeIndex - 1, 0));
+    activeIndex.current = Math.max(activeIndex.current - 1, 0);
   }
 
   return {

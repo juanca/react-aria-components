@@ -70,9 +70,10 @@ const options = [
           Transuranium elements:
         </label>
         <Listbox
+          active
           className={styles['example-listbox']}
           labelledBy="scrollable-list-example-label"
-          onValueChange={onChange}
+          onChange={onChange}
           ref={ref}
           refs={options.map(option => option.ref)}
         >
@@ -153,9 +154,10 @@ function onImportantValueChange() {
       Important Features:
     </label>
     <Listbox
+      active
       className={styles['example-listbox']}
       labelledBy="single-select-example-label-1"
-      onValueChange={onImportantValueChange}
+      onChange={onImportantValueChange}
       ref={importantListboxRef}
       refs={importantFeaturesRefs}
     >
@@ -179,9 +181,10 @@ function onImportantValueChange() {
       Unimportant Features:
     </label>
     <Listbox
+      active
       className={styles['example-listbox']}
       labelledBy="single-select-example-label-2"
-      onValueChange={onNotImportantValueChange}
+      onChange={onNotImportantValueChange}
       ref={notImportantListboxRef}
       refs={notImportantFeaturesRefs}
     >
@@ -263,10 +266,11 @@ function onRemoveUpgradeClick() {
       Available upgrades:
     </label>
     <Listbox
+      active
       className={styles['example-listbox']}
       labelledBy="multi-select-example-label-1"
       multiple
-      onValueChange={onAvailableUpgradesValueChange}
+      onChange={onAvailableUpgradesValueChange}
       ref={availableUpgradesListboxRef}
       refs={availableUpgradesRefs}
     >
@@ -290,10 +294,11 @@ function onRemoveUpgradeClick() {
       Upgrades you have chosen:
     </label>
     <Listbox
+      active
       className={styles['example-listbox']}
       labelledBy="single-select-example-label-2"
       multiple
-      onValueChange={onChosenUpgradesValueChange}
+      onChange={onChosenUpgradesValueChange}
       ref={chosenUpgradesListboxRef}
       refs={chosenUpgradesRefs}
     >

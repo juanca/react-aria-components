@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Listbox /> focus API focuses its active child 1`] = `
+<body>
+  <div>
+    <ul
+      aria-labelledby="test-label-id"
+      aria-multiselectable="false"
+      role="listbox"
+      tabindex="-1"
+    >
+      <li
+        tabindex="-1"
+      >
+        Unique option
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`<Listbox /> focus API focuses itsself 1`] = `
+<body>
+  <div>
+    <ul
+      aria-labelledby="test-label-id"
+      aria-multiselectable="false"
+      role="listbox"
+      tabindex="-1"
+    >
+      <li
+        tabindex="-1"
+      >
+        Unique option
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
 exports[`<Listbox /> focus behavior does not steal focus on mount 1`] = `
 <body>
   <div>
@@ -7,9 +45,10 @@ exports[`<Listbox /> focus behavior does not steal focus on mount 1`] = `
       aria-labelledby="test-label-id"
       aria-multiselectable="false"
       role="listbox"
+      tabindex="-1"
     >
       <li
-        tabindex="0"
+        tabindex="-1"
       >
         First
       </li>
@@ -35,6 +74,7 @@ exports[`<Listbox /> focus behavior focuses the first list item with home key 1`
       aria-labelledby="test-label-id"
       aria-multiselectable="false"
       role="listbox"
+      tabindex="-1"
     >
       <li
         tabindex="0"
@@ -63,6 +103,7 @@ exports[`<Listbox /> focus behavior focuses the last list item with end key 1`] 
       aria-labelledby="test-label-id"
       aria-multiselectable="false"
       role="listbox"
+      tabindex="-1"
     >
       <li
         tabindex="-1"
@@ -76,6 +117,35 @@ exports[`<Listbox /> focus behavior focuses the last list item with end key 1`] 
       </li>
       <li
         tabindex="0"
+      >
+        Third
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
+exports[`<Listbox /> focus behavior focuses the list item with a click 1`] = `
+<body>
+  <div>
+    <ul
+      aria-labelledby="test-label-id"
+      aria-multiselectable="false"
+      role="listbox"
+      tabindex="-1"
+    >
+      <li
+        tabindex="-1"
+      >
+        First
+      </li>
+      <li
+        tabindex="-1"
+      >
+        Second
+      </li>
+      <li
+        tabindex="-1"
       >
         Third
       </li>
@@ -91,6 +161,7 @@ exports[`<Listbox /> focus behavior focuses the next list item with arrow down k
       aria-labelledby="test-label-id"
       aria-multiselectable="false"
       role="listbox"
+      tabindex="-1"
     >
       <li
         tabindex="-1"
@@ -112,6 +183,35 @@ exports[`<Listbox /> focus behavior focuses the next list item with arrow down k
 </body>
 `;
 
+exports[`<Listbox /> focus behavior focuses the previous list item with arrow up key 1`] = `
+<body>
+  <div>
+    <ul
+      aria-labelledby="test-label-id"
+      aria-multiselectable="false"
+      role="listbox"
+      tabindex="-1"
+    >
+      <li
+        tabindex="0"
+      >
+        First
+      </li>
+      <li
+        tabindex="-1"
+      >
+        Second
+      </li>
+      <li
+        tabindex="-1"
+      >
+        Third
+      </li>
+    </ul>
+  </div>
+</body>
+`;
+
 exports[`<Listbox /> has defaults 1`] = `
 <body>
   <div>
@@ -119,6 +219,7 @@ exports[`<Listbox /> has defaults 1`] = `
       aria-labelledby="test-label-id"
       aria-multiselectable="false"
       role="listbox"
+      tabindex="-1"
     />
   </div>
 </body>

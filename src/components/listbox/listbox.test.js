@@ -19,7 +19,20 @@ describe('<Listbox />', () => {
     const ref = createRef();
     render(<Listbox {...requiredProps} ref={ref} />);
     expect(document.body).toMatchSnapshot();
+    expect(document.body).toHaveFocus();
     expect(ref.current).toMatchSnapshot();
+  });
+
+  describe('active API', () => {
+    it('is true', () => {
+      render(<Listbox {...requiredProps} active={true} />);
+      expect(screen.getByRole('listbox')).toHaveAttribute('tabindex', '0');
+    });
+
+    it('is false', () => {
+      render(<Listbox {...requiredProps} active={false} />);
+      expect(screen.getByRole('listbox')).toHaveAttribute('tabindex', '-1');
+    });
   });
 
   describe('children API', () => {
@@ -68,6 +81,21 @@ describe('<Listbox />', () => {
   });
 
   describe('focus API', () => {
+    it('focuses itsself', async () => {
+      const ref = createRef();
+      const refs = [createRef()];
+      render((
+        <Listbox {...requiredProps} ref={ref} refs={refs}>
+          <li ref={refs[0]} tabIndex="-1">Unique option</li>
+        </Listbox>
+      ));
+
+      expect(screen.getByRole('listbox')).not.toHaveFocus();
+      ref.current.focus();
+      await waitFor(() => expect(screen.getByRole('listbox')).toHaveFocus());
+      expect(document.body).toMatchSnapshot();
+    });
+
     it('focuses its active child', async () => {
       const ref = createRef();
       const refs = [createRef()];
@@ -77,9 +105,12 @@ describe('<Listbox />', () => {
         </Listbox>
       ));
 
+      userEvent.click(screen.getByText('Unique option'));
+      userEvent.click(document.body);
       expect(screen.getByText('Unique option')).not.toHaveFocus();
       ref.current.focus();
       await waitFor(() => expect(screen.getByText('Unique option')).toHaveFocus());
+      expect(document.body).toMatchSnapshot();
     });
   });
 
@@ -328,6 +359,7 @@ describe('<Listbox />', () => {
 
       userEvent.click(screen.getByText('Second'));
       await waitFor(() => expect(screen.getByText('Second')).toHaveFocus());
+      expect(document.body).toMatchSnapshot();
     });
 
     it('focuses the next list item with arrow down key', async () => {
@@ -359,6 +391,7 @@ describe('<Listbox />', () => {
       userEvent.click(screen.getByText('Second'));
       userEvent.keyboard('{ArrowUp}');
       await waitFor(() => expect(screen.getByText('First')).toHaveFocus());
+      expect(document.body).toMatchSnapshot();
     });
 
     it('focuses the last list item with end key', async () => {

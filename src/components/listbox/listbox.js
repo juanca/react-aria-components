@@ -25,7 +25,6 @@ function getInitialValue(value, multiple) {
 const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   const mounted = useMounted();
   const ref = useRef(forwardedRef);
-  const [active, setActive] = useState(false);
   const {
     activeIndex,
     setActiveIndex,
@@ -38,45 +37,44 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     props.value,
     props.multiple,
   ));
+  const refs = {
+    container: useRef(),
+  };
 
-  function onBlur() {
-    setActive(false);
-  }
-
-  function onFocus(event) {
-    const nextActiveIndex = props.refs.findIndex((childRef) => (
+  function onClick(event) {
+    const focusedChildIndex = props.refs.findIndex((childRef) => (
       childRef.current.contains(event.target)
     ));
-    if (nextActiveIndex !== -1) setActiveIndex(nextActiveIndex);
-    setActive(true);
+
+    if (focusedChildIndex === -1) {
+      setActiveIndex(-1); // Focus "body"
+    } else {
+      setActiveIndex(focusedChildIndex);
+    }
   }
 
   function onKeyDown(event) {
+    if (!['ArrowDown', 'ArrowUp', 'End', 'Home'].includes(event.key)) return;
+
+    event.preventDefault();
+    if (activeIndex.current > -1) props.refs[activeIndex.current].current.setAttribute('tabindex', -1);
+
     switch (event.key) {
-      case 'ArrowDown':
-        event.preventDefault();
-        setNextActiveIndex();
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        setPreviousActiveIndex();
-        break;
-      case 'End':
-        event.preventDefault();
-        setLastActiveIndex();
-        break;
-      case 'Home':
-        event.preventDefault();
-        setFirstActiveIndex();
-        break;
+      case 'ArrowDown': setNextActiveIndex(); break;
+      case 'ArrowUp': setPreviousActiveIndex(); break;
+      case 'End': setLastActiveIndex(); break;
+      case 'Home': setFirstActiveIndex(); break;
       default:
     }
+
+    props.refs[activeIndex.current].current.setAttribute('tabindex', 0);
+    props.refs[activeIndex.current].current.focus()
   }
 
   function onSelectChange(event) {
     if (event.target.selected) {
       if (props.multiple) {
-        setValue([...value, event.target.value]);
+        setValue(value => [...value, event.target.value]);
       } else {
         const previouslySelected = props.refs.find((childRef) => (
           childRef.current.selected && childRef.current !== event.target
@@ -87,17 +85,10 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
         setValue([event.target.value]);
       }
     } else {
-      setValue(value.filter((val) => val !== event.target.value));
+      setValue(value => value.filter((val) => val !== event.target.value));
     }
   }
 
-  useEffect(() => {
-    props.refs.forEach((childRef, index) => {
-      childRef.current.setAttribute('tabindex', index === activeIndex ? 0 : -1);
-    });
-
-    if (active) props.refs[activeIndex].current.focus();
-  }, [active, activeIndex, props.refs]);
 
   useEffect(() => {
     if (mounted) {
@@ -106,7 +97,18 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
   }, [value]);
 
   useImperativeHandle(ref, () => ({
-    focus: () => props.refs[activeIndex].current.focus(),
+    focus: (options = {}) => {
+      switch (options.option) {
+        case 'next': setNextActiveIndex(); break;
+        case 'previous': setPreviousActiveIndex(); break;
+        case 'first': setFirstActiveIndex(); break;
+        case 'last': setLastActiveIndex(); break;
+        default:
+      }
+
+      if (activeIndex.current === -1) refs.container.current.focus();
+      else props.refs[activeIndex.current].current.focus()
+    },
     setValue: (state) => setValue(getInitialValue(state, props.multiple)),
     value: props.multiple ? value : value[0],
   }));
@@ -116,11 +118,11 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       aria-labelledby={props.labelledBy}
       aria-multiselectable={props.multiple}
       className={props.className}
-      onBlur={onBlur}
-      onFocus={onFocus}
+      onClick={onClick}
       onKeyDown={onKeyDown}
+      ref={refs.container}
       role="listbox"
-      // tabIndex="-1"
+      tabIndex={props.active ? 0 : -1}
     >
       <Context.Provider value={{ onChange: onSelectChange }}>
         {props.children}
@@ -130,6 +132,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
 });
 
 Listbox.propTypes = {
+  active: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   labelledBy: PropTypes.string.isRequired,
@@ -145,6 +148,7 @@ Listbox.propTypes = {
 };
 
 Listbox.defaultProps = {
+  active: false,
   children: undefined,
   className: undefined,
   multiple: false,
