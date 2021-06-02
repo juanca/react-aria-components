@@ -3,7 +3,7 @@ import {
   useRef,
 } from 'react';
 
-export default function useDidMount() {
+export default function useMounted() {
   const mounted = useRef(false);
 
   useEffect(() => {
