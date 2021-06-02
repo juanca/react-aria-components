@@ -3,6 +3,7 @@
 import React, {
   createContext,
   forwardRef,
+  useCallback,
   useEffect,
   useState,
 } from 'react';
@@ -21,9 +22,9 @@ function toJSX(value) {
 const RefExample = forwardRef(function RefExample(props, ref) {
   const [, setRender] = useState(0);
 
-  function onChange() {
+  const onChange = useCallback(function onChange() {
     setRender((state) => state + 1);
-  }
+  }, [setRender]);
 
   useEffect(() => {
     setRender((state) => state + 1);
