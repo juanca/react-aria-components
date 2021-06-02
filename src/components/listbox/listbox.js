@@ -1,6 +1,7 @@
 import React, {
   createContext,
   forwardRef,
+  useCallback,
   useImperativeHandle,
   useState,
 } from 'react';
@@ -9,9 +10,7 @@ import useActiveIndex from '../../hooks/use-active-index.js';
 import useMountedEffect from '../../hooks/use-mounted-effect.js';
 import useRef from '../../hooks/use-ref.js';
 
-const Context = createContext({
-  onChange: () => {},
-});
+const Context = createContext(() => {});
 
 function getInitialValue(value, multiple) {
   if (value) {
@@ -69,7 +68,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     props.refs[activeIndex.current].current.focus()
   }
 
-  function onSelectChange(event) {
+  const onSelectChange = useCallback(function onSelectChange(event) {
     if (event.target.selected) {
       if (props.multiple) {
         setValue(value => [...value, event.target.value]);
@@ -85,7 +84,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     } else {
       setValue(value => value.filter((val) => val !== event.target.value));
     }
-  }
+  }, [setValue, props.refs]);
 
   useMountedEffect(() => {
     props.onChange({ target: ref.current });
@@ -119,7 +118,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       role="listbox"
       tabIndex={props.active ? 0 : -1}
     >
-      <Context.Provider value={{ onChange: onSelectChange }}>
+      <Context.Provider value={onSelectChange}>
         {props.children}
       </Context.Provider>
     </ul>

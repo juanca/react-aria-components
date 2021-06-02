@@ -30,7 +30,7 @@ describe('<ListOption />', () => {
         const onChange = jest.fn();
 
         render((
-          <Context.Provider value={{ onChange }}>
+          <Context.Provider value={onChange}>
             <ListOption {...requiredProps} ref={ref} />
           </Context.Provider>
         ));

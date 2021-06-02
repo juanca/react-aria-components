@@ -69,7 +69,7 @@ describe('<Combobox />', () => {
       render((
         <Combobox {...requiredProps} onChange={onChange}>
           <Context.Consumer>
-            {({ onChange: internalOnChange }) => (
+            {(internalOnChange) => (
               <option
                 onClick={(event) => {
                   event.target.selected = true; // eslint-disable-line

@@ -61,7 +61,7 @@ describe('<Listbox />', () => {
       render((
         <Listbox {...requiredProps} ref={ref}>
           <Context.Consumer>
-            {({ onChange }) => (
+            {(onChange) => (
               <li
                 aria-selected
                 onClick={() => onChange({ target: { selected: true, value: 'unique-value' } })}
@@ -149,7 +149,7 @@ describe('<Listbox />', () => {
         render((
           <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs}>
             <Context.Consumer>
-              {({ onChange }) => (
+              {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
                   <li onClick={() => onChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
@@ -174,7 +174,7 @@ describe('<Listbox />', () => {
         render((
           <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs} value="second">
             <Context.Consumer>
-              {({ onChange }) => (
+              {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
                   <li onClick={() => onChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
@@ -201,7 +201,7 @@ describe('<Listbox />', () => {
         render((
           <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs}>
             <Context.Consumer>
-              {({ onChange }) => (
+              {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
                   <li onClick={() => onChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
@@ -229,7 +229,7 @@ describe('<Listbox />', () => {
         render((
           <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs} value={['first', 'second']}>
             <Context.Consumer>
-              {({ onChange }) => (
+              {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
                   <li onClick={() => onChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>

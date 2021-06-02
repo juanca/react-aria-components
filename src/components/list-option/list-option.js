@@ -11,7 +11,7 @@ import useRef from '../../hooks/use-ref.js';
 import styles from './list-option.css';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
-  const { onChange } = useContext(Context);
+  const onChange = useContext(Context);
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(props.selected);
