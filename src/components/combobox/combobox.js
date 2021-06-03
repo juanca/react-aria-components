@@ -36,7 +36,11 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
 
   function onBlur(event) {
     if (refs.container.current.contains(event.relatedTarget)) return;
-    if (value !== refs.input.current.value) setValue(Combobox.defaultProps.value);
+    if (value !== refs.input.current.value) {
+      // This is a consequence of using defaultValue. Perhaps it's not a good idea?
+      refs.input.current.value = Combobox.defaultProps.value;
+      props.onInput(event);
+    }
     setExpanded(false);
   }
 
