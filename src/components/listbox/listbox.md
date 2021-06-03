@@ -211,6 +211,7 @@ function onImportantValueChange() {
 [WAI ARIA authoring practices example source](https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-rearrangeable.html#ex2_label)
 
 ```js
+import RefExample, { Context } from '../ref-example.js';
 import ListOption from '../list-option/list-option.js';
 import styles from '../examples.css';
 
@@ -260,62 +261,68 @@ function onRemoveUpgradeClick() {
   chosenUpgradesListboxRef.current.setValue([]);
 }
 
-<div className={styles['example-container']} style={{display: 'flex'}}>
-  <div style={{ width: '100%' }}>
-    <label id="multi-select-example-label-1">
-      Available upgrades:
-    </label>
-    <Listbox
-      active
-      className={styles['example-listbox']}
-      labelledBy="multi-select-example-label-1"
-      multiple
-      onChange={onAvailableUpgradesValueChange}
-      ref={availableUpgradesListboxRef}
-      refs={availableUpgradesRefs}
-    >
-      {availableUpgrades.map((upgrade, index) => (
-        <ListOption
-          className={styles['example-option']}
-          key={upgrade}
-          ref={availableUpgradesRefs[index]}
-          value={upgrade}
-        >
-          {upgrade}
-        </ListOption>
-      ))}
-    </Listbox>
-    <button disabled={addUpgradeDisabled} onClick={onAddUpgradeClick} type="button">
-      Add →
-    </button>
-  </div>
-  <div style={{ marginLeft: '20px', width: '100%' }}>
-    <label id="single-select-example-label-2">
-      Upgrades you have chosen:
-    </label>
-    <Listbox
-      active
-      className={styles['example-listbox']}
-      labelledBy="single-select-example-label-2"
-      multiple
-      onChange={onChosenUpgradesValueChange}
-      ref={chosenUpgradesListboxRef}
-      refs={chosenUpgradesRefs}
-    >
-      {chosenUpgrades.map((upgrade, index) => (
-        <ListOption
-          className={styles['example-option']}
-          key={upgrade}
-          ref={chosenUpgradesRefs[index]}
-          value={upgrade}
-        >
-          {upgrade}
-        </ListOption>
-      ))}
-    </Listbox>
-    <button disabled={removeUpgradeDisabled} onClick={onRemoveUpgradeClick} type="button">
-      ← Remove
-    </button>
-  </div>
-</div>
+<RefExample ref={availableUpgradesListboxRef}>
+  <Context.Consumer>
+    {(onChange) => (
+      <div className={styles['example-container']} style={{display: 'flex'}}>
+        <div style={{ width: '100%' }}>
+          <label id="multi-select-example-label-1">
+            Available upgrades:
+          </label>
+          <Listbox
+            active
+            className={styles['example-listbox']}
+            labelledBy="multi-select-example-label-1"
+            multiple
+            onChange={(event) => {onAvailableUpgradesValueChange(event); onChange();}}
+            ref={availableUpgradesListboxRef}
+            refs={availableUpgradesRefs}
+          >
+            {availableUpgrades.map((upgrade, index) => (
+              <ListOption
+                className={styles['example-option']}
+                key={upgrade}
+                ref={availableUpgradesRefs[index]}
+                value={upgrade}
+              >
+                {upgrade}
+              </ListOption>
+            ))}
+          </Listbox>
+          <button disabled={addUpgradeDisabled} onClick={onAddUpgradeClick} type="button">
+            Add →
+          </button>
+        </div>
+        <div style={{ marginLeft: '20px', width: '100%' }}>
+          <label id="single-select-example-label-2">
+            Upgrades you have chosen:
+          </label>
+          <Listbox
+            active
+            className={styles['example-listbox']}
+            labelledBy="single-select-example-label-2"
+            multiple
+            onChange={(event) => {onChosenUpgradesValueChange(event); onChange();}}
+            ref={chosenUpgradesListboxRef}
+            refs={chosenUpgradesRefs}
+          >
+            {chosenUpgrades.map((upgrade, index) => (
+              <ListOption
+                className={styles['example-option']}
+                key={upgrade}
+                ref={chosenUpgradesRefs[index]}
+                value={upgrade}
+              >
+                {upgrade}
+              </ListOption>
+            ))}
+          </Listbox>
+          <button disabled={removeUpgradeDisabled} onClick={onRemoveUpgradeClick} type="button">
+            ← Remove
+          </button>
+        </div>
+      </div>
+    )}
+  </Context.Consumer>
+</RefExample>
 ```
