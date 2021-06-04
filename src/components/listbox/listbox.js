@@ -3,12 +3,14 @@ import React, {
   forwardRef,
   useCallback,
   useImperativeHandle,
-  useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import useActiveIndex from '../../hooks/use-active-index.js';
-import useMountedEffect from '../../hooks/use-mounted-effect.js';
-import useRef from '../../hooks/use-ref.js';
+import {
+  useActiveIndex,
+  useMountedEffect,
+  useRef,
+  useState,
+} from '../../hooks';
 
 const Context = createContext(() => {});
 

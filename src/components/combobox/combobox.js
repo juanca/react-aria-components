@@ -1,10 +1,8 @@
 import React, {
   Children,
   forwardRef,
-  useEffect,
   useImperativeHandle,
   useLayoutEffect,
-  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import Listbox from '../listbox/listbox.js';
@@ -12,11 +10,12 @@ import styles from './combobox.css';
 import {
   useMountedEffect,
   useRef,
+  useState,
 } from '../../hooks';
 
 const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
   const [expanded, setExpanded] = useState(false);
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(props.value, { sync: true });
   const classNames = {
     container: styles.container,
     input: styles.input,
@@ -90,10 +89,6 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
   useLayoutEffect(() => {
     refs.input.current.value = value || '';
   }, [value]);
-
-  useEffect(() => {
-    setValue(props.value);
-  }, [props.value]);
 
   useImperativeHandle(ref, () => ({
     focus: () => refs.input.current.focus(),

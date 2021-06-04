@@ -5,12 +5,12 @@ import React, {
   useImperativeHandle,
 } from 'react';
 import { Context } from '../listbox/listbox.js';
-import useMountedEffect from '../../hooks/use-mounted-effect.js';
+import styles from './list-option.css';
 import {
+  useMountedEffect,
+  useRef,
   useState,
 } from '../../hooks';
-import useRef from '../../hooks/use-ref.js';
-import styles from './list-option.css';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const onChange = useContext(Context);
