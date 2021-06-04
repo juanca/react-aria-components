@@ -228,7 +228,6 @@ exports[`<Listbox /> has defaults 1`] = `
 exports[`<Listbox /> has defaults 2`] = `
 Object {
   "focus": [Function],
-  "setValue": [Function],
   "value": undefined,
 }
 `;

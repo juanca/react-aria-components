@@ -103,7 +103,6 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       if (activeIndex.current === -1) refs.container.current.focus();
       else props.refs[activeIndex.current].current.focus()
     },
-    setValue: (state) => setValue(getInitialValue(state, props.multiple)),
     value: props.multiple ? value : value[0],
   }));
 
