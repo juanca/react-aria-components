@@ -3,16 +3,18 @@ import {
   useState as useReactState,
 } from 'react';
 
-export default function useState(initialState, onStateChange) {
-  const [state, setState] = useReactState(initialState);
+const defaultOptions = {
+  sync: false,
+};
 
-  useEffect(() => {
-    setState(initialState);
-  }, [initialState]);
+export default function useState(value, options = defaultOptions) {
+  const [state, setState] = useReactState(value);
 
-  useEffect(() => {
-    onStateChange();
-  }, [state]);
+  if (options.sync) {
+    useEffect(() => {
+      setState(value);
+    }, [value]);
+  }
 
   return [state, setState];
 }

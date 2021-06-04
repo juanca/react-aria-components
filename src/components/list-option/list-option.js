@@ -3,10 +3,12 @@ import React, {
   forwardRef,
   useContext,
   useImperativeHandle,
-  useState,
 } from 'react';
 import { Context } from '../listbox/listbox.js';
 import useMountedEffect from '../../hooks/use-mounted-effect.js';
+import {
+  useState,
+} from '../../hooks';
 import useRef from '../../hooks/use-ref.js';
 import styles from './list-option.css';
 
@@ -14,7 +16,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const onChange = useContext(Context);
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(false);
-  const [selected, setSelected] = useState(props.selected);
+  const [selected, setSelected] = useState(props.selected, { sync: true });
   const refs = {
     container: useRef(),
   };
@@ -40,6 +42,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }
 
   useMountedEffect(() => {
+    if (selected === props.selected) return;
     props.onChange({ target: ref.current });
     onChange({ target: ref.current });
   }, [selected]);

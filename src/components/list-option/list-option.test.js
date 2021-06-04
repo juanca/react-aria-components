@@ -111,21 +111,21 @@ describe('<ListOption />', () => {
   });
 
   describe('selected API', () => {
-    it('can be set', () => {
-      render(<ListOption {...requiredProps} selected={true} />);
+    it('is a boolean', () => {
+      const ref = createRef();
+      const { rerender } = render(<ListOption {...requiredProps} ref={ref} selected={true} />);
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
-    });
+      expect(ref.current.selected).toBe(true);
 
-    it('can be unset', () => {
-      render(<ListOption {...requiredProps} selected={false} />);
+      rerender(<ListOption {...requiredProps} ref={ref} selected={false} />);
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
+      expect(ref.current.selected).toBe(false);
     });
 
-    it('exposes selected state', () => {
+    it('is a setter', () => {
       const ref = createRef();
       render(<ListOption {...requiredProps} ref={ref} />);
       expect(ref.current.selected).toBe(false);
-      expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
 
       act(() => ref.current.setAttribute('selected', true));
       expect(ref.current.selected).toBe(true);
@@ -134,6 +134,15 @@ describe('<ListOption />', () => {
       act(() => ref.current.setAttribute('selected', false));
       expect(ref.current.selected).toBe(false);
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
+    });
+
+    it('invokes the onChange callback', () => {
+      const ref = createRef();
+      const spy = jest.fn();
+      render(<ListOption {...requiredProps} onChange={spy} ref={ref} selected={true} />);
+      expect(spy).not.toHaveBeenCalled();
+      act(() => ref.current.setAttribute('selected', false));
+      expect(spy).toHaveBeenCalledWith({ target: ref.current });
     });
   });
 
