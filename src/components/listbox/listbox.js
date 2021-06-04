@@ -73,12 +73,10 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       if (props.multiple) {
         setValue(value => [...value, event.target.value]);
       } else {
-        const previouslySelected = props.refs.find((childRef) => (
-          childRef.current.selected && childRef.current !== event.target
-        ));
-        if (previouslySelected) {
-          previouslySelected.current.setAttribute('selected', false);
-        }
+        props.refs
+          .filter(childRef => childRef.current.selected)
+          .filter(childRef => childRef.current !== event.target)
+          .forEach(childRef => childRef.current.setAttribute('selected', false));
         setValue([event.target.value]);
       }
     } else {
