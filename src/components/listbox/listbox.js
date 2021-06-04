@@ -7,7 +7,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
   useActiveIndex,
-  useMountedEffect,
+  useEffect,
   useRef,
   useState,
 } from '../../hooks';
@@ -86,9 +86,9 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     }
   }, [setValue, props.refs]);
 
-  useMountedEffect(() => {
+  useEffect(() => {
     props.onChange({ target: ref.current });
-  }, [value]);
+  }, [value], { mounted: true });
 
   useImperativeHandle(ref, () => ({
     focus: (options = {}) => {

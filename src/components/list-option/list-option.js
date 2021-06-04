@@ -7,7 +7,7 @@ import React, {
 import { Context } from '../listbox/listbox.js';
 import styles from './list-option.css';
 import {
-  useMountedEffect,
+  useEffect,
   useRef,
   useState,
 } from '../../hooks';
@@ -41,11 +41,11 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     }
   }
 
-  useMountedEffect(() => {
+  useEffect(() => {
     if (selected === props.selected) return;
     props.onChange({ target: ref.current });
     onChange({ target: ref.current });
-  }, [selected]);
+  }, [selected], { mounted: true });
 
   useImperativeHandle(ref, () => ({
     contains: (node) => refs.container.current.contains(node),

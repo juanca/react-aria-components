@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import Listbox from '../listbox/listbox.js';
 import styles from './combobox.css';
 import {
-  useMountedEffect,
+  useEffect,
   useRef,
   useState,
 } from '../../hooks';
@@ -82,9 +82,9 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
     refs.input.current.focus();
   }
 
-  useMountedEffect(() => {
+  useEffect(() => {
     props.onChange({ target: ref.current });
-  }, [value]);
+  }, [value], { mounted: true });
 
   useLayoutEffect(() => {
     refs.input.current.value = value || '';
