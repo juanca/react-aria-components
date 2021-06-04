@@ -1,4 +1,5 @@
 import React, {
+  Children,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -36,11 +37,12 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
 
   function onBlur(event) {
     if (refs.container.current.contains(event.relatedTarget)) return;
-    if (value !== refs.input.current.value) {
-      // This is a consequence of using defaultValue. Perhaps it's not a good idea?
-      refs.input.current.value = Combobox.defaultProps.value;
-      props.onInput(event);
-    }
+
+    setValue(props.refs
+      .filter(childRef => childRef.current.selected)
+      .map(childRef => childRef.current.value)
+    );
+
     setExpanded(false);
   }
 
@@ -51,6 +53,7 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
 
   function onInput(event) {
     props.onInput(event);
+    setExpanded(true);
   }
 
   function onKeyDown(event) {
@@ -128,7 +131,7 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
         tabIndex="0"
         type="text"
       />
-      {expanded && (
+      {expanded && !!Children.count(props.children) && (
         <Listbox
           active
           className={classNames.listbox}
