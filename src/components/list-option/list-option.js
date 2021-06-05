@@ -43,7 +43,6 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }
 
   useEffect(() => {
-    if (selected === props.selected) return;
     props.onChange({ target: ref.current });
     onChange({ target: ref.current });
   }, [selected], { mounted: true });

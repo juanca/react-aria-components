@@ -122,10 +122,19 @@ describe('<ListOption />', () => {
     it('is called when selected state changes', () => {
       const ref = createRef();
       const onChange = jest.fn();
-      render(<ListOption {...requiredProps} onChange={onChange} ref={ref} />);
+      render((
+        <Mode.Provider value="multiple">
+          <ListOption {...requiredProps} onChange={onChange} ref={ref} selected={false} />
+        </Mode.Provider>
+      ));
       expect(onChange).not.toHaveBeenCalled();
       userEvent.click(screen.getByRole('option'));
       expect(onChange).toHaveBeenCalledWith({ target: ref.current });
+      expect(ref.current.selected).toBe(true);
+      onChange.mockClear();
+      userEvent.click(screen.getByRole('option'));
+      expect(onChange).toHaveBeenCalledWith({ target: ref.current });
+      expect(ref.current.selected).toBe(false);
     });
   });
 
