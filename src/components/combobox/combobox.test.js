@@ -8,7 +8,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Combobox from './combobox.js';
-import { Context } from '../listbox/listbox.js';
+import { Handler } from '../listbox/listbox.js';
 import ListOption from '../list-option/list-option.js';
 
 describe('<Combobox />', () => {
@@ -68,7 +68,7 @@ describe('<Combobox />', () => {
       const onChange = jest.fn();
       render((
         <Combobox {...requiredProps} onChange={onChange}>
-          <Context.Consumer>
+          <Handler.Consumer>
             {(internalOnChange) => (
               <option
                 onClick={(event) => {
@@ -80,7 +80,7 @@ describe('<Combobox />', () => {
                 Option
               </option>
             )}
-          </Context.Consumer>
+          </Handler.Consumer>
         </Combobox>
       ));
       expect(onChange).not.toHaveBeenCalled();

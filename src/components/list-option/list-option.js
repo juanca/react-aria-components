@@ -10,7 +10,7 @@ import {
   useEffect,
   useRef,
   useState,
-} from '../../hooks';
+} from '../../hooks/index.js';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const onChange = useContext(Handler);
@@ -27,7 +27,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }
 
   function onClick() {
-    setSelected(state => mode === 'multiple' ? !state : true);
+    setSelected((state) => (mode === 'multiple' ? !state : true));
     setActive(true);
     refs.container.current.focus();
   }
@@ -36,7 +36,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     switch (event.key) {
       case ' ':
         event.preventDefault();
-        setSelected(state => mode === 'multiple' ? !state : true);
+        setSelected((state) => (mode === 'multiple' ? !state : true));
         break;
       default:
     }

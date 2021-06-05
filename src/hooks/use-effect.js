@@ -1,5 +1,5 @@
 import {
-  useEffect as useReactEffect
+  useEffect as useReactEffect,
 } from 'react';
 import useMounted from './use-mounted.js';
 
@@ -15,4 +15,4 @@ export default function useEffect(callback, dependencies, options = defaultOptio
 
     callback();
   }, dependencies);
-};
+}

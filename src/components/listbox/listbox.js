@@ -10,7 +10,7 @@ import {
   useEffect,
   useRef,
   useState,
-} from '../../hooks';
+} from '../../hooks/index.js';
 
 const Handler = createContext(() => {}); // rename me
 const Mode = createContext('single');
@@ -68,22 +68,22 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     }
 
     props.refs[activeIndex.current].current.setAttribute('tabindex', 0);
-    props.refs[activeIndex.current].current.focus()
+    props.refs[activeIndex.current].current.focus();
   }
 
   const onSelectChange = useCallback(function onSelectChange(event) {
     if (event.target.selected) {
       if (props.multiple) {
-        setValue(value => [...value, event.target.value]);
+        setValue((state) => [...state, event.target.value]);
       } else {
         props.refs
-          .filter(childRef => childRef.current.selected)
-          .filter(childRef => childRef.current !== event.target)
-          .forEach(childRef => childRef.current.setAttribute('selected', false));
+          .filter((childRef) => childRef.current.selected)
+          .filter((childRef) => childRef.current !== event.target)
+          .forEach((childRef) => childRef.current.setAttribute('selected', false));
         setValue([event.target.value]);
       }
     } else {
-      setValue(value => value.filter((val) => val !== event.target.value));
+      setValue((state) => state.filter((val) => val !== event.target.value));
     }
   }, [setValue, props.refs]);
 
@@ -102,7 +102,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       }
 
       if (activeIndex.current === -1) refs.container.current.focus();
-      else props.refs[activeIndex.current].current.focus()
+      else props.refs[activeIndex.current].current.focus();
     },
     value: props.multiple ? value : value[0],
   }));

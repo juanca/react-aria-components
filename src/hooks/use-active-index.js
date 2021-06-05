@@ -2,7 +2,6 @@ import {
   useRef,
 } from 'react';
 
-
 export default function useActiveIndex(lowerbound, upperbound) {
   const activeIndex = useRef(-1);
   if (activeIndex.current > upperbound) activeIndex.current = -1;

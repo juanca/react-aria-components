@@ -11,7 +11,7 @@ import {
   useEffect,
   useRef,
   useState,
-} from '../../hooks';
+} from '../../hooks/index.js';
 
 const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
   const [expanded, setExpanded] = useState(false);
@@ -37,10 +37,10 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
   function onBlur(event) {
     if (refs.container.current.contains(event.relatedTarget)) return;
 
-    setValue(props.refs
-      .filter(childRef => childRef.current.selected)
-      .map(childRef => childRef.current.value)
-    );
+    setValue((props.refs
+      .filter((childRef) => childRef.current.selected)
+      .map((childRef) => childRef.current.value)
+    ));
 
     setExpanded(false);
   }
