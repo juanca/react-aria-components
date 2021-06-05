@@ -4,7 +4,7 @@ import React, {
   useContext,
   useImperativeHandle,
 } from 'react';
-import { Context } from '../listbox/listbox.js';
+import { Handler, Mode } from '../listbox/listbox.js';
 import styles from './list-option.css';
 import {
   useEffect,
@@ -13,7 +13,8 @@ import {
 } from '../../hooks';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
-  const onChange = useContext(Context);
+  const onChange = useContext(Handler);
+  const mode = useContext(Mode);
   const ref = useRef(forwardedRef);
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(props.selected, { sync: true });
@@ -26,7 +27,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }
 
   function onClick() {
-    setSelected(state => !state);
+    setSelected(state => mode === 'multiple' ? !state : true);
     setActive(true);
     refs.container.current.focus();
   }
@@ -35,7 +36,7 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     switch (event.key) {
       case ' ':
         event.preventDefault();
-        setSelected(state => !state);
+        setSelected(state => mode === 'multiple' ? !state : true);
         break;
       default:
     }

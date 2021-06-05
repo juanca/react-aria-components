@@ -7,7 +7,10 @@ import {
   screen,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Context } from '../listbox/listbox.js';
+import {
+  Handler,
+  Mode,
+} from '../listbox/listbox.js';
 import ListOption from './list-option.js';
 
 describe('<ListOption />', () => {
@@ -24,20 +27,36 @@ describe('<ListOption />', () => {
   });
 
   describe('context API', () => {
-    describe('onChange', () => {
+    describe('Handler', () => {
       it('is called when selected state changes', () => {
         const ref = createRef();
         const onChange = jest.fn();
 
         render((
-          <Context.Provider value={onChange}>
+          <Handler.Provider value={onChange}>
             <ListOption {...requiredProps} ref={ref} />
-          </Context.Provider>
+          </Handler.Provider>
         ));
 
         expect(onChange).not.toHaveBeenCalled();
         userEvent.click(screen.getByRole('option'));
         expect(onChange).toHaveBeenCalledWith({ target: ref.current });
+      });
+    });
+
+    describe('Mode', () => {
+      it('is set to single select mode', () => {
+        render((
+          <Mode.Provider value="single">
+            <ListOption {...requiredProps} />
+          </Mode.Provider>
+        ));
+
+        expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
+        userEvent.click(screen.getByRole('option'));
+        expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
+        userEvent.click(screen.getByRole('option'));
+        expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
       });
     });
   });
@@ -184,7 +203,11 @@ describe('<ListOption />', () => {
 
   describe('selecting behavior', () => {
     it('uses clicks', () => {
-      render(<ListOption {...requiredProps} />);
+      render((
+        <Mode.Provider value="multiple">
+          <ListOption {...requiredProps} />
+        </Mode.Provider>
+      ));
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
       userEvent.click(screen.getByRole('option'));
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'true');
@@ -194,7 +217,11 @@ describe('<ListOption />', () => {
 
     it('uses the space key', () => {
       const ref = createRef();
-      render(<ListOption {...requiredProps} ref={ref} />);
+      render((
+        <Mode.Provider value="multiple">
+          <ListOption {...requiredProps} ref={ref} />
+        </Mode.Provider>
+      ));
       act(() => ref.current.focus());
       expect(screen.getByRole('option')).toHaveAttribute('aria-selected', 'false');
       userEvent.keyboard(' ');

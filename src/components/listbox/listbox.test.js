@@ -2,13 +2,15 @@ import React, {
   createRef,
 } from 'react';
 import {
-  act,
   render,
   screen,
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Listbox, { Context } from './listbox.js';
+import Listbox, {
+  Handler,
+  Mode,
+} from './listbox.js';
 
 describe('<Listbox />', () => {
   const requiredProps = {
@@ -56,11 +58,11 @@ describe('<Listbox />', () => {
   });
 
   describe('context API', () => {
-    it('has an onChange function', () => {
+    it('has the change handler', () => {
       const ref = createRef();
       render((
         <Listbox {...requiredProps} ref={ref}>
-          <Context.Consumer>
+          <Handler.Consumer>
             {(onChange) => (
               <li
                 aria-selected
@@ -71,12 +73,45 @@ describe('<Listbox />', () => {
                 Unique option
               </li>
             )}
-          </Context.Consumer>
+          </Handler.Consumer>
         </Listbox>
       ));
 
       userEvent.click(screen.getByRole('option', { name: 'Unique option' }));
       expect(ref.current.value).toContain('unique-value');
+    });
+
+    it('has the mode', () => {
+      const spy = jest.fn();
+      render((
+        <Listbox {...requiredProps}>
+          <Mode.Consumer>
+            {(mode) => spy(mode)}
+          </Mode.Consumer>
+        </Listbox>
+      ));
+
+      expect(spy).toHaveBeenCalledWith('single');
+      spy.mockClear();
+
+      render((
+        <Listbox {...requiredProps} multiple={true}>
+          <Mode.Consumer>
+            {(mode) => spy(mode)}
+          </Mode.Consumer>
+        </Listbox>
+      ));
+      expect(spy).toHaveBeenCalledWith('multiple');
+      spy.mockClear();
+
+      render((
+        <Listbox {...requiredProps} multiple={false}>
+          <Mode.Consumer>
+            {(mode) => spy(mode)}
+          </Mode.Consumer>
+        </Listbox>
+      ));
+      expect(spy).toHaveBeenCalledWith('single');
     });
   });
 
@@ -148,7 +183,7 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs}>
-            <Context.Consumer>
+            <Handler.Consumer>
               {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
@@ -156,7 +191,7 @@ describe('<Listbox />', () => {
                   <li onClick={() => onChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
                 </React.Fragment>
               )}
-            </Context.Consumer>
+            </Handler.Consumer>
           </Listbox>
         ));
 
@@ -173,7 +208,7 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs} value="second">
-            <Context.Consumer>
+            <Handler.Consumer>
               {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
@@ -181,7 +216,7 @@ describe('<Listbox />', () => {
                   <li onClick={() => onChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
                 </React.Fragment>
               )}
-            </Context.Consumer>
+            </Handler.Consumer>
           </Listbox>
         ));
 
@@ -200,7 +235,7 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs}>
-            <Context.Consumer>
+            <Handler.Consumer>
               {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
@@ -208,7 +243,7 @@ describe('<Listbox />', () => {
                   <li onClick={() => onChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
                 </React.Fragment>
               )}
-            </Context.Consumer>
+            </Handler.Consumer>
           </Listbox>
         ));
 
@@ -228,7 +263,7 @@ describe('<Listbox />', () => {
 
         render((
           <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs} value={['first', 'second']}>
-            <Context.Consumer>
+            <Handler.Consumer>
               {(onChange) => (
                 <React.Fragment>
                   <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
@@ -236,7 +271,7 @@ describe('<Listbox />', () => {
                   <li onClick={() => onChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
                 </React.Fragment>
               )}
-            </Context.Consumer>
+            </Handler.Consumer>
           </Listbox>
         ));
 

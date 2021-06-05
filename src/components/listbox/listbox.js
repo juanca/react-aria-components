@@ -12,7 +12,8 @@ import {
   useState,
 } from '../../hooks';
 
-const Context = createContext(() => {});
+const Handler = createContext(() => {}); // rename me
+const Mode = createContext('single');
 
 function getInitialValue(value, multiple) {
   if (value) {
@@ -117,9 +118,11 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       role="listbox"
       tabIndex={props.active ? 0 : -1}
     >
-      <Context.Provider value={onSelectChange}>
-        {props.children}
-      </Context.Provider>
+      <Mode.Provider value={props.multiple ? 'multiple' : 'single'}>
+        <Handler.Provider value={onSelectChange}>
+          {props.children}
+        </Handler.Provider>
+      </Mode.Provider>
     </ul>
   );
 });
@@ -151,4 +154,7 @@ Listbox.defaultProps = {
 };
 
 export default Listbox;
-export { Context };
+export {
+  Handler,
+  Mode,
+};
