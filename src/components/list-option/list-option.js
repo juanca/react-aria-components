@@ -15,7 +15,7 @@ import {
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   const onChange = useContext(Handler);
   const mode = useContext(Mode);
-  const ref = useRef(forwardedRef);
+  const ref = useRef(forwardedRef, { forwarded: true });
   const [active, setActive] = useState(false);
   const [selected, setSelected] = useState(props.selected, { sync: true });
   const refs = {

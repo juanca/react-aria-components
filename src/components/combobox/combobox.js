@@ -32,7 +32,7 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
     input: useRef(),
     listbox: useRef(),
   };
-  const ref = useRef(forwardedRef);
+  const ref = useRef(forwardedRef, { forwarded: true });
 
   function onBlur(event) {
     if (refs.container.current.contains(event.relatedTarget)) return;

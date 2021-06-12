@@ -24,7 +24,7 @@ function getInitialValue(value, multiple) {
 }
 
 const Listbox = forwardRef(function Listbox(props, forwardedRef) {
-  const ref = useRef(forwardedRef);
+  const ref = useRef(forwardedRef, { forwarded: true });
   const {
     activeIndex,
     setActiveIndex,

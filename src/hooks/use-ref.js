@@ -1,9 +1,16 @@
 import {
-  useRef as useRefHook,
+  useRef as useReactRef,
 } from 'react';
 
-export default function useRef(ref) {
-  const backupRef = useRefHook();
+const defaultOptions = {
+  forwarded: false,
+};
 
-  return ref || backupRef;
+export default function useRef(value, options = defaultOptions) {
+  if (options.forwarded) {
+    const backupRef = useReactRef();
+    return value || backupRef;
+  }
+
+  return useReactRef(value);
 }
