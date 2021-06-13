@@ -7,10 +7,8 @@ import {
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Listbox, {
-  Handler,
-  Mode,
-} from './listbox.js';
+import Listbox from './listbox.js';
+import ListOption from '../list-option/list-option.js';
 
 describe('<Listbox />', () => {
   const requiredProps = {
@@ -179,51 +177,39 @@ describe('<Listbox />', () => {
       it('is called on select', async () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onChangeSpy = jest.fn();
+        const spy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs}>
-            <Handler.Consumer>
-              {(onChange) => (
-                <React.Fragment>
-                  <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                  <li onClick={() => onChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                  <li onClick={() => onChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-                </React.Fragment>
-              )}
-            </Handler.Consumer>
+          <Listbox {...requiredProps} multiple={false} onChange={spy} ref={ref} refs={refs}>
+            <ListOption ref={refs[0]} value="first">First</ListOption>
+            <ListOption ref={refs[1]} value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
           </Listbox>
         ));
 
         expect(ref.current.value).toBeUndefined();
         userEvent.click(screen.getByText('Second'));
-        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toBe('second');
       });
 
-      it('is called on deselect', () => {
+      it('is not called on deselect', () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onChangeSpy = jest.fn();
+        const spy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} onChange={onChangeSpy} ref={ref} refs={refs} value="second">
-            <Handler.Consumer>
-              {(onChange) => (
-                <React.Fragment>
-                  <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                  <li onClick={() => onChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                  <li onClick={() => onChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-                </React.Fragment>
-              )}
-            </Handler.Consumer>
+          <Listbox {...requiredProps} multiple={false} onChange={spy} ref={ref} refs={refs} value="second">
+            <ListOption ref={refs[0]} value="first">First</ListOption>
+            <ListOption ref={refs[1]} selected value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
           </Listbox>
         ));
 
         expect(ref.current.value).toBe('second');
         userEvent.click(screen.getByText('Second'));
-        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
-        expect(ref.current.value).toBeUndefined();
+        expect(spy).not.toHaveBeenCalled();
+        expect(ref.current.value).toBe('second');
       });
     });
 
@@ -231,58 +217,150 @@ describe('<Listbox />', () => {
       it('is called on select', () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onChangeSpy = jest.fn();
+        const spy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs}>
-            <Handler.Consumer>
-              {(onChange) => (
-                <React.Fragment>
-                  <li onClick={() => onChange({ target: { selected: true, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                  <li onClick={() => onChange({ target: { selected: true, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                  <li onClick={() => onChange({ target: { selected: true, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-                </React.Fragment>
-              )}
-            </Handler.Consumer>
+          <Listbox {...requiredProps} multiple onChange={spy} ref={ref} refs={refs}>
+            <ListOption ref={refs[0]} value="first">First</ListOption>
+            <ListOption ref={refs[1]} value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
           </Listbox>
         ));
 
         expect(ref.current.value).toHaveLength(0);
         userEvent.click(screen.getByText('Second'));
-        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toContain('second');
         userEvent.click(screen.getByText('Third'));
-        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toContain('third');
       });
 
       it('is called on deselect', () => {
         const ref = createRef();
         const refs = [createRef(), createRef(), createRef()];
-        const onChangeSpy = jest.fn();
+        const spy = jest.fn();
 
         render((
-          <Listbox {...requiredProps} multiple onChange={onChangeSpy} ref={ref} refs={refs} value={['first', 'second']}>
-            <Handler.Consumer>
-              {(onChange) => (
-                <React.Fragment>
-                  <li onClick={() => onChange({ target: { selected: false, value: 'first' } })} ref={refs[0]} tabIndex="-1">First</li>
-                  <li onClick={() => onChange({ target: { selected: false, value: 'second' } })} ref={refs[1]} tabIndex="-1">Second</li>
-                  <li onClick={() => onChange({ target: { selected: false, value: 'third' } })} ref={refs[2]} tabIndex="-1">Third</li>
-                </React.Fragment>
-              )}
-            </Handler.Consumer>
+          <Listbox {...requiredProps} multiple onChange={spy} ref={ref} refs={refs} value={['first', 'second']}>
+            <ListOption ref={refs[0]} selected value="first">First</ListOption>
+            <ListOption ref={refs[1]} selected value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
           </Listbox>
         ));
 
         expect(ref.current.value).toContain('first');
         expect(ref.current.value).toContain('second');
         userEvent.click(screen.getByText('Second'));
-        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toContain('first');
         userEvent.click(screen.getByText('First'));
-        expect(onChangeSpy).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
         expect(ref.current.value).toHaveLength(0);
+      });
+    });
+  });
+
+  describe('onSelect API', () => {
+    describe('single select', () => {
+      it('is called on select', async () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const spy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} multiple={false} onSelect={spy} ref={ref} refs={refs}>
+            <ListOption ref={refs[0]} value="first">First</ListOption>
+            <ListOption ref={refs[1]} value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
+          </Listbox>
+        ));
+
+        userEvent.click(screen.getByText('Second'));
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
+          expect.objectContaining({
+            value: undefined,
+          })
+        }));
+      });
+
+      it('is called on deselect', () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const spy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} multiple={false} onSelect={spy} ref={ref} refs={refs} value="second">
+            <ListOption ref={refs[0]} value="first">First</ListOption>
+            <ListOption ref={refs[1]} selected value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
+          </Listbox>
+        ));
+
+        userEvent.click(screen.getByText('Second'));
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
+          expect.objectContaining({
+            value: 'second',
+          }),
+        }));
+      });
+    });
+
+    describe('multi select', () => {
+      it('is called on select', () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const spy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} multiple onSelect={spy} ref={ref} refs={refs}>
+            <ListOption ref={refs[0]} value="first">First</ListOption>
+            <ListOption ref={refs[1]} value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
+          </Listbox>
+        ));
+
+        userEvent.click(screen.getByText('Second'));
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
+          expect.objectContaining({
+            value: [],
+          }),
+        }));
+        spy.mockClear();
+        userEvent.click(screen.getByText('Third'));
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
+          expect.objectContaining({
+            value: ['second'],
+          })
+        }));
+      });
+
+      it('is called on deselect', () => {
+        const ref = createRef();
+        const refs = [createRef(), createRef(), createRef()];
+        const spy = jest.fn();
+
+        render((
+          <Listbox {...requiredProps} multiple onSelect={spy} ref={ref} refs={refs} value={['first', 'second']}>
+            <ListOption ref={refs[0]} selected value="first">First</ListOption>
+            <ListOption ref={refs[1]} selected value="second">Second</ListOption>
+            <ListOption ref={refs[2]} value="third">Third</ListOption>
+          </Listbox>
+        ));
+
+        userEvent.click(screen.getByText('Second'));
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
+          expect.objectContaining({
+            value: ['first', 'second'],
+          }),
+        }));
+        spy.mockClear();
+        userEvent.click(screen.getByText('First'));
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
+          expect.objectContaining({
+            value: ['first'],
+          }),
+        }));
       });
     });
   });

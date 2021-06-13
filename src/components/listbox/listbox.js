@@ -12,7 +12,8 @@ import {
   useState,
 } from '../../hooks/index.js';
 
-const Handler = createContext(() => {}); // rename me
+const ChangeHandler = createContext(() => {});
+const SelectHandler = createContext(() => {});
 const Mode = createContext('single');
 
 function getInitialValue(value, multiple) {
@@ -71,7 +72,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     props.refs[activeIndex.current].current.focus();
   }
 
-  const onSelectChange = useCallback(function onSelectChange(event) {
+  const onChange = useCallback(function onChange(event) {
     if (event.target.selected) {
       if (props.multiple) {
         setValue((state) => [...state, event.target.value]);
@@ -86,6 +87,10 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       setValue((state) => state.filter((val) => val !== event.target.value));
     }
   }, [setValue, props.refs]);
+
+  const onSelect = useCallback(function onSelect() {
+    props.onSelect({ target: ref.current });
+  }, [props.onSelect]);
 
   useEffect(() => {
     props.onChange({ target: ref.current });
@@ -119,9 +124,11 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
       tabIndex={props.active ? 0 : -1}
     >
       <Mode.Provider value={props.multiple ? 'multiple' : 'single'}>
-        <Handler.Provider value={onSelectChange}>
-          {props.children}
-        </Handler.Provider>
+        <ChangeHandler.Provider value={onChange}>
+          <SelectHandler.Provider value={onSelect}>
+            {props.children}
+          </SelectHandler.Provider>
+        </ChangeHandler.Provider>
       </Mode.Provider>
     </ul>
   );
@@ -134,6 +141,7 @@ Listbox.propTypes = {
   labelledBy: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
   onChange: PropTypes.func,
+  onSelect: PropTypes.func,
   refs: PropTypes.arrayOf(PropTypes.shape({
     current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   })),
@@ -149,12 +157,14 @@ Listbox.defaultProps = {
   className: undefined,
   multiple: false,
   onChange: () => {},
+  onSelect: () => {},
   refs: [],
   value: undefined,
 };
 
 export default Listbox;
 export {
-  Handler,
+  ChangeHandler,
+  SelectHandler,
   Mode,
 };

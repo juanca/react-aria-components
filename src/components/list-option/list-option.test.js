@@ -8,7 +8,8 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
-  Handler,
+  ChangeHandler,
+  SelectHandler,
   Mode,
 } from '../listbox/listbox.js';
 import ListOption from './list-option.js';
@@ -27,20 +28,43 @@ describe('<ListOption />', () => {
   });
 
   describe('context API', () => {
-    describe('Handler', () => {
+    describe('onChange handler', () => {
       it('is called when selected state changes', () => {
         const ref = createRef();
-        const onChange = jest.fn();
+        const spy = jest.fn();
 
         render((
-          <Handler.Provider value={onChange}>
+          <ChangeHandler.Provider value={spy}>
             <ListOption {...requiredProps} ref={ref} />
-          </Handler.Provider>
+          </ChangeHandler.Provider>
         ));
 
-        expect(onChange).not.toHaveBeenCalled();
+        expect(spy).not.toHaveBeenCalled();
         userEvent.click(screen.getByRole('option'));
-        expect(onChange).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
+        spy.mockClear();
+        userEvent.click(screen.getByRole('option'));
+        expect(spy).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('onSelect handler', () => {
+      it('is called when a user selects an option', () => {
+        const ref = createRef();
+        const spy = jest.fn();
+
+        render((
+          <SelectHandler.Provider value={spy}>
+            <ListOption {...requiredProps} ref={ref} />
+          </SelectHandler.Provider>
+        ));
+
+        expect(spy).not.toHaveBeenCalled();
+        userEvent.click(screen.getByRole('option'));
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
+        spy.mockClear();
+        userEvent.click(screen.getByRole('option'));
+        expect(spy).toHaveBeenCalledWith({ target: ref.current });
       });
     });
 

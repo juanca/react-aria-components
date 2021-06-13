@@ -4,7 +4,11 @@ import React, {
   useContext,
   useImperativeHandle,
 } from 'react';
-import { Handler, Mode } from '../listbox/listbox.js';
+import {
+  ChangeHandler,
+  SelectHandler,
+  Mode,
+} from '../listbox/listbox.js';
 import styles from './list-option.css';
 import {
   useEffect,
@@ -13,7 +17,8 @@ import {
 } from '../../hooks/index.js';
 
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
-  const onChange = useContext(Handler);
+  const onChange = useContext(ChangeHandler);
+  const onSelect = useContext(SelectHandler);
   const mode = useContext(Mode);
   const ref = useRef(forwardedRef, { forwarded: true });
   const [active, setActive] = useState(false);
@@ -27,7 +32,14 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }
 
   function onClick() {
-    setSelected((state) => (mode === 'multiple' ? !state : true));
+    if (mode === 'multiple') {
+      setSelected((state) => !state);
+    } else {
+      setSelected(true);
+      // Selected state will not change if already selected
+      // Manually invoke the `onSelect` handlers
+      if (selected) onSelect({ target: ref.current });
+    }
     setActive(true);
     refs.container.current.focus();
   }
@@ -36,13 +48,21 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     switch (event.key) {
       case ' ':
         event.preventDefault();
-        setSelected((state) => (mode === 'multiple' ? !state : true));
+        if (mode === 'multiple') {
+          setSelected((state) => !state);
+        } else {
+          setSelected(true);
+          // Selected state will not change if already selected
+          // Manually invoke the `onSelect` handlers
+          if (selected) onSelect({ target: ref.current });
+        }
         break;
       default:
     }
   }
 
   useEffect(() => {
+    onSelect({ target: ref.current });
     props.onChange({ target: ref.current });
     onChange({ target: ref.current });
   }, [selected], { mounted: true });
