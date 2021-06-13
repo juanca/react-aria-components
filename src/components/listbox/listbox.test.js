@@ -55,64 +55,6 @@ describe('<Listbox />', () => {
     });
   });
 
-  describe('context API', () => {
-    it('has the change handler', () => {
-      const ref = createRef();
-      render((
-        <Listbox {...requiredProps} ref={ref}>
-          <Handler.Consumer>
-            {(onChange) => (
-              <li
-                aria-selected
-                onClick={() => onChange({ target: { selected: true, value: 'unique-value' } })}
-                onKeyDown={() => {}}
-                role="option"
-              >
-                Unique option
-              </li>
-            )}
-          </Handler.Consumer>
-        </Listbox>
-      ));
-
-      userEvent.click(screen.getByRole('option', { name: 'Unique option' }));
-      expect(ref.current.value).toContain('unique-value');
-    });
-
-    it('has the mode', () => {
-      const spy = jest.fn();
-      render((
-        <Listbox {...requiredProps}>
-          <Mode.Consumer>
-            {(mode) => spy(mode)}
-          </Mode.Consumer>
-        </Listbox>
-      ));
-
-      expect(spy).toHaveBeenCalledWith('single');
-      spy.mockClear();
-
-      render((
-        <Listbox {...requiredProps} multiple={true}>
-          <Mode.Consumer>
-            {(mode) => spy(mode)}
-          </Mode.Consumer>
-        </Listbox>
-      ));
-      expect(spy).toHaveBeenCalledWith('multiple');
-      spy.mockClear();
-
-      render((
-        <Listbox {...requiredProps} multiple={false}>
-          <Mode.Consumer>
-            {(mode) => spy(mode)}
-          </Mode.Consumer>
-        </Listbox>
-      ));
-      expect(spy).toHaveBeenCalledWith('single');
-    });
-  });
-
   describe('focus API', () => {
     it('focuses itsself', async () => {
       const ref = createRef();
