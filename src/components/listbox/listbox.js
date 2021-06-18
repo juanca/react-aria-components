@@ -88,10 +88,6 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     }
   }, [setValue, props.refs]);
 
-  const onSelect = useCallback(function onSelect() {
-    props.onSelect({ target: ref.current });
-  }, [props.onSelect]);
-
   useEffect(() => {
     props.onChange({ target: ref.current });
   }, [value], { mounted: true });
@@ -125,7 +121,7 @@ const Listbox = forwardRef(function Listbox(props, forwardedRef) {
     >
       <Mode.Provider value={props.multiple ? 'multiple' : 'single'}>
         <ChangeHandler.Provider value={onChange}>
-          <SelectHandler.Provider value={onSelect}>
+          <SelectHandler.Provider value={props.onSelect}>
             {props.children}
           </SelectHandler.Provider>
         </ChangeHandler.Provider>

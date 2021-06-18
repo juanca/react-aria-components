@@ -61,10 +61,22 @@ describe('<ListOption />', () => {
 
         expect(spy).not.toHaveBeenCalled();
         userEvent.click(screen.getByRole('option'));
-        expect(spy).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({
+            selected: false,
+          }),
+        }));
         spy.mockClear();
         userEvent.click(screen.getByRole('option'));
-        expect(spy).toHaveBeenCalledWith({ target: ref.current });
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({
+            selected: true,
+          }),
+        }));
       });
     });
 

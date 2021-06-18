@@ -16,9 +16,25 @@ import {
   useState,
 } from '../../hooks/index.js';
 
+function syntheticHandler(target, callback) {
+  const event = {
+    defaultPrevented: false,
+    preventDefault() {
+      this.defaultPrevented = true;
+    },
+    target,
+  };
+
+  callback(event);
+
+  return event;
+}
+
 const ListOption = forwardRef(function ListOption(props, forwardedRef) {
-  const onChange = useContext(ChangeHandler);
-  const onSelect = useContext(SelectHandler);
+  const context = {
+    onChange: useContext(ChangeHandler),
+    onSelect: useContext(SelectHandler),
+  };
   const mode = useContext(Mode);
   const ref = useRef(forwardedRef, { forwarded: true });
   const [active, setActive] = useState(false);
@@ -27,19 +43,21 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     container: useRef(),
   };
 
+  function select() {
+    if (mode === 'multiple') {
+      setSelected((state) => !state);
+    } else {
+      setSelected(true);
+    }
+  }
+
   function onMouseDown(event) {
     event.preventDefault();
   }
 
   function onClick() {
-    if (mode === 'multiple') {
-      setSelected((state) => !state);
-    } else {
-      setSelected(true);
-      // Selected state will not change if already selected
-      // Manually invoke the `onSelect` handlers
-      if (selected) onSelect({ target: ref.current });
-    }
+    if (syntheticHandler(ref.current, context.onSelect).defaultPrevented) return;
+    select();
     setActive(true);
     refs.container.current.focus();
   }
@@ -48,23 +66,16 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
     switch (event.key) {
       case ' ':
         event.preventDefault();
-        if (mode === 'multiple') {
-          setSelected((state) => !state);
-        } else {
-          setSelected(true);
-          // Selected state will not change if already selected
-          // Manually invoke the `onSelect` handlers
-          if (selected) onSelect({ target: ref.current });
-        }
+        if (syntheticHandler(ref.current, context.onSelect).defaultPrevented) return;
+        select();
         break;
       default:
     }
   }
 
   useEffect(() => {
-    onSelect({ target: ref.current });
+    context.onChange({ target: ref.current });
     props.onChange({ target: ref.current });
-    onChange({ target: ref.current });
   }, [selected], { mounted: true });
 
   useImperativeHandle(ref, () => ({

@@ -219,10 +219,10 @@ describe('<Listbox />', () => {
         ));
 
         userEvent.click(screen.getByText('Second'));
-        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
-          expect.objectContaining({
-            value: undefined,
-          })
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({ selected: false, value: 'second' }),
         }));
       });
 
@@ -240,8 +240,11 @@ describe('<Listbox />', () => {
         ));
 
         userEvent.click(screen.getByText('Second'));
-        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
-          expect.objectContaining({
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({
+            selected: true,
             value: 'second',
           }),
         }));
@@ -263,16 +266,22 @@ describe('<Listbox />', () => {
         ));
 
         userEvent.click(screen.getByText('Second'));
-        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
-          expect.objectContaining({
-            value: [],
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({
+            selected: false,
+            value: 'second',
           }),
         }));
         spy.mockClear();
         userEvent.click(screen.getByText('Third'));
-        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
-          expect.objectContaining({
-            value: ['second'],
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({
+            selected: false,
+            value: 'third',
           })
         }));
       });
@@ -291,16 +300,22 @@ describe('<Listbox />', () => {
         ));
 
         userEvent.click(screen.getByText('Second'));
-        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
-          expect.objectContaining({
-            value: ['first', 'second'],
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({
+            selected: true,
+            value: 'second',
           }),
         }));
         spy.mockClear();
         userEvent.click(screen.getByText('First'));
-        expect(spy).toHaveBeenCalledWith(expect.objectContaining({ target:
-          expect.objectContaining({
-            value: ['first'],
+        expect(spy).toHaveBeenCalledWith(expect.objectContaining({
+          defaultPrevented: false,
+          preventDefault: expect.any(Function),
+          target: expect.objectContaining({
+            selected: true,
+            value: 'first',
           }),
         }));
       });
