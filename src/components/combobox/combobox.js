@@ -36,6 +36,7 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
 
   function onBlur(event) {
     if (refs.container.current.contains(event.relatedTarget)) return;
+    if (!expanded) return;
 
     setValue((props.refs
       .filter((childRef) => childRef.current.selected)
@@ -80,6 +81,14 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
     setValue(event.target.value);
     setExpanded(false);
     refs.input.current.focus();
+  }
+
+  function onListboxSelect(event) {
+    if (event.target.selected) {
+      setValue(event.target.value);
+      setExpanded(false);
+      refs.input.current.focus();
+    }
   }
 
   useEffect(() => {
@@ -133,6 +142,7 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
           labelledBy={ids.label}
           id={ids.listbox}
           onChange={onListboxChange}
+          onSelect={onListboxSelect}
           ref={refs.listbox}
           refs={props.refs}
         >

@@ -8,7 +8,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Combobox from './combobox.js';
-import { Handler } from '../listbox/listbox.js';
+import { ChangeHandler } from '../listbox/listbox.js';
 import ListOption from '../list-option/list-option.js';
 
 describe('<Combobox />', () => {
@@ -68,7 +68,7 @@ describe('<Combobox />', () => {
       const onChange = jest.fn();
       render((
         <Combobox {...requiredProps} onChange={onChange}>
-          <Handler.Consumer>
+          <ChangeHandler.Consumer>
             {(internalOnChange) => (
               <option
                 onClick={(event) => {
@@ -80,7 +80,7 @@ describe('<Combobox />', () => {
                 Option
               </option>
             )}
-          </Handler.Consumer>
+          </ChangeHandler.Consumer>
         </Combobox>
       ));
       expect(onChange).not.toHaveBeenCalled();
@@ -180,7 +180,16 @@ describe('<Combobox />', () => {
       ));
 
       userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
-      const option = screen.getByText('Test option');
+      let option = screen.getByText('Test option');
+      userEvent.click(option);
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveValue('test-value');
+      expect(ref.current.value).toBe('test-value');
+      expect(option).not.toBeInTheDocument();
+
+      userEvent.click(document.body);
+      userEvent.click(screen.getByRole('combobox', { name: 'Test label' }));
+      option = screen.getByText('Test option');
       userEvent.click(option);
       expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
       expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveValue('test-value');
@@ -202,7 +211,22 @@ describe('<Combobox />', () => {
       userEvent.tab();
       expect(screen.getByRole('listbox')).toHaveFocus();
       userEvent.keyboard('{ArrowDown}');
-      const option = screen.getByText('Test option');
+      let option = screen.getByText('Test option');
+      expect(option).toHaveFocus();
+      userEvent.keyboard(' ');
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveValue('test-value');
+      expect(ref.current.value).toBe('test-value');
+      expect(option).not.toBeInTheDocument();
+
+      userEvent.tab();
+      expect(document.body).toHaveFocus();
+      userEvent.tab();
+      expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
+      userEvent.tab();
+      expect(screen.getByRole('listbox')).toHaveFocus();
+      userEvent.keyboard('{ArrowDown}');
+      option = screen.getByText('Test option');
       expect(option).toHaveFocus();
       userEvent.keyboard(' ');
       expect(screen.getByRole('textbox', { name: 'Test label' })).toHaveFocus();
