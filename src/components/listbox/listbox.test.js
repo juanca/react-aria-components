@@ -282,7 +282,7 @@ describe('<Listbox />', () => {
           target: expect.objectContaining({
             selected: false,
             value: 'third',
-          })
+          }),
         }));
       });
 

@@ -67,5 +67,5 @@ export const options = [
 ];
 
 export function filterByText(array, text) {
-  return text === '' ? [] : array.filter(option => RegExp(text, 'i').test(option.label));
+  return text === '' ? [] : array.filter((option) => RegExp(text, 'i').test(option.label));
 }
