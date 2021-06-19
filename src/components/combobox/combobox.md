@@ -74,4 +74,63 @@ function onInput(event) {
 </RefExample>;
 ```
 
+#### Example 2: List Autocomplete with Automatic Selection
+
+```js
+import RefExample, {Context} from '../ref-example.js';
+import Combobox from './combobox.js';
+import ListOption from '../list-option/list-option.js';
+import {
+  filterByText,
+  options,
+} from '../../site/combobox.js';
+import styles from './combobox.example.css';
+
+const ref = React.useRef();
+
+const [visibleOptions, setVisibleOptions] = React.useState(filterByText(options, ''));
+
+function onChange(event) {
+  setVisibleOptions(filterByText(options, event.target.value));
+}
+
+function onInput(event) {
+  setVisibleOptions(filterByText(options, event.target.value));
+}
+
+<RefExample ref={ref}>
+  <Context.Consumer>
+    {(updateRefExample) => (
+      <Combobox
+        id="example-2"
+        label="Choice 2 Fruit or Vegetable"
+        onChange={(event) => {
+          onChange(event);
+          updateRefExample();
+        }}
+        onInput={(event) => {
+          onInput(event);
+          updateRefExample();
+        }}
+        ref={ref}
+        refs={visibleOptions.map(option => option.ref)}
+      >
+        {visibleOptions.map((option, i) => (
+          <ListOption
+            className={styles.option}
+            key={option.label}
+            ref={option.ref}
+            selected={i === 0}
+            toggle={false}
+            value={option.label}
+          >
+            {option.label}
+          </ListOption>
+        ))}
+      </Combobox>
+    )}
+  </Context.Consumer>
+</RefExample>;
+```
+
 ### Examples of Combobox with Grid Popup

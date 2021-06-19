@@ -1,0 +1,3 @@
+.option {
+  composes: example-option from '../examples.css';
+}
