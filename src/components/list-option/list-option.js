@@ -74,8 +74,8 @@ const ListOption = forwardRef(function ListOption(props, forwardedRef) {
   }
 
   useEffect(() => {
-    context.onChange({ target: ref.current });
-    props.onChange({ target: ref.current });
+    props.onChange({ target: ref.current }); // Direct bubble
+    context.onChange({ target: ref.current }); // Indirect bubble
   }, [selected], { mounted: true });
 
   useImperativeHandle(ref, () => ({

@@ -99,6 +99,13 @@ const Combobox = forwardRef(function ComboBox(props, forwardedRef) {
     refs.input.current.value = value || '';
   }, [value]);
 
+  useLayoutEffect(() => {
+    if (!props.suggestedValue) return;
+    const original = refs.input.current.value;
+    refs.input.current.value = props.suggestedValue;
+    refs.input.current.setSelectionRange(original.length, props.suggestedValue.length);
+  }, [props.suggestedValue]);
+
   useImperativeHandle(ref, () => ({
     focus: () => refs.input.current.focus(),
     value,
