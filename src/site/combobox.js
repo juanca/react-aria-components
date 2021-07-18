@@ -65,7 +65,3 @@ export const options = [
   { label: 'Yam', ref: createRef() },
   { label: 'Zucchini', ref: createRef() },
 ];
-
-export function filterByText(array, text) {
-  return text === '' ? [] : array.filter((option) => RegExp(text, 'i').test(option.label));
-}

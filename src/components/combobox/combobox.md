@@ -71,7 +71,7 @@ function onInput(event) {
       </Combobox>
     )}
   </Context.Consumer>
-</RefExample>;
+</RefExample>
 ```
 
 #### Example 2: List Autocomplete with Automatic Selection
@@ -80,15 +80,16 @@ function onInput(event) {
 import RefExample, {Context} from '../ref-example.js';
 import Combobox from './combobox.js';
 import ListOption from '../list-option/list-option.js';
-import {
-  filterByText,
-  options,
-} from '../../site/combobox.js';
+import { options } from '../../site/combobox.js';
 import styles from './combobox.example.css';
 
 const ref = React.useRef();
 
 const [visibleOptions, setVisibleOptions] = React.useState(filterByText(options, ''));
+
+function filterByText(array, text) {
+  return text === '' ? [] : array.filter((option) => RegExp(text, 'i').test(option.label));
+}
 
 function onChange(event) {
   setVisibleOptions(filterByText(options, event.target.value));
