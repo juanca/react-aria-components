@@ -112,7 +112,7 @@
 
 /*! exports provided: isBrowser, default */
 
-/*! exports provided: options, filterByText */
+/*! exports provided: options */
 
 /*! exports provided: renderType, default */
 
