@@ -60,6 +60,7 @@ jobs:
           name: Compile and deploy Github pages
           command: |
             npm run compile
+            git fetch
             git checkout gh-pages
             rm -rf $CIRCLE_BRANCH
             mkdir -p $CIRCLE_BRANCH
