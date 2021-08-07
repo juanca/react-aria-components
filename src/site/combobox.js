@@ -1,5 +1,6 @@
 import { createRef } from 'react';
 
+// eslint-disable-next-line import/prefer-default-export
 export const options = [
   { label: 'Apple', ref: createRef() },
   { label: 'Artichoke', ref: createRef() },
