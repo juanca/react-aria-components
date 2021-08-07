@@ -169,6 +169,7 @@ Combobox.propTypes = {
   refs: PropTypes.arrayOf(PropTypes.shape({
     current: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   })).isRequired,
+  suggestedValue: PropTypes.string,
   value: PropTypes.string,
 };
 
@@ -176,6 +177,7 @@ Combobox.defaultProps = {
   children: undefined,
   onChange: () => {},
   onInput: () => {},
+  suggestedValue: undefined,
   value: '',
 };
 
